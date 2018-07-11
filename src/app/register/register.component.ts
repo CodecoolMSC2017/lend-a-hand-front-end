@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     user = new User();
 
-    constructor(private formBuilder: FormBuilder, private registerSevice: RegisterService) {
+    constructor(private formBuilder: FormBuilder, private registerService: RegisterService) {
     }
 
     ngOnInit() {
@@ -36,9 +36,9 @@ export class RegisterComponent implements OnInit {
         this.user.userName = username;
         this.user.password = password;
         this.user.type = type;
-
-
-        this.registerSevice.registerUser(this.user);
+        this.registerService.registerUser(this.user).subscribe(response => {
+            alert(response);
+        });
 
     }
 
