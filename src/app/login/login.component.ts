@@ -31,13 +31,12 @@ export class LoginComponent implements OnInit {
         this.user.email = email;
         this.user.password = password;
         this.loginService.loginUser(this.user).subscribe(response => {
-            if (response.status === 409 || 404) {
-                alert(response.toString());
-            } else {
-                sessionStorage.setItem('user', response);
+                sessionStorage.setItem('user', JSON.stringify(response));
                 this.router.navigate(['/profile']);
+            }, error => {
+                alert(error.error.message);
             }
-        });
+        );
     }
 }
 
