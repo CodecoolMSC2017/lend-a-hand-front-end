@@ -1,43 +1,33 @@
-<h3>Login Form</h3>
-<form [formGroup]="loginForm" (ngSubmit)="login()">
-    <table>
-        <tr>
-            <td>Email</td>
-            <td>
-                <input type="text" formControlName="email">
-            </td>
-            <td>
-                <div *ngIf="loginForm.get('email').touched">
-                    <div *ngIf="loginForm.hasError('required', ['email'])">
+<div id="login-content" class="content">
+    <div class="form-div">
+        <form id="login-form" [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="input-div">
+                <h2 id="h2">Log in</h2><br>E-mail:<br>
+                <input type="text" formControlName="email" class="input">
+                <span *ngIf="loginForm.get('email').touched">
+                    <span *ngIf="loginForm.hasError('required', ['email'])">
                         This field is required.
-                    </div>
-                    <div *ngIf="loginForm.hasError('pattern', ['email'])">
+                    </span>
+                    <span *ngIf="loginForm.hasError('pattern', ['email'])">
                         Please enter a valid email address.
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td>
-                <input type="password" formControlName="password">
-            </td>
-            <td>
-                <div *ngIf="loginForm.get('password').touched">
-                    <div *ngIf="loginForm.hasError('required', ['password'])">
+                    </span>
+                </span>
+                <br> Password:<br>
+                <input type="password" formControlName="password" class="input"><br>
+                <span *ngIf="loginForm.get('password').touched">
+                    <span *ngIf="loginForm.hasError('required', ['password'])">
                         This field is required.
-                    </div>
-                    <div *ngIf="loginForm.hasError('pattern', ['password'])">
+                    </span>
+                    <span *ngIf="loginForm.hasError('pattern', ['password'])">
                         Your password does not meet complexity requirements.
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
-                <input type="submit" value="Save" [disabled]="loginForm.invalid">
-            </td>
-        </tr>
-    </table>
-</form>
+                    </span>
+                </span>
+                <input id="login-button" type="submit" value="Login" class="btn" [disabled]="loginForm.invalid">
+            </div>
+        </form>
+        <p id="registration-para" class="register-paragraph">If you don't have an account <a routerLink="/register"
+                                                                                             class="register-link">register</a>
+            one</p>
+        <div class="g-signin2" data-onsuccess="onSignIn" data-width="250" data-height="50"></div>
+    </div>
+</div>
