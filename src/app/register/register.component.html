@@ -1,72 +1,84 @@
-<h3>Register Form</h3>
-<form [formGroup]="registerForm" (ngSubmit)="register()">
-    <table>
-        <tr>
-            <td>Username</td>
-            <td>
-                <input type="text" formControlName="username">
-            </td>
-            <td>
-                <div *ngIf="registerForm.get('username').touched">
-                    <div *ngIf="registerForm.hasError('required', ['username'])">
-                        This field is required.
-                    </div>
-                    <div *ngIf="registerForm.hasError('minlength', ['username'])">
-                        Please enter at least 3 characters.
-                    </div>
-                    <div *ngIf="registerForm.hasError('maxlength', ['username'])">
-                        Please enter no more than 32 characters.
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td>
-                <input type="password" formControlName="password">
-            </td>
-            <td>
-                <div *ngIf="registerForm.get('password').touched">
-                    <div *ngIf="registerForm.hasError('required', ['password'])">
-                        This field is required.
-                    </div>
-                    <div *ngIf="registerForm.hasError('pattern', ['password'])">
-                        Your password does not meet complexity requirements.
-                    </div>
+<div id="register-content" class="content">
+    <div class="form-div">
+        <form id="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="input-div">
+                <h2>Registration</h2>
+                <table class="form-table">
+                    <tr>
+                        <td class="label-td">Username</td>
+                        <td>
+                            <input type="text" formControlName="username" class="input">
+                        </td>
+                        <td class="error-td">
+                            <span *ngIf="registerForm.get('username').touched">
+                                <span *ngIf="registerForm.hasError('required', ['username'])">
+                                    This field is required.
+                                </span>
+                                <span *ngIf="registerForm.hasError('minlength', ['username'])">
+                                    Please enter at least 3 characters.
+                                </span>
+                                <span *ngIf="registerForm.hasError('maxlength', ['username'])">
+                                    Please enter no more than 32 characters.
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label-td">Password</td>
+                        <td>
+                            <input type="password" formControlName="password" class="input">
+                        </td>
+                        <td class="error-td">
+                            <span *ngIf="registerForm.get('password').touched">
+                                <span *ngIf="registerForm.hasError('required', ['password'])">
+                                    This field is required.
+                                </span>
+                                <span *ngIf="registerForm.hasError('pattern', ['password'])">
+                                    Your password does not meet complexity requirements.
+                                </span>
 
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td>
-                <input type="text" formControlName="email">
-            </td>
-            <td>
-                <div *ngIf="registerForm.get('email').touched">
-                    <div *ngIf="registerForm.hasError('required', ['email'])">
-                        This field is required.
-                    </div>
-                    <div *ngIf="registerForm.hasError('pattern', ['email'])">
-                        Please enter a valid email address.
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td>Type</td>
-            <td>
-                <select formControlName="type">
-                    <option value="person" selected>Person</option>
-                    <option value="company">Company</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td>
-                <input type="submit" value="Save" [disabled]="registerForm.invalid">
-            </td>
-        </tr>
-    </table>
-</form>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>
+                            <input type="text" formControlName="email" class="input">
+                        </td>
+                        <td>
+                            <span *ngIf="registerForm.get('email').touched">
+                                <span *ngIf="registerForm.hasError('required', ['email'])">
+                                    This field is required.
+                                </span>
+                                <span *ngIf="registerForm.hasError('pattern', ['email'])">
+                                    Please enter a valid email address.
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Type</td>
+                        <td>
+                            <div class="styled-select green semi-square">
+                                <select formControlName="type">
+                                    <option value="person" selected="selected">Person</option>
+                                    <option value="company">Company</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td class="btn-td">
+                            <input id="register-button" class="btn" type="submit" value="Save"
+                                   [disabled]="registerForm.invalid">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+        <p class="register-paragraph">Already have an account? <a routerLink="/login"
+                                                                  class="register-link">Login
+            here</a></p>
+    </div>
+</div>

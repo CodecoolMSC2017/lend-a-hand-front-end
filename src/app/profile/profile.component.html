@@ -1,5 +1,11 @@
-<h2>{{user.name}}</h2>
+<h2>{{user.userName}}</h2>
 <div>
+    <span *ngIf="user.type == 'company' ">
+                        Company
+                    </span>
+    <span *ngIf="user.type == 'person' ">
+                        Person
+                    </span>
     <span>email: </span>{{user.email}}
     <span>password:</span>{{user.password}}
 </div>
