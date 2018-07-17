@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './user.model';
 
@@ -12,6 +12,10 @@ export class RegisterService {
     }
 
     registerUser(user: User): Observable<any> {
-        return this.http.post('/api/user/register', user);
+        return this.http.post('/api/auth/register', {
+            headers: new HttpHeaders({
+                'Authorization': 'Basic ' + window.btoa(user.userName + ':' + user.password)
+            })
+        });
     }
 }
