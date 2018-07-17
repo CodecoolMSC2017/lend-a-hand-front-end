@@ -1,8 +1,8 @@
 ///<reference path="../../../node_modules/@angular/forms/src/validators.d.ts"/>
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {RegisterService} from '../register.service';
 import {User} from '../user.model';
+import {AuthorizationService} from '../authorization.service';
 
 @Component({
     selector: 'app-register',
@@ -14,7 +14,7 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     user = new User();
 
-    constructor(private formBuilder: FormBuilder, private registerService: RegisterService) {
+    constructor(private formBuilder: FormBuilder, private authService: AuthorizationService) {
     }
 
     ngOnInit() {
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
             username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
             password: ['', [Validators.required, Validators.pattern('^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20})$')]],
             email: ['', [Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
-            type: ['Person', [Validators.required]]
+            type: ['', [Validators.required]]
 
         });
     }
@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
         this.user.userName = username;
         this.user.password = password;
         this.user.type = type;
-        this.registerService.registerUser(this.user).subscribe(response => {
+        this.authService.registerUser(this.user).subscribe(response => {
             alert(response);
         });
 

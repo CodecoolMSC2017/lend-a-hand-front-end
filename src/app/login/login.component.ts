@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from '../login.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user.model';
 import {Router} from '@angular/router';
+import {AuthorizationService} from '../authorization.service';
 
 @Component({
     selector: 'app-login',
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     user = new User();
 
-    constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) {
+    constructor(private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
     }
 
     ngOnInit() {
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         const password: String = this.loginForm.value.password;
         this.user.email = email;
         this.user.password = password;
-        this.loginService.loginUser(this.user).subscribe(response => {
+        this.authService.loginUser(this.user).subscribe(response => {
                 sessionStorage.setItem('user', JSON.stringify(response));
                 this.router.navigate(['/profile']);
             }, error => {
