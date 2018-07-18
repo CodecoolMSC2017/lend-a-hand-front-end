@@ -10,6 +10,7 @@ import {AppRoutingModule} from './/app-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {MainPageComponent} from './main-page/main-page.component';
 import { AdFilterComponent } from './ad-filter/ad-filter.component';
+import { AdsComponent } from './ads/ads.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { AdFilterComponent } from './ad-filter/ad-filter.component';
         RegisterComponent,
         ProfileComponent,
         MainPageComponent,
-        AdFilterComponent
+        AdFilterComponent,
+        AdsComponent
     ],
     imports: [
         BrowserModule,
