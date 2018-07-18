@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from './authorization.service';
 import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-root',
@@ -10,8 +11,9 @@ import {Router} from '@angular/router';
 export class AppComponent implements OnInit {
     title = 'Lend a hand';
     user = {};
+    searchForm:FormGroup;
 
-    constructor(private router: Router, private authService: AuthorizationService) {
+    constructor(private router: Router, private authService: AuthorizationService,private formBuilder:FormBuilder) {
     }
 
     ngOnInit() {
@@ -19,7 +21,9 @@ export class AppComponent implements OnInit {
             'user') != null) {
             this.user = JSON.parse(sessionStorage.getItem('user'));
         }
-
+        this.searchForm = this.formBuilder.group({
+            search: ['',[Validators.required]]
+        });
     }
 
 
