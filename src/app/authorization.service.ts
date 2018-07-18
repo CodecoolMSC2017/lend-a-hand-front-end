@@ -12,18 +12,22 @@ export class AuthorizationService {
     }
 
     loginUser(user: User): Observable<any> {
-        return this.http.post('/api/auth/login', user);
+        return this.http.post('/api/guest/login', user);
     }
 
-    registerUser(user: User): Observable<any> {
-        return this.http.post('/api/auth/register', {
+    authorizeUser(user: User): Observable<any> {
+        return this.http.get('/api/auth', {
             headers: new HttpHeaders({
                 'Authorization': 'Basic ' + window.btoa(user.userName + ':' + user.password)
             })
         });
     }
 
+    registerUser(user: User): Observable<any> {
+        return this.http.post('/api/guest/register', user);
+    }
+
     deleteAuth(): Observable<void> {
-        return this.http.delete<void>('/api/auth/logout');
+        return this.http.delete<void>('/api/auth');
 }
 }
