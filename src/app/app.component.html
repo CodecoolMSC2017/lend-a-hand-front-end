@@ -1,7 +1,8 @@
 <div class="content">
 
-    <a routerLink="/main">{{title}}</a>
+    
     <header>
+            <a routerLink="/main">{{title}}</a>
         <table>
             <tr>
 
@@ -18,12 +19,12 @@
 
         <div id="search-bar-content" class="content">
             <form id="search-form" [formGroup]="searchForm" (ngSubmit)="search()">
-                <input type="text" formControlName="email" class="input">
+                <input type="text" formControlName="search" class="input">
                 <input id="search-button" type="submit">
             </form>
         </div>
     </header>
-
+    <app-ad-filter></app-ad-filter>
     <router-outlet></router-outlet>
     <footer>
         <h2>Footer</h2>

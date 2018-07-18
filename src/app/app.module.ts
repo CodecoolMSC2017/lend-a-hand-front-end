@@ -9,6 +9,7 @@ import {RegisterComponent} from './register/register.component';
 import {AppRoutingModule} from './/app-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {MainPageComponent} from './main-page/main-page.component';
+import { AdFilterComponent } from './ad-filter/ad-filter.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import {MainPageComponent} from './main-page/main-page.component';
         LoginComponent,
         RegisterComponent,
         ProfileComponent,
-        MainPageComponent
+        MainPageComponent,
+        AdFilterComponent
     ],
     imports: [
         BrowserModule,
