@@ -12,10 +12,6 @@ export class AuthorizationService {
     }
 
     loginUser(user: User): Observable<any> {
-        return this.http.post('/api/guest/login', user);
-    }
-
-    authorizeUser(user: User): Observable<any> {
         return this.http.get('/api/auth', {
             headers: new HttpHeaders({
                 'Authorization': 'Basic ' + window.btoa(user.userName + ':' + user.password)
@@ -24,7 +20,7 @@ export class AuthorizationService {
     }
 
     registerUser(user: User): Observable<any> {
-        return this.http.post('/api/guest/register', user);
+        return this.http.post('/api/register', user);
     }
 
     deleteAuth(): Observable<void> {

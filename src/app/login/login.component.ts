@@ -20,24 +20,22 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
-            email: ['', [Validators.required, Validators.pattern(/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/)]],
+            userName: ['', [Validators.required]],
             password: ['', [Validators.required, Validators.pattern('^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20})$')]]
         });
 
     }
 
     login(): void {
-        const email: String = this.loginForm.value.email;
+        const userName: String = this.loginForm.value.userName;
         const password: String = this.loginForm.value.password;
-        this.user.email = email;
+        this.user.userName = userName;
         this.user.password = password;
         this.authService.loginUser(this.user).subscribe(response => {
                 sessionStorage.setItem('user', JSON.stringify(response));
-            this.authService.authorizeUser(JSON.parse(sessionStorage.getItem('user'))).subscribe(user => {
                 this.router.navigate(['main']);
-            });
             }, error => {
-                alert(error.error.message);
+            alert(error.message);
             }
         );
     }

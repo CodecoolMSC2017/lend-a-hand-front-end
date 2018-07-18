@@ -7,15 +7,12 @@
                     <tr>
                         <td class="label-td">Email</td>
                         <td>
-                            <input type="text" formControlName="email" class="input">
+                            <input type="text" formControlName="userName" class="input">
                         </td>
                         <td class="error-td">
-                            <span *ngIf="loginForm.get('email').touched">
-                                <span *ngIf="loginForm.hasError('required', ['email'])">
+                            <span *ngIf="loginForm.get('userName').touched">
+                                <span *ngIf="loginForm.hasError('required', ['userName'])">
                                     This field is required.
-                                </span>
-                                <span *ngIf="loginForm.hasError('pattern', ['email'])">
-                                    Please enter a valid email address.
                                 </span>
                             </span>
                         </td>
