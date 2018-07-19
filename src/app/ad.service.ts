@@ -8,39 +8,41 @@ import {Ad} from './ad.model';
 })
 export class AdService {
 
+    ads: Ad[];
+
     constructor(private http: HttpClient) {
     }
 
-    public getAds(): Observable<any> {
-        return this.http.get('/api/ads');
+    public getAds(): void {
+        this.ads = this.http.get('/api/ads');
     }
 
-    public getAdsByAdvertiser(id: number): Observable<any> {
-        return this.http.get('/api/ads/advertisers/' + id);
+    public getAdsByAdvertiser(id: number): void {
+        this.ads = this.http.get('/api/ads/advertisers/' + id);
     }
 
-    public getAdsByCategory(category: string): Observable<any> {
-        return this.http.get('/api/ads/categories/' + category);
+    public getAdsByCategory(category: string): void {
+        this.ads = this.http.get('/api/ads/categories/' + category);
     }
 
 
-    public getAdsByKeyword(keyword: string): Observable<any> {
-        return this.http.get('/api/ads/keywords/' + keyword);
+    public getAdsByKeyword(keyword: string): void {
+        this.ads = this.http.get('/api/ads/keywords/' + keyword);
     }
 
     public getAdById(id: number): Observable<any> {
-        return this.http.get('/api/ads/' + id);
+        return this.ads = this.http.get('/api/ads/' + id);
     }
 
-    public deleteAdById(id: number): Observable<any> {
-        return this.http.delete('/api/ads/delete/' + id);
+    public deleteAdById(id: number): void {
+        this.http.delete('/api/ads/delete/' + id);
     }
 
-    public createAd(ad: Ad) {
+    public createAd(ad: Ad): Observable<any> {
         return this.http.post('/api/ads/new', ad);
     }
 
-    public updateAdById(ad: Ad) {
+    public updateAdById(ad: Ad): Observable<any> {
         return this.http.put('/api/ads/update', ad);
     }
 }
