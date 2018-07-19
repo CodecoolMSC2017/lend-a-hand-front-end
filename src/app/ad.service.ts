@@ -12,24 +12,26 @@ export class AdService {
     }
 
     public getAds(): Observable<Ad[]> {
-        return this.ads = this.http.get('/api/ads');
+        return this.http.get<Ad[]>('/api/ads');
     }
 
     public getAdsByAdvertiser(id: number): Observable<Ad[]> {
-        return this.ads = this.http.get('/api/ads/advertisers/' + id);
+        return  this.http.get<Ad[]>('/api/ads/advertisers/' + id);
     }
 
     public getAdsByCategory(category: string): Observable<Ad[]> {
-        return this.ads = this.http.get('/api/ads/categories/' + category);
+        
+        return  this.http.get<Ad[]>('/api/ads/categories/' + category);
+        
     }
 
 
     public getAdsByKeyword(keyword: string): Observable<Ad[]> {
-        return this.ads = this.http.get('/api/ads/keywords/' + keyword);
+        return  this.http.get<Ad[]>('/api/ads/keywords/' + keyword);
     }
 
     public getAdById(id: number): Observable<Ad[]> {
-        return this.ads = this.http.get('/api/ads/' + id);
+        return  this.http.get<Ad[]>('/api/ads/' + id);
     }
 
     public deleteAdById(id: number): void {

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FilterAdsService} from '../filter-ads.service';
+import {GlobalEventManagerService} from '../global-event-manager.service';
 import {Filter} from '../filter.model';
-import {AdService} from '../ad.service';
+
+import {Ad} from '../ad.model';
 @Component({
   selector: 'app-ad-filter',
   templateUrl: './ad-filter.component.html',
@@ -12,23 +13,24 @@ export class AdFilterComponent implements OnInit {
 
   categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
   selectedCategory : string;
-  filter:Filter;
+ 
 
   filterForm : FormGroup;
   
 
-  constructor(private adservice:AdService,private formBuilder: FormBuilder, private filterService:FilterAdsService) { }
+  constructor(private formBuilder: FormBuilder,private gem:GlobalEventManagerService) { }
 
   ngOnInit() {
     this.filterForm = this.formBuilder.group({
     categories: [[Validators.required]]
     
-});
+    });
   }
 
-  filterAds(){
-    this.adservice.getAdsByCategory(this.selectedCategory);
+    filterAds(){
+    this.gem.updateCategoryFilter(this.selectedCategory);
+    }
     
   }
 
-}
+

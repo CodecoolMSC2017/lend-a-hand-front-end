@@ -18,9 +18,9 @@
         </table>
 
         <div id="search-bar-content" class="content">
-            <form id="search-form" [formGroup]="searchForm" (ngSubmit)="search()">
+            <form id="search-form" [formGroup]="searchForm">
                 <input type="text" formControlName="search" class="input">
-                <input id="search-button" type="submit">
+                <input id="search-button" type="submit" (click)="search()">
             </form>
         </div>
     </header>
