@@ -8,33 +8,28 @@ import {Ad} from './ad.model';
 })
 export class AdService {
 
-    ads: Observable<Ad[]>;
-
     constructor(private http: HttpClient) {
     }
 
-    public getAds(): void {
-        this.ads = this.http.get<Ad[]>('/api/ads');
-        console.log(this.ads);
+    public getAds(): Observable<Ad[]> {
+        return this.ads = this.http.get('/api/ads');
     }
 
-    public getAdsByAdvertiser(id: number): void {
-        this.ads = this.http.get<Ad[]>('/api/ads/advertisers/' + id);
+    public getAdsByAdvertiser(id: number): Observable<Ad[]> {
+        return this.ads = this.http.get('/api/ads/advertisers/' + id);
     }
 
-    public getAdsByCategory(category: string): void {
-        this.ads = this.http.get<Ad[]>('/api/ads/categories/' + category);
-        console.log(this.ads);
-        
+    public getAdsByCategory(category: string): Observable<Ad[]> {
+        return this.ads = this.http.get('/api/ads/categories/' + category);
     }
 
 
-    public getAdsByKeyword(keyword: string): void {
-        this.ads = this.http.get<Ad[]>('/api/ads/keywords/' + keyword);
+    public getAdsByKeyword(keyword: string): Observable<Ad[]> {
+        return this.ads = this.http.get('/api/ads/keywords/' + keyword);
     }
 
     public getAdById(id: number): Observable<Ad[]> {
-        return this.ads = this.http.get<Ad[]>('/api/ads/' + id);
+        return this.ads = this.http.get('/api/ads/' + id);
     }
 
     public deleteAdById(id: number): void {
