@@ -1,6 +1,15 @@
 <h1>Ads</h1>
 <div *ngFor="let ad of ads">
-    <p>{{ad.title}}</p>
+   <table>
+       <tr>
+           <td id="id"><strong>ID:</strong> {{ad.id}}</td>
+           <td><strong>Title:</strong> {{ad.title}}</td>
+       </tr>
+       <tr>
+           <td colspan="2"><strong>Description:<br></strong> {{ad.description}}</td>
+       </tr>
+   </table>
+    <br>
 </div>
 
 

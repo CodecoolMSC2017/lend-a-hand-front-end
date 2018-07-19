@@ -1,0 +1,15 @@
+table {
+    border: black solid;
+    width: 500px;
+    border-collapse: collapse;
+}
+
+table td {
+    border: black solid;
+    border-collapse: collapse;
+    height: 50px;
+}
+
+#id {
+    text-align: center;
+}
