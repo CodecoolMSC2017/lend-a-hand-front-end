@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from './authorization.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AdService} from './ad.service';
+import {GlobalEventManagerService} from './global-event-manager.service';
 
 @Component({
     selector: 'app-root',
@@ -10,11 +10,14 @@ import {AdService} from './ad.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
     title = 'Lend a hand';
     user = {};
-    searchForm:FormGroup;
+    searchForm: FormGroup;
+    keyword: string;
 
-    constructor(private adservice:AdService,private router: Router, private authService: AuthorizationService,private formBuilder:FormBuilder) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService,
+                private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
@@ -23,7 +26,7 @@ export class AppComponent implements OnInit {
             this.user = JSON.parse(sessionStorage.getItem('user'));
         }
         this.searchForm = this.formBuilder.group({
-            search: ['',[Validators.required]]
+            search: ['', [Validators.required]]
         });
     }
 
@@ -44,7 +47,7 @@ export class AppComponent implements OnInit {
         this.authService.deleteAuth().subscribe(clearAuth, clearAuth);
     }
 
-    search(){
-        this.adservice.getAds();
+    search() {
+        this.gem.updateKeywordFilter(this.keyword);
     }
 }

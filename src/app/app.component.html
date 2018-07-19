@@ -19,8 +19,8 @@
 
         <div id="search-bar-content" class="content">
             <form id="search-form" [formGroup]="searchForm">
-                <input type="text" formControlName="search" class="input">
-                <input id="search-button" type="submit" (click)="search()">
+                <input type="text" formControlName="search" class="input" [(ngModel)]="keyword">
+                <input id="search-button" type="submit" value="Search" (click)="search()">
             </form>
         </div>
     </header>
