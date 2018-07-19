@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthorizationService} from './authorization.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AdService} from './ad.service';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
     user = {};
     searchForm:FormGroup;
 
-    constructor(private router: Router, private authService: AuthorizationService,private formBuilder:FormBuilder) {
+    constructor(private adservice:AdService,private router: Router, private authService: AuthorizationService,private formBuilder:FormBuilder) {
     }
 
     ngOnInit() {
@@ -41,5 +42,9 @@ export class AppComponent implements OnInit {
             this.router.navigate(['login']);
         };
         this.authService.deleteAuth().subscribe(clearAuth, clearAuth);
+    }
+
+    search(){
+        this.adservice.getAds();
     }
 }

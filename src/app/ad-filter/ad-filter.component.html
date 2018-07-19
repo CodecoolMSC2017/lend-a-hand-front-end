@@ -1,13 +1,15 @@
 <div id="filterSideBar">
-  <form id="filter_form" [formGroup]="filterForm" (ngSubmit)="filterAds()">
+  <form id="filter_form" [formGroup]="filterForm">
     <p>Category</p>
     
     <select formControlName="categories" [(ngModel)]="selectedCategory">
       <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
     </select>
+
+   
     <br>
     <br>
-    <input id="filterBtn" type="submit" value="filter" class="btn">
+    <input id="filterBtn" type="submit" value="filter" (click) = "filterAds()" class="btn">
 
   </form>
 </div>

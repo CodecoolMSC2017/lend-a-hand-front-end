@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FilterAdsService} from '../filter-ads.service';
 import {Filter} from '../filter.model';
+import {AdService} from '../ad.service';
 @Component({
   selector: 'app-ad-filter',
   templateUrl: './ad-filter.component.html',
@@ -10,13 +11,13 @@ import {Filter} from '../filter.model';
 export class AdFilterComponent implements OnInit {
 
   categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
-  selectedCategory : String;
+  selectedCategory : string;
   filter:Filter;
 
   filterForm : FormGroup;
   
 
-  constructor(private formBuilder: FormBuilder, private filterService:FilterAdsService) { }
+  constructor(private adservice:AdService,private formBuilder: FormBuilder, private filterService:FilterAdsService) { }
 
   ngOnInit() {
     this.filterForm = this.formBuilder.group({
@@ -26,8 +27,8 @@ export class AdFilterComponent implements OnInit {
   }
 
   filterAds(){
-    this.filter.category=this.selectedCategory;
-    return this.filterService.getFilteredAds(this.filter);// We need to call the listing of advertisements with the returned value of this line
+    this.adservice.getAdsByCategory(this.selectedCategory);
+    
   }
 
 }

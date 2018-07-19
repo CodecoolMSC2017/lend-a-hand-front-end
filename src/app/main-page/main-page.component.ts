@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MainPageService} from '../main-page.service';
 import {Router} from '@angular/router';
 import {AuthorizationService} from '../authorization.service';
+import {AdService} from '../ad.service';
 
 @Component({
     selector: 'app-main-page',
@@ -14,7 +15,7 @@ export class MainPageComponent implements OnInit {
     user = {};
     categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
 
-    constructor(private mainPageService: MainPageService, private authService: AuthorizationService, private router: Router) {
+    constructor(private adservice:AdService,private mainPageService: MainPageService, private authService: AuthorizationService, private router: Router) {
     }
 
     ngOnInit() {
@@ -22,6 +23,7 @@ export class MainPageComponent implements OnInit {
             this.user = JSON.parse(sessionStorage.getItem('user'));
         }
         console.log(this.user);
+        this.adservice.ads.subscribe(ads =>{this.ads = ads})
 
     }
 
