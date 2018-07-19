@@ -4,7 +4,7 @@ export class Ad {
     id: number;
     advertiser: User;
     chosenApplicant: User;
-    applications: [];
+    applications = [];
     title: string;
     description: string;
     payment: number;

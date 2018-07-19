@@ -28,10 +28,10 @@ export class RegisterComponent implements OnInit {
     }
 
     register(): void {
-        const email: String = this.registerForm.value.email;
-        const username: String = this.registerForm.value.username;
-        const password: String = this.registerForm.value.password;
-        const type: String = this.registerForm.value.type;
+        const email: string = this.registerForm.value.email;
+        const username: string = this.registerForm.value.username;
+        const password: string = this.registerForm.value.password;
+        const type: string = this.registerForm.value.type;
         this.user.email = email;
         this.user.userName = username;
         this.user.password = password;
