@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {AuthorizationService} from '../authorization.service';
 import {AdService} from '../ad.service';
 import {GlobalEventManagerService} from '../global-event-manager.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
     selector: 'app-main-page',
@@ -14,9 +15,10 @@ export class MainPageComponent implements OnInit {
 
     ads = [];
     user = {};
-    categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
+    searchForm: FormGroup;
+    keyword: string;
 
-    constructor(private adService: AdService, private mainPageService: MainPageService, private authService: AuthorizationService, private router: Router, private gem: GlobalEventManagerService) {
+    constructor(private formBuilder: FormBuilder, private adService: AdService, private mainPageService: MainPageService, private authService: AuthorizationService, private router: Router, private gem: GlobalEventManagerService) {
     }
 
     ngOnInit() {
@@ -32,6 +34,9 @@ export class MainPageComponent implements OnInit {
                     this.ads = ads;
                 });
             }
+        });
+        this.searchForm = this.formBuilder.group({
+            search: ['', [Validators.required]]
         });
 
     }
@@ -51,6 +56,10 @@ export class MainPageComponent implements OnInit {
             this.router.navigate(['login']);
         };
         this.authService.deleteAuth().subscribe(clearAuth, clearAuth);
+    }
+
+    search() {
+        this.gem.updateKeywordFilter(this.keyword);
     }
 }
 
