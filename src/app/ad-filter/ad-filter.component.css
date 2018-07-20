@@ -2,11 +2,11 @@
     display:block;
     background-color:#9ef442;
     width:300px;
-    position:absolute;
     left:0;
     top:0;
     color:#28420c;
     height:100%;
+    position: fixed;
 }
 
 #filterBtn{
