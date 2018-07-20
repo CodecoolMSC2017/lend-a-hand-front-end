@@ -1,4 +1,24 @@
 <div>
+    <table>
+        <tr>
+
+            <td>
+                <button *ngIf="user.userName == null" (click)="toRegister()">Register</button>
+                <span *ngIf="user.userName != null">{{user.userName}}</span>
+            </td>
+            <td>
+                <button *ngIf="user.userName == null" (click)="toLogin()">Login</button>
+                <button *ngIf="user.userName != null" (click)="logout()">Logout</button>
+            </td>
+        </tr>
+    </table>
+
+    <div id="search-bar-content" class="content">
+        <form id="search-form" [formGroup]="searchForm">
+            <input type="text" formControlName="search" class="input" [(ngModel)]="keyword">
+            <input id="search-button" type="submit" value="Search" (click)="search()">
+        </form>
+    </div>
 
     <app-ad-filter></app-ad-filter>
     <app-ads></app-ads>
