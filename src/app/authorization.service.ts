@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './user.model';
+import {RegisterDatasModel} from './register-datas.model';
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +20,8 @@ export class AuthorizationService {
         });
     }
 
-    registerUser(user: User): Observable<any> {
-        return this.http.post('/api/register', user);
+    registerUser(registerDatas: RegisterDatasModel): Observable<any> {
+        return this.http.post('/api/register', registerDatas);
     }
 
     deleteAuth(): Observable<void> {
