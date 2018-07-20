@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user.model';
 import {Router} from '@angular/router';
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     user = new User();
 
-    constructor(private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
+    constructor(private zone: NgZone, private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
     }
 
     ngOnInit() {
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         this.user.password = password;
         this.authService.loginUser(this.user).subscribe(response => {
                 sessionStorage.setItem('user', JSON.stringify(response));
-                this.router.navigate(['main']);
+            this.zone.run(() => this.router.navigate(['/main']));
             }, error => {
             alert(error.message);
             }
