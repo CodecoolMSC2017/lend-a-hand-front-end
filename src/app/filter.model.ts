@@ -1,8 +1,4 @@
-export class Filter{
-    category:String;
-    maxPrice:number;
-    ascendingByDate:boolean;
-    descendingByDate:boolean;
-
-
+export class Filter {
+    constructor(public keyword: string, public category: string) {
+    }
 }

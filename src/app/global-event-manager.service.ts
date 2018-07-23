@@ -2,11 +2,15 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Ad} from './ad.model';
 import {User} from './user.model';
+import {Filter} from './filter.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class GlobalEventManagerService {
+
+    private filterTrigger: Subject<Filter> = new BehaviorSubject<Filter>(null);
+    public filterEmitter: Observable<Filter> = this.filterTrigger.asObservable();
 
     private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
@@ -25,6 +29,10 @@ export class GlobalEventManagerService {
 
     public updateCategoryFilter(category: string): void {
         this.categoryFilterTrigger.next(category);
+    }
+
+    public updateFilter(filter: Filter): void {
+        this.filterTrigger.next(filter);
     }
 
     public updateKeywordFilter(keyword: string): void {
