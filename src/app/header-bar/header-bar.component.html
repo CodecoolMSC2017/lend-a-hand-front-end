@@ -1,5 +1,14 @@
 <div id="header-bar" class="content">
   
+    <div id="loginDiv">
+    
+        <button *ngIf="user == null" (click)="login()">Login</button>
+        <button *ngIf="user == null" (click)="register()">Register</button>
+        <button *ngIf="user != null" (click)="toProfile()">Profile</button>
+        <button *ngIf="user != null" (click)="logout()">Log out</button>
+        
+    
+      </div>
   
   <div id="search-bar">
     <input type="text" class="input" [(ngModel)]="keyword">
@@ -39,15 +48,7 @@
 
   </div>
 
-  <div id="loginDiv">
-    
-    <button *ngIf="user == null" (click)="login()">Login</button>
-    <button *ngIf="user == null" (click)="register()">Register</button>
-    <button *ngIf="user != null" (click)="toProfile()">Profile</button>
-    <button *ngIf="user != null" (click)="logout()">Log out</button>
-    
-
-  </div>
+  
 
 
   <!--<div id="testCategoryFilter">
