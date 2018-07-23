@@ -29,4 +29,13 @@ export class HeaderBarComponent implements OnInit {
     this.keyword="";
   }
 
+  showFilters(){
+    if(document.getElementById("filters").classList.contains("hidden")){
+      document.getElementById("filters").classList.remove("hidden");
+    }else{
+      document.getElementById("filters").classList.add("hidden");
+    }
+    
+  }
+
 }

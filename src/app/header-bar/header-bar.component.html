@@ -10,17 +10,32 @@
       <a routerLink="/main" ><strong>Main page</strong></a>
   </div>
   
-  <div id="filter-div">
+  <div id="filter-div" (click)="showFilters()">
       <a><strong>Filters</strong></a>
   </div>
+  <div id="filters" class="hidden">
+    
+    <div id="categoryFilter">
+        <p><strong style="color:green;">Category</strong></p>
+        <select [(ngModel)]="selectedCategory">
+          <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
+        </select>
+    
+        <button (click)="filterCategory()">Filter</button>
 
-  <div id="testCategoryFilter">
+    </div>
+
+
+  </div>
+
+
+  <!--<div id="testCategoryFilter">
     <p>Category</p>
     <select [(ngModel)]="selectedCategory">
       <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
     </select>
 
     <button (click)="filterCategory()">Filter</button>
-  </div>
+  </div>-->
 
 </div>

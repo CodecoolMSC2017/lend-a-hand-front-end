@@ -70,9 +70,32 @@ a:link, a:visited, a:active{
     background-color:#71c440;
 }
 
-#testCategoryFilter{
+#categoryFilter{
     position:relative;
-    left:400px;
-    width:300px;
+    top:20px;
+    left:15px;
+    text-align: left;
+}
+
+
+
+#filters{
+    
+    background-color:#89da59;
+    height:200px;
+    width:400px;
+    position:relative;
+    top:74px;
+    left:-222px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top:solid 2px green;
+    -webkit-box-shadow: 6px 11px 38px -11px rgba(0,0,0,0.75);
+-moz-box-shadow: 6px 11px 38px -11px rgba(0,0,0,0.75);
+box-shadow: 6px 11px 38px -11px rgba(0,0,0,0.75);
+}
+
+.hidden{
+    display:none;
 }
 
