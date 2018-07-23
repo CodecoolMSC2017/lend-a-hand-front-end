@@ -17,7 +17,10 @@ export class AdsComponent implements OnInit {
     constructor(private router: Router, private adService: AdService, private gem: GlobalEventManagerService) {
     }
 
-    showAd(event:Event){
+    showAd(ad:Ad){
+        
+        this.gem.updateSingleAd(ad);
+        this.router.navigate(['ad']);
         
     }
 

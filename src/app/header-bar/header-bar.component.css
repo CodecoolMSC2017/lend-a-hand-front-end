@@ -85,6 +85,19 @@ a:link, a:visited, a:active{
     text-align: left;
 }
 
+#loginDiv button{
+    width:80px;
+    margin-left:20px;
+}
+
+#loginDiv{
+    margin-top:25px;
+    margin-right:50px;
+    float:right;
+}
+
+
+
 
 
 #filters{

@@ -1,7 +1,7 @@
 <div id="bg-div">
 </div>
 <div id="ads">
-    <div *ngFor="let ad of ads" class="ad" (click)="showAd($event, ad)">
+    <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
         <div class="ad-container" >
             <strong class="ad-title">{{ad.title}}</strong>
             <br>

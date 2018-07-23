@@ -39,6 +39,16 @@
 
   </div>
 
+  <div id="loginDiv">
+    
+    <button *ngIf="user.userName == null" (click)="login()">Login</button>
+    <button *ngIf="user.userName == null" (click)="register()">Register</button>
+    <button *ngIf="user.userName != null" (click)="toProfile()">Profile</button>
+    <button *ngIf="user.userName != null" (click)="logout()">Log out</button>
+    
+
+  </div>
+
 
   <!--<div id="testCategoryFilter">
     <p>Category</p>
