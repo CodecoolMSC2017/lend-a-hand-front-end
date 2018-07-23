@@ -78,6 +78,13 @@ a:link, a:visited, a:active{
     text-align: left;
 }
 
+#hire-offer-filter{
+    top:20px;
+    position:relative;
+    left:15px;
+    text-align: left;
+}
+
 
 
 #filters{

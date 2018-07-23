@@ -11,6 +11,7 @@ export class AdFilterComponent implements OnInit {
 
     categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
     selectedCategory: string;
+    selectedType : string;
 
 
     filterForm: FormGroup;

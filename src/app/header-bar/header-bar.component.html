@@ -25,6 +25,17 @@
 
     </div>
 
+    <div id="hire-offer-filter">
+        <p><strong style="color:green;">Hire/Offer</strong></p>
+        <select [(ngModel)]="selectedType">
+          <option value="Hire">Hire</option>
+          <option value="Offer">Offer</option>
+        </select>
+    
+        <button (click)="filterCategory()">Filter</button>
+
+    </div>
+
 
   </div>
 
