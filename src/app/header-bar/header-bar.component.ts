@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GlobalEventManagerService} from '../global-event-manager.service';
 import {Router} from '@angular/router';
+import {User} from '../user.model';
 
 @Component({
   selector: 'app-header-bar',
@@ -11,17 +12,18 @@ export class HeaderBarComponent implements OnInit {
   keyword:string;
   categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building']
   selectedCategory : string;
-  user={};
+  user:User;
   
   constructor(private gem : GlobalEventManagerService, private router:Router) { }
 
   ngOnInit() {
 
-    if (sessionStorage.getItem('user') != null) {
-      this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.gem.userEmitter.subscribe(user =>{
+      this.user=user;
+    });
   }
 
-  }
+  
 
   search(){
     this.gem.updateKeywordFilter(this.keyword);

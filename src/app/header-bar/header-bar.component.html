@@ -41,10 +41,10 @@
 
   <div id="loginDiv">
     
-    <button *ngIf="user.userName == null" (click)="login()">Login</button>
-    <button *ngIf="user.userName == null" (click)="register()">Register</button>
-    <button *ngIf="user.userName != null" (click)="toProfile()">Profile</button>
-    <button *ngIf="user.userName != null" (click)="logout()">Log out</button>
+    <button *ngIf="user == null" (click)="login()">Login</button>
+    <button *ngIf="user == null" (click)="register()">Register</button>
+    <button *ngIf="user != null" (click)="toProfile()">Profile</button>
+    <button *ngIf="user != null" (click)="logout()">Log out</button>
     
 
   </div>
