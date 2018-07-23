@@ -1,12 +1,8 @@
-<div id="filterSideBar">
-  <form id="filter_form" [formGroup]="filterForm">
+<div id="filterDiv">
+    <div id="categoryFilter">
     <p>Category</p>
-    
-    <select formControlName="categories" [(ngModel)]="selectedCategory">
+    <select [(ngModel)]="selectedCategory">
       <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
     </select>
-
-   
-
-  </form>
+  </div>
 </div>

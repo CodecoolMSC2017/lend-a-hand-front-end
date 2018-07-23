@@ -70,3 +70,9 @@ a:link, a:visited, a:active{
     background-color:#71c440;
 }
 
+#testCategoryFilter{
+    position:relative;
+    left:400px;
+    width:300px;
+}
+

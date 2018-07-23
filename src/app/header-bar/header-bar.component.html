@@ -14,4 +14,13 @@
       <a><strong>Filters</strong></a>
   </div>
 
+  <div id="testCategoryFilter">
+    <p>Category</p>
+    <select [(ngModel)]="selectedCategory">
+      <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
+    </select>
+
+    <button (click)="filterCategory()">Filter</button>
+  </div>
+
 </div>

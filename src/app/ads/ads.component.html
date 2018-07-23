@@ -2,7 +2,7 @@
 </div>
 <div id="ads">
     <h1 style="color:green;">Advertisements</h1>
-    <div *ngFor="let ad of ads" class="ad">
+    <div *ngFor="let ad of ads" class="ad" (click)="showAd($event, ad)">
         <div class="ad-container" >
             <strong class="ad-title">{{ad.title}}</strong>
             <br>

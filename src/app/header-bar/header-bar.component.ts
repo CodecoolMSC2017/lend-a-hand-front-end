@@ -8,6 +8,8 @@ import {GlobalEventManagerService} from '../global-event-manager.service';
 })
 export class HeaderBarComponent implements OnInit {
   keyword:string;
+  categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building']
+  selectedCategory : string;
   
   constructor(private gem : GlobalEventManagerService) { }
 
@@ -16,6 +18,10 @@ export class HeaderBarComponent implements OnInit {
 
   search(){
     this.gem.updateKeywordFilter(this.keyword);
+  }
+
+  filterCategory(){
+    this.gem.updateCategoryFilter(this.selectedCategory);
   }
 
   backToMain(){

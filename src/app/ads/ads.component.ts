@@ -13,7 +13,12 @@ export class AdsComponent implements OnInit {
 
     ads: Ad[];
 
+
     constructor(private router: Router, private adService: AdService, private gem: GlobalEventManagerService) {
+    }
+
+    showAd(event:Event){
+        
     }
 
     ngOnInit() {
