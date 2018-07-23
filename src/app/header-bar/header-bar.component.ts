@@ -22,6 +22,7 @@ export class HeaderBarComponent implements OnInit {
 
   filterCategory(){
     this.gem.updateCategoryFilter(this.selectedCategory);
+    document.getElementById("filters").classList.add("hidden");
   }
 
   backToMain(){
