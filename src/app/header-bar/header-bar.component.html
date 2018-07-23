@@ -6,8 +6,12 @@
     <button id="search-button" (click)="search()">Search</button>
   </div>
 
-  <div id="back-to-main">
-      <a routerLink="/main" (click)="backToMain()"><strong>Main page</strong></a>
+  <div id="back-to-main" (click)="backToMain()">
+      <a routerLink="/main" ><strong>Main page</strong></a>
+  </div>
+  
+  <div id="filter-div">
+      <a><strong>Filters</strong></a>
   </div>
 
 </div>

@@ -1,15 +1,20 @@
-<h1>Ads</h1>
-<div *ngFor="let ad of ads">
-   <table>
-       <tr>
-           <td id="id"><strong>ID:</strong> {{ad.id}}</td>
-           <td><strong>Title:</strong> {{ad.title}}</td>
-       </tr>
-       <tr>
-           <td colspan="2"><strong>Description:<br></strong> {{ad.description}}</td>
-       </tr>
-   </table>
-    <br>
+<div id="bg-div">
 </div>
+<div id="ads">
+    <h1 style="color:green;">Advertisements</h1>
+    <div *ngFor="let ad of ads" class="ad">
+        <div class="ad-container" >
+            <strong class="ad-title">{{ad.title}}</strong>
+            <br>
+            <br>
+            <div class="ad-description">
+                {{ad.description}}
+            </div>
+        </div>
+    
+        <br>
+    </div>
+</div>
+
 
 

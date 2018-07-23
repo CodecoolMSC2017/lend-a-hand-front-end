@@ -1,10 +1,11 @@
 #header-bar{
+    z-index: 1;
     position:fixed;
     left:0;
     top:0;
     width:100%;
     height:75px;
-    background-color:greenyellow;
+    background-color:#89da59;
 }
 
 #search-button{
@@ -27,6 +28,7 @@
     width:130px;
     left:400px;
     height:100%;
+    cursor:pointer;
     
     
 }
@@ -37,11 +39,34 @@
     
 }
 
+#filter-div a{
+    
+    position:relative;
+    top:25px;
+    color:green;
+}
+
 a:link, a:visited, a:active{
     text-decoration: none;
     color:green;
 }
 
 #back-to-main:hover{
-    background-color:lime;
+    background-color:#71c440;
 }
+
+#filter-div{
+    
+    display:block;
+    position:absolute;
+    width:130px;
+    left:530px;
+    height:100%;
+    cursor:pointer;
+}
+
+#filter-div:hover{
+    
+    background-color:#71c440;
+}
+
