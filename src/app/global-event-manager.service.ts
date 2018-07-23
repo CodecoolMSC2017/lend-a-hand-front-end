@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Subject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Ad} from './ad.model';
 import {User} from './user.model';
 
@@ -20,6 +20,9 @@ export class GlobalEventManagerService {
     private userTrigger: Subject<User> = new BehaviorSubject<User>(null);
     public userEmitter: Observable<User> = this.userTrigger.asObservable();
 
+    public profileEmitter: Observable<User> = this.userTrigger.asObservable();
+    private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
+
     public updateCategoryFilter(category: string): void {
         this.categoryFilterTrigger.next(category);
     }
@@ -28,14 +31,17 @@ export class GlobalEventManagerService {
         this.keywordFilterTrigger.next(keyword);
     }
 
-    public updateSingleAd(ad:Ad): void {
+    public updateSingleAd(ad: Ad): void {
         this.singleAdTrigger.next(ad);
         console.log(ad.title);
-        
     }
 
-    public updateUser(user:User): void{
+    public updateUser(user: User): void {
         this.userTrigger.next(user);
+    }
+
+    public updateProfile(user: User): void {
+        this.profileTrigger.next(user);
     }
 
     constructor() {
