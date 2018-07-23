@@ -1,0 +1,13 @@
+<div id="header-bar" class="content">
+  
+  
+  <div id="search-bar">
+    <input type="text" class="input" [(ngModel)]="keyword">
+    <button id="search-button" (click)="search()">Search</button>
+  </div>
+
+  <div id="back-to-main">
+      <a routerLink="/main" (click)="backToMain()"><strong>Main page</strong></a>
+  </div>
+
+</div>

@@ -1,0 +1,47 @@
+#header-bar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:75px;
+    background-color:greenyellow;
+}
+
+#search-button{
+    margin-left:20px;
+    height:35px;
+    
+}
+
+#search-bar{
+    position:absolute;
+    top:10px;
+    
+    border-right: solid 2px green;
+    width:370px;
+}
+
+#back-to-main{
+    display:block;
+    position:absolute;
+    width:130px;
+    left:400px;
+    height:100%;
+    
+    
+}
+
+#back-to-main a{
+    position:relative;
+    top:25px;
+    
+}
+
+a:link, a:visited, a:active{
+    text-decoration: none;
+    color:green;
+}
+
+#back-to-main:hover{
+    background-color:lime;
+}

@@ -1,4 +1,5 @@
 <div>
+    <app-header-bar></app-header-bar>
     <table>
         <tr>
 
@@ -13,14 +14,9 @@
         </tr>
     </table>
 
-    <div id="search-bar-content" class="content">
-        <form id="search-form" [formGroup]="searchForm">
-            <input type="text" formControlName="search" class="input" [(ngModel)]="keyword">
-            <input id="search-button" type="submit" value="Search" (click)="search()">
-        </form>
-    </div>
+    
 
-    <app-ad-filter></app-ad-filter>
+    
     <app-ads></app-ads>
    
 </div>

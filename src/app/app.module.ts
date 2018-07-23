@@ -11,6 +11,7 @@ import {ProfileComponent} from './profile/profile.component';
 import {MainPageComponent} from './main-page/main-page.component';
 import { AdFilterComponent } from './ad-filter/ad-filter.component';
 import { AdsComponent } from './ads/ads.component';
+import { HeaderBarComponent } from './header-bar/header-bar.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { AdsComponent } from './ads/ads.component';
         ProfileComponent,
         MainPageComponent,
         AdFilterComponent,
-        AdsComponent
+        AdsComponent,
+        HeaderBarComponent
     ],
     imports: [
         BrowserModule,
