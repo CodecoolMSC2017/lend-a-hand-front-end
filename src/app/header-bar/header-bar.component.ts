@@ -29,23 +29,15 @@ export class HeaderBarComponent implements OnInit {
         this.gem.updateFilter(new Filter(this.keyword, this.selectedCategory));
     }
 
-    search() {
-        this.gem.updateKeywordFilter(this.keyword);
-    }
-
-    filterCategory() {
-        this.gem.updateCategoryFilter(this.selectedCategory);
-        document.getElementById('filters').classList.add('hidden');
-    }
-
+   
     login() {
         this.router.navigate(['login']);
     }
 
-    backToMain() {
+    /*backToMain() {
         this.gem.updateCategoryFilter('All');
         this.keyword = '';
-    }
+    }*/
 
     showFilters() {
         if (document.getElementById('filters').classList.contains('hidden')) {
