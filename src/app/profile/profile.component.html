@@ -5,21 +5,6 @@
     </div>
     <img src="{{user.pictureLink}}" class="profile-img">
 
-    <table class="profile-type-table">
-        <tr>
-            <td>
-                <span>Profile type:</span>
-            </td>
-            <td>
-                <span *ngIf="user.type == 'company' ">
-                        Company
-                    </span>
-                <span *ngIf="user.type == 'person' ">
-                        Person
-                    </span>
-            </td>
-        </tr>
-    </table>
     <table class="contact-table">
         <tr>
             <td colspan="2"><span class="contact-header">Contacts</span>
@@ -27,7 +12,7 @@
         </tr>
         <tr>
             <td>
-                <span>Email adress :</span>
+                <button class="at"></button>
             </td>
             <td>
                 <span>{{user.email}}</span>
@@ -36,7 +21,7 @@
 
         <tr>
             <td>
-                <span>Phone number :</span>
+                <button class="phone"></button>
             </td>
             <td>
                 <span>{{user.phone}}</span>
@@ -45,7 +30,7 @@
 
         <tr>
             <td>
-                <span>Adress :</span>
+                <button class="location"></button>
             </td>
             <td>
                 <span> {{user.postalCode}}, {{user.city}}, {{user.address}}</span>
