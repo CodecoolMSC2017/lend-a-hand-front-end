@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../user.model';
 import {Router} from '@angular/router';
 import {AuthorizationService} from '../authorization.service';
-import { GlobalEventManagerService } from '../global-event-manager.service';
+import {GlobalEventManagerService} from '../global-event-manager.service';
 
 @Component({
     selector: 'app-login',
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
         const password: string = this.loginForm.value.password;
         this.user.userName = userName;
         this.user.password = password;
-        
         this.authService.loginUser(this.user).subscribe(response => {
                 sessionStorage.setItem('user', JSON.stringify(response));
                 this.gem.updateUser(response);

@@ -1,11 +1,55 @@
-<h2>{{user.userName}}</h2>
-<div>
-    <span *ngIf="user.type == 'company' ">
+<div id="profile-div">
+    <div class="content">
+        <h2 class="username">{{user.userName}}</h2>
+        <h3 class="fullname">{{user.fullName}}</h3>
+    </div>
+    <img src="{{user.pictureLink}}" class="profile-img">
+
+    <table class="profile-type-table">
+        <tr>
+            <td>
+                <span>Profile type:</span>
+            </td>
+            <td>
+                <span *ngIf="user.type == 'company' ">
                         Company
                     </span>
-    <span *ngIf="user.type == 'person' ">
+                <span *ngIf="user.type == 'person' ">
                         Person
                     </span>
-    <span>email: </span>{{user.email}}
-    <span>password:</span>{{user.password}}
+            </td>
+        </tr>
+    </table>
+    <table class="contact-table">
+        <tr>
+            <td colspan="2"><span class="contact-header">Contacts</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span>Email adress :</span>
+            </td>
+            <td>
+                <span>{{user.email}}</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span>Phone number :</span>
+            </td>
+            <td>
+                <span>{{user.phone}}</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <span>Adress :</span>
+            </td>
+            <td>
+                <span> {{user.postalCode}}, {{user.city}}, {{user.address}}</span>
+            </td>
+        </tr>
+    </table>
 </div>
