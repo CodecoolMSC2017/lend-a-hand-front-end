@@ -4,72 +4,86 @@
     left:0;
     top:0;
     width:100%;
-    height:75px;
-    border-bottom:solid 2px green;
-    background-color:#89da59;
+    height:55px;
+    background-color:#07222c;
+    -webkit-box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 1px 12px 0px rgba(0,0,0,0.75);
+}
+
+#detailedSearch{
+    float:left;
+    color:white;
+    cursor:pointer;
+}
+
+#header-content{
+    width:60%;
+    margin-left:15%;
+    margin-right:15%;
+    height:100%;
 }
 
 #search-button{
     margin-left:20px;
-    height:35px;
+    border-radius: 10px;
+    background:none;
+    background-color:#0d4053;
+    color:white;
+    border:none;
+    height:30px;
     
 }
 
+a{
+    color:white;
+}
+
 #search-bar{
-    position:absolute;
-    top:10px;
-    
-    border-right: solid 2px green;
+    position:relative;
+    float:left;
+    top:5px;
     width:370px;
+}
+
+#search-bar input{
+    height:10px;
+    border-radius:10px;
 }
 
 #back-to-main{
     display:block;
-    position:absolute;
+    position:relative;
+    float:left;
     width:130px;
-    left:400px;
     height:100%;
     cursor:pointer;
     
     
 }
+
+
 
 #back-to-main a{
     position:relative;
-    top:25px;
+    top:18px;
+    
     
 }
 
-#filter-div a{
-    
-    position:relative;
-    top:25px;
-    color:green;
-}
 
 a:link, a:visited, a:active{
     text-decoration: none;
-    color:green;
+    color:white;
+    
 }
 
 #back-to-main:hover{
-    background-color:#71c440;
+    background-color:#0d4053;
 }
 
-#filter-div{
-    
-    display:block;
-    position:absolute;
-    width:130px;
-    left:530px;
-    height:100%;
-    cursor:pointer;
-}
 
-#filter-div:hover{
-    
-    background-color:#71c440;
-}
+
 
 #categoryFilter{
     position:relative;
@@ -85,35 +99,73 @@ a:link, a:visited, a:active{
     text-align: left;
 }
 
-#loginDiv button{
-    width:80px;
-    margin-left:20px;
-}
 
 #loginDiv{
-    margin-top:25px;
-    margin-right:50px;
     float:right;
+    height:100%;
+    width:130px;
+    cursor:pointer;
+    color:white;
 }
 
+#loginDiv:hover{
+    background-color:#0d4053;
+}
+
+#registerDiv{
+    float:right;
+    height:100%;
+    width:130px;
+    cursor:pointer;
+    color:white;
+}
+
+#registerDiv:hover{
+    background-color:#0d4053;
+}
+
+#profileDiv{
+    float:right;
+    height:100%;
+    width:130px;
+    cursor:pointer;
+    color:white;
+}
+
+#profileDiv:hover{
+    background-color:#0d4053;
+}
+
+#logoutDiv{
+    float:right;
+    height:100%;
+    width:130px;
+    cursor:pointer;
+    color:white;
+}
+
+#logoutDiv:hover{
+    background-color:#0d4053;
+}
 
 
 
 
 #filters{
-    
-    background-color:#89da59;
-    height:200px;
+    color:white;
+    background-color:#07222c;
+    float:left;
     width:400px;
-    position:relative;
-    top:61px;
-    left:-222px;
+    height:200px;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
+    position:relative;
+    -webkit-box-shadow: 0px 9px 12px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 9px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 9px 12px 0px rgba(0,0,0,0.75);
     
-    -webkit-box-shadow: 6px 11px 38px -11px rgba(0,0,0,0.75);
-    -moz-box-shadow: 6px 11px 38px -11px rgba(0,0,0,0.75);
-    box-shadow: 6px 11px 38px -11px rgba(0,0,0,0.75);
+    
+   
 }
 
 .hidden{

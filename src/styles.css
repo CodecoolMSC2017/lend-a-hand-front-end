@@ -5,6 +5,9 @@
 .ng-invalid.input {
     border: 2px solid #db171b /* red */
 }
+html{
+    font-family: 'Ubuntu', sans-serif;
+}
 
 .ng-invalid span {
     color: red;

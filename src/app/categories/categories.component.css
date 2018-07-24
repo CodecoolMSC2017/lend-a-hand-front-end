@@ -1,0 +1,36 @@
+#categories{
+    position:relative;
+    top:250px;
+    width:100%;
+    
+    
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+  }
+
+img{
+    
+    float:left;
+    width:350px;
+    -webkit-box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    margin-right:20px;
+    margin-top:50px;
+    transition:0.5s;
+    border-radius:15%;
+    opacity: 0.6;
+    
+    
+}
+
+img:hover{
+   position:relative;
+   opacity:1;
+   transform: scale(1.1);
+    
+}
+

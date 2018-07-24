@@ -1,66 +1,83 @@
 <div id="header-bar" class="content">
+    <div id="header-content">
+        
+        <p id="detailedSearch" (click)="showFilters()">&#9660;</p>
+        <div id="search-bar">
+            <input type="text" class="input" [(ngModel)]="keyword">
+            <!--<p><strong style="color:green;">Category</strong></p>
+            <select [(ngModel)]="selectedCategory">
+                <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
+            </select>-->
+            <!--<button id="search-button" (click)="search()">Search</button>-->
+            <button id="search-button" (click)="filterByKeywordAndCategory()"><strong>Search</strong></button>
+        </div>
 
-    <div id="loginDiv">
+        <div id="back-to-main" routerLink="/categories">
+            <a><strong>Home</strong></a>
+        </div>
+        <div id="registerDiv" *ngIf="user == null" (click)="register()">
+            <p ><strong>Register</strong></p>
+        </div>
+        <div id="loginDiv" *ngIf="user == null" (click)="login()">
+                <p ><strong>Login</strong></p>
+        </div>
 
-        <button *ngIf="user == null" (click)="login()">Login</button>
-        <button *ngIf="user == null" (click)="register()">Register</button>
-        <button *ngIf="user != null" (click)="toProfile()">Profile</button>
-        <button *ngIf="user != null" (click)="logout()">Log out</button>
+        <div id="logoutDiv" *ngIf="user != null" (click)="logout()">
+                <p ><strong>Logout</strong></p>
+        </div>
+
+        <div  id="profileDiv" *ngIf="user != null" (click)="toProfile(user.id)">
+                <p ><strong>Profile</strong></p>
+        </div>
+
+       
+        
+
+        <!--<div id="loginDiv">
+
+                <p *ngIf="user == null" (click)="login()">Login</p>
+                <p *ngIf="user == null" (click)="register()">Register</p>
+                <p *ngIf="user != null" (click)="toProfile()">Profile</p>
+                <p *ngIf="user != null" (click)="logout()">Log out</p>
+    
+    
+        </div>-->
+
+        
+        <div id="filters" class="hidden">
+
+            <div id="categoryFilter">
+                <p><strong>Category</strong></p>
+                <select [(ngModel)]="selectedCategory">
+                    <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
+                </select>
+
+              
+
+            </div>
+
+            <div id="hire-offer-filter">
+                <p><strong>Hire/Offer</strong></p>
+                <select [(ngModel)]="selectedType">
+                    <option value="Hire">Hire</option>
+                    <option value="Offer">Offer</option>
+                </select>
+
+              
+
+            </div>
 
 
-    </div>
+        </div>
 
-    <div id="search-bar">
-        <input type="text" class="input" [(ngModel)]="keyword">
-        <p><strong style="color:green;">Category</strong></p>
+
+        <!--<div id="testCategoryFilter">
+        <p>Category</p>
         <select [(ngModel)]="selectedCategory">
             <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
         </select>
-        <!--<button id="search-button" (click)="search()">Search</button>-->
-        <button id="search-button" (click)="filterByKeywordAndCategory()">Search</button>
+
+        <button (click)="filterCategory()">Filter</button>
+        </div>-->
     </div>
-
-    <div id="back-to-main" (click)="backToMain()">
-        <a routerLink="/main"><strong>Main page</strong></a>
-    </div>
-
-    <div id="filter-div" (click)="showFilters()">
-        <a><strong>Filters</strong></a>
-    </div>
-    <div id="filters" class="hidden">
-
-        <div id="categoryFilter">
-            <p><strong style="color:green;">Category</strong></p>
-            <select [(ngModel)]="selectedCategory">
-                <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
-            </select>
-
-            <button (click)="filterCategory()">Filter</button>
-
-        </div>
-
-        <div id="hire-offer-filter">
-            <p><strong style="color:green;">Hire/Offer</strong></p>
-            <select [(ngModel)]="selectedType">
-                <option value="Hire">Hire</option>
-                <option value="Offer">Offer</option>
-            </select>
-
-            <button (click)="filterCategory()">Filter</button>
-
-        </div>
-
-
-    </div>
-
-
-    <!--<div id="testCategoryFilter">
-      <p>Category</p>
-      <select [(ngModel)]="selectedCategory">
-        <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
-      </select>
-
-      <button (click)="filterCategory()">Filter</button>
-    </div>-->
-
 </div>

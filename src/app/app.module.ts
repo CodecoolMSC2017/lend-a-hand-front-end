@@ -13,6 +13,7 @@ import { AdFilterComponent } from './ad-filter/ad-filter.component';
 import { AdsComponent } from './ads/ads.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
 import { SingleAdComponent } from './single-ad/single-ad.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { SingleAdComponent } from './single-ad/single-ad.component';
         AdFilterComponent,
         AdsComponent,
         HeaderBarComponent,
-        SingleAdComponent
+        SingleAdComponent,
+        CategoriesComponent
     ],
     imports: [
         BrowserModule,

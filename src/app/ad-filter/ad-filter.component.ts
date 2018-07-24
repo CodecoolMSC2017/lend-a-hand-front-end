@@ -27,9 +27,7 @@ export class AdFilterComponent implements OnInit {
         });
     }
 
-    filterAds() {
-        this.gem.updateCategoryFilter(this.selectedCategory);
-    }
+
 
 }
 
