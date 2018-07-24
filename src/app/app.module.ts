@@ -9,7 +9,7 @@ import {RegisterComponent} from './register/register.component';
 import {AppRoutingModule} from './/app-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {MainPageComponent} from './main-page/main-page.component';
-import { AdFilterComponent } from './ad-filter/ad-filter.component';
+
 import { AdsComponent } from './ads/ads.component';
 import { HeaderBarComponent } from './header-bar/header-bar.component';
 import { SingleAdComponent } from './single-ad/single-ad.component';
@@ -22,7 +22,7 @@ import { CategoriesComponent } from './categories/categories.component';
         RegisterComponent,
         ProfileComponent,
         MainPageComponent,
-        AdFilterComponent,
+        
         AdsComponent,
         HeaderBarComponent,
         SingleAdComponent,
