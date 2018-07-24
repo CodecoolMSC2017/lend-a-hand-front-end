@@ -9,6 +9,12 @@ import {Filter} from './filter.model';
 })
 export class GlobalEventManagerService {
 
+    private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
+
+    private keywordFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public keywordFilterEmitter: Observable<string> = this.keywordFilterTrigger.asObservable();
+
     private filterTrigger: Subject<Filter> = new BehaviorSubject<Filter>(null);
     public filterEmitter: Observable<Filter> = this.filterTrigger.asObservable();
 
@@ -21,7 +27,14 @@ export class GlobalEventManagerService {
     public profileEmitter: Observable<User> = this.userTrigger.asObservable();
     private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
 
- 
+
+    public updateCategoryFilter(category: string): void {
+        this.categoryFilterTrigger.next(category);
+    }
+
+    public updateKeywordFilter(keyword: string): void {
+        this.keywordFilterTrigger.next(keyword);
+    }
 
     public updateFilter(filter: Filter): void {
         this.filterTrigger.next(filter);

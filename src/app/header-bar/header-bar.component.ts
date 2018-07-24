@@ -13,6 +13,8 @@ export class HeaderBarComponent implements OnInit {
     keyword: string;
     categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
     selectedCategory: string;
+    selectedType: string;
+    
     user: User;
 
     constructor(private gem: GlobalEventManagerService, private router: Router) {
@@ -26,18 +28,26 @@ export class HeaderBarComponent implements OnInit {
     }
 
     filterByKeywordAndCategory() {
-        this.gem.updateFilter(new Filter(this.keyword, this.selectedCategory));
+        if (this.keyword == null) {
+            this.keyword = '';
+        }
+        if (this.selectedCategory == null) {
+            this.selectedCategory = 'All';
+        }
+        if (this.keyword && this.selectedCategory === 'All') {
+            this.gem.updateKeywordFilter(this.keyword);
+        }
+        if (this.selectedCategory && this.keyword === '') {
+            this.gem.updateCategoryFilter(this.selectedCategory);
+        }
+        if (this.keyword !== '' && this.selectedCategory !== 'All') {
+            this.gem.updateFilter(new Filter(this.keyword, this.selectedCategory));
+        }
     }
 
-   
     login() {
         this.router.navigate(['login']);
     }
-
-    /*backToMain() {
-        this.gem.updateCategoryFilter('All');
-        this.keyword = '';
-    }*/
 
     showFilters() {
         if (document.getElementById('filters').classList.contains('hidden')) {
