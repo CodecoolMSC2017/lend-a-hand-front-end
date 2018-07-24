@@ -12,12 +12,6 @@ export class GlobalEventManagerService {
     private filterTrigger: Subject<Filter> = new BehaviorSubject<Filter>(null);
     public filterEmitter: Observable<Filter> = this.filterTrigger.asObservable();
 
-    private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
-    public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
-
-    private keywordFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
-    public keywordFilterEmitter: Observable<string> = this.keywordFilterTrigger.asObservable();
-
     private singleAdTrigger: Subject<Ad> = new BehaviorSubject<Ad>(null);
     public singleAdEmitter: Observable<Ad> = this.singleAdTrigger.asObservable();
 
@@ -27,17 +21,12 @@ export class GlobalEventManagerService {
     public profileEmitter: Observable<User> = this.userTrigger.asObservable();
     private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
 
-    public updateCategoryFilter(category: string): void {
-        this.categoryFilterTrigger.next(category);
-    }
+ 
 
     public updateFilter(filter: Filter): void {
         this.filterTrigger.next(filter);
     }
 
-    public updateKeywordFilter(keyword: string): void {
-        this.keywordFilterTrigger.next(keyword);
-    }
 
     public updateSingleAd(ad: Ad): void {
         this.singleAdTrigger.next(ad);

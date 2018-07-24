@@ -28,13 +28,7 @@ export class MainPageComponent implements OnInit {
         this.adService.getAds().subscribe(ads => {
             this.ads = ads;
         });
-        this.gem.categoryFilterEmitter.subscribe(category => {
-            if (category) {
-                this.adService.getAdsByCategory(category).subscribe(ads => {
-                    this.ads = ads;
-                });
-            }
-        });
+   
         this.searchForm = this.formBuilder.group({
             search: ['', [Validators.required]]
         });
@@ -58,8 +52,6 @@ export class MainPageComponent implements OnInit {
         this.authService.deleteAuth().subscribe(clearAuth, clearAuth);
     }
 
-    search() {
-        this.gem.updateKeywordFilter(this.keyword);
-    }
+ 
 }
 
