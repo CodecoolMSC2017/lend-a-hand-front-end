@@ -21,16 +21,9 @@ export class AdFilterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.filterForm = this.formBuilder.group({
-            categories: [[Validators.required]]
 
-        });
-    }
 
-    filterAds() {
-        this.gem.updateCategoryFilter(this.selectedCategory);
-    }
-
+}
 }
 
 

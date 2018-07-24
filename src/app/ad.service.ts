@@ -20,13 +20,8 @@ export class AdService {
     }
 
     public getAdsByFilters(keyword: string, category: string) {
-        console.log(keyword);
-        console.log(category);
         const params = new HttpParams().append('keyword', keyword).append('category', category);
-        console.log(params.get('keyword'));
         return this.http.get<Ad[]>('/api/ads/filters', {params: params});
-
-
     }
 
     public getAdsByCategory(category: string): Observable<Ad[]> {

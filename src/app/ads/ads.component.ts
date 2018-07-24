@@ -20,10 +20,8 @@ export class AdsComponent implements OnInit {
     }
 
     showAd(ad: Ad) {
-
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);
-
     }
 
     ngOnInit() {
@@ -32,7 +30,6 @@ export class AdsComponent implements OnInit {
         });
 
         this.gem.filterEmitter.subscribe(filter => {
-            console.log(filter);
             if (filter) {
                 this.adService.getAdsByFilters(filter.keyword, filter.category).subscribe(ads => {
                     this.ads = ads;
@@ -40,17 +37,6 @@ export class AdsComponent implements OnInit {
             }
         });
 
-        /*this.gem.categoryFilterEmitter.subscribe(category => {
-            if (category === 'All') {
-                this.adService.getAds().subscribe(ads => {
-                    this.ads = ads;
-                });
-            } else if (category) {
-                this.adService.getAdsByCategory(category).subscribe(ads => {
-                    this.ads = ads;
-                });
-            }
-        });
         this.gem.keywordFilterEmitter.subscribe(keyword => {
             if (keyword) {
                 this.adService.getAdsByKeyword(keyword).subscribe(ads => {
@@ -61,10 +47,18 @@ export class AdsComponent implements OnInit {
                     this.ads = ads;
                 });
             }
-        });*/
+        });
 
-
+        this.gem.categoryFilterEmitter.subscribe(category => {
+            if (category === 'All') {
+                this.adService.getAds().subscribe(ads => {
+                    this.ads = ads;
+                });
+            } else if (category) {
+                this.adService.getAdsByCategory(category).subscribe(ads => {
+                    this.ads = ads;
+                });
+            }
+        });
     }
-
-
 }
