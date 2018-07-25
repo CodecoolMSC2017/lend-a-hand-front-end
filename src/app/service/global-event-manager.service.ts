@@ -64,20 +64,12 @@ export class GlobalEventManagerService {
 
     }
 
-    public updateKeywordFilter(keyword: string): void {
-        this.keywordFilterTrigger.next(keyword);
-    }
-
     public updateTypeFilter(type: string): void {
         this.typeFilterTrigger.next(type);
     }
 
     public updateKeywordCategoryFilter(keywordCategoryFilter: KeywordCategoryFilterModel): void {
         this.keywordCategoryFilterTrigger.next(keywordCategoryFilter);
-    }
-
-    public updateTypeFilter(type: string): void {
-        this.typeFilterTrigger.next(type);
     }
 
     public updateKeywordTypeFilter(keywordTypeFilter: KeywordTypeFilterModel): void {
@@ -103,9 +95,5 @@ export class GlobalEventManagerService {
 
     public updateProfile(user: User): void {
         this.profileTrigger.next(user);
-    }
-
-    public updateKeywordCategoryTypeFilter(keywordCategoryTypeFilter: KeywordCategoryTypeFilterModel): void {
-        this.keywordCategoryTypeFilterTrigger.next(keywordCategoryTypeFilter);
     }
 }
