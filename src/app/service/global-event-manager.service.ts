@@ -14,6 +14,9 @@ import {Router} from '@angular/router';
 })
 export class GlobalEventManagerService {
 
+    private noFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public noFilterEmitter: Observable<string> = this.noFilterTrigger.asObservable();
+
     private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
 
@@ -51,17 +54,22 @@ export class GlobalEventManagerService {
         this.keywordFilterTrigger.next(keyword);
     }
 
+    public updateNoFilter(info: string): void {
+        this.noFilterTrigger.next(info);
+
+    }
+
     public updateCategoryFilter(category: string): void {
         this.categoryFilterTrigger.next(category);
 
     }
 
-    public updateKeywordCategoryFilter(keywordCategoryFilter: KeywordCategoryFilterModel): void {
-        this.keywordCategoryFilterTrigger.next(keywordCategoryFilter);
-    }
-
     public updateTypeFilter(type: string): void {
         this.typeFilterTrigger.next(type);
+    }
+
+    public updateKeywordCategoryFilter(keywordCategoryFilter: KeywordCategoryFilterModel): void {
+        this.keywordCategoryFilterTrigger.next(keywordCategoryFilter);
     }
 
     public updateKeywordTypeFilter(keywordTypeFilter: KeywordTypeFilterModel): void {
@@ -70,6 +78,10 @@ export class GlobalEventManagerService {
 
     public updateCategoryTypeFilter(categoryTypeFilter: CategoryTypeFilterModel): void {
         this.categoryTypeFilterTrigger.next(categoryTypeFilter);
+    }
+
+    public updateKeywordCategoryTypeFilter(keywordCategoryTypeFilter: KeywordCategoryTypeFilterModel): void {
+        this.keywordCategoryTypeFilterTrigger.next(keywordCategoryTypeFilter);
     }
 
     public updateSingleAd(ad: Ad): void {
@@ -83,9 +95,5 @@ export class GlobalEventManagerService {
 
     public updateProfile(user: User): void {
         this.profileTrigger.next(user);
-    }
-
-    public updateKeywordCategoryTypeFilter(keywordCategoryTypeFilter: KeywordCategoryTypeFilterModel): void {
-        this.keywordCategoryTypeFilterTrigger.next(keywordCategoryTypeFilter);
     }
 }
