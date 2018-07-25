@@ -12,7 +12,7 @@ export class UserService {
     }
 
     updateUser(user: User): Observable<any> {
-        return this.http.put('/api/user/' + user.id, user);
+        return this.http.put('/api/user', user);
     }
 
     getUserById(id: number): Observable<any> {

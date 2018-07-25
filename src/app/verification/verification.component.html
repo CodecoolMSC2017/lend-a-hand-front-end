@@ -8,8 +8,7 @@
                     <span *ngIf="loginForm.hasError('required', ['code'])">{{putPlaceholder("verificationInput")}}</span>
             </span>
 
-            <input id="verification-button" type="submit" value="Verificate" class="btn"
-                   [disabled]="verificationForm.invalid">
+            <input id="verification-button" type="submit" value="Verificate" class="btn">
 
         </form>
     </div>

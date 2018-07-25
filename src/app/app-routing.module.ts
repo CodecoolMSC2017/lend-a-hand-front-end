@@ -18,7 +18,7 @@ const routes: Routes = [
     {path: 'main', component: MainPageComponent},
     {path: 'ad', component: SingleAdComponent},
     {path: 'categories', component: CategoriesComponent},
-    {path: 'mainAfterLogin', component: MainPageComponent, canActivate: [LoginGuard]},
+    {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
     {path: 'verification', component: VerificationComponent}
 ];

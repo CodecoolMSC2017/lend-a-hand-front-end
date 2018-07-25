@@ -4,11 +4,6 @@
         <p id="detailedSearch" (click)="showFilters()">&#9660;</p>
         <div id="search-bar">
             <input type="text" class="input" [(ngModel)]="keyword">
-            <!--<p><strong style="color:green;">Category</strong></p>
-            <select [(ngModel)]="selectedCategory">
-                <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
-            </select>-->
-            <!--<button id="search-button" (click)="search()">Search</button>-->
             <button id="search-button" (click)="filterAds()"><strong>Search</strong></button>
             <div id="filters" class="hidden">
 
@@ -55,31 +50,5 @@
         <div  id="profileDiv" *ngIf="user != null" (click)="toProfile(user.id)">
                 <p ><strong>Profile</strong></p>
         </div>
-
-       
-        
-
-        <!--<div id="loginDiv">
-
-                <p *ngIf="user == null" (click)="login()">Login</p>
-                <p *ngIf="user == null" (click)="register()">Register</p>
-                <p *ngIf="user != null" (click)="toProfile()">Profile</p>
-                <p *ngIf="user != null" (click)="logout()">Log out</p>
-    
-    
-        </div>-->
-
-        
-        
-
-
-        <!--<div id="testCategoryFilter">
-        <p>Category</p>
-        <select [(ngModel)]="selectedCategory">
-            <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
-        </select>
-
-        <button (click)="filterCategory()">Filter</button>
-        </div>-->
     </div>
 </div>

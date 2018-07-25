@@ -6,6 +6,7 @@ import {KeywordCategoryFilterModel} from '../model/keyword-category-filter.model
 import {KeywordTypeFilterModel} from '../model/keyword-type-filter.model';
 import {CategoryTypeFilterModel} from '../model/category-type-filter.model';
 import {KeywordCategoryTypeFilterModel} from '../model/keyword-category-type-filter.model';
+import {AuthorizationService} from '../service/authorization.service';
 
 @Component({
     selector: 'app-header-bar',
@@ -20,7 +21,7 @@ export class HeaderBarComponent implements OnInit {
 
     user: User;
 
-    constructor(private gem: GlobalEventManagerService, private router: Router) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService) {
     }
 
     ngOnInit() {
@@ -74,6 +75,22 @@ export class HeaderBarComponent implements OnInit {
 
     login() {
         this.router.navigate(['login']);
+    }
+
+    register() {
+        this.router.navigate(['register']);
+    }
+
+    logout() {
+        const clearAuth = () => {
+            sessionStorage.clear();
+            this.router.navigate(['login']);
+        };
+        this.authService.deleteAuth().subscribe(clearAuth, clearAuth);
+    }
+
+    toProfile() {
+        this.router.navigate(['profile']);
     }
 
     showFilters() {

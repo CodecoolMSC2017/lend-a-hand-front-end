@@ -39,7 +39,7 @@ export class VerificationComponent implements OnInit {
                 this.gem.updateUser(response);
                 this.zone.run(() => this.router.navigate(['/categories']));
             }, error => {
-                alert(error.message);
+            alert(error.error.message);
             }
         );
     }
@@ -51,3 +51,4 @@ export class VerificationComponent implements OnInit {
             el.placeholder = 'This field is required';
         }
     }
+}

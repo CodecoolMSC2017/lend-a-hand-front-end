@@ -116,8 +116,6 @@ export class ProfileComponent implements OnInit {
         const postalCode = (<HTMLInputElement>document.getElementById('postal-code-input')).value;
         const city = (<HTMLInputElement>document.getElementById('city-input')).value;
         const ad = (<HTMLInputElement>document.getElementById('address-input')).value;
-        console.log(phone);
-        console.log(ad);
 
 
     }
