@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {AuthorizationService} from '../authorization.service';
+import {AuthorizationService} from '../service/authorization.service';
 import {RegisterDatasModel} from '../register-datas.model';
 
 @Component({

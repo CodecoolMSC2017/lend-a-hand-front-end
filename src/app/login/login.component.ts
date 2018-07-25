@@ -1,9 +1,9 @@
 import {Component, NgZone, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {User} from '../user.model';
+import {User} from '../model/user.model';
 import {Router} from '@angular/router';
-import {AuthorizationService} from '../authorization.service';
-import {GlobalEventManagerService} from '../global-event-manager.service';
+import {AuthorizationService} from '../service/authorization.service';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
 
 @Component({
     selector: 'app-login',

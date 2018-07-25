@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {GlobalEventManagerService} from '../global-event-manager.service';
-import {User} from '../user.model';
-import {UserService} from '../user.service';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {User} from '../model/user.model';
+import {UserService} from '../service/user.service';
 
 @Component({
     selector: 'app-profile',

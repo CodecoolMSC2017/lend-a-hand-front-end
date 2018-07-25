@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Ad} from '../ad.model';
-import {GlobalEventManagerService} from '../global-event-manager.service';
+import {Ad} from '../model/ad.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
 
 @Component({
