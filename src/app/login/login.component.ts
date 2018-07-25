@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         this.authService.loginUser(this.user).subscribe(response => {
                 sessionStorage.setItem('user', JSON.stringify(response));
                 this.gem.updateUser(response);
-            this.zone.run(() => this.router.navigate(['/main']));
+            this.zone.run(() => this.router.navigate(['/categories']));
             }, error => {
             alert(error.message);
             }
