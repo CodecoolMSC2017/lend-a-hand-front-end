@@ -58,7 +58,7 @@ a{
     display:block;
     position:relative;
     float:left;
-    width:130px;
+    width:10%;
     height:100%;
     cursor:pointer;
     
@@ -106,7 +106,7 @@ a:link, a:visited, a:active{
 #loginDiv{
     float:right;
     height:100%;
-    width:130px;
+    width:10%;
     cursor:pointer;
     color:white;
 }
@@ -118,7 +118,7 @@ a:link, a:visited, a:active{
 #registerDiv{
     float:right;
     height:100%;
-    width:130px;
+    width:10%;
     cursor:pointer;
     color:white;
 }
@@ -130,7 +130,7 @@ a:link, a:visited, a:active{
 #profileDiv{
     float:right;
     height:100%;
-    width:130px;
+    width:10%;
     cursor:pointer;
     color:white;
 }
@@ -142,7 +142,7 @@ a:link, a:visited, a:active{
 #logoutDiv{
     float:right;
     height:100%;
-    width:130px;
+    width:10%;
     cursor:pointer;
     color:white;
 }
