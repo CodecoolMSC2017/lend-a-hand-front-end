@@ -1,17 +1,23 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
+import {Observable} from 'rxjs';
+import {User} from './model/user.model';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LoginGuard implements CanActivate {
 
-    constructor(private router: Router) {}
+    constructor(private router: Router) {
+    }
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (sessionStorage.getItem('user')) {
-            return true;
+            if ((JSON.parse(sessionStorage.getItem('user')) as User).verificated === true) {
+                return true;
+            }
+            this.router.navigate(['verification']);
+            return false;
         }
         this.router.navigate(['login']);
         return false;

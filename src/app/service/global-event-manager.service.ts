@@ -6,7 +6,7 @@ import {KeywordCategoryFilterModel} from '../model/keyword-category-filter.model
 import {KeywordTypeFilterModel} from '../model/keyword-type-filter.model';
 import {CategoryTypeFilterModel} from '../model/category-type-filter.model';
 import {KeywordCategoryTypeFilterModel} from '../model/keyword-category-type-filter.model';
-import {Router, Route} from '@angular/router';
+import {Router} from '@angular/router';
 
 
 @Injectable({
@@ -47,6 +47,12 @@ export class GlobalEventManagerService {
     public profileEmitter: Observable<User> = this.userTrigger.asObservable();
     private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
 
+    constructor(private router: Router) {
+    }
+
+    public updateKeywordFilter(keyword: string): void {
+        this.keywordFilterTrigger.next(keyword);
+    }
 
     public updateNoFilter(info: string): void {
         this.noFilterTrigger.next(info);
@@ -68,6 +74,10 @@ export class GlobalEventManagerService {
 
     public updateKeywordCategoryFilter(keywordCategoryFilter: KeywordCategoryFilterModel): void {
         this.keywordCategoryFilterTrigger.next(keywordCategoryFilter);
+    }
+
+    public updateTypeFilter(type: string): void {
+        this.typeFilterTrigger.next(type);
     }
 
     public updateKeywordTypeFilter(keywordTypeFilter: KeywordTypeFilterModel): void {
@@ -95,6 +105,7 @@ export class GlobalEventManagerService {
         this.profileTrigger.next(user);
     }
 
-    constructor(private router: Router) {
+    public updateKeywordCategoryTypeFilter(keywordCategoryTypeFilter: KeywordCategoryTypeFilterModel): void {
+        this.keywordCategoryTypeFilterTrigger.next(keywordCategoryTypeFilter);
     }
 }
