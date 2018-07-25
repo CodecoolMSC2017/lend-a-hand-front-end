@@ -7,10 +7,12 @@ import {LoginGuard} from './login.guard';
 import {MainPageComponent} from './main-page/main-page.component';
 import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
+import {AdsComponent} from './ads/ads.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/categories', pathMatch: 'full'},
     {path: 'login', component: LoginComponent},
+    {path: 'ads', component: AdsComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'main', component: MainPageComponent},
     {path: 'ad', component: SingleAdComponent},

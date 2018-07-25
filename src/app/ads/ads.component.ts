@@ -25,9 +25,7 @@ export class AdsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.adService.getAds().subscribe(ads => {
-            this.ads = ads;
-        });
+      
 
         this.gem.keywordCategoryFilterEmitter.subscribe(keywordCategoryFilter => {
             if (keywordCategoryFilter) {
@@ -59,6 +57,7 @@ export class AdsComponent implements OnInit {
                     this.ads = ads;
                 });
             }
+            
         });
     }
 }
