@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {Ad} from '../model/ad.model';
 import {User} from '../model/user.model';
 import {KeywordCategoryFilterModel} from '../model/keyword-category-filter.model';
+import {Router, Route} from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -30,6 +31,7 @@ export class GlobalEventManagerService {
 
     public updateCategoryFilter(category: string): void {
         this.categoryFilterTrigger.next(category);
+        
     }
 
     public updateKeywordFilter(keyword: string): void {
@@ -54,6 +56,6 @@ export class GlobalEventManagerService {
         this.profileTrigger.next(user);
     }
 
-    constructor() {
+    constructor(private router:Router) {
     }
 }
