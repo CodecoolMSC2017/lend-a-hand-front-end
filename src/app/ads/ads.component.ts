@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AdService} from '../ad.service';
+import {AdService} from '../service/ad.service';
 import {Router} from '@angular/router';
-import {Ad} from '../ad.model';
-import {GlobalEventManagerService} from '../global-event-manager.service';
+import {Ad} from '../model/ad.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
 
 @Component({
     selector: 'app-ads',
@@ -29,9 +29,9 @@ export class AdsComponent implements OnInit {
             this.ads = ads;
         });
 
-        this.gem.filterEmitter.subscribe(filter => {
-            if (filter) {
-                this.adService.getAdsByFilters(filter.keyword, filter.category).subscribe(ads => {
+        this.gem.keywordCategoryFilterEmitter.subscribe(keywordCategoryFilter => {
+            if (keywordCategoryFilter) {
+                this.adService.getAdsByKeywordAndCategory(keywordCategoryFilter.keyword, keywordCategoryFilter.category).subscribe(ads => {
                     this.ads = ads;
                 });
             }

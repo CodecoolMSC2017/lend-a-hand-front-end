@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {GlobalEventManagerService} from '../global-event-manager.service';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
-import {User} from '../user.model';
-import {Filter} from '../filter.model';
+import {User} from '../model/user.model';
+import {KeywordCategoryFilterModel} from '../model/keyword-category-filter.model';
 
 @Component({
     selector: 'app-header-bar',
@@ -14,7 +14,7 @@ export class HeaderBarComponent implements OnInit {
     categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
     selectedCategory: string;
     selectedType: string;
-    
+
     user: User;
 
     constructor(private gem: GlobalEventManagerService, private router: Router) {
@@ -41,7 +41,7 @@ export class HeaderBarComponent implements OnInit {
             this.gem.updateCategoryFilter(this.selectedCategory);
         }
         if (this.keyword !== '' && this.selectedCategory !== 'All') {
-            this.gem.updateFilter(new Filter(this.keyword, this.selectedCategory));
+            this.gem.updateKeywordCategoryFilter(new KeywordCategoryFilterModel(this.keyword, this.selectedCategory));
         }
     }
 

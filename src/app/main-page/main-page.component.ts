@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MainPageService} from '../main-page.service';
+import {MainPageService} from '../service/main-page.service';
 import {Router} from '@angular/router';
-import {AuthorizationService} from '../authorization.service';
-import {AdService} from '../ad.service';
-import {GlobalEventManagerService} from '../global-event-manager.service';
+import {AuthorizationService} from '../service/authorization.service';
+import {AdService} from '../service/ad.service';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({

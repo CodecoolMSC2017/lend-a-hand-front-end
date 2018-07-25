@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {Ad} from './ad.model';
-import {User} from './user.model';
-import {Filter} from './filter.model';
+import {Ad} from '../model/ad.model';
+import {User} from '../model/user.model';
+import {KeywordCategoryFilterModel} from '../model/keyword-category-filter.model';
 
 @Injectable({
     providedIn: 'root'
@@ -15,8 +15,8 @@ export class GlobalEventManagerService {
     private keywordFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public keywordFilterEmitter: Observable<string> = this.keywordFilterTrigger.asObservable();
 
-    private filterTrigger: Subject<Filter> = new BehaviorSubject<Filter>(null);
-    public filterEmitter: Observable<Filter> = this.filterTrigger.asObservable();
+    private keywordCategoryFilterTrigger: Subject<KeywordCategoryFilterModel> = new BehaviorSubject<KeywordCategoryFilterModel>(null);
+    public keywordCategoryFilterEmitter: Observable<KeywordCategoryFilterModel> = this.keywordCategoryFilterTrigger.asObservable();
 
     private singleAdTrigger: Subject<Ad> = new BehaviorSubject<Ad>(null);
     public singleAdEmitter: Observable<Ad> = this.singleAdTrigger.asObservable();
@@ -36,8 +36,8 @@ export class GlobalEventManagerService {
         this.keywordFilterTrigger.next(keyword);
     }
 
-    public updateFilter(filter: Filter): void {
-        this.filterTrigger.next(filter);
+    public updateKeywordCategoryFilter(keywordCategoryFilter: KeywordCategoryFilterModel): void {
+        this.keywordCategoryFilterTrigger.next(keywordCategoryFilter);
     }
 
 
