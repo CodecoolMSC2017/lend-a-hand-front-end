@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../global-event-manager.service';
 import {User} from '../user.model';
+import {UserService} from '../user.service';
 
 @Component({
     selector: 'app-profile',
@@ -12,8 +13,9 @@ export class ProfileComponent implements OnInit {
     currentUsersProfile: User;
     user: User;
     ownProfile: boolean;
+    userName: string;
 
-    constructor(private gem: GlobalEventManagerService) {
+    constructor(private gem: GlobalEventManagerService, private userService: UserService) {
     }
 
     ngOnInit() {
@@ -43,7 +45,7 @@ export class ProfileComponent implements OnInit {
 
     showFullNameInput(): void {
         const fullNameElements = document.getElementsByClassName('fullname');
-        for (const e of fullNameElements) {
+        for (const e of <any>fullNameElements) {
             e.classList.add('hidden');
         }
 
@@ -58,7 +60,7 @@ export class ProfileComponent implements OnInit {
 
     showPhoneInput(): void {
         const fullNameElements = document.getElementsByClassName('phone');
-        for (const e of fullNameElements) {
+        for (const e of <any>fullNameElements) {
             e.classList.add('hidden');
         }
         const inputElement = document.createElement('input');
@@ -72,7 +74,7 @@ export class ProfileComponent implements OnInit {
 
     showLocationInput(): void {
         const fullNameElements: HTMLCollectionOf<Element> = document.getElementsByClassName('address');
-        for (const e of fullNameElements) {
+        for (const e of <any>fullNameElements) {
             e.classList.add('hidden');
         }
         const postalCodeInputElement = document.createElement('input');
@@ -104,16 +106,19 @@ export class ProfileComponent implements OnInit {
 
     showChangeButton(): void {
 
-        const updateButton = document.createElement('button');
-        updateButton.setAttribute('id', 'update-button');
-        updateButton.innerText = 'Update';
-        updateButton.addEventListener('click', this.update);
-
-        const contentDiv = document.getElementById('profile-div').firstElementChild;
-        contentDiv.appendChild(updateButton);
+        const updateButton = document.getElementById('update-button');
+        updateButton.classList.remove('hidden');
     }
 
     update(): void {
-        console.log('ANYÁD!');
+        const fullName = (<HTMLInputElement>document.getElementById('full-name-input')).value;
+        const phone = (<HTMLInputElement>document.getElementById('phone-input')).value;
+        const postalCode = (<HTMLInputElement>document.getElementById('postal-code-input')).value;
+        const city = (<HTMLInputElement>document.getElementById('city-input')).value;
+        const ad = (<HTMLInputElement>document.getElementById('address-input')).value;
+        console.log(phone);
+        console.log(ad);
+
+
     }
 }

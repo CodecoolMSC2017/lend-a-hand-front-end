@@ -5,6 +5,7 @@
         <h3 *ngIf="user.fullName == null" class="not-specified fullname">Full name not specified</h3>
 
 
+        <button id="update-button" class="hidden" (click)="update()">Update</button>
     </div>
 
     <img src="{{user.pictureLink}}" class="profile-img">
