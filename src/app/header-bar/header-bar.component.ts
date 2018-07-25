@@ -70,6 +70,11 @@ export class HeaderBarComponent implements OnInit {
         if (this.keyword !== '' && this.selectedCategory !== 'All' && this.selectedType !== 'All') {
             this.gem.updateKeywordCategoryTypeFilter(new KeywordCategoryTypeFilterModel(this.keyword, this.selectedCategory, this.selectedType));
         }
+
+        if (this.keyword === '' && this.selectedCategory === 'All' && this.selectedType === 'All') {
+            this.gem.updateNoFilter('No filter');
+        }
+
     }
 
     login() {

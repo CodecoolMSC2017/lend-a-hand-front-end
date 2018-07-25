@@ -25,7 +25,30 @@ export class AdsComponent implements OnInit {
     }
 
     ngOnInit() {
-      
+
+        this.gem.keywordFilterEmitter.subscribe(keyword => {
+            if (keyword) {
+                this.adService.getAdsByKeyword(keyword).subscribe(ads => {
+                    this.ads = ads;
+                });
+            }
+        });
+
+        this.gem.categoryFilterEmitter.subscribe(category => {
+            if (category) {
+                this.adService.getAdsByCategory(category).subscribe(ads => {
+                    this.ads = ads;
+                });
+            }
+        });
+
+        this.gem.typeFilterEmitter.subscribe(type => {
+            if (type) {
+                this.adService.getAdsByType(type).subscribe(ads => {
+                    this.ads = ads;
+                });
+            }
+        });
 
         this.gem.keywordCategoryFilterEmitter.subscribe(keywordCategoryFilter => {
             if (keywordCategoryFilter) {
@@ -35,29 +58,36 @@ export class AdsComponent implements OnInit {
             }
         });
 
-        this.gem.keywordFilterEmitter.subscribe(keyword => {
-            if (keyword) {
-                this.adService.getAdsByKeyword(keyword).subscribe(ads => {
-                    this.ads = ads;
-                });
-            } else {
-                this.adService.getAds().subscribe(ads => {
+        this.gem.keywordTypeFilterEmitter.subscribe(keywordTypeFilter => {
+            if (keywordTypeFilter) {
+                this.adService.getAdsByKeywordAndType(keywordTypeFilter.keyword, keywordTypeFilter.type).subscribe(ads => {
                     this.ads = ads;
                 });
             }
         });
 
-        this.gem.categoryFilterEmitter.subscribe(category => {
-            if (category === 'All') {
-                this.adService.getAds().subscribe(ads => {
-                    this.ads = ads;
-                });
-            } else if (category) {
-                this.adService.getAdsByCategory(category).subscribe(ads => {
+        this.gem.categoryTypeFilterEmitter.subscribe(categoryTypeFilter => {
+            if (categoryTypeFilter) {
+                this.adService.getAdsByCategoryAndType(categoryTypeFilter.category, categoryTypeFilter.type).subscribe(ads => {
                     this.ads = ads;
                 });
             }
-            
+        });
+
+        this.gem.keywordCategoryTypeFilterEmitter.subscribe(keywordCategoryTypeFilter => {
+            if (keywordCategoryTypeFilter) {
+                this.adService.getAdsByKeywordAndCategoryAndType(keywordCategoryTypeFilter.keyword, keywordCategoryTypeFilter.category, keywordCategoryTypeFilter.type).subscribe(ads => {
+                    this.ads = ads;
+                });
+            }
+        });
+
+        this.gem.noFilterEmitter.subscribe(info => {
+            if (info) {
+                this.adService.getAds().subscribe(ads => {
+                    this.ads = ads;
+                });
+            }
         });
     }
 }

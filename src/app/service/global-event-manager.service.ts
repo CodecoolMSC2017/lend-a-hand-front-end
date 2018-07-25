@@ -14,6 +14,9 @@ import {Router, Route} from '@angular/router';
 })
 export class GlobalEventManagerService {
 
+    private noFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public noFilterEmitter: Observable<string> = this.noFilterTrigger.asObservable();
+
     private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
 
@@ -44,6 +47,11 @@ export class GlobalEventManagerService {
     public profileEmitter: Observable<User> = this.userTrigger.asObservable();
     private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
 
+
+    public updateNoFilter(info: string): void {
+        this.noFilterTrigger.next(info);
+
+    }
 
     public updateCategoryFilter(category: string): void {
         this.categoryFilterTrigger.next(category);
