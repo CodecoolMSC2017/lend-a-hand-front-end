@@ -1,9 +1,15 @@
 <div id="profile-div">
     <div class="content">
         <h2 class="username">{{user.userName}}</h2>
-        <h3 class="fullname">{{user.fullName}}</h3>
+        <h3 *ngIf="user.fullName != null" class="fullname">{{user.fullName}}</h3>
+        <h3 *ngIf="user.fullName == null" class="not-specified fullname">Full name not specified</h3>
+
+
+        <button id="update-button" class="hidden" (click)="update()">Update</button>
     </div>
+
     <img src="{{user.pictureLink}}" class="profile-img">
+
 
     <table class="contact-table">
         <tr>
@@ -12,7 +18,7 @@
         </tr>
         <tr>
             <td>
-                <button class="at"></button>
+                <button class="at-img"></button>
             </td>
             <td>
                 <span>{{user.email}}</span>
@@ -21,20 +27,26 @@
 
         <tr>
             <td>
-                <button class="phone"></button>
+                <button class="phone-img"></button>
             </td>
-            <td>
-                <span>{{user.phone}}</span>
+            <td id="phone-td">
+                <span *ngIf="user.phone != null " class="phone">{{user.phone}}</span>
+                <span *ngIf="user.phone == null" class="not-specified phone">Not specified</span>
             </td>
         </tr>
 
         <tr>
             <td>
-                <button class="location"></button>
+                <button class="location-img"></button>
             </td>
-            <td>
-                <span> {{user.postalCode}}, {{user.city}}, {{user.address}}</span>
+            <td id="address-td">
+                <span *ngIf="user.address !=null"
+                      class="address"> {{user.postalCode}}, {{user.city}}, {{user.address}}</span>
+                <span *ngIf="user.address == null" class="address not-specified">Not specified</span>
             </td>
         </tr>
+        <td colspan="2">
+            <button class="options" (click)="profileChanges()" id="profile-change-button"></button>
+        </td>
     </table>
 </div>
