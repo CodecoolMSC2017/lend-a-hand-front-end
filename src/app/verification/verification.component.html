@@ -1,0 +1,15 @@
+<div id="verification-content" >
+  <div id="verification-div">
+    <form id="verification-form" [formGroup]="verificationForm" (ngSubmit)="verificate()">
+      <h4>Verification Code</h4>
+      <input type="text" formControlName="code" class="input" id="verificationInput">
+
+      <span *ngIf="verificationForm.get('code').touched">
+                    <span *ngIf="loginForm.hasError('required', ['code'])">{{putPlaceholder("verificationInput")}}</span>
+            </span>
+
+      <input id="verification-button" type="submit" value="Verificate" class="btn" [disabled]="verificationForm.invalid">
+
+    </form>
+  </div>
+</div>

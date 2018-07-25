@@ -9,7 +9,7 @@
                 <option *ngFor="let c of categories" value={{c}}>{{c}}</option>
             </select>-->
             <!--<button id="search-button" (click)="search()">Search</button>-->
-            <button id="search-button" (click)="filterByKeywordAndCategory()"><strong>Search</strong></button>
+            <button id="search-button" (click)="filterAds()"><strong>Search</strong></button>
             <div id="filters" class="hidden">
 
                 <div id="categoryFilter">
@@ -25,6 +25,7 @@
                 <div id="hire-offer-filter">
                     <p><strong>Hire/Offer</strong></p>
                     <select [(ngModel)]="selectedType">
+                        <option value="All">All</option>
                         <option value="Hire">Hire</option>
                         <option value="Offer">Offer</option>
                     </select>

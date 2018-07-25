@@ -3,6 +3,9 @@ import {GlobalEventManagerService} from '../service/global-event-manager.service
 import {Router} from '@angular/router';
 import {User} from '../model/user.model';
 import {KeywordCategoryFilterModel} from '../model/keyword-category-filter.model';
+import {KeywordTypeFilterModel} from '../model/keyword-type-filter.model';
+import {CategoryTypeFilterModel} from '../model/category-type-filter.model';
+import {KeywordCategoryTypeFilterModel} from '../model/keyword-category-type-filter.model';
 
 @Component({
     selector: 'app-header-bar',
@@ -27,21 +30,45 @@ export class HeaderBarComponent implements OnInit {
         });
     }
 
-    filterByKeywordAndCategory() {
+    filterAds() {
         if (this.keyword == null) {
             this.keyword = '';
         }
+
         if (this.selectedCategory == null) {
             this.selectedCategory = 'All';
         }
-        if (this.keyword && this.selectedCategory === 'All') {
+
+        if (this.selectedType == null) {
+            this.selectedType = 'All';
+        }
+
+        if (this.keyword !== '' && this.selectedCategory === 'All' && this.selectedType === 'All') {
             this.gem.updateKeywordFilter(this.keyword);
         }
-        if (this.selectedCategory && this.keyword === '') {
+
+        if (this.selectedCategory !== 'All' && this.keyword === '' && this.selectedType === 'All') {
             this.gem.updateCategoryFilter(this.selectedCategory);
         }
-        if (this.keyword !== '' && this.selectedCategory !== 'All') {
+
+        if (this.selectedType !== 'All' && this.keyword === '' && this.selectedCategory === 'All') {
+            this.gem.updateTypeFilter(this.selectedType);
+        }
+
+        if (this.keyword !== '' && this.selectedCategory !== 'All' && this.selectedType === 'All') {
             this.gem.updateKeywordCategoryFilter(new KeywordCategoryFilterModel(this.keyword, this.selectedCategory));
+        }
+
+        if (this.keyword !== '' && this.selectedType !== 'All' && this.selectedCategory === 'All') {
+            this.gem.updateKeywordTypeFilter(new KeywordTypeFilterModel(this.keyword, this.selectedType));
+        }
+
+        if (this.selectedCategory !== 'All' && this.selectedType !== 'All' && this.keyword === '') {
+            this.gem.updateCategoryTypeFilter(new CategoryTypeFilterModel(this.selectedCategory, this.selectedType));
+        }
+
+        if (this.keyword !== '' && this.selectedCategory !== 'All' && this.selectedType !== 'All') {
+            this.gem.updateKeywordCategoryTypeFilter(new KeywordCategoryTypeFilterModel(this.keyword, this.selectedCategory, this.selectedType));
         }
     }
 
