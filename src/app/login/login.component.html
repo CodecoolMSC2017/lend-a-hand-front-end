@@ -5,20 +5,20 @@
             
             <!--USER NAME TEXT FIELD-->
             <h4>Username</h4>
-            <input type="text" formControlName="userName" class="input">
+            <input type="text" formControlName="userName" class="input" id="usernameInput">
             
             <span *ngIf="loginForm.get('userName').touched">
-                    <span *ngIf="loginForm.hasError('required', ['userName'])"><pre>   </pre>This field is required.</span>
+                    <span *ngIf="loginForm.hasError('required', ['userName'])">{{putPlaceholder("usernameInput")}}</span>
             </span>
 
             
             
             <!--PASSWORD TEXT FIELD-->
             <h4>Password</h4>
-            <input type="password" formControlName="password" class="input">
+            <input type="password" formControlName="password" class="input" id="passwordInput">
 
             <span *ngIf="loginForm.get('password').touched">
-                    <span *ngIf="loginForm.hasError('required', ['password'])"><pre>   </pre>This field is required.</span>
+                    <span *ngIf="loginForm.hasError('required', ['password'])">{{putPlaceholder("passwordInput")}}</span>
             </span>
 
             

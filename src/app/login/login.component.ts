@@ -41,5 +41,22 @@ export class LoginComponent implements OnInit {
             }
         );
     }
+
+    putPlaceholder(id){
+        if(id=="usernameInput"){
+            if(this.loginForm.hasError('required', ['userName'])){
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder="This field is required";
+                
+            }
+        }else if(id=="passwordInput"){
+            if(this.loginForm.get('password').touched && this.loginForm.hasError('required', ['password'])){
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder="This field is required";
+                
+        }
+        
+    }
+}
 }
 
