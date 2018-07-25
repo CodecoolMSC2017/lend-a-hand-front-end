@@ -10,10 +10,11 @@ import {AppRoutingModule} from './/app-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {MainPageComponent} from './main-page/main-page.component';
 
-import { AdsComponent } from './ads/ads.component';
-import { HeaderBarComponent } from './header-bar/header-bar.component';
-import { SingleAdComponent } from './single-ad/single-ad.component';
-import { CategoriesComponent } from './categories/categories.component';
+import {AdsComponent} from './ads/ads.component';
+import {HeaderBarComponent} from './header-bar/header-bar.component';
+import {SingleAdComponent} from './single-ad/single-ad.component';
+import {CategoriesComponent} from './categories/categories.component';
+import {VerificationComponent} from './verification/verification.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +27,8 @@ import { CategoriesComponent } from './categories/categories.component';
         AdsComponent,
         HeaderBarComponent,
         SingleAdComponent,
-        CategoriesComponent
+        CategoriesComponent,
+        VerificationComponent
     ],
     imports: [
         BrowserModule,

@@ -25,4 +25,5 @@ export class User {
     blocked: boolean;
     ableToAd: boolean;
     enabled: boolean;
+    verificated: boolean;
 }
