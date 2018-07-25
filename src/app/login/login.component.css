@@ -1,11 +1,28 @@
 #login-content{
 
-    width:40%;
-    margin-left:30%;
-    margin-right:30%;
+    width:100%;
+    border-radius:5%;
+    position:relative;
     
-    
+}
 
+#login-div{
+    background-color:#07222c;
+    border:none;
+    position:relative;
+    color:white;
+    padding:100px;
+    top:200px;
+    width:40%;
+    border-radius:30px;
+    -webkit-box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    
+}
+
+#login-form{
+    margin-top:-10%;
 }
 
 #registration-para{
@@ -21,18 +38,5 @@
     background-color:#94c2d3;
 }
 
-.input-div{
-    background-color:#07222c;
-    border:none;
-    position:relative;
-    top:250px;
-    padding:30px;
-    color:white;
-    -webkit-box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.75);
-}
 
-#form-div{
-    margin-top:200px;
-}
+
