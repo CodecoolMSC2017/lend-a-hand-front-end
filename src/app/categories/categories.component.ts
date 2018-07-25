@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
 
@@ -9,21 +9,23 @@ import {Router} from '@angular/router';
 })
 export class CategoriesComponent implements OnInit {
 
-  constructor(private gem:GlobalEventManagerService, private router:Router) { }
-  category:string;
+    category: string;
+
+    constructor(private gem: GlobalEventManagerService, private router: Router) {
+    }
   ngOnInit() {
   }
 
-  getAdsForCategory(category){
-    this.category=category;
-    this.router.navigate(["ads"]);
-    
- 
-  }
+    getAdsForCategory(category) {
+        this.category = category;
+        this.router.navigate(['ads']);
 
-  ngOnDestroy(){
-    this.gem.updateCategoryFilter(this.category);
-  }
+
+    }
+
+    ngOnDestroy() {
+        this.gem.updateCategoryFilter(this.category);
+    }
   
 
 
