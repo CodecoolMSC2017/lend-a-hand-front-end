@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
     user = new User();
     error: string;
 
-    constructor(private gem: GlobalEventManagerService, private zone: NgZone, private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
+    constructor(private gem: GlobalEventManagerService,
+                private zone: NgZone,
+                private formBuilder: FormBuilder,
+                private authService: AuthorizationService,
+                private router: Router) {
     }
 
     ngOnInit() {

@@ -1,85 +1,52 @@
 <div id="register-content" class="content">
-    <div class="error-div">{{error}}</div>
-    <div class="form-div">
+    <div id="register-div">
         <form id="register-form" [formGroup]="registerForm" (ngSubmit)="register()">
-            <div class="input-div">
-                <h2>Registration</h2>
-                <table class="form-table">
-                    <tr>
-                        <td class="label-td">Username</td>
-                        <td>
-                            <input type="text" formControlName="username" class="input">
-                        </td>
-                        <td class="error-td">
-                            <span *ngIf="registerForm.get('username').touched">
-                                <span *ngIf="registerForm.hasError('required', ['username'])">
-                                    This field is required.
-                                </span>
-                                <span *ngIf="registerForm.hasError('minlength', ['username'])">
-                                    Please enter at least 3 characters.
-                                </span>
-                                <span *ngIf="registerForm.hasError('maxlength', ['username'])">
-                                    Please enter no more than 32 characters.
-                                </span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="label-td">Password</td>
-                        <td>
-                            <input type="password" formControlName="password" class="input">
-                        </td>
-                        <td class="error-td">
-                            <span *ngIf="registerForm.get('password').touched">
-                                <span *ngIf="registerForm.hasError('required', ['password'])">
-                                    This field is required.
-                                </span>
-                                <span *ngIf="registerForm.hasError('pattern', ['password'])">
-                                    Your password does not meet complexity requirements.
-                                </span>
 
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Email</td>
-                        <td>
-                            <input type="text" formControlName="email" class="input">
-                        </td>
-                        <td>
-                            <span *ngIf="registerForm.get('email').touched">
-                                <span *ngIf="registerForm.hasError('required', ['email'])">
-                                    This field is required.
-                                </span>
-                                <span *ngIf="registerForm.hasError('pattern', ['email'])">
-                                    Please enter a valid email address.
-                                </span>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Type</td>
-                        <td>
-                            <div class="styled-select green semi-square">
-                                <select formControlName="type">
-                                    <option value="person" selected="selected">Person</option>
-                                    <option value="company">Company</option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td class="btn-td">
-                            <input id="register-button" class="btn" type="submit" value="Save"
-                                   [disabled]="registerForm.invalid">
-                        </td>
-                    </tr>
-                </table>
-            </div>
+
+            <!--USER NAME TEXT FIELD-->
+            <h4>Username</h4>
+            <input type="text" formControlName="username" class="input" id="usernameInput">
+
+            <span *ngIf="registerForm.get('username').touched">
+                    <span *ngIf="registerForm.hasError('required', ['username'])">{{putPlaceholder("usernameInput")}}</span>
+            </span>
+
+
+            <!--PASSWORD TEXT FIELD-->
+            <h4>Password</h4>
+            <input type="password" formControlName="password" class="input" id="passwordInput">
+
+            <span *ngIf="registerForm.get('password').touched">
+                    <span *ngIf="registerForm.hasError('required', ['password'])">{{putPlaceholder("passwordInput")}}</span>
+            </span>
+
+
+            <!--EMAIL TEXT FIELD-->
+            <h4>Email</h4>
+            <input type="email" formControlName="email" class="input" id="emailInput">
+
+            <span *ngIf="registerForm.get('email').touched">
+                    <span *ngIf="registerForm.hasError('required', ['email'])">{{putPlaceholder("emailInput")}}</span>
+            </span>
+
+
+            <!--TYPE SELECT FIELD-->
+            <h4>Type</h4>
+            <select formControlName="type">
+                <option value="person" selected="selected">Person</option>
+                <option value="company">Company</option>
+            </select>
+
+
+            <!--LOGIN BUTTON-->
+            <br>
+            <br>
+            <br>
+            <button type="submit" id="register-button" [disabled]="registerForm.invalid"><strong>Register</strong>
+            </button>
+
+            <div class="error-div">{{error}}</div>
+
         </form>
-        <p class="register-paragraph">Already have an account? <a routerLink="/login"
-                                                                  class="register-link">Login
-            here</a></p>
     </div>
 </div>

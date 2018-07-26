@@ -45,4 +45,26 @@ export class RegisterComponent implements OnInit {
         });
     }
 
+    putPlaceholder(id) {
+        if (id === 'usernameInput') {
+            if (this.registerForm.hasError('required', ['username'])) {
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder = 'This field is required';
+
+            }
+        } else if (id === 'passwordInput') {
+            if (this.registerForm.get('password').touched && this.registerForm.hasError('required', ['password'])) {
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder = 'This field is required';
+
+            }
+
+        } else if (id === 'emailInput') {
+            if (this.registerForm.get('email').touched && this.registerForm.hasError('required', ['email'])) {
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder = 'This field is required';
+            }
+        }
+    }
+
 }

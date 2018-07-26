@@ -9,50 +9,20 @@ html{
     font-family: 'Ubuntu', sans-serif;
 }
 
-.ng-invalid span {
-    color: red;
-}
-
 .ng-untouched.input {
     border: 2px solid transparent;
-}
-
-.form-div {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.form-table {
-    margin-left: auto;
-    margin-right: auto;
-    font-weight: 300;
-    font-size: 20px;
-    text-rendering: optimizeLegibility;
-}
-
-.input-div {
-    color: black;
-    padding-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 30px;
-    min-width: 40%;
-    border: 3px;
-    border-style: ridge;
-    border-color: #148f15;
-    background-color: #64ff63;
 }
 
 .input {
     text-align: center;
     background-color: #ECF0F1;
     border: 2px solid transparent;
-    margin-top: 8px;
+    margin-top: 3px;
     border-radius: 2px;
     font-size: 16px;
-    font-weight: 200;
-    padding: 7px 0;
-    width: 235px;
+    font-weight: 100;
+    padding: 3px 0;
+    width: 230px;
     transition: border .5s;
 }
 
@@ -61,117 +31,15 @@ html{
     box-shadow: none;
 }
 
-.btn {
-    border: 2px solid transparent;
-    background: #f2fffa;
-    color: #010101;
-    font-size: 16px;
-    line-height: 25px;
-    padding: 10px 0;
-    text-decoration: none;
-    text-shadow: none;
-    border-radius: 3px;
-    box-shadow: none;
-    display: block;
-    width: 235px;
-    margin: 10px auto;
-    transition: background-color .5s;
-}
-
-.btn:hover {
-    background-color: #098800;
-    cursor: pointer;
-    transition: background-color .5s;
-}
-
-.btn[disabled] {
-    display: none;
-}
-
-.btn-td {
-    height: 50px;
-}
-
-.register-paragraph {
-    font-size: 13px;
-}
-
-.register-link {
-    cursor: pointer;
-    text-decoration: underline;
-    color: black;
-    transition: color .5s;
-}
-
-.register-link:hover,
-.register-link:active {
-    text-decoration: none;
-    color: #098800;
-    transition: color .5s;
-}
-
-.label-td {
-    margin-right: 2px;
-}
-
-.styled-select {
-    margin-top: 8px;
-    background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
-    height: 35px;
-    overflow: hidden;
-    width: 240px;
-}
-
-.styled-select select {
-    background: transparent;
-    border: none;
-    font-size: 14px;
-    height: 35px;
-    padding: 5px; /* If you add too much padding here, the options won't show in IE */
-    width: 268px;
-}
-
-.styled-select.slate select {
-    border: 1px solid #ccc;
-    font-size: 16px;
-    height: 34px;
-    width: 268px;
-    background-color: #6eeb28
-}
-
-#bg-div{
-    position:fixed;
-    height:100%;
-    width:100%;
-    background:url("https://hdwallsource.com/img/2014/9/blur-wallpaper-26339-27030-hd-wallpapers.jpg");
-    left:0;
+#bg-div {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: url("https://hdwallsource.com/img/2014/9/blur-wallpaper-26339-27030-hd-wallpapers.jpg");
+    left: 0;
     z-index: -300;
-    
-}
 
-.semi-square {
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
 }
-
-.green select option {
-    background-color: #6eeb28;
-}
-
-.green select {
-    color: #fff;
-}
-
-.green {
-    background-color: #6eeb28;
-}
-
-.error-td {
-    height: 19px;
-    width: 300px;
-}
-
 .error-div {
     padding-top: 10%;
     color: #a80900;

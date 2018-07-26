@@ -12,7 +12,7 @@
     border: none;
     position: relative;
     color: white;
-    padding: 100px;
+    padding: 40px;
     margin-top: 10%;
     width: 40%;
     height: 10%;
@@ -25,10 +25,6 @@
 
 #verification-form {
     margin-top: -10%;
-}
-
-.register-link:hover {
-    color: white;
 }
 
 #verification-button:disabled {
@@ -48,6 +44,3 @@
     color: #07222c;
 
 }
-
-
-
