@@ -98,13 +98,28 @@ export class HeaderBarComponent implements OnInit {
         this.router.navigate(['profile']);
     }
 
+    hideFilter(event) {
+        console.log(event.target);
+        if (event.target.id === 'detailedSearch' || event.target.id === 'keyword-input' || event.target.id === 'filters'
+        || event.target.id === 'category-filter' || event.target.id === 'hire-offer-filter' || event.target.id === 'strong-category'
+        || event.target.id === 'strong-hire-offer' || event.target.id === 'category-select' || event.target.id === 'type-select') {
+            return;
+        }
+        document.getElementById('filters').classList.add('hidden');
+        document.getElementById('detailedSearch').innerText = '►';
+    }
+
     showFilters() {
         if (document.getElementById('filters').classList.contains('hidden')) {
             document.getElementById('filters').classList.remove('hidden');
+            document.getElementById('detailedSearch').innerText = '▼';
+            document.getElementsByTagName('body').item(0).addEventListener('click', this.hideFilter);
         } else {
             document.getElementById('filters').classList.add('hidden');
-        }
+            document.getElementById('detailedSearch').innerText = '►';
+            document.getElementsByTagName('body').item(0).removeEventListener('click', this.hideFilter);
 
+        }
     }
 
 }
