@@ -15,8 +15,9 @@ export class LoginComponent implements OnInit {
 
     loginForm: FormGroup;
     user = new User();
+    error: string;
 
-    constructor(private gem:GlobalEventManagerService,private zone: NgZone, private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
+    constructor(private gem: GlobalEventManagerService, private zone: NgZone, private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
     }
 
     ngOnInit() {
@@ -37,26 +38,30 @@ export class LoginComponent implements OnInit {
                 this.gem.updateUser(response);
             this.zone.run(() => this.router.navigate(['/categoriesAfterLogin']));
             }, error => {
-            alert(error.message);
+            if (error.status === 401) {
+                this.error = 'Wrong User name or password.';
+            } else {
+                this.error = error.message;
+            }
             }
         );
     }
 
-    putPlaceholder(id){
-        if(id=="usernameInput"){
-            if(this.loginForm.hasError('required', ['userName'])){
+    putPlaceholder(id) {
+        if (id === 'usernameInput') {
+            if (this.loginForm.hasError('required', ['userName'])) {
                 const el = <HTMLInputElement>document.getElementById(id);
-                el.placeholder="This field is required";
-                
+                el.placeholder = 'This field is required';
+
             }
-        }else if(id=="passwordInput"){
-            if(this.loginForm.get('password').touched && this.loginForm.hasError('required', ['password'])){
+        } else if (id === 'passwordInput') {
+            if (this.loginForm.get('password').touched && this.loginForm.hasError('required', ['password'])) {
                 const el = <HTMLInputElement>document.getElementById(id);
-                el.placeholder="This field is required";
-                
+                el.placeholder = 'This field is required';
+
+            }
+
         }
-        
     }
-}
 }
 

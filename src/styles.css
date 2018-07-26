@@ -171,3 +171,8 @@ html{
     height: 19px;
     width: 300px;
 }
+
+.error-div {
+    margin-top: 10%;
+    color: #a80900;
+}
