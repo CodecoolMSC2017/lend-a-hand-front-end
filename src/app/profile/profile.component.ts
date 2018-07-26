@@ -14,6 +14,7 @@ export class ProfileComponent implements OnInit {
     user: User;
     ownProfile: boolean;
     userName: string;
+    error: string;
 
     constructor(private gem: GlobalEventManagerService, private userService: UserService) {
     }
@@ -42,6 +43,14 @@ export class ProfileComponent implements OnInit {
         this.showChangeButton();
     }
 
+    changeBackProfile(): void {
+        this.showFullNameLabel();
+        this.showPhoneLabel();
+        this.showLocationLabel();
+        this.enableProfileChangeButton();
+        this.hideChangeButton();
+    }
+
 
     showFullNameInput(): void {
         const fullNameElements = document.getElementsByClassName('fullname');
@@ -58,9 +67,17 @@ export class ProfileComponent implements OnInit {
         contentDiv.appendChild(inputElement);
     }
 
-    showPhoneInput(): void {
-        const fullNameElements = document.getElementsByClassName('phone');
+    showFullNameLabel(): void {
+        document.getElementById('full-name-input').remove();
+        const fullNameElements = document.getElementsByClassName('fullname');
         for (const e of <any>fullNameElements) {
+            e.classList.remove('hidden');
+        }
+    }
+
+    showPhoneInput(): void {
+        const phoneElements = document.getElementsByClassName('phone');
+        for (const e of <any>phoneElements) {
             e.classList.add('hidden');
         }
         const inputElement = document.createElement('input');
@@ -72,9 +89,17 @@ export class ProfileComponent implements OnInit {
         phoneTd.appendChild(inputElement);
     }
 
+    showPhoneLabel(): void {
+        document.getElementById('phone-input').remove();
+        const phoneElements = document.getElementsByClassName('phone');
+        for (const e of <any>phoneElements) {
+            e.classList.remove('hidden');
+        }
+    }
+
     showLocationInput(): void {
-        const fullNameElements: HTMLCollectionOf<Element> = document.getElementsByClassName('address');
-        for (const e of <any>fullNameElements) {
+        const adressElements: HTMLCollectionOf<Element> = document.getElementsByClassName('address');
+        for (const e of <any>adressElements) {
             e.classList.add('hidden');
         }
         const postalCodeInputElement = document.createElement('input');
@@ -94,14 +119,28 @@ export class ProfileComponent implements OnInit {
 
         const locationTd = document.getElementById('address-td');
         locationTd.appendChild(postalCodeInputElement);
-        locationTd.appendChild(document.createElement('br'));
         locationTd.appendChild(cityInputElement);
-        locationTd.appendChild(document.createElement('br'));
         locationTd.appendChild(addressInputElement);
     }
 
+    showLocationLabel(): void {
+        document.getElementById('postal-code-input').remove();
+        document.getElementById('city-input').remove();
+        document.getElementById('address-input').remove();
+
+        const adressElements: HTMLCollectionOf<Element> = document.getElementsByClassName('address');
+        for (const e of <any>adressElements) {
+            e.classList.remove('hidden');
+        }
+    }
+
+
     disableProfileChangeButton(): void {
         document.getElementById('profile-change-button').classList.add('hidden');
+    }
+
+    enableProfileChangeButton(): void {
+        document.getElementById('profile-change-button').classList.add('remove');
     }
 
     showChangeButton(): void {
@@ -110,12 +149,31 @@ export class ProfileComponent implements OnInit {
         updateButton.classList.remove('hidden');
     }
 
+    hideChangeButton(): void {
+
+        const updateButton = document.getElementById('update-button');
+        updateButton.classList.add('hidden');
+    }
+
     update(): void {
         const fullName = (<HTMLInputElement>document.getElementById('full-name-input')).value;
         const phone = (<HTMLInputElement>document.getElementById('phone-input')).value;
         const postalCode = (<HTMLInputElement>document.getElementById('postal-code-input')).value;
         const city = (<HTMLInputElement>document.getElementById('city-input')).value;
-        const ad = (<HTMLInputElement>document.getElementById('address-input')).value;
+        const address = (<HTMLInputElement>document.getElementById('address-input')).value;
+
+        this.user.fullName = fullName;
+        this.user.phone = phone;
+        this.user.postalCode = postalCode;
+        this.user.city = city;
+        this.user.address = address;
+        this.userService.updateUser(this.user).subscribe(response => {
+            sessionStorage.setItem('user', JSON.stringify(response));
+            this.gem.updateUser(response);
+            this.changeBackProfile();
+        }, error => {
+            this.error = error.error.message;
+        });
 
 
     }
