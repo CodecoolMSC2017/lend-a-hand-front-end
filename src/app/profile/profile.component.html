@@ -1,5 +1,6 @@
 <div id="profile-div">
     <div class="content">
+        <div class="error-div">{{error}}</div>
         <h2 class="username">{{user.userName}}</h2>
         <h3 *ngIf="user.fullName != null" class="fullname">{{user.fullName}}</h3>
         <h3 *ngIf="user.fullName == null" class="not-specified fullname">Full name not specified</h3>
@@ -7,8 +8,9 @@
 
         <button id="update-button" class="hidden" (click)="update()">Update</button>
     </div>
-
-    <img src="{{user.pictureLink}}" class="profile-img">
+    <img *ngIf=" user.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
+         class="profile-img">
+    <img *ngIf=" user.pictureLink != null" src="{{user.pictureLink}}" class="profile-img">
 
 
     <table class="contact-table">
