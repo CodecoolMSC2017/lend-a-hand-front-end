@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthorizationService} from '../service/authorization.service';
 import {RegisterDatasModel} from '../model/register-datas.model';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -12,8 +13,10 @@ export class RegisterComponent implements OnInit {
 
     registerForm: FormGroup;
     registerDatas = new RegisterDatasModel();
+    error: string;
 
-    constructor(private formBuilder: FormBuilder, private authService: AuthorizationService) {
+
+    constructor(private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
     }
 
     ngOnInit() {
@@ -36,9 +39,9 @@ export class RegisterComponent implements OnInit {
         this.registerDatas.password = password;
         this.registerDatas.type = type;
         this.authService.registerUser(this.registerDatas).subscribe(response => {
-            alert(response.message);
+            this.router.navigate(['login']);
         }, error => {
-            alert(error.error.message);
+            this.error = error.error.message;
         });
     }
 

@@ -61,8 +61,11 @@ export class ProfileComponent implements OnInit {
         const inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.setAttribute('id', 'full-name-input');
-        inputElement.placeholder = 'Full Name';
-
+        if (this.user.fullName == null) {
+            inputElement.placeholder = 'Full Name';
+        } else {
+            inputElement.placeholder = this.user.fullName;
+        }
         const contentDiv = document.getElementById('profile-div').firstElementChild;
         contentDiv.appendChild(inputElement);
     }
@@ -83,7 +86,11 @@ export class ProfileComponent implements OnInit {
         const inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.setAttribute('id', 'phone-input');
-        inputElement.placeholder = 'Phone number';
+        if (this.user.fullName == null) {
+            inputElement.placeholder = 'Phone number';
+        } else {
+            inputElement.placeholder = this.user.phone;
+        }
 
         const phoneTd = document.getElementById('phone-td');
         phoneTd.appendChild(inputElement);
@@ -105,21 +112,42 @@ export class ProfileComponent implements OnInit {
         const postalCodeInputElement = document.createElement('input');
         postalCodeInputElement.type = 'text';
         postalCodeInputElement.setAttribute('id', 'postal-code-input');
-        postalCodeInputElement.placeholder = 'Postal code';
+        if (this.user.fullName == null) {
+            postalCodeInputElement.placeholder = 'Postal code';
+        } else {
+            postalCodeInputElement.placeholder = this.user.postalCode;
+        }
 
         const cityInputElement = document.createElement('input');
         cityInputElement.type = 'text';
         cityInputElement.setAttribute('id', 'city-input');
-        cityInputElement.placeholder = 'City';
+        if (this.user.fullName == null) {
+            cityInputElement.placeholder = 'City';
+        } else {
+            cityInputElement.placeholder = this.user.city;
+        }
 
         const addressInputElement = document.createElement('input');
         addressInputElement.type = 'text';
         addressInputElement.setAttribute('id', 'address-input');
-        addressInputElement.placeholder = 'Address';
+        if (this.user.fullName == null) {
+            addressInputElement.placeholder = 'Address';
+        } else {
+            addressInputElement.placeholder = this.user.address;
+        }
+
+        const br = document.createElement('br');
+        br.setAttribute('class', 'breakEl');
+
+        const breakEl = document.createElement('br');
+        br.setAttribute('class', 'breakEl');
+
 
         const locationTd = document.getElementById('address-td');
         locationTd.appendChild(postalCodeInputElement);
+        locationTd.appendChild(br);
         locationTd.appendChild(cityInputElement);
+        locationTd.appendChild(breakEl);
         locationTd.appendChild(addressInputElement);
     }
 
@@ -128,10 +156,15 @@ export class ProfileComponent implements OnInit {
         document.getElementById('city-input').remove();
         document.getElementById('address-input').remove();
 
+        const breakElements: HTMLCollectionOf<Element> = document.getElementsByClassName('breakEl');
+        for (const e of <any>breakElements) {
+            e.remove();
+        }
         const adressElements: HTMLCollectionOf<Element> = document.getElementsByClassName('address');
         for (const e of <any>adressElements) {
             e.classList.remove('hidden');
         }
+
     }
 
 
@@ -140,7 +173,7 @@ export class ProfileComponent implements OnInit {
     }
 
     enableProfileChangeButton(): void {
-        document.getElementById('profile-change-button').classList.add('remove');
+        document.getElementById('profile-change-button').classList.remove('hidden');
     }
 
     showChangeButton(): void {
@@ -156,11 +189,50 @@ export class ProfileComponent implements OnInit {
     }
 
     update(): void {
-        const fullName = (<HTMLInputElement>document.getElementById('full-name-input')).value;
-        const phone = (<HTMLInputElement>document.getElementById('phone-input')).value;
-        const postalCode = (<HTMLInputElement>document.getElementById('postal-code-input')).value;
-        const city = (<HTMLInputElement>document.getElementById('city-input')).value;
-        const address = (<HTMLInputElement>document.getElementById('address-input')).value;
+        let fullName = (<HTMLInputElement>document.getElementById('full-name-input')).value;
+        let phone = (<HTMLInputElement>document.getElementById('phone-input')).value;
+        let postalCode = (<HTMLInputElement>document.getElementById('postal-code-input')).value;
+        let city = (<HTMLInputElement>document.getElementById('city-input')).value;
+        let address = (<HTMLInputElement>document.getElementById('address-input')).value;
+
+        if (fullName === '' && this.user.fullName != null) {
+            fullName = this.user.fullName;
+        }
+
+        if (phone === '' && this.user.phone != null) {
+            phone = this.user.phone;
+        }
+        if (postalCode === '' && this.user.postalCode != null) {
+            postalCode = this.user.postalCode;
+        }
+        if (city === '' && this.user.city != null) {
+            city = this.user.city;
+        }
+        if (address === '' && this.user.address != null) {
+            address = this.user.address;
+        }
+
+        console.log(fullName);
+        if (fullName === '') {
+            this.error = 'Full name field is required!';
+            return;
+        }
+        if (phone === '') {
+            this.error = 'Phone field is required!';
+            return;
+        }
+        if (postalCode === '') {
+            this.error = 'Postal code field is required!';
+            return;
+        }
+        if (city === '') {
+            this.error = 'City field is required!';
+            return;
+        }
+        if (address === '') {
+            this.error = 'Address field is required!';
+            return;
+        }
 
         this.user.fullName = fullName;
         this.user.phone = phone;
@@ -172,6 +244,7 @@ export class ProfileComponent implements OnInit {
             this.gem.updateUser(response);
             this.changeBackProfile();
         }, error => {
+            console.log(error);
             this.error = error.error.message;
         });
 
