@@ -15,7 +15,7 @@ import {AuthorizationService} from '../service/authorization.service';
 })
 export class HeaderBarComponent implements OnInit {
     keyword: string;
-    categories = ['All', 'Babysitting', 'IT', 'Garden', 'Learning', 'Building'];
+    categories = ['All', 'Beauty', 'Child care', 'Construction', 'Education', 'Garden', 'Health care', 'Housework', 'IT', 'Office', 'Pets', 'Repair', 'Sports', 'Vehicle'];
     selectedCategory: string;
     selectedType: string;
 
