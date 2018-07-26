@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit, OnDestroy {
+export class CategoriesComponent implements OnInit {
 
     category: string;
 
@@ -19,10 +19,8 @@ export class CategoriesComponent implements OnInit, OnDestroy {
 
     getAdsForCategory(category) {
         this.category = category;
+        this.gem.updateCategoryFilter(this.category);
         this.router.navigate(['ads']);
     }
-
-    ngOnDestroy() {
-        this.gem.updateCategoryFilter(this.category);
-    }
 }
+
