@@ -15,6 +15,8 @@ export class VerificationComponent implements OnInit {
 
     verificationForm: FormGroup;
     user: User;
+    error: string;
+
 
     constructor(private gem: GlobalEventManagerService, private zone: NgZone, private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
     }
@@ -33,13 +35,18 @@ export class VerificationComponent implements OnInit {
     verificate(): void {
         const userName = this.user.userName;
         const code = this.verificationForm.value.code;
+        if (code === '') {
+            this.error = 'Verification code is required!';
+            return;
+        }
         const verificationModel: VerificationModel = new VerificationModel(userName, code);
+
         this.authService.verificateUser(verificationModel).subscribe(response => {
                 sessionStorage.setItem('user', JSON.stringify(response));
                 this.gem.updateUser(response);
                 this.zone.run(() => this.router.navigate(['/categories']));
             }, error => {
-            alert(error.error.message);
+            this.error = error.error.message;
             }
         );
     }

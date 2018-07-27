@@ -5,10 +5,14 @@
             <input type="text" formControlName="code" class="input" id="verificationInput">
 
             <span *ngIf="verificationForm.get('code').touched">
-                    <span *ngIf="loginForm.hasError('required', ['code'])">{{putPlaceholder("verificationInput")}}</span>
+                    <span *ngIf="verificationForm.hasError('required', ['code'])">{{putPlaceholder("verificationInput")}}</span>
             </span>
 
             <input id="verification-button" type="submit" value="Verificate" class="btn">
+
+            <button id="resend-button" value="Resend email" class="btn" (click)="resend()"></button>
+
+            <div class="error-div">{{error}}</div>
 
         </form>
     </div>

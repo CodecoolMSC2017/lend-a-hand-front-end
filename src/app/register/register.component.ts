@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthorizationService} from '../service/authorization.service';
 import {RegisterDatasModel} from '../model/register-datas.model';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -12,8 +13,10 @@ export class RegisterComponent implements OnInit {
 
     registerForm: FormGroup;
     registerDatas = new RegisterDatasModel();
+    error: string;
 
-    constructor(private formBuilder: FormBuilder, private authService: AuthorizationService) {
+
+    constructor(private formBuilder: FormBuilder, private authService: AuthorizationService, private router: Router) {
     }
 
     ngOnInit() {
@@ -36,10 +39,32 @@ export class RegisterComponent implements OnInit {
         this.registerDatas.password = password;
         this.registerDatas.type = type;
         this.authService.registerUser(this.registerDatas).subscribe(response => {
-            alert(response.message);
+            this.router.navigate(['login']);
         }, error => {
-            alert(error.error.message);
+            this.error = error.error.message;
         });
+    }
+
+    putPlaceholder(id) {
+        if (id === 'usernameInput') {
+            if (this.registerForm.hasError('required', ['username'])) {
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder = 'This field is required';
+
+            }
+        } else if (id === 'passwordInput') {
+            if (this.registerForm.get('password').touched && this.registerForm.hasError('required', ['password'])) {
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder = 'This field is required';
+
+            }
+
+        } else if (id === 'emailInput') {
+            if (this.registerForm.get('email').touched && this.registerForm.hasError('required', ['email'])) {
+                const el = <HTMLInputElement>document.getElementById(id);
+                el.placeholder = 'This field is required';
+            }
+        }
     }
 
 }

@@ -6,11 +6,6 @@
     left: 0;
 }
 
-.error-div {
-    color: #7a0900;
-    color: #BE1000;;
-}
-
 .profile-img {
     position: absolute;
     border: solid 2px black;
@@ -86,7 +81,7 @@
 }
 
 .username {
-    margin-top: 80px;
+    padding-top: 10%;
     color: #000000;
     font-size: 35px;
 }
@@ -102,5 +97,9 @@
 
 .hidden {
     display: none;
+}
+
+#postal-code-input, #city-input, #address-input {
+    display: block;
 }
 
