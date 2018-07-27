@@ -51,6 +51,14 @@ export class VerificationComponent implements OnInit {
         );
     }
 
+    resend(): void {
+        this.authService.resendEmail(this.user).subscribe(response => {
+            this.error = 'Verification email sent successfully';
+        }, error => {
+            this.error = error.error.message;
+        });
+    }
+
 
     putPlaceholder(id) {
         if (this.verificationForm.hasError('required', ['code'])) {

@@ -1,19 +1,19 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {User} from '../model/user.model';
 import {UserService} from '../service/user.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
-    currentUser: User;
+export class ProfileComponent implements OnInit, OnDestroy {
     currentUsersProfile: User;
     user: User;
+    profileSub: Subscription;
     ownProfile: boolean;
-    userName: string;
     error: string;
 
     constructor(private gem: GlobalEventManagerService, private userService: UserService) {
@@ -21,18 +21,14 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
-        /*this.gem.profileEmitter.subscribe(user => {
+        this.gem.profileEmitter.subscribe(user => {
             this.currentUsersProfile = user;
         });
-        this.gem.userEmitter.subscribe(user => {
-            this.currentUser = user;
-        });
-        if (this.currentUser.id === this.currentUsersProfile.id) {
+        if (this.currentUsersProfile.id === this.user.id) {
             this.ownProfile = true;
         } else {
             this.ownProfile = false;
         }
-        */
     }
 
     profileChanges(): void {
@@ -250,4 +246,9 @@ export class ProfileComponent implements OnInit {
 
 
     }
+
+    ngOnDestroy() {
+        this.profileSub.unsubscribe();
+    }
+
 }

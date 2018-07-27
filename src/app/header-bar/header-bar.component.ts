@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
 import {User} from '../model/user.model';
@@ -7,16 +7,18 @@ import {KeywordTypeFilterModel} from '../model/keyword-type-filter.model';
 import {CategoryTypeFilterModel} from '../model/category-type-filter.model';
 import {KeywordCategoryTypeFilterModel} from '../model/keyword-category-type-filter.model';
 import {AuthorizationService} from '../service/authorization.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-header-bar',
     templateUrl: './header-bar.component.html',
     styleUrls: ['./header-bar.component.css']
 })
-export class HeaderBarComponent implements OnInit {
+export class HeaderBarComponent implements OnInit, OnDestroy {
     keyword: string;
     categories = ['All', 'Beauty', 'Child care', 'Construction', 'Education', 'Garden', 'Health care', 'Housework', 'IT', 'Office', 'Pets', 'Repair', 'Sports', 'Vehicle'];
     selectedCategory: string;
+    userSub: Subscription;
     selectedType: string;
 
     user: User;
@@ -26,7 +28,7 @@ export class HeaderBarComponent implements OnInit {
 
     ngOnInit() {
 
-        this.gem.userEmitter.subscribe(user => {
+        this.userSub = this.gem.userEmitter.subscribe(user => {
             this.user = user;
         });
     }
@@ -94,7 +96,8 @@ export class HeaderBarComponent implements OnInit {
         this.authService.deleteAuth().subscribe(clearAuth, clearAuth);
     }
 
-    toProfile() {
+    toProfile(user: User) {
+        this.gem.updateProfile(user);
         this.router.navigate(['profile']);
     }
 
@@ -121,4 +124,9 @@ export class HeaderBarComponent implements OnInit {
 
         }
     }
+
+    ngOnDestroy() {
+        this.userSub.unsubscribe();
+    }
+
 }
