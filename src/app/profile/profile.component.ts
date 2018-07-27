@@ -208,7 +208,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
             address = this.user.address;
         }
 
-        console.log(fullName);
         if (fullName === '') {
             this.error = 'Full name field is required!';
             return;
@@ -248,7 +247,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.profileSub.unsubscribe();
+        if (this.profileSub) {
+            this.profileSub.unsubscribe();
+        }
     }
 
 }
