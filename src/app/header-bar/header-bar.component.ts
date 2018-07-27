@@ -20,7 +20,6 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
     selectedCategory: string;
     userSub: Subscription;
     selectedType: string;
-
     user: User;
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService) {
@@ -91,6 +90,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
     logout() {
         const clearAuth = () => {
             sessionStorage.clear();
+            this.gem.updateUser(null);
             this.router.navigate(['login']);
         };
         this.authService.deleteAuth().subscribe(clearAuth, clearAuth);
