@@ -27,20 +27,30 @@
     margin-top: -10%;
 }
 
-#verification-button:disabled {
-    background-color: #919292;
+#verification-button {
+    margin-top: 20px;
     width: 30%;
     border-radius: 10%;
     padding: 10px;
+}
+
+#verification-button:disabled {
+    background-color: #919292;
     color: #40535a;
 
 }
 
 #verification-button:enabled {
     background-color: #7acae7;
+    color: #07222c;
+
+}
+
+#resend-button {
+    margin-top: 10px;
+    background-color: #4e859c;
     width: 30%;
     border-radius: 10%;
     padding: 10px;
-    color: #07222c;
-
+    color: #06141c;
 }

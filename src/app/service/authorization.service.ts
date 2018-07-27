@@ -29,7 +29,11 @@ export class AuthorizationService {
         return this.http.post('/api/auth/verificate', verificationData);
     }
 
+    resendEmail(user: User): Observable<any> {
+        return this.http.put('/api/auth/resend', user);
+    }
+
     deleteAuth(): Observable<void> {
         return this.http.delete<void>('/api/auth');
-}
+    }
 }
