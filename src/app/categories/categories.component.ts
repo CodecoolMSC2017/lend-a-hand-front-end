@@ -1,6 +1,7 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
+import {User} from '../model/user.model';
 
 @Component({
     selector: 'app-categories',
@@ -10,11 +11,14 @@ import {Router} from '@angular/router';
 export class CategoriesComponent implements OnInit {
 
     category: string;
+    user: User;
 
     constructor(private gem: GlobalEventManagerService, private router: Router) {
     }
 
     ngOnInit() {
+        this.user = JSON.parse(sessionStorage.getItem('user'));
+        this.gem.updateUser(this.user);
     }
 
     getAdsForCategory(category) {

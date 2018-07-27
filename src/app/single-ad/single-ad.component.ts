@@ -17,7 +17,7 @@ export class SingleAdComponent implements OnInit {
     ngOnInit() {
         this.gem.singleAdEmitter.subscribe(ad => {
             this.ad = ad;
-            console.log(ad.title);
+
         });
 
     }

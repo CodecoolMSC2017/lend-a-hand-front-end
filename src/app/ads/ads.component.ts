@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {Ad} from '../model/ad.model';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Subscription} from 'rxjs';
+import {User} from '../model/user.model';
 
 @Component({
     selector: 'app-ads',
@@ -13,6 +14,7 @@ import {Subscription} from 'rxjs';
 export class AdsComponent implements OnInit, OnDestroy {
 
     ads: Ad[];
+    user: User;
     keyword: string;
     category: string;
     keywordSub: Subscription;
@@ -35,11 +37,14 @@ export class AdsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.user = JSON.parse(sessionStorage.getItem('user'));
+        this.gem.updateUser(this.user);
 
         this.keywordSub = this.gem.keywordFilterEmitter.subscribe(keyword => {
             if (keyword) {
                 this.adService.getAdsByKeyword(keyword).subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
@@ -48,6 +53,7 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (category) {
                 this.adService.getAdsByCategory(category).subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
@@ -56,6 +62,7 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (type) {
                 this.typeSub = this.adService.getAdsByType(type).subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
@@ -64,6 +71,7 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (keywordCategoryFilter) {
                 this.adService.getAdsByKeywordAndCategory(keywordCategoryFilter.keyword, keywordCategoryFilter.category).subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
@@ -72,6 +80,7 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (keywordTypeFilter) {
                 this.adService.getAdsByKeywordAndType(keywordTypeFilter.keyword, keywordTypeFilter.type).subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
@@ -80,6 +89,7 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (categoryTypeFilter) {
                 this.adService.getAdsByCategoryAndType(categoryTypeFilter.category, categoryTypeFilter.type).subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
@@ -88,6 +98,7 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (keywordCategoryTypeFilter) {
                 this.adService.getAdsByKeywordAndCategoryAndType(keywordCategoryTypeFilter.keyword, keywordCategoryTypeFilter.category, keywordCategoryTypeFilter.type).subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
@@ -96,9 +107,15 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (info) {
                 this.adService.getAds().subscribe(ads => {
                     this.ads = ads;
+                    sessionStorage.setItem('ads', JSON.stringify(ads));
                 });
             }
         });
+
+        if (this.ads === undefined) {
+            this.ads = JSON.parse(sessionStorage.getItem('ads'));
+            sessionStorage.removeItem('ads');
+        }
     }
 
     ngOnDestroy() {
