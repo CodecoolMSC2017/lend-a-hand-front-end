@@ -37,6 +37,7 @@ export class VerificationComponent implements OnInit {
         const code = this.verificationForm.value.code;
         if (code === '') {
             this.error = 'Verification code is required!';
+            this.showError();
             return;
         }
         const verificationModel: VerificationModel = new VerificationModel(userName, code);
@@ -46,16 +47,24 @@ export class VerificationComponent implements OnInit {
                 this.gem.updateUser(response);
                 this.zone.run(() => this.router.navigate(['/categories']));
             }, error => {
-            this.error = error.error.message;
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
             }
         );
     }
 
     resend(): void {
         this.authService.resendEmail(this.user).subscribe(response => {
-            this.error = 'Verification email sent successfully';
+            this.showInfo('Verification email sent successfully');
         }, error => {
-            this.error = error.error.message;
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
         });
     }
 
@@ -64,6 +73,29 @@ export class VerificationComponent implements OnInit {
         if (this.verificationForm.hasError('required', ['code'])) {
             const el = <HTMLInputElement>document.getElementById(id);
             el.placeholder = 'This field is required';
+            this.error = 'Verification code is required!';
+            this.showError();
         }
+    }
+
+
+    clearAlert() {
+        document.getElementById('error').classList.add('hidden');
+        document.getElementById('info').classList.remove('hidden');
+    }
+
+    showError() {
+        document.getElementById('info').classList.add('hidden');
+        document.getElementById('error').classList.remove('hidden');
+        setTimeout(this.clearAlert, 5000);
+    }
+
+    showInfo(info: string) {
+        document.getElementById('info').innerText = info;
+        setTimeout(this.hideInfo, 5000);
+    }
+
+    hideInfo() {
+        document.getElementById('info').innerText = 'Verificate you account via email';
     }
 }
