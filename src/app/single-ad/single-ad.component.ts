@@ -20,7 +20,6 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-
         if (sessionStorage.getItem('user') !== null) {
             this.user = JSON.parse(sessionStorage.getItem('user'));
             this.gem.updateUser(this.user);
@@ -35,12 +34,16 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             }
         });
 
-
-        if (this.ad.advertiserId === this.user.id) {
-            this.ownAd = true;
+        if (sessionStorage.getItem('user') !== null) {
+            if (this.ad.advertiserId === this.user.id) {
+                this.ownAd = true;
+            } else {
+                this.ownAd = false;
+            }
         } else {
             this.ownAd = false;
         }
+
     }
 
     ngOnDestroy() {
