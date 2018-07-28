@@ -27,8 +27,9 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         this.loginForm = this.formBuilder.group({
             userName: ['', [Validators.required]],
-            password: ['', [Validators.required, Validators.pattern('^((?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,20})$')]]
+            password: ['', [Validators.required]]
         });
+        this.showInfo();
 
     }
 
@@ -45,8 +46,13 @@ export class LoginComponent implements OnInit {
             if (error.status === 401) {
                 this.error = 'Wrong User name or password.';
             } else {
-                this.error = error.message;
+                if (error.error !== null) {
+                    this.error = error.error.message;
+                } else {
+                    this.error = error.message;
+                }
             }
+            this.showError();
             }
         );
     }
@@ -56,16 +62,44 @@ export class LoginComponent implements OnInit {
             if (this.loginForm.hasError('required', ['userName'])) {
                 const el = <HTMLInputElement>document.getElementById(id);
                 el.placeholder = 'This field is required';
+                this.error = 'Username field is required';
+                this.showError();
+
 
             }
         } else if (id === 'passwordInput') {
             if (this.loginForm.get('password').touched && this.loginForm.hasError('required', ['password'])) {
                 const el = <HTMLInputElement>document.getElementById(id);
                 el.placeholder = 'This field is required';
+                this.error = 'Password field is required';
+                this.showError();
+            }
+        }
+    }
+
+    clearAlert() {
+        document.getElementById('error').classList.add('hidden');
+        document.getElementById('info').classList.remove('hidden');
+    }
+
+    showError() {
+        document.getElementById('info').classList.add('hidden');
+        document.getElementById('error').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
+    }
+
+    showInfo() {
+        this.gem.infoEmitter.subscribe(info => {
+            if (info) {
+                document.getElementById('info').innerText = info;
+                setTimeout(this.hideInfo, 3000);
 
             }
+        });
+    }
 
-        }
+    hideInfo() {
+        document.getElementById('info').innerText = 'Log in to your existing account';
     }
 }
 
