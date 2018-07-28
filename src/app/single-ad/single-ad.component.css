@@ -1,0 +1,32 @@
+#ad-div {
+    background-color: rgba(251, 251, 251, 0.4);
+    border: solid 1px black;
+    width: 100%;
+    text-align: left;
+}
+
+#ad-title {
+    text-align: left;
+    margin-top: 10%;
+    margin-left: 2%;
+    text-shadow: 2px 2px #cfc4c4;
+    width: fit-content;
+}
+
+#advertiserName {
+    text-align: left;
+    margin-left: 5%;
+    font-style: italic;
+    cursor: pointer;
+    text-shadow: 1px 1px #e5d4d4;
+    width: fit-content;
+    margin-bottom: 0;
+}
+
+.ad-img {
+    width: 30%;
+    height: 30%;
+    border: solid 2px black;
+    margin-left: 5%;
+}
+

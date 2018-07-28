@@ -1,2 +1,13 @@
-<h1>asd</h1>
-{{ad.title}}
+<div id="ad-div" class="content">
+    <h3 id="ad-title">{{ad.title}}</h3>
+    <h4 id="advertiserName">{{ad.advertiserName}}</h4>
+    <br>
+    <img *ngIf=" ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
+         class="ad-img">
+    <img *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img">
+    <h4 id="timestamp">{{ad.timestamp}}</h4>
+    <h4 id="category">{{ad.category}}</h4>
+    <h4 *ngIf="ad.payment == null" class="payment"> No payment specified</h4>
+    <h4 *ngIf="ad.payment != null" class="payment">{{ad.payment}} $ / hour</h4>
+    <span id="description">{{ad.description}}</span>
+</div>
