@@ -9,6 +9,7 @@
 .grid-container {
     display: grid;
     grid-template-columns: 35% 35% 35%;
+    margin-bottom: 10%;
   }
 
 img{
@@ -19,7 +20,7 @@ img{
     -moz-box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
     margin-right:15%;
-    margin-top:15%;
+    margin-top:10%;
     transition:0.5s;
     border-radius:10%;
     opacity: 0.6;
