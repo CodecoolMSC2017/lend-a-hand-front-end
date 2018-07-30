@@ -22,14 +22,24 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
+
+
         this.gem.profileEmitter.subscribe(user => {
-            this.currentUsersProfile = user;
+            if (user) {
+                this.currentUsersProfile = user;
+                if (this.currentUsersProfile.id === this.user.id) {
+                    this.ownProfile = true;
+                } else {
+                    this.ownProfile = false;
+                }
+            } else {
+                this.currentUsersProfile = this.user;
+                this.ownProfile = true;
+            }
+
+
         });
-        if (this.currentUsersProfile.id === this.user.id) {
-            this.ownProfile = true;
-        } else {
-            this.ownProfile = false;
-        }
+
     }
 
     profileChanges(): void {
