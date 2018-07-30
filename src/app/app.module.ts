@@ -16,6 +16,7 @@ import {HeaderBarComponent} from './header-bar/header-bar.component';
 import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {VerificationComponent} from './verification/verification.component';
+import { CreateAdComponent } from './create-ad/create-ad.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import {VerificationComponent} from './verification/verification.component';
         HeaderBarComponent,
         SingleAdComponent,
         CategoriesComponent,
-        VerificationComponent
+        VerificationComponent,
+        CreateAdComponent
     ],
     imports: [
         BrowserModule,

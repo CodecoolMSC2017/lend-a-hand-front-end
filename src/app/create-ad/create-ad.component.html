@@ -1,0 +1,44 @@
+<div id="createAdContainer">
+  <div id="createAdDiv">
+    <h2>Create your ad</h2>
+    
+    <div id="categoryDiv">
+      <p>Category</p>
+      <select [(ngModel)]="selectedCategory">
+          <option id="category-option" *ngFor="let c of categories" value={{c}}>{{c}}</option>
+      </select>
+    </div>
+
+    <div id="typeDiv">
+        <p>Type</p>
+        <select [(ngModel)]="selectedType">
+            <option value="Hire">Hire</option>
+            <option value="Offer">Offer</option>
+        </select>
+    </div>
+    <br>
+    <div id="premiumDiv">
+      <p>Premium  <input type="checkbox" [(ngModel)]="isPremium"></p>
+    </div>
+    <br>
+    <br>
+    <div id="adTitleDiv">
+      <p>Title</p>
+      <input type="text" id="titleInput" [(ngModel)]="adTitle" >
+    </div>
+
+    <br>
+    <br>
+
+    <div id="adDescriptionDiv">
+      <p>Description of your ad</p>
+      <input type="text" id="descriptionInput" [(ngModel)]="adDescription" >
+    </div>
+    <br>
+    <button id="sendAdButton" (click)="sendAd()">Done</button>
+
+
+
+
+  </div>
+</div>

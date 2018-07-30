@@ -63,6 +63,7 @@ export class AdService {
     }
 
     public createAd(ad: Ad): Observable<any> {
+        console.log(ad);
         return this.http.post('/api/ads/new', ad);
     }
 
