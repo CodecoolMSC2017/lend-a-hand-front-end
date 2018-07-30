@@ -154,6 +154,18 @@ a:link, a:visited, a:active{
     background-color:#0d4053;
 }
 
+#createAdDiv{
+    float:right;
+    height:100%;
+    width:10%;
+    cursor:pointer;
+    color:white;
+}
+
+#createAdDiv:hover{
+    background-color:#0d4053;
+}
+
 
 
 

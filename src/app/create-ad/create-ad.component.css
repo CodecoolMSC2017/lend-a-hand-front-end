@@ -1,0 +1,71 @@
+
+#createAdContainer{
+    width:100%;
+   
+    overflow:auto;
+}
+
+#createAdDiv{
+    color:white;
+    padding:50px;
+    background-color: #07222c;
+    border-radius:5%;
+    width:70%;
+    height:70%;
+    margin-top:10%;
+    margin-bottom:5%;
+    -webkit-box-shadow: 0px 0px 27px 3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 27px 3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 27px 3px rgba(0,0,0,0.75);
+    
+}
+
+#categoryDiv{
+    position:relative;
+  
+    color:white;
+}
+
+#typeDiv{
+    position:relative;
+  
+    color:white;
+}
+
+#premiumDiv{
+    position:relative;
+  
+    color:white;
+}
+
+#adDescriptionDiv{
+    color:white;
+}
+
+#adTitleDiv{
+    color:white;
+}
+
+#adDescriptionDiv input{
+    width:70%;
+    height:200px;
+    margin-left:13%;
+    margin-right:13%;
+    border-radius:15px;
+}
+
+#adTitleDiv input{
+    width:70%;
+    border-radius:30px;
+    margin-left:13%;
+    margin-right:13%
+}
+
+button{
+    border-radius:10px;
+    padding:10px;
+}
+
+select{
+    width:80px;
+}

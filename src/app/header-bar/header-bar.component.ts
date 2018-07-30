@@ -101,6 +101,10 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
         this.router.navigate(['profile']);
     }
 
+    onCreateAdClicked(){
+        this.router.navigate(['createAd']);
+    }
+
     hideFilter(event) {
         if (event.target.id === 'detailedSearch' || event.target.id === 'keyword-input' || event.target.id === 'filters'
             || event.target.id === 'category-filter' || event.target.id === 'hire-offer-filter' || event.target.id === 'strong-category'

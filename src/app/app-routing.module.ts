@@ -9,6 +9,7 @@ import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {AdsComponent} from './ads/ads.component';
 import {VerificationComponent} from './verification/verification.component';
+import {CreateAdComponent} from './create-ad/create-ad.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/categories', pathMatch: 'full'},
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'main', component: MainPageComponent},
     {path: 'ad', component: SingleAdComponent},
+    {path: 'createAd', component: CreateAdComponent},
     {path: 'categories', component: CategoriesComponent},
     {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
