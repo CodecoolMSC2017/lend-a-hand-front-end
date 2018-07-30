@@ -9,6 +9,7 @@ import {RegisterComponent} from './register/register.component';
 import {AppRoutingModule} from './/app-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {MainPageComponent} from './main-page/main-page.component';
+import {httpInterceptorProviders} from '../http-interceptors';
 
 import {AdsComponent} from './ads/ads.component';
 import {HeaderBarComponent} from './header-bar/header-bar.component';
@@ -37,7 +38,7 @@ import {VerificationComponent} from './verification/verification.component';
         HttpClientModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule {
