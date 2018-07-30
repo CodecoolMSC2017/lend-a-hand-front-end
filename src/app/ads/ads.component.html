@@ -3,15 +3,20 @@
 <div id="ads">
     <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
         <div class="ad-container" >
-            <strong class="ad-title">{{ad.title}}</strong>
-            <br>
-            <br>
+
             <div class="ad-description">
-                {{ad.description}}
+                <strong class="ad-title">{{ad.title}}</strong>
+                <table>
+                    <tr>
+                        <td id="image-td"><img id="ads-image" src="{{ad.pictureLink}}"></td>
+                        <td>{{ad.description}}</td>
+                    </tr>
+                </table>
             </div>
+            <!--<p>Category: {{ad.category}}</p>
+            <p>Date: {{ad.timestamp}}</p>
+            <p>Type: {{ad.type}}</p>-->
         </div>
-    
-        <br>
     </div>
 </div>
 
