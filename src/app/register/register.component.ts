@@ -76,7 +76,7 @@ export class RegisterComponent implements OnInit {
                 this.showError();
             }
             if (this.registerForm.get('password').touched && this.registerForm.hasError('pattern', ['password'])) {
-                this.error = 'Passoword must contain at least 1 uppercase, 1 lowercase letter and a number';
+                this.error = 'Password must contain at least 1 uppercase, 1 lowercase letter and a number';
                 this.showError();
             }
         } else if (id === 'emailInput') {

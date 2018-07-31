@@ -11,6 +11,7 @@ import {AdsComponent} from './ads/ads.component';
 import {VerificationComponent} from './verification/verification.component';
 import {CreateAdComponent} from './create-ad/create-ad.component';
 import {RatingsComponent} from './ratings/ratings.component';
+import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/categories', pathMatch: 'full'},
@@ -24,8 +25,9 @@ const routes: Routes = [
     {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
     {path: 'verification', component: VerificationComponent},
-    {path: 'ratings', component: RatingsComponent}    
-];
+    {path: 'ratings', component: RatingsComponent},    
+    {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]}
+    ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

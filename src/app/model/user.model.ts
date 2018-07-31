@@ -11,6 +11,8 @@ export class User {
     applications = [];
     sentMessages = [];
     receivedMessages = [];
+    employerRatingScore: number;
+    employeeRatingScore: number;
     email: string;
     phone: string;
     userName: string;

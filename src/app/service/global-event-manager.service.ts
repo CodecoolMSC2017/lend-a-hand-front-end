@@ -17,11 +17,11 @@ export class GlobalEventManagerService {
     private noFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public noFilterEmitter: Observable<string> = this.noFilterTrigger.asObservable();
 
-    private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
-    public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
-
     private keywordFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public keywordFilterEmitter: Observable<string> = this.keywordFilterTrigger.asObservable();
+
+    private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
 
     private typeFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public typeFilterEmitter: Observable<string> = this.typeFilterTrigger.asObservable();
@@ -58,13 +58,13 @@ export class GlobalEventManagerService {
     constructor(private router: Router) {
     }
 
-    public updateKeywordFilter(keyword: string): void {
-        this.keywordFilterTrigger.next(keyword);
-    }
-
     public updateNoFilter(info: string): void {
         this.noFilterTrigger.next(info);
 
+    }
+
+    public updateKeywordFilter(keyword: string): void {
+        this.keywordFilterTrigger.next(keyword);
     }
 
     public updateCategoryFilter(category: string): void {
