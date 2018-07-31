@@ -8,6 +8,7 @@ import {CategoryTypeFilterModel} from '../model/category-type-filter.model';
 import {KeywordCategoryTypeFilterModel} from '../model/keyword-category-type-filter.model';
 import {AuthorizationService} from '../service/authorization.service';
 import {Subscription} from 'rxjs';
+import {FilterSettingsModel} from '../model/filter-settings.model';
 
 @Component({
     selector: 'app-header-bar',
@@ -15,69 +16,92 @@ import {Subscription} from 'rxjs';
     styleUrls: ['./header-bar.component.css']
 })
 export class HeaderBarComponent implements OnInit, OnDestroy {
-    keyword: string;
-    categories = ['All', 'Beauty', 'Child care', 'Construction', 'Education', 'Garden', 'Health care', 'Housework', 'IT', 'Office', 'Pets', 'Repair', 'Sports', 'Vehicle'];
-    selectedCategory: string;
+    filterSettings: FilterSettingsModel = new FilterSettingsModel();
+    categories = ['All', 'Beauty', 'Child care', 'Construction', 'Education', 'Garden',
+        'Health care', 'Housework', 'IT', 'Office', 'Pets', 'Repair', 'Sports', 'Vehicle'];
     userSub: Subscription;
-    selectedType: string;
     user: User;
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService) {
     }
 
     ngOnInit() {
-
+        this.gem.filterSettingsEmitter.subscribe(filterSettings => {
+            this.filterSettings = filterSettings;
+        });
         this.userSub = this.gem.userEmitter.subscribe(user => {
             this.user = user;
         });
     }
 
     filterAds() {
-        if (this.keyword == null) {
-            this.keyword = '';
+        if (this.filterSettings.keyword == null) {
+            this.filterSettings.keyword = '';
         }
 
-        if (this.selectedCategory == null) {
-            this.selectedCategory = 'All';
+        if (this.filterSettings.selectedCategory == null) {
+            this.filterSettings.selectedCategory = 'All';
         }
 
-        if (this.selectedType == null) {
-            this.selectedType = 'All';
+        if (this.filterSettings.selectedType == null) {
+            this.filterSettings.selectedType = 'All';
         }
 
-        if (this.keyword !== '' && this.selectedCategory === 'All' && this.selectedType === 'All') {
-            this.gem.updateKeywordFilter(this.keyword);
+        if (this.filterSettings.keyword !== ''
+            && this.filterSettings.selectedCategory === 'All'
+            && this.filterSettings.selectedType === 'All') {
+            this.gem.updateKeywordFilter(this.filterSettings.keyword);
         }
 
-        if (this.selectedCategory !== 'All' && this.keyword === '' && this.selectedType === 'All') {
-            this.gem.updateCategoryFilter(this.selectedCategory);
+        if (this.filterSettings.selectedCategory !== 'All'
+            && this.filterSettings.keyword === ''
+            && this.filterSettings.selectedType === 'All') {
+            this.gem.updateCategoryFilter(this.filterSettings.selectedCategory);
         }
 
-        if (this.selectedType !== 'All' && this.keyword === '' && this.selectedCategory === 'All') {
-            this.gem.updateTypeFilter(this.selectedType);
+        if (this.filterSettings.selectedType !== 'All'
+            && this.filterSettings.keyword === ''
+            && this.filterSettings.selectedCategory === 'All') {
+            this.gem.updateTypeFilter(this.filterSettings.selectedType);
         }
 
-        if (this.keyword !== '' && this.selectedCategory !== 'All' && this.selectedType === 'All') {
-            this.gem.updateKeywordCategoryFilter(new KeywordCategoryFilterModel(this.keyword, this.selectedCategory));
+        if (this.filterSettings.keyword !== ''
+            && this.filterSettings.selectedCategory !== 'All'
+            && this.filterSettings.selectedType === 'All') {
+            this.gem.updateKeywordCategoryFilter(new KeywordCategoryFilterModel(this.filterSettings.keyword,
+                this.filterSettings.selectedCategory));
         }
 
-        if (this.keyword !== '' && this.selectedType !== 'All' && this.selectedCategory === 'All') {
-            this.gem.updateKeywordTypeFilter(new KeywordTypeFilterModel(this.keyword, this.selectedType));
+        if (this.filterSettings.keyword !== ''
+            && this.filterSettings.selectedType !== 'All'
+            && this.filterSettings.selectedCategory === 'All') {
+            this.gem.updateKeywordTypeFilter(new KeywordTypeFilterModel(this.filterSettings.keyword,
+                this.filterSettings.selectedType));
         }
 
-        if (this.selectedCategory !== 'All' && this.selectedType !== 'All' && this.keyword === '') {
-            this.gem.updateCategoryTypeFilter(new CategoryTypeFilterModel(this.selectedCategory, this.selectedType));
+        if (this.filterSettings.selectedCategory !== 'All'
+            && this.filterSettings.selectedType !== 'All'
+            && this.filterSettings.keyword === '') {
+            this.gem.updateCategoryTypeFilter(new CategoryTypeFilterModel(this.filterSettings.selectedCategory,
+                this.filterSettings.selectedType));
         }
 
-        if (this.keyword !== '' && this.selectedCategory !== 'All' && this.selectedType !== 'All') {
-            this.gem.updateKeywordCategoryTypeFilter(new KeywordCategoryTypeFilterModel(this.keyword, this.selectedCategory, this.selectedType));
+        if (this.filterSettings.keyword !== ''
+            && this.filterSettings.selectedCategory !== 'All'
+            && this.filterSettings.selectedType !== 'All') {
+            this.gem.updateKeywordCategoryTypeFilter(new KeywordCategoryTypeFilterModel(this.filterSettings.keyword,
+                this.filterSettings.selectedCategory, this.filterSettings.selectedType));
         }
 
-        if (this.keyword === '' && this.selectedCategory === 'All' && this.selectedType === 'All') {
+        if (this.filterSettings.keyword === ''
+            && this.filterSettings.selectedCategory === 'All'
+            && this.filterSettings.selectedType === 'All') {
             this.gem.updateNoFilter('No filter');
         }
+        this.filterSettings = new FilterSettingsModel();
         this.router.navigate(['ads']);
     }
+
 
     login() {
         this.router.navigate(['login']);
@@ -101,7 +125,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
         this.router.navigate(['profile']);
     }
 
-    onCreateAdClicked(){
+    onCreateAdClicked() {
         this.router.navigate(['createAd']);
     }
 

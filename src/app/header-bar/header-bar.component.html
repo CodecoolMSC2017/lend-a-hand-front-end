@@ -4,20 +4,20 @@
         <img id="header-logo" src="../../assets/headerlogo.png" routerLink='/categories'>
         <p id="detailedSearch" (click)="showFilters()">►</p>
         <div id="search-bar">
-            <input id="keyword-input" type="text" class="input" [(ngModel)]="keyword">
+            <input id="keyword-input" type="text" class="input" [(ngModel)]="filterSettings.keyword">
             <button id="search-button" (click)="filterAds()"><strong>Search</strong></button>
 
             <div id="filters" class="hidden">
                 <div id="category-filter">
                     <p><strong id="strong-category">Category</strong></p>
-                    <select id="category-select" [(ngModel)]="selectedCategory">
+                    <select id="category-select" [(ngModel)]="filterSettings.selectedCategory">
                         <option id="category-option" *ngFor="let c of categories" value={{c}}>{{c}}</option>
                     </select>
                 </div>
 
                 <div id="hire-offer-filter">
                     <p><strong id="strong-hire-offer">Hire/Offer</strong></p>
-                    <select id="type-select" [(ngModel)]="selectedType">
+                    <select id="type-select" [(ngModel)]="filterSettings.selectedType">
                         <option value="All">All</option>
                         <option value="Hire">Hire</option>
                         <option value="Offer">Offer</option>

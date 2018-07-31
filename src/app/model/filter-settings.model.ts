@@ -1,4 +1,5 @@
 export class FilterSettingsModel {
-    constructor(public category: string, public type: string) {
-    }
+    keyword: string;
+    selectedCategory: string;
+    selectedType: string;
 }

@@ -5,6 +5,7 @@ import {Ad} from '../model/ad.model';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Subscription} from 'rxjs';
 import {User} from '../model/user.model';
+import {FilterSettingsModel} from '../model/filter-settings.model';
 
 @Component({
     selector: 'app-ads',
@@ -25,6 +26,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     categoryTypeFilterSub: Subscription;
     keywordCategoryTypeFilterSub: Subscription;
     infoSub: Subscription;
+
 
     constructor(private router: Router,
                 private adService: AdService,
@@ -50,6 +52,7 @@ export class AdsComponent implements OnInit, OnDestroy {
         });
 
         this.categorySub = this.gem.categoryFilterEmitter.subscribe(category => {
+            console.log("AAA", this);
             if (category) {
                 this.adService.getAdsByCategory(category).subscribe(ads => {
                     this.ads = ads;
@@ -68,6 +71,7 @@ export class AdsComponent implements OnInit, OnDestroy {
         });
 
         this.keywordCategoryFilterSub = this.gem.keywordCategoryFilterEmitter.subscribe(keywordCategoryFilter => {
+            console.log("BBB", this, keywordCategoryFilter);
             if (keywordCategoryFilter) {
                 this.adService.getAdsByKeywordAndCategory(keywordCategoryFilter.keyword, keywordCategoryFilter.category).subscribe(ads => {
                     this.ads = ads;
@@ -119,6 +123,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        console.log('destroyed');
         if (this.keywordSub) {
             this.keywordSub.unsubscribe();
         }
@@ -143,5 +148,10 @@ export class AdsComponent implements OnInit, OnDestroy {
         if (this.infoSub) {
             this.infoSub.unsubscribe();
         }
+        const filterSetting = new FilterSettingsModel();
+        filterSetting.keyword = null;
+        filterSetting.selectedCategory = null;
+        filterSetting.selectedType = null;
+        this.gem.updateFilterSettings(filterSetting);
     }
 }

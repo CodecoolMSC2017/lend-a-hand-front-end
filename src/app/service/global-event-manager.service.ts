@@ -7,6 +7,7 @@ import {KeywordTypeFilterModel} from '../model/keyword-type-filter.model';
 import {CategoryTypeFilterModel} from '../model/category-type-filter.model';
 import {KeywordCategoryTypeFilterModel} from '../model/keyword-category-type-filter.model';
 import {Router} from '@angular/router';
+import {FilterSettingsModel} from '../model/filter-settings.model';
 
 
 @Injectable({
@@ -14,45 +15,58 @@ import {Router} from '@angular/router';
 })
 export class GlobalEventManagerService {
 
-    private noFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    private filterSettingsTrigger: Subject<FilterSettingsModel> = new Subject<FilterSettingsModel>();
+    public filterSettingsEmitter: Observable<FilterSettingsModel> = this.filterSettingsTrigger.asObservable();
+
+    private noFilterTrigger: Subject<string> = new Subject<string>();
     public noFilterEmitter: Observable<string> = this.noFilterTrigger.asObservable();
 
-    private keywordFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    private keywordFilterTrigger: Subject<string> = new Subject<string>();
     public keywordFilterEmitter: Observable<string> = this.keywordFilterTrigger.asObservable();
 
-    private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    private categoryFilterTrigger: Subject<string> = new Subject<string>();
     public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
 
-    private typeFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    private typeFilterTrigger: Subject<string> = new Subject<string>();
     public typeFilterEmitter: Observable<string> = this.typeFilterTrigger.asObservable();
 
-    private keywordCategoryFilterTrigger: Subject<KeywordCategoryFilterModel> = new BehaviorSubject<KeywordCategoryFilterModel>(null);
+    private keywordCategoryFilterTrigger: Subject<KeywordCategoryFilterModel> = new Subject<KeywordCategoryFilterModel>();
     public keywordCategoryFilterEmitter: Observable<KeywordCategoryFilterModel> = this.keywordCategoryFilterTrigger.asObservable();
 
-    private keywordTypeFilterTrigger: Subject<KeywordTypeFilterModel> = new BehaviorSubject<KeywordTypeFilterModel>(null);
+    private keywordTypeFilterTrigger: Subject<KeywordTypeFilterModel> = new Subject<KeywordTypeFilterModel>();
     public keywordTypeFilterEmitter: Observable<KeywordTypeFilterModel> = this.keywordTypeFilterTrigger.asObservable();
 
-    private categoryTypeFilterTrigger: Subject<CategoryTypeFilterModel> = new BehaviorSubject<CategoryTypeFilterModel>(null);
+    private categoryTypeFilterTrigger: Subject<CategoryTypeFilterModel> = new Subject<CategoryTypeFilterModel>();
     public categoryTypeFilterEmitter: Observable<CategoryTypeFilterModel> = this.categoryTypeFilterTrigger.asObservable();
 
-    private keywordCategoryTypeFilterTrigger: Subject<KeywordCategoryTypeFilterModel> = new BehaviorSubject<KeywordCategoryTypeFilterModel>(null);
-    public keywordCategoryTypeFilterEmitter: Observable<KeywordCategoryTypeFilterModel> = this.keywordCategoryTypeFilterTrigger.asObservable();
+    private keywordCategoryTypeFilterTrigger: Subject<KeywordCategoryTypeFilterModel>
+        = new Subject<KeywordCategoryTypeFilterModel>();
+    public keywordCategoryTypeFilterEmitter: Observable<KeywordCategoryTypeFilterModel>
+        = this.keywordCategoryTypeFilterTrigger.asObservable();
 
-    private singleAdTrigger: Subject<Ad> = new BehaviorSubject<Ad>(null);
+    private singleAdTrigger: Subject<Ad> = new Subject<Ad>();
     public singleAdEmitter: Observable<Ad> = this.singleAdTrigger.asObservable();
 
-    private userTrigger: Subject<User> = new BehaviorSubject<User>(null);
+    private userTrigger: Subject<User> = new Subject<User>();
     public userEmitter: Observable<User> = this.userTrigger.asObservable();
 
-    private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
+    private profileTrigger: Subject<User> = new Subject<User>();
     public profileEmitter: Observable<User> = this.profileTrigger.asObservable();
 
 
-    private infoTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    private infoTrigger: Subject<string> = new Subject<string>();
     public infoEmitter: Observable<string> = this.infoTrigger.asObservable();
 
 
     constructor(private router: Router) {
+    }
+
+    public updateFilterSettings(filterSettings: FilterSettingsModel) {
+        this.filterSettingsTrigger.next(filterSettings);
+    }
+
+    public resetFilterSettings() {
+        this.updateFilterSettings(new FilterSettingsModel());
     }
 
     public updateNoFilter(info: string): void {
@@ -65,6 +79,7 @@ export class GlobalEventManagerService {
     }
 
     public updateCategoryFilter(category: string): void {
+        console.log("AAAAAA")
         this.categoryFilterTrigger.next(category);
 
     }
@@ -74,6 +89,7 @@ export class GlobalEventManagerService {
     }
 
     public updateKeywordCategoryFilter(keywordCategoryFilter: KeywordCategoryFilterModel): void {
+        console.log("BBBBB");
         this.keywordCategoryFilterTrigger.next(keywordCategoryFilter);
     }
 
