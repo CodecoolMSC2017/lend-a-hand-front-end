@@ -1,21 +1,59 @@
 <div id="profile-div">
     <div class="content">
-        <div class="error-div">{{error}}</div>
-        <h2 class="username">{{user.userName}}</h2>
-        <h3 *ngIf="user.fullName != null" class="fullname">{{user.fullName}}</h3>
-        <h3 *ngIf="user.fullName == null" class="not-specified fullname">Full name not specified</h3>
+        <h2 class="username" id="username">{{currentUsersProfile.userName}}</h2>
+        <h3 *ngIf="currentUsersProfile.fullName != null" class="fullname">{{currentUsersProfile.fullName}}</h3>
+        <h3 *ngIf="currentUsersProfile.fullName == null" class="not-specified fullname">Full name not specified</h3>
+        <h4 id="balance">Balance : {{currentUsersProfile.balance}}</h4>
+
+        <table id="rating-table">
+            <tr>
+                <td id="employeeRating-td">
+                    <h3>Rating as employee</h3>
+                    <img *ngIf="currentUsersProfile.employeeRatings < 2">
+                    <img *ngIf="currentUsersProfile.employeeRatings > 2 && currentUsersProfile.employeeRatings < 3 ">
+                    <img *ngIf="currentUsersProfile.employeeRatings > 3 && currentUsersProfile.employeeRatings < 4 ">
+                    <img *ngIf="currentUsersProfile.employeeRatings > 4 && currentUsersProfile.employeeRatings < 5 ">
+                    <img *ngIf="currentUsersProfile.employeeRatings === 5">
+                    <h4>{{currentUsersProfile.employeeRatingScore}}</h4>
+                </td>
+
+                <td id="employerRating-td">
+                    <h3>Rating as employer</h3>
+                    <img *ngIf="currentUsersProfile.employerRatings < 2">
+                    <img *ngIf="currentUsersProfile.employerRatings > 2 && currentUsersProfile.employerRatings < 3 ">
+                    <img *ngIf="currentUsersProfile.employerRatings > 3 && currentUsersProfile.employerRatings < 4 ">
+                    <img *ngIf="currentUsersProfile.employerRatings > 4 && currentUsersProfile.employerRatings < 5 ">
+                    <img *ngIf="currentUsersProfile.employerRatings === 5">
+                    <h4>{{currentUsersProfile.employerRatingScore}}</h4>
+                </td>
+            </tr>
+        </table>
+
+        <div class="error">{{error}}</div>
+
+        <button id="update-button" class="button-inverse hidden" (click)="update()">Save changes</button>
 
 
-        <button id="update-button" class="hidden" (click)="update()">Update</button>
     </div>
-    <img *ngIf=" user.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
+    <img *ngIf=" currentUsersProfile.pictureLink == null"
+         src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
          class="profile-img">
-    <img *ngIf=" user.pictureLink != null" src="{{user.pictureLink}}" class="profile-img">
+    <img *ngIf=" currentUsersProfile.pictureLink != null" src="{{currentUsersProfile.pictureLink}}" class="profile-img">
 
+    <button (click)="toManageAdvertisements()">My Advertisements</button>
+    <button (click)="toManageAdvertisements()">Rated Users</button>
+    <button (click)="toManageAdvertisements()">My Raters</button>
+    <button (click)="toManageAdvertisements()">My Applications</button>
 
     <table class="contact-table">
         <tr>
-            <td colspan="2"><span class="contact-header">Contacts</span>
+            <td colspan="2">
+                <button *ngIf="ownProfile == true" class="options" (click)="profileChanges()"
+                        id="profile-change-button"></button>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" id="header-td"><span class="contact-header">Contacts</span>
             </td>
         </tr>
         <tr>
@@ -23,7 +61,7 @@
                 <button class="at-img"></button>
             </td>
             <td>
-                <span>{{user.email}}</span>
+                <span>{{currentUsersProfile.email}}</span>
             </td>
         </tr>
 
@@ -32,8 +70,8 @@
                 <button class="phone-img"></button>
             </td>
             <td id="phone-td">
-                <span *ngIf="user.phone != null " class="phone">{{user.phone}}</span>
-                <span *ngIf="user.phone == null" class="not-specified phone">Not specified</span>
+                <span *ngIf="currentUsersProfile.phone != null " class="phone">{{currentUsersProfile.phone}}</span>
+                <span *ngIf="currentUsersProfile.phone == null" class="not-specified phone">Not specified</span>
             </td>
         </tr>
 
@@ -42,13 +80,11 @@
                 <button class="location-img"></button>
             </td>
             <td id="address-td">
-                <span *ngIf="user.address !=null"
-                      class="address"> {{user.postalCode}}, {{user.city}}, {{user.address}}</span>
-                <span *ngIf="user.address == null" class="address not-specified">Not specified</span>
+                <span *ngIf="currentUsersProfile.address !=null"
+                      class="address"> {{currentUsersProfile.postalCode}}, {{currentUsersProfile.city}}, {{currentUsersProfile.address}}</span>
+                <span *ngIf="currentUsersProfile.address == null" class="address not-specified">Not specified</span>
             </td>
         </tr>
-        <td colspan="2">
-            <button class="options" (click)="profileChanges()" id="profile-change-button"></button>
-        </td>
+
     </table>
 </div>

@@ -9,12 +9,15 @@ import {RegisterComponent} from './register/register.component';
 import {AppRoutingModule} from './/app-routing.module';
 import {ProfileComponent} from './profile/profile.component';
 import {MainPageComponent} from './main-page/main-page.component';
+import {httpInterceptorProviders} from '../http-interceptors';
 
 import {AdsComponent} from './ads/ads.component';
 import {HeaderBarComponent} from './header-bar/header-bar.component';
 import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {VerificationComponent} from './verification/verification.component';
+import {CreateAdComponent} from './create-ad/create-ad.component';
+import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +31,9 @@ import {VerificationComponent} from './verification/verification.component';
         HeaderBarComponent,
         SingleAdComponent,
         CategoriesComponent,
-        VerificationComponent
+        VerificationComponent,
+        CreateAdComponent,
+        AdsByAdvertiserComponent
     ],
     imports: [
         BrowserModule,
@@ -37,7 +42,7 @@ import {VerificationComponent} from './verification/verification.component';
         HttpClientModule,
         AppRoutingModule
     ],
-    providers: [],
+    providers: [httpInterceptorProviders],
     bootstrap: [AppComponent]
 })
 export class AppModule {

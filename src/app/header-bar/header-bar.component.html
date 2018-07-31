@@ -1,6 +1,7 @@
 <div id="header-bar" class="content">
+    
     <div id="header-content">
-        
+        <img id="header-logo" src="../../assets/headerlogo.png" routerLink='/categories'>
         <p id="detailedSearch" (click)="showFilters()">►</p>
         <div id="search-bar">
             <input id="keyword-input" type="text" class="input" [(ngModel)]="keyword">
@@ -26,9 +27,7 @@
 
         </div>
 
-        <div id="back-to-main" routerLink="/categories">
-            <a><strong>Home</strong></a>
-        </div>
+        
         <div id="registerDiv" *ngIf="user == null" (click)="register()">
             <p ><strong>Register</strong></p>
         </div>
@@ -40,8 +39,14 @@
                 <p ><strong>Logout</strong></p>
         </div>
 
+       
+
         <div id="profileDiv" *ngIf="user != null" (click)="toProfile(user)">
                 <p ><strong>Profile</strong></p>
+        </div>
+
+        <div id="createAdDiv" *ngIf="user != null" (click)="onCreateAdClicked()">
+            <p ><strong>Create Ad</strong></p>
         </div>
     </div>
 </div>

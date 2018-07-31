@@ -4,6 +4,7 @@ import {GlobalEventManagerService} from '../service/global-event-manager.service
 import {Router} from '@angular/router';
 import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
+import {UserService} from '../service/user.service';
 
 @Component({
     selector: 'app-single-ad',
@@ -16,7 +17,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     singleAdSub: Subscription;
     ownAd: boolean;
 
-    constructor(private gem: GlobalEventManagerService, private router: Router) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService) {
     }
 
     ngOnInit() {
@@ -46,8 +47,18 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
     }
 
+    toProfile(userId) {
+        this.userService.getUserById(userId).subscribe(user => {
+            this.gem.updateProfile(user);
+            this.router.navigate(['profile']);
+        }, error => {
+            console.log(error);
+        });
+    }
+
     ngOnDestroy() {
         this.singleAdSub.unsubscribe();
     }
+
 
 }

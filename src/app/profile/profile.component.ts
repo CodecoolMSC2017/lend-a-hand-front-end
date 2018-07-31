@@ -3,6 +3,8 @@ import {GlobalEventManagerService} from '../service/global-event-manager.service
 import {User} from '../model/user.model';
 import {UserService} from '../service/user.service';
 import {Subscription} from 'rxjs';
+import {AdService} from '../service/ad.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-profile',
@@ -16,20 +18,30 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ownProfile: boolean;
     error: string;
 
-    constructor(private gem: GlobalEventManagerService, private userService: UserService) {
+    constructor(private gem: GlobalEventManagerService, private userService: UserService, private adService: AdService, private router: Router) {
     }
 
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
+
+
         this.gem.profileEmitter.subscribe(user => {
-            this.currentUsersProfile = user;
+            if (user) {
+                this.currentUsersProfile = user;
+                if (this.currentUsersProfile.id === this.user.id) {
+                    this.ownProfile = true;
+                } else {
+                    this.ownProfile = false;
+                }
+            } else {
+                this.currentUsersProfile = this.user;
+                this.ownProfile = true;
+            }
+
+
         });
-        if (this.currentUsersProfile.id === this.user.id) {
-            this.ownProfile = true;
-        } else {
-            this.ownProfile = false;
-        }
+
     }
 
     profileChanges(): void {
@@ -46,6 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.showLocationLabel();
         this.enableProfileChangeButton();
         this.hideChangeButton();
+        this.error = '';
     }
 
 
@@ -58,13 +71,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.setAttribute('id', 'full-name-input');
-        if (this.user.fullName == null) {
+        inputElement.setAttribute('class', 'input-min');
+        if (this.currentUsersProfile.fullName == null) {
             inputElement.placeholder = 'Full Name';
         } else {
-            inputElement.placeholder = this.user.fullName;
+            inputElement.placeholder = this.currentUsersProfile.fullName;
         }
+        const balanceEl = document.getElementById('balance');
         const contentDiv = document.getElementById('profile-div').firstElementChild;
-        contentDiv.appendChild(inputElement);
+        contentDiv.insertBefore(inputElement, balanceEl);
     }
 
     showFullNameLabel(): void {
@@ -83,10 +98,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.setAttribute('id', 'phone-input');
-        if (this.user.fullName == null) {
+        inputElement.setAttribute('class', 'input-min');
+        if (this.currentUsersProfile.fullName == null) {
             inputElement.placeholder = 'Phone number';
         } else {
-            inputElement.placeholder = this.user.phone;
+            inputElement.placeholder = this.currentUsersProfile.phone;
         }
 
         const phoneTd = document.getElementById('phone-td');
@@ -109,28 +125,31 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const postalCodeInputElement = document.createElement('input');
         postalCodeInputElement.type = 'text';
         postalCodeInputElement.setAttribute('id', 'postal-code-input');
-        if (this.user.fullName == null) {
+        postalCodeInputElement.setAttribute('class', 'input-min');
+        if (this.currentUsersProfile.fullName == null) {
             postalCodeInputElement.placeholder = 'Postal code';
         } else {
-            postalCodeInputElement.placeholder = this.user.postalCode;
+            postalCodeInputElement.placeholder = this.currentUsersProfile.postalCode;
         }
 
         const cityInputElement = document.createElement('input');
         cityInputElement.type = 'text';
         cityInputElement.setAttribute('id', 'city-input');
-        if (this.user.fullName == null) {
+        cityInputElement.setAttribute('class', 'input-min');
+        if (this.currentUsersProfile.fullName == null) {
             cityInputElement.placeholder = 'City';
         } else {
-            cityInputElement.placeholder = this.user.city;
+            cityInputElement.placeholder = this.currentUsersProfile.city;
         }
 
         const addressInputElement = document.createElement('input');
         addressInputElement.type = 'text';
         addressInputElement.setAttribute('id', 'address-input');
-        if (this.user.fullName == null) {
+        addressInputElement.setAttribute('class', 'input-min');
+        if (this.currentUsersProfile.fullName == null) {
             addressInputElement.placeholder = 'Address';
         } else {
-            addressInputElement.placeholder = this.user.address;
+            addressInputElement.placeholder = this.currentUsersProfile.address;
         }
 
         const br = document.createElement('br');
@@ -192,21 +211,21 @@ export class ProfileComponent implements OnInit, OnDestroy {
         let city = (<HTMLInputElement>document.getElementById('city-input')).value;
         let address = (<HTMLInputElement>document.getElementById('address-input')).value;
 
-        if (fullName === '' && this.user.fullName != null) {
-            fullName = this.user.fullName;
+        if (fullName === '' && this.currentUsersProfile.fullName != null) {
+            fullName = this.currentUsersProfile.fullName;
         }
 
-        if (phone === '' && this.user.phone != null) {
-            phone = this.user.phone;
+        if (phone === '' && this.currentUsersProfile.phone != null) {
+            phone = this.currentUsersProfile.phone;
         }
-        if (postalCode === '' && this.user.postalCode != null) {
-            postalCode = this.user.postalCode;
+        if (postalCode === '' && this.currentUsersProfile.postalCode != null) {
+            postalCode = this.currentUsersProfile.postalCode;
         }
-        if (city === '' && this.user.city != null) {
-            city = this.user.city;
+        if (city === '' && this.currentUsersProfile.city != null) {
+            city = this.currentUsersProfile.city;
         }
-        if (address === '' && this.user.address != null) {
-            address = this.user.address;
+        if (address === '' && this.currentUsersProfile.address != null) {
+            address = this.currentUsersProfile.address;
         }
 
         if (fullName === '') {
@@ -230,12 +249,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.user.fullName = fullName;
-        this.user.phone = phone;
-        this.user.postalCode = postalCode;
-        this.user.city = city;
-        this.user.address = address;
-        this.userService.updateUser(this.user).subscribe(response => {
+        this.currentUsersProfile.fullName = fullName;
+        this.currentUsersProfile.phone = phone;
+        this.currentUsersProfile.postalCode = postalCode;
+        this.currentUsersProfile.city = city;
+        this.currentUsersProfile.address = address;
+        this.userService.updateUser(this.currentUsersProfile).subscribe(response => {
             sessionStorage.setItem('user', JSON.stringify(response));
             this.gem.updateUser(response);
             this.changeBackProfile();
@@ -251,6 +270,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (this.profileSub) {
             this.profileSub.unsubscribe();
         }
+    }
+
+
+    toManageAdvertisements() {
+        this.adService.getAdsByAdvertiser(this.currentUsersProfile.id).subscribe(ads => {
+                sessionStorage.setItem('ads', JSON.stringify(ads));
+                this.router.navigate(['adsByAdvertiser']);
+            }, error => {
+                this.error = error;
+            }
+        );
     }
 
 }

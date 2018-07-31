@@ -1,6 +1,6 @@
 <div id="ad-div" class="content">
     <h3 id="ad-title">{{ad.title}}</h3>
-    <h4 id="advertiserName">{{ad.advertiserName}}</h4>
+    <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">{{ad.advertiserName}}</h4>
     <br>
     <img *ngIf=" ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
          class="ad-img">
