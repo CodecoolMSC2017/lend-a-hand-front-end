@@ -17,10 +17,10 @@ export class AdsByAdvertiserComponent implements OnInit {
 
     ngOnInit() {
         this.ads = JSON.parse(sessionStorage.getItem('ads'));
-        sessionStorage.removeItem('ads');
     }
 
     showAd(ad: Ad) {
+        sessionStorage.removeItem('ads');
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);
     }
