@@ -29,11 +29,13 @@ export class RatingsComponent implements OnInit {
       this.ratingtype = ratingType;
       if (ratingType == 'rated') {
         this.ratingService.getRatingsAboutMe((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto=> {
-          this.employeeRatings = ratingDto.employeeRatings;
-          this.employerRatings = ratingDto.employerRatings;
+          
+          this.employeeRatings = ratingDto.employeeRatings as Rating[];
+          this.employerRatings = ratingDto.employerRatings as Rating[];
         })
       }else if (ratingType == 'myRatings'){
         this.ratingService.getRatings((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto=> {
+          console.log(ratingDto.employeeRatings.rating);
           this.employeeRatings = ratingDto.employeeRatings;
           this.employerRatings = ratingDto.employerRatings;
         })

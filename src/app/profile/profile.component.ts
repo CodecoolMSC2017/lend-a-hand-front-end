@@ -44,6 +44,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
 
+    toRatedUsers(){
+        this.gem.updateRatingType("myRatings");
+        this.router.navigate(["ratings"]);
+    }
+
+    toMyRatings(){
+        this.gem.updateRatingType("rated");
+        this.router.navigate(["ratings"]);
+    }
+
+    
+
     profileChanges(): void {
         this.showFullNameInput();
         this.showPhoneInput();

@@ -1,6 +1,8 @@
+import {User} from './user.model';
+
 export class Rating {
     id: number;
-    rater: string;
-    rated: string;
+    rater: User;
+    rated: User;
     rating: number;
 }
