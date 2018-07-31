@@ -3,6 +3,8 @@ import {GlobalEventManagerService} from '../service/global-event-manager.service
 import {User} from '../model/user.model';
 import {UserService} from '../service/user.service';
 import {Subscription} from 'rxjs';
+import {AdService} from '../service/ad.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-profile',
@@ -16,7 +18,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ownProfile: boolean;
     error: string;
 
-    constructor(private gem: GlobalEventManagerService, private userService: UserService) {
+    constructor(private gem: GlobalEventManagerService, private userService: UserService, private adService: AdService, private router: Router) {
     }
 
     ngOnInit() {
@@ -56,6 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.showLocationLabel();
         this.enableProfileChangeButton();
         this.hideChangeButton();
+        this.error = '';
     }
 
 
@@ -68,13 +71,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.setAttribute('id', 'full-name-input');
+        inputElement.setAttribute('class', 'input-min');
         if (this.currentUsersProfile.fullName == null) {
             inputElement.placeholder = 'Full Name';
         } else {
             inputElement.placeholder = this.currentUsersProfile.fullName;
         }
+        const balanceEl = document.getElementById('balance');
         const contentDiv = document.getElementById('profile-div').firstElementChild;
-        contentDiv.appendChild(inputElement);
+        contentDiv.insertBefore(inputElement, balanceEl);
     }
 
     showFullNameLabel(): void {
@@ -93,6 +98,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const inputElement = document.createElement('input');
         inputElement.type = 'text';
         inputElement.setAttribute('id', 'phone-input');
+        inputElement.setAttribute('class', 'input-min');
         if (this.currentUsersProfile.fullName == null) {
             inputElement.placeholder = 'Phone number';
         } else {
@@ -119,6 +125,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const postalCodeInputElement = document.createElement('input');
         postalCodeInputElement.type = 'text';
         postalCodeInputElement.setAttribute('id', 'postal-code-input');
+        postalCodeInputElement.setAttribute('class', 'input-min');
         if (this.currentUsersProfile.fullName == null) {
             postalCodeInputElement.placeholder = 'Postal code';
         } else {
@@ -128,6 +135,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const cityInputElement = document.createElement('input');
         cityInputElement.type = 'text';
         cityInputElement.setAttribute('id', 'city-input');
+        cityInputElement.setAttribute('class', 'input-min');
         if (this.currentUsersProfile.fullName == null) {
             cityInputElement.placeholder = 'City';
         } else {
@@ -137,6 +145,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         const addressInputElement = document.createElement('input');
         addressInputElement.type = 'text';
         addressInputElement.setAttribute('id', 'address-input');
+        addressInputElement.setAttribute('class', 'input-min');
         if (this.currentUsersProfile.fullName == null) {
             addressInputElement.placeholder = 'Address';
         } else {
@@ -261,6 +270,17 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (this.profileSub) {
             this.profileSub.unsubscribe();
         }
+    }
+
+
+    toManageAdvertisements() {
+        this.adService.getAdsByAdvertiser(this.currentUsersProfile.id).subscribe(ads => {
+                sessionStorage.setItem('ads', JSON.stringify(ads));
+                this.router.navigate(['adsByAdvertiser']);
+            }, error => {
+                this.error = error;
+            }
+        );
     }
 
 }
