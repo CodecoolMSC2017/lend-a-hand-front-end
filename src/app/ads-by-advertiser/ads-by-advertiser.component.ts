@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Ad} from '../model/ad.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-ads-by-advertiser',
@@ -10,12 +12,17 @@ export class AdsByAdvertiserComponent implements OnInit {
 
     private ads: Ad[];
 
-    constructor() {
+    constructor(private gem: GlobalEventManagerService, private router: Router) {
     }
 
     ngOnInit() {
         this.ads = JSON.parse(sessionStorage.getItem('ads'));
         sessionStorage.removeItem('ads');
+    }
+
+    showAd(ad: Ad) {
+        this.gem.updateSingleAd(ad);
+        this.router.navigate(['ad']);
     }
 
 }

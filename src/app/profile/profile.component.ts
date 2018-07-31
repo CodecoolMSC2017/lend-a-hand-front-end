@@ -278,7 +278,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 sessionStorage.setItem('ads', JSON.stringify(ads));
                 this.router.navigate(['adsByAdvertiser']);
             }, error => {
+            if (error.error !== null) {
+                this.error = error.error;
+            } else {
                 this.error = error;
+            }
             }
         );
     }
