@@ -16,7 +16,8 @@ import {HeaderBarComponent} from './header-bar/header-bar.component';
 import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {VerificationComponent} from './verification/verification.component';
-import { CreateAdComponent } from './create-ad/create-ad.component';
+import {CreateAdComponent} from './create-ad/create-ad.component';
+import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { CreateAdComponent } from './create-ad/create-ad.component';
         SingleAdComponent,
         CategoriesComponent,
         VerificationComponent,
-        CreateAdComponent
+        CreateAdComponent,
+        AdsByAdvertiserComponent
     ],
     imports: [
         BrowserModule,
