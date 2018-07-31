@@ -57,6 +57,9 @@ export class GlobalEventManagerService {
     private infoTrigger: Subject<string> = new Subject<string>();
     public infoEmitter: Observable<string> = this.infoTrigger.asObservable();
 
+    private ratingTypeTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public ratingTypeEmitter: Observable<string> = this.ratingTypeTrigger.asObservable();
+
 
     constructor(private router: Router) {
     }
@@ -121,4 +124,9 @@ export class GlobalEventManagerService {
     public updateInfo(info: string): void {
         this.infoTrigger.next(info);
     }
+
+    public updateRatingType(ratingType: string): void {
+        this.ratingTypeTrigger.next(ratingType);
+    }
+
 }

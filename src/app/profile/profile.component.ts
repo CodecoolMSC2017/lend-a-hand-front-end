@@ -44,6 +44,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
 
+    toRatedUsers(){
+        this.gem.updateRatingType("myRatings");
+        this.router.navigate(["ratings"]);
+    }
+
+    toMyRatings(){
+        this.gem.updateRatingType("rated");
+        this.router.navigate(["ratings"]);
+    }
+
+    
+
     profileChanges(): void {
         this.showFullNameInput();
         this.showPhoneInput();
@@ -278,7 +290,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 sessionStorage.setItem('ads', JSON.stringify(ads));
                 this.router.navigate(['adsByAdvertiser']);
             }, error => {
+            if (error.error !== null) {
+                this.error = error.error;
+            } else {
                 this.error = error;
+            }
             }
         );
     }

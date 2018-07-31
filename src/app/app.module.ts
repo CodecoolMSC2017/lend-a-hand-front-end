@@ -16,6 +16,7 @@ import {HeaderBarComponent} from './header-bar/header-bar.component';
 import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {VerificationComponent} from './verification/verification.component';
+import { RatingsComponent } from './ratings/ratings.component';
 import {CreateAdComponent} from './create-ad/create-ad.component';
 import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 
@@ -33,6 +34,7 @@ import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.co
         CategoriesComponent,
         VerificationComponent,
         CreateAdComponent,
+        RatingsComponent,
         AdsByAdvertiserComponent
     ],
     imports: [
