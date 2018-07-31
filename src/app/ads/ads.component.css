@@ -1,47 +1,12 @@
-.ad{
-    width:60%;
-    padding-bottom: 1%;
-}
-
-.ad-container{
-    display:block;
-    background-color: #07222c;
+#bg-div{
+    position:fixed;
+    height:100%;
     width:100%;
-    border-radius:1.2em;
-    text-align: left;
-    padding: 0.5%;
-
+    background:url("https://hdwallsource.com/img/2014/9/blur-wallpaper-26339-27030-hd-wallpapers.jpg");
+    left:0;
 }
 
-.ad-description{
-    background-color: rgb(232, 237, 238);
-    height: 10em;
-    border-radius: 1em;
-    padding:0.5%;
-    
-}
-
-.ad-title{
-    color: #07222c;
-    padding-top: 2%;
-    font-size: 1.5em;
-}
-
-#image-td {
-    width: 2em;
-    max-width: 2em;
-    height: 8em;
-    max-height: 8em;
-    text-align: center;
-}
-
-#ads-image{
-    width: auto;
-    height: 8em;
-
-}
-
-#ads{
+#ads {
     margin-top:67px;
     width:100%;
     height:100%;
@@ -49,12 +14,72 @@
     left:0;
 }
 
-#bg-div{
-    position:fixed;
-    height:100%;
-    width:100%;
-    background:url("https://hdwallsource.com/img/2014/9/blur-wallpaper-26339-27030-hd-wallpapers.jpg");
-    left:0;
-    
+.ad {
+    width:60%;
+    padding-bottom: 1%;
 }
+
+.ad-container {
+    display:block;
+    background-color: #07222c;
+    width:100%;
+    border-radius:1.2em;
+    text-align: left;
+    padding: 0.5%;
+}
+
+.ad-details {
+    background-color: rgb(232, 237, 238);
+    height: 10em;
+    border-radius: 1em;
+    padding:0.5%;
+
+}
+
+.title-td {
+    height: 1.5em;
+    width: 90%;
+    color: #07222c;
+    font-size: 1.3em;
+    font-weight: bold;
+
+}
+
+#date-td {
+    width: 10%;
+    margin-left: 80%;
+    margin-right: 40%;
+}
+
+#image-td {
+    height: 7em;
+    width: 25%;
+    margin-top: 5em;
+    text-align: center;
+}
+
+#ads-image {
+    width: 10em;
+    height: 6em;
+    border: #07222c solid 0.2em;
+}
+
+#description-td {
+    width: 75%;
+    vertical-align: top;
+}
+
+#type-td {
+    width: 50%;
+}
+
+#category-td {
+    width: 50%;
+}
+
+#description-td {
+    width: 80em;
+}
+
+
 

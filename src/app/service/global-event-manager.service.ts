@@ -17,11 +17,11 @@ export class GlobalEventManagerService {
     private noFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public noFilterEmitter: Observable<string> = this.noFilterTrigger.asObservable();
 
-    private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
-    public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
-
     private keywordFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public keywordFilterEmitter: Observable<string> = this.keywordFilterTrigger.asObservable();
+
+    private categoryFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public categoryFilterEmitter: Observable<string> = this.categoryFilterTrigger.asObservable();
 
     private typeFilterTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public typeFilterEmitter: Observable<string> = this.typeFilterTrigger.asObservable();
@@ -44,19 +44,24 @@ export class GlobalEventManagerService {
     private userTrigger: Subject<User> = new BehaviorSubject<User>(null);
     public userEmitter: Observable<User> = this.userTrigger.asObservable();
 
-    public profileEmitter: Observable<User> = this.userTrigger.asObservable();
     private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
+    public profileEmitter: Observable<User> = this.profileTrigger.asObservable();
+
+
+    private infoTrigger: Subject<string> = new BehaviorSubject<string>(null);
+    public infoEmitter: Observable<string> = this.infoTrigger.asObservable();
+
 
     constructor(private router: Router) {
-    }
-
-    public updateKeywordFilter(keyword: string): void {
-        this.keywordFilterTrigger.next(keyword);
     }
 
     public updateNoFilter(info: string): void {
         this.noFilterTrigger.next(info);
 
+    }
+
+    public updateKeywordFilter(keyword: string): void {
+        this.keywordFilterTrigger.next(keyword);
     }
 
     public updateCategoryFilter(category: string): void {
@@ -95,5 +100,9 @@ export class GlobalEventManagerService {
 
     public updateProfile(user: User): void {
         this.profileTrigger.next(user);
+    }
+
+    public updateInfo(info: string): void {
+        this.infoTrigger.next(info);
     }
 }

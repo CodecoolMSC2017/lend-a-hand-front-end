@@ -3,7 +3,7 @@
 }
 
 .ng-invalid.input {
-    border: 2px solid #db171b /* red */
+    border: 2px solid #BE1000 /* red */
 }
 html{
     font-family: 'Ubuntu', sans-serif;
@@ -40,7 +40,49 @@ html{
     z-index: -300;
 
 }
-.error-div {
+
+.info-div {
     padding-top: 10%;
-    color: #a80900;
+}
+
+.info {
+    color: white;
+}
+
+.error {
+    color: #BE1000;
+}
+
+.button {
+    color: white;
+    margin-top: 8px;
+    padding: 8px 20px;
+    font-weight: 500;
+    border-radius: 100px;
+    border: 2px;
+    border-style: ridge;
+    background-color: transparent;
+    border-color: white;
+    font-size: 1.2em;
+    transition: background-color, color 0.5s;
+}
+
+.button:enabled:active,
+.button:enabled:hover {
+    color: #07222c;
+    background-color: #fff;
+    transition: background-color, color 0.5s;
+    cursor: pointer;
+}
+
+.button:disabled:active,
+.button:disabled:hover {
+    color: #BE1000;
+    background-color: white;
+    transition: background-color, color 0.5s;
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
 }

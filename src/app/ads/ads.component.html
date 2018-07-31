@@ -2,20 +2,32 @@
 </div>
 <div id="ads">
     <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
-        <div class="ad-container" >
+        <div class="ad-container">
 
-            <div class="ad-description">
-                <strong class="ad-title">{{ad.title}}</strong>
+            <div class="ad-details">
+                <table>
+                    <tr>
+                        <td class="title-td"><strong class="ad-title">{{ad.title}}</strong></td>
+                        <td id="date-td">{{ad.timestamp}}</td>
+                    </tr>
+                </table>
                 <table>
                     <tr>
                         <td id="image-td"><img id="ads-image" src="{{ad.pictureLink}}"></td>
-                        <td>{{ad.description}}</td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="description-td">{{ad.description}}</td>
+                                </tr>
+                                <tr>
+                                    <td id="type-td">Type: {{ad.type}}</td>
+                                    <td id="category-td">Category: {{ad.category}}</td>
+                                </tr>
+                            </table>
+                        </td>
                     </tr>
                 </table>
             </div>
-            <!--<p>Category: {{ad.category}}</p>
-            <p>Date: {{ad.timestamp}}</p>
-            <p>Type: {{ad.type}}</p>-->
         </div>
     </div>
 </div>

@@ -8,14 +8,18 @@
                     <span *ngIf="verificationForm.hasError('required', ['code'])">{{putPlaceholder("verificationInput")}}</span>
             </span>
 
-            <input id="verification-button" type="submit" value="Verificate" class="btn">
+            <input id="verification-button" type="submit" value="Verificate" class="button">
             <br>
 
 
-            <div class="error-div">{{error}}</div>
 
         </form>
-        <button id="resend-button" class="btn" (click)="resend()">Resend email</button>
+        <button id="resend-button" class="button" (click)="resend()">Resend email</button>
+
+        <div class="info-div">
+            <span class="info" id="info">Verificate you account via email</span>
+            <span class="error hidden" id="error">{{error}}</span>
+        </div>
 
     </div>
 </div>

@@ -27,9 +27,13 @@
             <br>
             <br>
             <br>
-            <button type="submit" id="login-button" [disabled]="loginForm.invalid"><strong>Login</strong></button>
+            <button type="submit" id="login-button" class="button" [disabled]="loginForm.invalid"><strong>Login</strong>
+            </button>
 
-            <div class="error-div">{{error}}</div>
+            <div class="info-div">
+                <span class="info" id="info">Log in to your existing account</span>
+                <span class="error hidden" id="error">{{error}}</span>
+            </div>
 
         </form>
     </div>

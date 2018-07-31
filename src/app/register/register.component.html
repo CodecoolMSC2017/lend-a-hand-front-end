@@ -9,6 +9,9 @@
 
             <span *ngIf="registerForm.get('username').touched">
                     <span *ngIf="registerForm.hasError('required', ['username'])">{{putPlaceholder("usernameInput")}}</span>
+                    <span *ngIf="registerForm.hasError('minlength', ['username'])">{{putPlaceholder("usernameInput")}}</span>
+                    <span *ngIf="registerForm.hasError('maxlength', ['username'])">{{putPlaceholder("usernameInput")}}</span>
+
             </span>
 
 
@@ -18,15 +21,18 @@
 
             <span *ngIf="registerForm.get('password').touched">
                     <span *ngIf="registerForm.hasError('required', ['password'])">{{putPlaceholder("passwordInput")}}</span>
+                    <span *ngIf="registerForm.hasError('pattern', ['password'])">{{putPlaceholder("passwordInput")}}</span>
             </span>
 
 
             <!--EMAIL TEXT FIELD-->
             <h4>Email</h4>
-            <input type="email" formControlName="email" class="input" id="emailInput">
+            <input type="text" formControlName="email" class="input" id="emailInput">
 
             <span *ngIf="registerForm.get('email').touched">
                     <span *ngIf="registerForm.hasError('required', ['email'])">{{putPlaceholder("emailInput")}}</span>
+                    <span *ngIf="registerForm.hasError('pattern', ['email'])">{{putPlaceholder("emailInput")}}</span>
+
             </span>
 
 
@@ -37,15 +43,23 @@
                 <option value="company">Company</option>
             </select>
 
+            <span *ngIf="registerForm.get('type').touched">
+                    <span *ngIf="registerForm.hasError('required', ['type'])">{{putPlaceholder("typeinput")}}</span>
+            </span>
 
-            <!--LOGIN BUTTON-->
+
+            <!--REGISTER BUTTON-->
             <br>
             <br>
             <br>
-            <button type="submit" id="register-button" [disabled]="registerForm.invalid"><strong>Register</strong>
+            <button type="submit" id="register-button" class="button" [disabled]="registerForm.invalid">
+                <strong>Register</strong>
             </button>
 
-            <div class="error-div">{{error}}</div>
+            <div class="info-div">
+                <span class="info" id="info">Register a new account</span>
+                <span class="error hidden" id="error">{{error}}</span>
+            </div>
 
         </form>
     </div>
