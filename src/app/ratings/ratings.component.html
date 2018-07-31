@@ -1,0 +1,16 @@
+<div id="bg-div">
+</div>
+<div id="ratings">
+    <div>
+      <h2 *ngIf="ratingtype=='rated'">Ratings about me as an employee</h2>
+      <h2 *ngIf="ratingtype=='myRatings'">My ratings about other users as an employee</h2>
+      <p *ngIf="ratingtype=='rated'" *ngFor="let rating of employeeRatings" class="rating"><strong>{{rating.rater.userName}}</strong> {{rating.rating}}</p>         
+      <p *ngIf="ratingtype=='myRatings'" *ngFor="let rating of employeeRatings" class="rating"><strong>{{rating.rated.userName}}</strong> {{rating.rating}}</p>         
+      <br>
+      <br>
+      <h2 *ngIf="ratingtype=='rated'">Ratings about me as an employer</h2>
+      <h2 *ngIf="ratingtype=='myRatings'">My ratings about other users as an employer</h2>
+      <p *ngIf="ratingtype=='rated'" *ngFor="let rating of employerRatings" class="rating"><strong>{{rating.rater.userName}}</strong> {{rating.rating}}</p>         
+      <p *ngIf="ratingtype=='myRatings'" *ngFor="let rating of employerRatings" class="rating"><strong>{{rating.rated.userName}}</strong> {{rating.rating}}</p>         
+  </div>
+</div>

@@ -16,6 +16,7 @@ import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {VerificationComponent} from './verification/verification.component';
 import { CreateAdComponent } from './create-ad/create-ad.component';
+import { RatingsComponent } from './ratings/ratings.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { CreateAdComponent } from './create-ad/create-ad.component';
         SingleAdComponent,
         CategoriesComponent,
         VerificationComponent,
-        CreateAdComponent
+        CreateAdComponent,
+        RatingsComponent
     ],
     imports: [
         BrowserModule,

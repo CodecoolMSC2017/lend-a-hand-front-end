@@ -10,6 +10,7 @@ import {CategoriesComponent} from './categories/categories.component';
 import {AdsComponent} from './ads/ads.component';
 import {VerificationComponent} from './verification/verification.component';
 import {CreateAdComponent} from './create-ad/create-ad.component';
+import {RatingsComponent} from './ratings/ratings.component';
 
 const routes: Routes = [
     {path: '', redirectTo: '/categories', pathMatch: 'full'},
@@ -22,7 +23,8 @@ const routes: Routes = [
     {path: 'categories', component: CategoriesComponent},
     {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
     {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
-    {path: 'verification', component: VerificationComponent}
+    {path: 'verification', component: VerificationComponent},
+    {path: 'ratings', component: RatingsComponent}    
 ];
 
 @NgModule({
