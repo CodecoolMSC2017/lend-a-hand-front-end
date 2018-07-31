@@ -17,6 +17,12 @@
     margin-top:0.8%;
     margin-right:5%;
     cursor:pointer;
+   
+
+}
+
+#header-logo:hover{
+    opacity:0.8;
 
 }
 
@@ -60,6 +66,10 @@ a{
     float:left;
     top:5px;
     width:370px;
+}
+
+#keyword-input:focus{
+    outline: none;
 }
 
 #search-bar input{

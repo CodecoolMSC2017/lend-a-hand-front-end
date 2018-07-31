@@ -6,11 +6,15 @@ import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
 import {UserService} from '../service/user.service';
 
+
+
 @Component({
     selector: 'app-single-ad',
     templateUrl: './single-ad.component.html',
     styleUrls: ['./single-ad.component.css']
 })
+
+
 export class SingleAdComponent implements OnInit, OnDestroy {
     ad: Ad;
     user: User;
