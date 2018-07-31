@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
 import {UserService} from '../service/user.service';
+import {ApplicationService} from '../application.service';
 
 
 
@@ -20,8 +21,9 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     user: User;
     singleAdSub: Subscription;
     ownAd: boolean;
+    applicationMessage:string;
 
-    constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,private appService:ApplicationService) {
     }
 
     ngOnInit() {
@@ -58,6 +60,14 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         }, error => {
             console.log(error);
         });
+    }
+
+    applyToAd(){
+        document.getElementById("applicationMessageDiv").classList.remove("hidden");
+    }
+
+    sendApplication(){
+        this.appService
     }
 
     ngOnDestroy() {

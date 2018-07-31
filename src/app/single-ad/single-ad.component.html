@@ -1,6 +1,8 @@
 <div id="singleAdDiv">
     <div id="ad-div" class="content">
+        
         <h3 id="ad-title">{{ad.title}}</h3>
+        <button id="applyButton" *ngIf="!ownAd" (click)="applyToAd()">Apply</button>
         <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">{{ad.advertiserName}}</h4>
         <br>
         <img *ngIf=" ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
@@ -11,5 +13,12 @@
         <h4 *ngIf="ad.payment == null" class="payment"> No payment specified</h4>
         <h4 *ngIf="ad.payment != null" class="payment">{{ad.payment}} $ / hour</h4>
         <span id="description">{{ad.description}}</span>
+    </div>
+    <div id="applicationMessageDiv" class="hidden">
+        <h4>Message to advertiser</h4>
+        <input id="messageTextbox" type="text" [(ngModel)]="applicationMessage" >
+        <br>
+        <br>
+        <button id="sendButton" (click)="sendApplication()">Send</button>
     </div>
 </div>
