@@ -5,7 +5,6 @@ import {Ad} from '../model/ad.model';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Subscription} from 'rxjs';
 import {User} from '../model/user.model';
-import {FilterSettingsModel} from '../model/filter-settings.model';
 
 @Component({
     selector: 'app-ads',
@@ -16,17 +15,7 @@ export class AdsComponent implements OnInit, OnDestroy {
 
     ads: Ad[];
     user: User;
-    keyword: string;
-    category: string;
-    keywordSub: Subscription;
-    categorySub: Subscription;
-    typeSub: Subscription;
-    keywordCategoryFilterSub: Subscription;
-    keywordTypeFilterSub: Subscription;
-    categoryTypeFilterSub: Subscription;
-    keywordCategoryTypeFilterSub: Subscription;
-    infoSub: Subscription;
-
+    filterSub: Subscription;
 
     constructor(private router: Router,
                 private adService: AdService,
@@ -41,117 +30,24 @@ export class AdsComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
-
-        this.keywordSub = this.gem.keywordFilterEmitter.subscribe(keyword => {
-            if (keyword) {
-                this.adService.getAdsByKeyword(keyword).subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
+        this.filterSub = this.gem.filterSettingsEmitter.subscribe(filterSettings => {
+            if (filterSettings) {
+                this.adService.getAdsByFilter(filterSettings.keyword, filterSettings.selectedCategory, filterSettings.selectedType)
+                    .subscribe(ads => {
+                        this.ads = ads;
+                        sessionStorage.setItem('ads', JSON.stringify(ads));
+                    }, error => {
+                        console.log(error);
+                    });
+            } else {
+                this.ads = JSON.parse(sessionStorage.getItem('ads'));
             }
         });
-
-        this.categorySub = this.gem.categoryFilterEmitter.subscribe(category => {
-            console.log("AAA", this);
-            if (category) {
-                this.adService.getAdsByCategory(category).subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
-            }
-        });
-
-        this.typeSub = this.gem.typeFilterEmitter.subscribe(type => {
-            if (type) {
-                this.typeSub = this.adService.getAdsByType(type).subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
-            }
-        });
-
-        this.keywordCategoryFilterSub = this.gem.keywordCategoryFilterEmitter.subscribe(keywordCategoryFilter => {
-            console.log("BBB", this, keywordCategoryFilter);
-            if (keywordCategoryFilter) {
-                this.adService.getAdsByKeywordAndCategory(keywordCategoryFilter.keyword, keywordCategoryFilter.category).subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
-            }
-        });
-
-        this.keywordTypeFilterSub = this.gem.keywordTypeFilterEmitter.subscribe(keywordTypeFilter => {
-            if (keywordTypeFilter) {
-                this.adService.getAdsByKeywordAndType(keywordTypeFilter.keyword, keywordTypeFilter.type).subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
-            }
-        });
-
-        this.categoryTypeFilterSub = this.gem.categoryTypeFilterEmitter.subscribe(categoryTypeFilter => {
-            if (categoryTypeFilter) {
-                this.adService.getAdsByCategoryAndType(categoryTypeFilter.category, categoryTypeFilter.type).subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
-            }
-        });
-
-        this.keywordCategoryTypeFilterSub = this.gem.keywordCategoryTypeFilterEmitter.subscribe(keywordCategoryTypeFilter => {
-            if (keywordCategoryTypeFilter) {
-                this.adService.getAdsByKeywordAndCategoryAndType(keywordCategoryTypeFilter.keyword, keywordCategoryTypeFilter.category, keywordCategoryTypeFilter.type).subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
-            }
-        });
-
-        this.infoSub = this.gem.noFilterEmitter.subscribe(info => {
-            if (info) {
-                this.adService.getAds().subscribe(ads => {
-                    this.ads = ads;
-                    sessionStorage.setItem('ads', JSON.stringify(ads));
-                });
-            }
-        });
-
-        if (this.ads === undefined) {
-            this.ads = JSON.parse(sessionStorage.getItem('ads'));
-            sessionStorage.removeItem('ads');
-        }
     }
 
     ngOnDestroy() {
-        console.log('destroyed');
-        if (this.keywordSub) {
-            this.keywordSub.unsubscribe();
+        if (this.filterSub) {
+            this.filterSub.unsubscribe();
         }
-        if (this.categorySub) {
-            this.categorySub.unsubscribe();
-        }
-        if (this.typeSub) {
-            this.typeSub.unsubscribe();
-        }
-        if (this.keywordCategoryFilterSub) {
-            this.keywordCategoryFilterSub.unsubscribe();
-        }
-        if (this.keywordTypeFilterSub) {
-            this.keywordTypeFilterSub.unsubscribe();
-        }
-        if (this.categoryTypeFilterSub) {
-            this.categoryTypeFilterSub.unsubscribe();
-        }
-        if (this.keywordCategoryTypeFilterSub) {
-            this.keywordCategoryTypeFilterSub.unsubscribe();
-        }
-        if (this.infoSub) {
-            this.infoSub.unsubscribe();
-        }
-        const filterSetting = new FilterSettingsModel();
-        filterSetting.keyword = null;
-        filterSetting.selectedCategory = null;
-        filterSetting.selectedType = null;
-        this.gem.updateFilterSettings(filterSetting);
     }
 }

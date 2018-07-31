@@ -24,10 +24,11 @@ export class CategoriesComponent implements OnInit {
 
     getAdsForCategory(category) {
         this.category = category;
-        const fm = new FilterSettingsModel();
-        fm.selectedCategory = category;
-        this.gem.updateFilterSettings(fm);
-        this.gem.updateCategoryFilter(this.category);
+        const filterSettings = new FilterSettingsModel();
+        filterSettings.keyword = '';
+        filterSettings.selectedCategory = category;
+        filterSettings.selectedType = 'All';
+        this.gem.updateFilterSettings(filterSettings);
         this.router.navigate(['ads']);
     }
 }

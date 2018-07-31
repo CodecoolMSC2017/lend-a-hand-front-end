@@ -19,39 +19,9 @@ export class AdService {
         return this.http.get<Ad[]>('/api/ads/advertisers/' + id);
     }
 
-    public getAdsByKeyword(keyword: string): Observable<Ad[]> {
-        const params = new HttpParams().set('keyword', keyword);
-        return this.http.get<Ad[]>('/api/ads/keywords', {params: params});
-    }
-
-    public getAdsByCategory(category: string): Observable<Ad[]> {
-        const params = new HttpParams().set('category', category);
-        return this.http.get<Ad[]>('/api/ads/categories', {params: params});
-    }
-
-    public getAdsByType(type: string): Observable<Ad[]> {
-        const params = new HttpParams().set('type', type);
-        return this.http.get<Ad[]>('/api/ads/types', {params: params});
-    }
-
-    public getAdsByKeywordAndCategory(keyword: string, category: string) {
-        const params = new HttpParams().append('keyword', keyword).append('category', category);
-        return this.http.get<Ad[]>('/api/ads/keywords-categories', {params: params});
-    }
-
-    public getAdsByCategoryAndType(category: string, type: string) {
-        const params = new HttpParams().append('category', category).append('type', type);
-        return this.http.get<Ad[]>('/api/ads/categories-types', {params: params});
-    }
-
-    public getAdsByKeywordAndType(keyword: string, type: string) {
-        const params = new HttpParams().append('keyword', keyword).append('type', type);
-        return this.http.get<Ad[]>('/api/ads/keywords-types', {params: params});
-    }
-
-    public getAdsByKeywordAndCategoryAndType(keyword: string, category: string, type: string) {
+    public getAdsByFilter(keyword: string, category: string, type: string): Observable<Ad[]> {
         const params = new HttpParams().append('keyword', keyword).append('category', category).append('type', type);
-        return this.http.get<Ad[]>('/api/ads/keywords-categories-types', {params: params});
+        return this.http.get<Ad[]>('/api/ads/filters', {params: params});
     }
 
     public getAdById(id: number): Observable<Ad[]> {

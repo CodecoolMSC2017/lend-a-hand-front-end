@@ -2,10 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
 import {User} from '../model/user.model';
-import {KeywordCategoryFilterModel} from '../model/keyword-category-filter.model';
-import {KeywordTypeFilterModel} from '../model/keyword-type-filter.model';
-import {CategoryTypeFilterModel} from '../model/category-type-filter.model';
-import {KeywordCategoryTypeFilterModel} from '../model/keyword-category-type-filter.model';
 import {AuthorizationService} from '../service/authorization.service';
 import {Subscription} from 'rxjs';
 import {FilterSettingsModel} from '../model/filter-settings.model';
@@ -26,79 +22,16 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.gem.filterSettingsEmitter.subscribe(filterSettings => {
-            this.filterSettings = filterSettings;
-        });
+        this.filterSettings.keyword = '';
+        this.filterSettings.selectedCategory = 'All';
+        this.filterSettings.selectedType = 'All';
         this.userSub = this.gem.userEmitter.subscribe(user => {
             this.user = user;
         });
     }
 
     filterAds() {
-        if (this.filterSettings.keyword == null) {
-            this.filterSettings.keyword = '';
-        }
-
-        if (this.filterSettings.selectedCategory == null) {
-            this.filterSettings.selectedCategory = 'All';
-        }
-
-        if (this.filterSettings.selectedType == null) {
-            this.filterSettings.selectedType = 'All';
-        }
-
-        if (this.filterSettings.keyword !== ''
-            && this.filterSettings.selectedCategory === 'All'
-            && this.filterSettings.selectedType === 'All') {
-            this.gem.updateKeywordFilter(this.filterSettings.keyword);
-        }
-
-        if (this.filterSettings.selectedCategory !== 'All'
-            && this.filterSettings.keyword === ''
-            && this.filterSettings.selectedType === 'All') {
-            this.gem.updateCategoryFilter(this.filterSettings.selectedCategory);
-        }
-
-        if (this.filterSettings.selectedType !== 'All'
-            && this.filterSettings.keyword === ''
-            && this.filterSettings.selectedCategory === 'All') {
-            this.gem.updateTypeFilter(this.filterSettings.selectedType);
-        }
-
-        if (this.filterSettings.keyword !== ''
-            && this.filterSettings.selectedCategory !== 'All'
-            && this.filterSettings.selectedType === 'All') {
-            this.gem.updateKeywordCategoryFilter(new KeywordCategoryFilterModel(this.filterSettings.keyword,
-                this.filterSettings.selectedCategory));
-        }
-
-        if (this.filterSettings.keyword !== ''
-            && this.filterSettings.selectedType !== 'All'
-            && this.filterSettings.selectedCategory === 'All') {
-            this.gem.updateKeywordTypeFilter(new KeywordTypeFilterModel(this.filterSettings.keyword,
-                this.filterSettings.selectedType));
-        }
-
-        if (this.filterSettings.selectedCategory !== 'All'
-            && this.filterSettings.selectedType !== 'All'
-            && this.filterSettings.keyword === '') {
-            this.gem.updateCategoryTypeFilter(new CategoryTypeFilterModel(this.filterSettings.selectedCategory,
-                this.filterSettings.selectedType));
-        }
-
-        if (this.filterSettings.keyword !== ''
-            && this.filterSettings.selectedCategory !== 'All'
-            && this.filterSettings.selectedType !== 'All') {
-            this.gem.updateKeywordCategoryTypeFilter(new KeywordCategoryTypeFilterModel(this.filterSettings.keyword,
-                this.filterSettings.selectedCategory, this.filterSettings.selectedType));
-        }
-
-        if (this.filterSettings.keyword === ''
-            && this.filterSettings.selectedCategory === 'All'
-            && this.filterSettings.selectedType === 'All') {
-            this.gem.updateNoFilter('No filter');
-        }
-        this.filterSettings = new FilterSettingsModel();
+        this.gem.updateFilterSettings(this.filterSettings);
         this.router.navigate(['ads']);
     }
 
