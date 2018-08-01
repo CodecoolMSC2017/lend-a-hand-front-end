@@ -4,11 +4,11 @@ import {Application} from './application.model';
 export class User {
     id: number;
     ads: Array<Ad>;
-    authorities:Array<string>;
-    employeeRatings:Array<Rating>;
-    employerRatings:Array<Rating>;
-    ratedEmployees:Array<Rating>;
-    ratedEmployers:Array<Rating>;
+    authorities=[];
+    employeeRatings=[];
+    employerRatings=[];
+    ratedEmployees=[];
+    ratedEmployers=[];
     applications:Application;
     sentMessages = [];
     receivedMessages = [];

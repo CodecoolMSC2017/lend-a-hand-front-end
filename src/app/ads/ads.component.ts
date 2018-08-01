@@ -24,6 +24,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     }
 
     showAd(ad: Ad) {
+        console.log(ad.id);
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);
     }
@@ -36,6 +37,7 @@ export class AdsComponent implements OnInit, OnDestroy {
                 this.adService.getAdsByFilter(filterSettings.keyword, filterSettings.selectedCategory, filterSettings.selectedType)
                     .subscribe(ads => {
                         this.ads = this.formatAds(ads);
+                        
                         sessionStorage.setItem('ads', JSON.stringify(ads));
                     }, error => {
                         console.log(error);
@@ -44,6 +46,8 @@ export class AdsComponent implements OnInit, OnDestroy {
                 this.ads = JSON.parse(sessionStorage.getItem('ads'));
             }
         });
+
+        
     }
 
     formatAds(ads: Ad[]): Ad[] {
