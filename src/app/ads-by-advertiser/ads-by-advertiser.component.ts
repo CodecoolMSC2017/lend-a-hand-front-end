@@ -16,6 +16,8 @@ export class AdsByAdvertiserComponent implements OnInit {
     }
 
     ngOnInit() {
+        const user = JSON.parse(sessionStorage.getItem('user'));
+        this.gem.updateUser(user);
         this.ads = JSON.parse(sessionStorage.getItem('ads'));
     }
 
