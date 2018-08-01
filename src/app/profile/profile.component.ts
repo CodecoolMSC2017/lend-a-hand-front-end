@@ -5,6 +5,7 @@ import {UserService} from '../service/user.service';
 import {Subscription} from 'rxjs';
 import {AdService} from '../service/ad.service';
 import {Router} from '@angular/router';
+import {ApplicationService} from '../application.service';
 
 @Component({
     selector: 'app-profile',
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ownProfile: boolean;
     error: string;
 
-    constructor(private gem: GlobalEventManagerService, private userService: UserService, private adService: AdService, private router: Router) {
+    constructor(private gem: GlobalEventManagerService, private userService: UserService, private adService: AdService, private applicationService: ApplicationService, private router: Router) {
     }
 
     ngOnInit() {
@@ -44,17 +45,26 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
 
-    toRatedUsers(){
-        this.gem.updateRatingType("myRatings");
-        this.router.navigate(["ratings"]);
+    toRatedUsers() {
+        this.gem.updateRatingType('myRatings');
+        this.router.navigate(['ratings']);
     }
 
-    toMyRatings(){
-        this.gem.updateRatingType("rated");
-        this.router.navigate(["ratings"]);
+    toMyRatings() {
+        this.gem.updateRatingType('rated');
+        this.router.navigate(['ratings']);
     }
 
-    
+    toApplications() {
+        this.applicationService.getApplicationsByAapplicantId(this.currentUsersProfile.id).subscribe(applications => {
+            this.gem.updateApplications(applications);
+        }, error => {
+            this.error = error;
+            console.log(this.error);
+        });
+        this.router.navigate(['applications']);
+    }
+
 
     profileChanges(): void {
         this.showFullNameInput();
