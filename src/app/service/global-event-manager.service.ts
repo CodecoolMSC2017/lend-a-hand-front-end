@@ -4,6 +4,7 @@ import {Ad} from '../model/ad.model';
 import {User} from '../model/user.model';
 import {Router} from '@angular/router';
 import {FilterSettingsModel} from '../model/filter-settings.model';
+import {Application} from '../model/application.model';
 
 
 @Injectable({
@@ -29,6 +30,9 @@ export class GlobalEventManagerService {
 
     private ratingTypeTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public ratingTypeEmitter: Observable<string> = this.ratingTypeTrigger.asObservable();
+
+    private applicationsTrigger: Subject<Application[]> = new BehaviorSubject<Application[]>(null);
+    public applicationsEmitter: Observable<Application[]> = this.applicationsTrigger.asObservable();
 
 
     constructor(private router: Router) {
@@ -56,6 +60,10 @@ export class GlobalEventManagerService {
 
     public updateRatingType(ratingType: string): void {
         this.ratingTypeTrigger.next(ratingType);
+    }
+
+    public updateApplications(applications: Application[]): void {
+        this.applicationsTrigger.next(applications);
     }
 
 }
