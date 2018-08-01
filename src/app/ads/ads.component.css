@@ -26,6 +26,10 @@
     border-radius:1.2em;
     text-align: left;
     padding: 0.5%;
+    -webkit-box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 41px 6px rgba(0,0,0,0.75);
+    cursor: pointer;
 }
 
 .ad-details {
@@ -33,10 +37,11 @@
     height: 10em;
     border-radius: 1em;
     padding:0.5%;
-
 }
 
-.title-td {
+#title-td {
+    padding-left: 0.3em;
+    padding-top: 0.2em;
     height: 1.5em;
     width: 90%;
     color: #07222c;
@@ -53,7 +58,7 @@
 
 #image-td {
     height: 7em;
-    width: 25%;
+    width: 11em;
     margin-top: 5em;
     text-align: center;
 }
@@ -65,20 +70,23 @@
 }
 
 #description-td {
-    width: 75%;
+    height: 3em;
+    width: 26em;
     vertical-align: top;
+    overflow: hidden;
+    display: inline-block;
+    white-space: normal;
 }
 
 #type-td {
-    width: 50%;
+    text-align: left;
+    width: 60em;
 }
 
 #category-td {
-    width: 50%;
-}
-
-#description-td {
-    width: 80em;
+    text-align: right;
+    width: 60em;
+    white-space: nowrap;
 }
 
 

@@ -5,6 +5,7 @@ import {Ad} from '../model/ad.model';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Subscription} from 'rxjs';
 import {User} from '../model/user.model';
+import {stringify} from '@angular/compiler/src/util';
 
 @Component({
     selector: 'app-ads',
@@ -34,7 +35,7 @@ export class AdsComponent implements OnInit, OnDestroy {
             if (filterSettings) {
                 this.adService.getAdsByFilter(filterSettings.keyword, filterSettings.selectedCategory, filterSettings.selectedType)
                     .subscribe(ads => {
-                        this.ads = ads;
+                        this.ads = this.formatAds(ads);
                         sessionStorage.setItem('ads', JSON.stringify(ads));
                     }, error => {
                         console.log(error);
@@ -43,6 +44,57 @@ export class AdsComponent implements OnInit, OnDestroy {
                 this.ads = JSON.parse(sessionStorage.getItem('ads'));
             }
         });
+    }
+
+    formatAds(ads: Ad[]): Ad[] {
+        let formattedAds =  [];
+        for (let i = 0; i < ads.length; i++) {
+            let ad = ads[i];
+            if (ad.description.length > 85) {
+                ad.formattedDescription = ad.description.substring(0, 85) + '...';
+            } else {
+                ad.formattedDescription = ad.description;
+            }
+            ad.formattedTimestamp = this.formatAdsTimestamp(ad.timestamp);
+            ad.timestamp = this.formatAdTimestamp(ad.timestamp);
+            formattedAds.push(ad);
+        }
+        return formattedAds;
+    }
+
+    formatAdTimestamp(timestamp: string): string {
+        let formattedTimestamp = '';
+        let splittedTimestamp = (timestamp + '').split(',');
+        formattedTimestamp = formattedTimestamp + this.formatAdsTimestamp(timestamp) + ' ';
+        if (splittedTimestamp[3].length < 2) {
+            formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[3] + ':';
+        } else {
+            formattedTimestamp = formattedTimestamp + splittedTimestamp[3] + ':';
+        }
+        if (splittedTimestamp[4].length < 2) {
+            formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[4];
+        } else {
+            formattedTimestamp = formattedTimestamp + splittedTimestamp[4];
+        }
+        return formattedTimestamp;
+    }
+
+    formatAdsTimestamp(timestamp: string): string {
+        let formattedTimestamp = '';
+        let splittedTimestamp = (timestamp + '').split(',');
+        console.log(splittedTimestamp);
+        formattedTimestamp = formattedTimestamp + splittedTimestamp[0] + '.';
+        if (splittedTimestamp[1].length < 2) {
+            formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[1] + '.';
+        } else {
+            formattedTimestamp = formattedTimestamp + splittedTimestamp[1] + '.';
+        }
+        if (splittedTimestamp[2].length < 2) {
+            formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[2] + '.';
+        } else {
+            formattedTimestamp = formattedTimestamp + splittedTimestamp[2] + '.';
+        }
+        return formattedTimestamp;
     }
 
     ngOnDestroy() {

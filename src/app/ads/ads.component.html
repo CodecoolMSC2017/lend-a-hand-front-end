@@ -7,8 +7,8 @@
             <div class="ad-details">
                 <table>
                     <tr>
-                        <td class="title-td"><strong class="ad-title">{{ad.title}}</strong></td>
-                        <td id="date-td">{{ad.timestamp}}</td>
+                        <td id="title-td"><strong class="ad-title">{{ad.title}}</strong></td>
+                        <td id="date-td">{{ad.formattedTimestamp}}</td>
                     </tr>
                 </table>
                 <table>
@@ -17,11 +17,11 @@
                         <td>
                             <table>
                                 <tr>
-                                    <td id="description-td">{{ad.description}}</td>
+                                    <td id="description-td">{{ad.formattedDescription}}</td>
                                 </tr>
                                 <tr>
-                                    <td id="type-td">Type: {{ad.type}}</td>
-                                    <td id="category-td">Category: {{ad.category}}</td>
+                                    <td id="type-td"><strong>Type:</strong> {{ad.type}}</td>
+                                    <td id="category-td"><strong>Category:</strong> {{ad.category}}</td>
                                 </tr>
                             </table>
                         </td>
