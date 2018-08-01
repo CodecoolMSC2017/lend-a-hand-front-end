@@ -1,14 +1,15 @@
 import {Ad} from './ad.model';
-
+import {Rating} from './rating.model';
+import {Application} from './application.model';
 export class User {
     id: number;
     ads: Array<Ad>;
-    authorities = [];
-    employeeRatings = [];
-    employerRatings = [];
-    ratedEmployees = [];
-    ratedEmployers = [];
-    applications = [];
+    authorities:Array<string>;
+    employeeRatings:Array<Rating>;
+    employerRatings:Array<Rating>;
+    ratedEmployees:Array<Rating>;
+    ratedEmployers:Array<Rating>;
+    applications:Application;
     sentMessages = [];
     receivedMessages = [];
     employerRatingScore: number;
