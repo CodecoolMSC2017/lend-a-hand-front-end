@@ -6,6 +6,7 @@ import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
 import {UserService} from '../service/user.service';
 import {ApplicationService} from '../application.service';
+import { Application } from '../model/application.model';
 
 
 
@@ -22,6 +23,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     singleAdSub: Subscription;
     ownAd: boolean;
     applicationMessage:string;
+    application = new Application();
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,private appService:ApplicationService) {
     }
@@ -67,7 +69,15 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     }
 
     sendApplication(){
-        this.appService
+        this.application.adId=this.ad.id;
+        this.application.adTitle=this.ad.title;
+        this.application.applicantId=this.user.id;
+        this.application.applicantName=this.user.userName;
+        this.application.message=this.applicationMessage;
+        this.application.state="Applied";
+        this.appService.sendApplication(this.application).subscribe(resopone => {
+            console.log("inserted");
+        });
     }
 
     ngOnDestroy() {
