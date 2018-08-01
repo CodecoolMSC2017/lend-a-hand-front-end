@@ -17,6 +17,7 @@ export class RatingsComponent implements OnInit {
   employeeRatings: Rating[];
   employerRatings: Rating[];
   ratingtype: string;
+  ratingSub:Subscription;
 
 
   constructor(private router: Router,
@@ -28,19 +29,26 @@ export class RatingsComponent implements OnInit {
     this.gem.ratingTypeEmitter.subscribe(ratingType=> {
       this.ratingtype = ratingType;
       if (ratingType == 'rated') {
-        this.ratingService.getRatingsAboutMe((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto=> {
+        this.ratingSub = this.ratingService.getRatingsAboutMe((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto=> {
           
           this.employeeRatings = ratingDto.employeeRatings as Rating[];
           this.employerRatings = ratingDto.employerRatings as Rating[];
         })
       }else if (ratingType == 'myRatings'){
-        this.ratingService.getRatings((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto=> {
-          console.log(ratingDto.employeeRatings.rating);
+        this.ratingSub=this.ratingService.getRatings((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto=> {
+          
           this.employeeRatings = ratingDto.employeeRatings;
           this.employerRatings = ratingDto.employerRatings;
         })
     }
     });
+  }
+
+  ngOnDestroy(){
+    if(this.ratingSub){
+      this.ratingSub.unsubscribe();
+    }
+    
   }
 
 }
