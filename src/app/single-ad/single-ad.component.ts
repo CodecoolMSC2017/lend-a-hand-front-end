@@ -78,6 +78,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         this.appService.sendApplication(this.application).subscribe(resopone => {
             console.log("inserted");
         });
+        this.router.navigate(['categories']);
     }
 
     ngOnDestroy() {
