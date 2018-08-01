@@ -1,0 +1,35 @@
+<div id="bg-div">
+</div>
+<div id="applications">
+    <h1 class="header">My Applications</h1>
+    <div *ngFor="let application of applications" class="application">
+        <div class="application-container">
+
+
+            <div class="application-details">
+                <table>
+                    <tr>
+                        <td class="title-td"><strong class="ad-title">{{application.adTitle}}</strong></td>
+                        <td id="date-td">{{application.timestamp}}</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td id="applicant-name-td"><strong class="applicant-name">{{application.applicantName}}</strong>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="message-td">{{application.message}}</td>
+                                </tr>
+                                <tr>
+                                    <td id="state-td">{{application.state}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
