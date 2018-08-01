@@ -14,7 +14,7 @@ export class ApplicationService {
         return this.http.post('/api/applications/new', application);
     }
 
-    getApplicationsByAapplicantId(applicantId): Observable<any> {
+    getApplicationsByApplicantId(applicantId): Observable<any> {
         return this.http.get('api/applications/applicants/' + applicantId);
     }
 }

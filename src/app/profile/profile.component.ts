@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     toApplications() {
-        this.applicationSub = this.applicationService.getApplicationsByAapplicantId(this.currentUsersProfile.id).subscribe(applications => {
+        this.applicationSub = this.applicationService.getApplicationsByApplicantId(this.currentUsersProfile.id).subscribe(applications => {
             this.gem.updateApplications(applications);
         }, error => {
             this.error = error;
