@@ -16,7 +16,7 @@
     </div>
     <div id="applicationMessageDiv" class="hidden">
         <h4>Message to advertiser</h4>
-        <input id="messageTextbox" type="text" [(ngModel)]="applicationMessage" >
+        <textarea rows="4" cols="50" id="messageTextbox" type="text" [(ngModel)]="applicationMessage" ></textarea>
         <br>
         <br>
         <button id="sendButton" (click)="sendApplication()">Send</button>

@@ -9,6 +9,6 @@ export class ApplicationService {
   constructor(private http:HttpClient) { }
 
   sendApplication(application):Observable<any>{
-    return this.http.post("/api/valami",application);
+    return this.http.post("/api/applications/new",application);
   }
 }
