@@ -1,18 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
 import {User} from '../model/user.model';
 import {FilterSettingsModel} from '../model/filter-settings.model';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-categories',
     templateUrl: './categories.component.html',
     styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
 
     category: string;
     user: User;
+    info: string;
+    infoSub: Subscription;
 
     constructor(private gem: GlobalEventManagerService, private router: Router) {
     }
@@ -20,6 +23,13 @@ export class CategoriesComponent implements OnInit {
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
+
+        this.gem.infoEmitter.subscribe(info => {
+            if (info) {
+                this.info = info;
+                setTimeout(this.clearAlert, 3000);
+            }
+        });
     }
 
     getAdsForCategory(category) {
@@ -30,6 +40,16 @@ export class CategoriesComponent implements OnInit {
         filterSettings.selectedType = 'All';
         this.gem.updateFilterSettings(filterSettings);
         this.router.navigate(['ads']);
+    }
+
+    ngOnDestroy(): void {
+        if (this.infoSub) {
+            this.infoSub.unsubscribe();
+        }
+    }
+
+    clearAlert() {
+        document.getElementById('info').innerText = '';
     }
 }
 
