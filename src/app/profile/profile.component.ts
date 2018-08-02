@@ -101,9 +101,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         } else {
             inputElement.placeholder = this.currentUsersProfile.fullName;
         }
-        const balanceEl = document.getElementById('balance');
-        const contentDiv = document.getElementById('profile-div').firstElementChild;
-        contentDiv.insertBefore(inputElement, balanceEl);
+        const fullnameTd = document.getElementById('fullname-td');
+        fullnameTd.appendChild(inputElement);
     }
 
     showFullNameLabel(): void {
@@ -306,15 +305,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.profileSub) {
-            this.profileSub.unsubscribe();
-        }
-        if (this.adSub) {
-            this.adSub.unsubscribe();
-        }
-        if (this.applicationSub) {
-            this.applicationSub.unsubscribe();
-        }
+   
+        
     }
 
 }
