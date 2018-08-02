@@ -24,6 +24,20 @@
 
 }
 
+.select {
+    width: 40%;
+    height: 4%;
+    border-radius: 15px;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    font-weight: 300;
+    padding-left: 2%;
+    padding-right: 2%
+}
+
 #register-form {
     margin-top: -10%;
 }
