@@ -2,36 +2,27 @@
     <div id="profile-div">
         <div class="content">
             <h2 class="username" id="username">{{currentUsersProfile.userName}}'s profile</h2>
-            <h4 id="balance">Balance : {{currentUsersProfile.balance}}</h4>
+            <h4 id="balance">Balance : {{currentUsersProfile.balance}} Golden Hand</h4>
+
 
             <table id="rating-table">
                 <tr>
                     <td id="employeeRating-td">
-                        <h3>Rating as employee</h3>
-                        <img *ngIf="currentUsersProfile.employeeRatings < 2">
-                        <img *ngIf="currentUsersProfile.employeeRatings > 2 && currentUsersProfile.employeeRatings < 3 ">
-                        <img *ngIf="currentUsersProfile.employeeRatings > 3 && currentUsersProfile.employeeRatings < 4 ">
-                        <img *ngIf="currentUsersProfile.employeeRatings > 4 && currentUsersProfile.employeeRatings < 5 ">
-                        <img *ngIf="currentUsersProfile.employeeRatings === 5">
+                        <h3>Rating as employee:</h3>
+                    </td>
+                    <td>
                         <h4>{{currentUsersProfile.employeeRatingScore}}</h4>
                     </td>
-
+                </tr>
+                <tr>
                     <td id="employerRating-td">
-                        <h3>Rating as employer</h3>
-                        <img *ngIf="currentUsersProfile.employerRatings < 2">
-                        <img *ngIf="currentUsersProfile.employerRatings > 2 && currentUsersProfile.employerRatings < 3 ">
-                        <img *ngIf="currentUsersProfile.employerRatings > 3 && currentUsersProfile.employerRatings < 4 ">
-                        <img *ngIf="currentUsersProfile.employerRatings > 4 && currentUsersProfile.employerRatings < 5 ">
-                        <img *ngIf="currentUsersProfile.employerRatings === 5">
+                        <h3>Rating as employer:</h3>
+                    </td>
+                    <td>
                         <h4>{{currentUsersProfile.employerRatingScore}}</h4>
                     </td>
                 </tr>
             </table>
-
-            <div class="error">{{error}}</div>
-
-            <button id="update-button" class="button-inverse hidden" (click)="update()">Save changes</button>
-
 
         </div>
         <img *ngIf=" currentUsersProfile.pictureLink == null"
@@ -42,8 +33,11 @@
 
         <div id="manage-buttons">
             <button class="button-inverse option-button" (click)="toManageAdvertisements()">My Advertisements</button>
+            <br>
             <button class="button-inverse option-button" (click)="toRatedUsers()">Rated Users</button>
+            <br>
             <button class="button-inverse option-button" (click)="toMyRatings()">My Raters</button>
+            <br>
             <button class="button-inverse option-button" (click)="toApplications()">My Applications</button>
         </div>
 
@@ -94,13 +88,24 @@
                 <td>
                     <button class="location-img"></button>
                 </td>
-                <td id="address-td">
+                <td id="address-td" height="2em">
                 <span *ngIf="currentUsersProfile.address !=null"
                       class="address"> {{currentUsersProfile.postalCode}} {{currentUsersProfile.city}}, {{currentUsersProfile.address}}</span>
                     <span *ngIf="currentUsersProfile.address == null" class="address not-specified">Not specified</span>
                 </td>
             </tr>
 
+            <tr>
+                <td colspan="2">
+                <div class="error">{{error}}</div>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button id="update-button" class="button-inverse hidden" (click)="update()">Save changes</button>
+                </td>
+            </tr>
         </table>
     </div>
 </div>

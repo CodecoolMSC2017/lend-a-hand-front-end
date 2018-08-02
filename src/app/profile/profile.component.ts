@@ -179,7 +179,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         br.setAttribute('class', 'breakEl');
 
         const breakEl = document.createElement('br');
-        br.setAttribute('class', 'breakEl');
+        breakEl.setAttribute('class', 'breakEl');
 
 
         const locationTd = document.getElementById('address-td');
