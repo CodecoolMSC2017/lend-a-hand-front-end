@@ -44,7 +44,7 @@
     padding-top: 0.2em;
     height: 1.5em;
     width: 90%;
-    color: #07222c;
+    color: #0c5068;
     font-size: 1.3em;
     font-weight: bold;
     text-align: left;
@@ -68,7 +68,9 @@
 #ads-image {
     width: 10em;
     height: 6em;
-    border: #07222c solid 0.2em;
+    border: #0c5068 solid 0.2em;
+    border-radius: 0.5em;
+
 }
 
 #description-td {
