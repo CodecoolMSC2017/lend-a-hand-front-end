@@ -35,6 +35,7 @@ export class CreateAdComponent implements OnInit {
     this.ad.description = this.adDescription;
     this.ad.title = this.adTitle;
     this.ad.type = this.selectedType;
+    this.ad.pictureLink = '';
     
     this.adservice.createAd(this.ad).subscribe(ad =>{
       console.log(ad);
