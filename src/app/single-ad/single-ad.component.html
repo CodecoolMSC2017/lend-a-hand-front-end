@@ -29,40 +29,57 @@
         <table id="apply-button-table">
         <tr><td><button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply</button></td></tr>
         </table>
-
-        <h2 *ngIf="ownAd">Applicants</h2>
         <br>
         <div id="applicants" *ngIf="ownAd && user && applications">
-            <div *ngFor="let application of applications" id="applicant" class="application">
-                <div class="application-container">
+            <div id="applications">
+                <h2 *ngIf="ownAd">Applicants</h2>
+                <div *ngFor="let application of applications" class="application">
+                    <div class="application-container">
 
-
-                    <div class="application-details">
-                        <table>
-                            <tr>
-                                <td class="title-td">
-                                    <strong class="ad-title">{{application.adTitle}}</strong>
-                                </td>
-                                <td id="date-td">{{application.timestamp}}</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <td id="applicant-name-td"><strong
-                                        class="applicant-name">{{application.applicantName}}</strong>
-                                </td>
-                                <td>
-                                    <table>
-                                        <tr>
-                                            <td id="message-td">{{application.message}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td id="state-td">{{application.state}}</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
+                        <div class="application-details">
+                            <table>
+                                <tr>
+                                    <td id="title-td"><strong class="application-title"
+                                                              (click)="toProfile(application.applicantId)">{{application.applicantName}}</strong>
+                                    </td>
+                                    <td id="date-td">{{application.formattedTimestamp}}</td>
+                                </tr>
+                            </table>
+                            <table>
+                                <tr>
+                                    <td id="image-td">
+                                        <img id={{application.id}} class="applications-image"
+                                             *ngIf="application.applicantPictureLink!=''"
+                                             src={{application.applicantPictureLink}}
+                                             (error)=standBy(application.id)>
+                                        <img class="applications-image"
+                                             *ngIf="application.applicantPictureLink=='' && application.type=='Hire'"
+                                             src='../assets/hire.png'>
+                                        <img class="applications-image"
+                                             *ngIf="application.applicantPictureLink=='' && application.type=='Offer'"
+                                             src='../assets/offer.png'>
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td id="description-td">{{application.formattedMessage}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="state-td"><strong>State: </strong>{{application.state}}</td>
+                                                <td *ngIf="application.type=='Offer'" class="rating-td">
+                                                    <strong>Rating:</strong>
+                                                    {{application.employerRatingScore}} / 5
+                                                </td>
+                                                <td *ngIf="application.type=='Hire'" class="rating-td">
+                                                    <strong>Rating:</strong>
+                                                    {{application.employeeRatingScore}} / 5
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

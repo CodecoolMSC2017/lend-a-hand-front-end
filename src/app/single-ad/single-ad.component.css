@@ -69,20 +69,16 @@
     height: 100%;
     position: absolute;
     left: 0;
+    text-align: center;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+
+
 }
 
 .application {
     width: 60%;
     padding-bottom: 1%;
-}
-
-.application-container {
-    display: block;
-    background-color: #07222c;
-    width: 100%;
-    border-radius: 1.2em;
-    text-align: left;
-    padding: 0.5%;
 }
 
 .application-details {
@@ -100,12 +96,6 @@
     font-size: 1.3em;
     font-weight: bold;
 
-}
-
-#date-td {
-    width: 10%;
-    margin-left: 80%;
-    margin-right: 40%;
 }
 
 #applicant-name-td {
@@ -176,4 +166,82 @@
     border-radius:20px;
     margin-left: 5%;
 }
+
+.application-container {
+    display: block;
+    background-color: #07222c;
+    width: 100%;
+    border-radius: 1.2em;
+    text-align: left;
+    padding: 0.5%;
+    -webkit-box-shadow: 0px 0px 41px 6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 41px 6px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 41px 6px rgba(0, 0, 0, 0.75);
+}
+
+.application-details {
+    background-color: rgb(232, 237, 238);
+    height: 10em;
+    border-radius: 1em;
+    padding: 0.5%;
+}
+
+#title-td {
+    padding-left: 0.3em;
+    padding-top: 0.2em;
+    height: 1.5em;
+    width: 90%;
+    color: #0c5068;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: left;
+
+}
+
+.application-title {
+    cursor: pointer;
+}
+
+#date-td {
+    width: 10%;
+    margin-left: 80%;
+    margin-right: 40%;
+    text-align: right;
+}
+
+#image-td {
+    height: 7em;
+    width: 11em;
+    margin-top: 5em;
+    text-align: center;
+}
+
+.applications-image {
+    width: 10em;
+    height: 6em;
+    border: #0c5068 solid 0.2em;
+    border-radius: 0.5em;
+
+}
+
+#description-td {
+    height: 3em;
+    width: 26em;
+    vertical-align: top;
+    overflow: hidden;
+    display: inline-block;
+    white-space: normal;
+}
+
+.state-td {
+    text-align: left;
+    width: 60em;
+}
+
+.rating-td {
+    text-align: right;
+    width: 60em;
+    white-space: nowrap;
+}
+
 
