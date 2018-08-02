@@ -19,6 +19,7 @@ import { Application } from '../model/application.model';
 
 export class SingleAdComponent implements OnInit, OnDestroy {
     ad: Ad;
+    applications : Application[];
     user: User;
     singleAdSub: Subscription;
     ownAd: boolean;
@@ -33,6 +34,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.user = JSON.parse(sessionStorage.getItem('user'));
             this.gem.updateUser(this.user);
         }
+
+       
 
         this.singleAdSub = this.gem.singleAdEmitter.subscribe(ad => {
             if (ad) {
@@ -52,6 +55,11 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         } else {
             this.ownAd = false;
         }
+
+        this.appService.getApplicationsByAd(this.ad.id).subscribe(applications => {
+            console.log(this.ad.id);
+            this.applications=applications;
+        });
 
     }
 

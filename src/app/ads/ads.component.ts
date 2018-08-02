@@ -24,7 +24,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     }
 
     showAd(ad: Ad) {
-        console.log(ad.id);
+        
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);
     }

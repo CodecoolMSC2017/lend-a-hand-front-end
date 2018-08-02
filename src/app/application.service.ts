@@ -17,4 +17,8 @@ export class ApplicationService {
     getApplicationsByApplicantId(applicantId): Observable<any> {
         return this.http.get('api/applications/applicants/' + applicantId);
     }
+
+    getApplicationsByAd(adId) : Observable<any>{
+        return this.http.get('/api/applications/ads/'+adId);
+    }
 }
