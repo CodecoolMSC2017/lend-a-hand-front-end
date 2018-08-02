@@ -306,15 +306,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        if (this.profileSub) {
-            this.profileSub.unsubscribe();
-        }
-        if (this.adSub) {
-            this.adSub.unsubscribe();
-        }
-        if (this.applicationSub) {
-            this.applicationSub.unsubscribe();
-        }
+   
+        
     }
 
 }
