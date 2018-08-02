@@ -1,13 +1,12 @@
 
 #createAdContainer{
-    width:100%;
-   
+    width: 95%;
     overflow:auto;
 }
 
 #createAdDiv{
     color:white;
-    padding:50px;
+    padding: 25px;
     background-color: #07222c;
     border-radius:5%;
     width:70%;
@@ -17,24 +16,47 @@
     -webkit-box-shadow: 0px 0px 27px 3px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 27px 3px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 27px 3px rgba(0,0,0,0.75);
-    
+    border: 2px solid white;
+    font-size: 1.1em;
 }
 
 #categoryDiv{
     position:relative;
-  
     color:white;
 }
 
+.select {
+    width: 40%;
+    height: 4%;
+    border-radius: 15px;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    font-weight: 300;
+    padding-left: 2%;
+    padding-right: 2%
+}
+
+.select option {
+    border-radius: 15px;
+}
 #typeDiv{
     position:relative;
-  
     color:white;
+}
+
+.label {
+    font-size: 1.2em;
+}
+
+.checkbox {
+    height: 4%;
+    width: 4%;
 }
 
 #premiumDiv{
-    position:relative;
-  
     color:white;
 }
 
@@ -46,24 +68,19 @@
     color:white;
 }
 
-#adDescriptionDiv input{
-    width:70%;
-    height:200px;
-    margin-left:13%;
-    margin-right:13%;
+#descriptionInput {
+    width: 65%;
+    height: 10em;
+    padding: 2%;
     border-radius:15px;
+    resize: none;
 }
 
-#adTitleDiv input{
-    width:70%;
+#titleInput {
+    width: 40%;
     border-radius:30px;
-    margin-left:13%;
-    margin-right:13%
-}
-
-button{
-    border-radius:10px;
-    padding:10px;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
 select{
