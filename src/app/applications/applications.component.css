@@ -19,6 +19,9 @@
     padding-bottom: 1%;
 }
 
+.ad-title {
+    cursor: pointer;
+}
 .application-container {
     display: block;
     background-color: #07222c;

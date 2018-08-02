@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +14,11 @@ export class ApplicationService {
         return this.http.post('/api/applications/new', application);
     }
 
-    getApplicationsByAapplicantId(applicantId): Observable<any> {
+    getApplicationsByApplicantId(applicantId): Observable<any> {
         return this.http.get('api/applications/applicants/' + applicantId);
+    }
+
+    getApplicationsByAd(adId) : Observable<any>{
+        return this.http.get('/api/applications/ads/'+adId);
     }
 }

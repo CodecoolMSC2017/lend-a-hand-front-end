@@ -24,8 +24,8 @@ export class AdService {
         return this.http.get<Ad[]>('/api/ads/filters', {params: params});
     }
 
-    public getAdById(id: number): Observable<Ad[]> {
-        return this.http.get<Ad[]>('/api/ads/' + id);
+    public getAdById(id: number): Observable<Ad> {
+        return this.http.get<Ad>('/api/ads/' + id);
     }
 
     public deleteAdById(id: number): void {

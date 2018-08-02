@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     currentUsersProfile: User;
     user: User;
     profileSub: Subscription;
+    applicationSub: Subscription;
+    adSub: Subscription;
     ownProfile: boolean;
     error: string;
 
@@ -56,7 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     toApplications() {
-        this.applicationService.getApplicationsByAapplicantId(this.currentUsersProfile.id).subscribe(applications => {
+        this.applicationSub = this.applicationService.getApplicationsByApplicantId(this.currentUsersProfile.id).subscribe(applications => {
             this.gem.updateApplications(applications);
         }, error => {
             this.error = error;
@@ -287,15 +289,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     }
 
-    ngOnDestroy() {
-        if (this.profileSub) {
-            this.profileSub.unsubscribe();
-        }
-    }
-
 
     toManageAdvertisements() {
-        this.adService.getAdsByAdvertiser(this.currentUsersProfile.id).subscribe(ads => {
+        this.adSub = this.adService.getAdsByAdvertiser(this.currentUsersProfile.id).subscribe(ads => {
                 sessionStorage.setItem('ads', JSON.stringify(ads));
                 this.router.navigate(['adsByAdvertiser']);
             }, error => {
@@ -306,6 +302,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
             }
             }
         );
+    }
+
+    ngOnDestroy() {
+   
+        
     }
 
 }
