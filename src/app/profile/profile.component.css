@@ -16,23 +16,27 @@
     margin-bottom:20px;
 }
 
+.wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    grid-row-gap: 20%;
+    grid-column-gap: 6%;
+    margin-left: 7%;
+}
+
+.grid-div {
+}
+
 .username {
-    position: relative;
-    left: 1em;
-    -webkit-margin-before: -0.05em;
     color: #000000;
     font-size: 2.5em;
 }
 
 #balance {
-    margin-top: 17em;
-    margin-left: 2.5em;
 }
 
 .profile-img {
-    position: relative;
-    top: -26em;
-    left: 2.5em;
     border: solid 2px black;
     border-radius: 50%;
     width: 200px;
@@ -40,9 +44,7 @@
 }
 
 #manage-buttons {
-    position: relative;
-    left: 30em;
-    top: -23em;
+
 }
 
 .option-button {
@@ -104,11 +106,7 @@
 }
 
 .contact-table {
-    position: relative;
-    top: -55em;
-    left: 30em;
     text-align: center;
-    right: 0;
 }
 
 #header-td {
@@ -124,7 +122,6 @@
 
 #rating-table {
     text-align: center;
-    margin-left: 2em;
 }
 
 .not-specified {
