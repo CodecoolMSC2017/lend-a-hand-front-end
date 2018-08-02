@@ -76,6 +76,17 @@
     padding-right: 3%;
 }
 
+.faded{
+    opacity:0;
+}
+
+#cancelButton{
+    float:right;
+    position:relative;
+    left:-5em;
+    z-index:500;
+}
+
 #category-td {
     width: 50%;
 }
@@ -89,12 +100,20 @@
 }
 
 #messageTextbox{
-    width:70%;
+    width:50%;
     height:300px;
 }
 
 #applicationMessageDiv{
     color:white;
+    z-index:1000;
+    position:relative;
+    top:-32em;
+    
+    padding-top:3em;
+    padding-bottom:3em;
+    border-radius:30px;
+    background-color:#07222c;
 }
 
 #singleAdDiv{

@@ -101,9 +101,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         } else {
             inputElement.placeholder = this.currentUsersProfile.fullName;
         }
-        const balanceEl = document.getElementById('balance');
-        const contentDiv = document.getElementById('profile-div').firstElementChild;
-        contentDiv.insertBefore(inputElement, balanceEl);
+        const fullnameTd = document.getElementById('fullname-td');
+        fullnameTd.appendChild(inputElement);
     }
 
     showFullNameLabel(): void {
@@ -180,7 +179,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         br.setAttribute('class', 'breakEl');
 
         const breakEl = document.createElement('br');
-        br.setAttribute('class', 'breakEl');
+        breakEl.setAttribute('class', 'breakEl');
 
 
         const locationTd = document.getElementById('address-td');
