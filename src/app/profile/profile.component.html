@@ -1,7 +1,7 @@
 <div id="outer-div">
     <div id="profile-div">
         <div class="wrapper">
-            <div class="content grid-div">
+            <div class="content">
                 <h2 class="username" id="username">{{currentUsersProfile.userName}}'s profile</h2>
                 <img *ngIf=" currentUsersProfile.pictureLink == null"
                      src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
@@ -10,7 +10,7 @@
                      class="profile-img">
             </div>
 
-            <div class="contacts grid-div">
+            <div class="contacts">
                 <table class="contact-table">
                     <tr>
                         <td colspan="2">
@@ -83,7 +83,7 @@
                 </table>
             </div>
 
-            <div class="values grid-div">
+            <div class="values">
                 <p><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}} Golden Hand</p>
 
 
@@ -107,7 +107,7 @@
                 </table>
             </div>
 
-            <div id="manage-buttons grid-div" *ngIf="ownProfile">
+            <div id="manage-buttons" *ngIf="ownProfile">
                 <button class="button-inverse option-button" (click)="toManageAdvertisements()">My Advertisements
                 </button>
                 <br>

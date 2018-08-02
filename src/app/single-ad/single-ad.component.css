@@ -1,6 +1,6 @@
 #ad-div {
     background-color: rgba(251, 251, 251, 0.4);
-    
+    height: 32em;
     margin-top:10%;
     width: 90%;
     border-radius:10px;
@@ -10,6 +10,57 @@
     -moz-box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
     margin-bottom:20px;
+}
+
+.wrapper {
+    margin-top: -1em;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    grid-row-gap: 20%;
+}
+
+#title-category-div {
+    text-align: left;
+    vertical-align: top;
+    margin-top: -1em;
+}
+
+#category {
+    margin-top: -1em;
+}
+
+#date-advertiser-div {
+    text-align: right;
+}
+
+#advertiserName {
+    cursor: pointer;
+}
+
+#picture-div {
+    margin-left: -1em;
+    margin-top: 2em;
+}
+
+#description-div {
+    margin-top: 2em;
+}
+
+#apply-button-table{
+    margin-top: 3em;
+}
+
+#apply-button-table td{
+    width: 30em;
+    text-align: center;
+}
+
+
+#applyButton{
+    float:right;
+    text-align: center;
+    width: 10em;
 }
 
 #applications {
@@ -25,9 +76,6 @@
     padding-bottom: 1%;
 }
 
-.ad-title {
-    cursor: pointer;
-}
 .application-container {
     display: block;
     background-color: #07222c;
@@ -92,9 +140,6 @@
     width: 80em;
 }
 
-#applyButton{
-    float:right;
-}
 
 #messageTextbox{
     width: 65%;
@@ -122,23 +167,12 @@
 
 #ad-title {
     text-align: left;
-    text-shadow: 2px 2px #cfc4c4;
-    width: fit-content;
-}
-
-#advertiserName {
-    text-align: left;
-    margin-left: 5%;
-    font-style: italic;
-    cursor: pointer;
-    text-shadow: 1px 1px #e5d4d4;
-    width: fit-content;
-    margin-bottom: 0;
+    font-size: 2em;
 }
 
 .ad-img {
-    width: 30%;
-    height: 30%;
+    width: 24em;
+    height: 15em;
     border-radius:20px;
     margin-left: 5%;
 }

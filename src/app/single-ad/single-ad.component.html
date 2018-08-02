@@ -1,57 +1,73 @@
 <div id="singleAdDiv">
     <div id="ad-div" class="content">
+        <div class="wrapper">
 
-        <h3 id="ad-title">{{ad.title}}</h3>
-        <button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply</button>
-        <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">{{ad.advertiserName}}</h4>
+            <div id="title-category-div">
+                <p id="ad-title"><strong>{{ad.title}}</strong></p>
+                <p id="category"><strong>Category: </strong>{{ad.category}}</p>
+            </div>
+
+            <div id="date-advertiser-div">
+                <h4 id="timestamp">{{ad.timestamp}}</h4>
+                <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">Advertiser: {{ad.advertiserName}}</h4>
+            </div>
+
+            <div id="picture-div">
+                <img *ngIf="ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
+                     class="ad-img">
+                <img id={{ad.id}} *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img"
+                     (error)="standBy(ad.id)">
+            </div>
+
+            <div id="description-div">
+                <p *ngIf="ad.payment == 0 || ad.payment == null" class="payment"> No payment specified</p>
+                <p *ngIf="ad.payment != 0 || ad.payment != null" class="payment"><strong>Payment: </strong>{{ad.payment}}$ / hour</p>
+                <span id="description">{{ad.description}}</span>
+            </div>
+        </div>
+
+        <table id="apply-button-table">
+        <tr><td><button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply</button></td></tr>
+        </table>
+
+        <h2 *ngIf="ownAd">Applicants</h2>
         <br>
-        <img *ngIf=" ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
-            class="ad-img">
-        <img *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img" (error)="standBy(ad.id)">
-        <h4 id="timestamp">{{ad.timestamp}}</h4>
-        <h4 id="category">{{ad.category}}</h4>
-        <h4 *ngIf="ad.payment == null" class="payment"> No payment specified</h4>
-        <h4 *ngIf="ad.payment != null" class="payment">{{ad.payment}} $ / hour</h4>
-        <span id="description">{{ad.description}}</span>
-    </div>
-    <h2 *ngIf="ownAd">Applicants</h2>
-    <br>
-    <div id="applicants" *ngIf="ownAd && user && applications">
-        <div *ngFor="let application of applications" id="applicant" class="application">
-            <div class="application-container">
+        <div id="applicants" *ngIf="ownAd && user && applications">
+            <div *ngFor="let application of applications" id="applicant" class="application">
+                <div class="application-container">
 
 
-                <div class="application-details">
-                    <table>
-                        <tr>
-                            <td class="title-td">
-                                <strong class="ad-title">{{application.adTitle}}</strong>
-                            </td>
-                            <td id="date-td">{{application.timestamp}}</td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td id="applicant-name-td"><strong class="applicant-name">{{application.applicantName}}</strong>
-                            </td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td id="message-td">{{application.message}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td id="state-td">{{application.state}}</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="application-details">
+                        <table>
+                            <tr>
+                                <td class="title-td">
+                                    <strong class="ad-title">{{application.adTitle}}</strong>
+                                </td>
+                                <td id="date-td">{{application.timestamp}}</td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td id="applicant-name-td"><strong
+                                        class="applicant-name">{{application.applicantName}}</strong>
+                                </td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td id="message-td">{{application.message}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td id="state-td">{{application.state}}</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 </div>
 
 <div id="applicationMessageDiv" class="hidden">
@@ -59,7 +75,7 @@
 
     <h2 style="position:relative;left:2em;">Message to advertiser</h2>
 
-    <textarea rows="4" cols="50" id="messageTextbox" type="text" [(ngModel)]="applicationMessage" ></textarea>
+    <textarea rows="4" cols="50" id="messageTextbox" type="text" [(ngModel)]="applicationMessage"></textarea>
     <br>
     <br>
     <button class="button" id="sendButton" (click)="sendApplication()">Send</button>
@@ -68,4 +84,5 @@
         <span class="info" id="info">Create a new advertisement</span>
         <span class="error hidden" id="error">{{error}}</span>
     </div>
+
 </div>
