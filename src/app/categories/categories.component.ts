@@ -24,10 +24,12 @@ export class CategoriesComponent implements OnInit, OnDestroy {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
 
-        this.gem.infoEmitter.subscribe(info => {
+        this.infoSub = this.gem.infoEmitter.subscribe(info => {
             if (info) {
                 this.info = info;
                 setTimeout(this.clearAlert, 3000);
+            } else {
+                this.clearAlert();
             }
         });
     }
@@ -43,6 +45,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this.gem.updateInfo(null);
         if (this.infoSub) {
             this.infoSub.unsubscribe();
         }
