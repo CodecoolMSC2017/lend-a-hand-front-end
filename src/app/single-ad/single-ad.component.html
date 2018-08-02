@@ -1,6 +1,6 @@
 <div id="singleAdDiv">
     <div id="ad-div" class="content">
-        
+
         <h3 id="ad-title">{{ad.title}}</h3>
         <button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply</button>
         <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">{{ad.advertiserName}}</h4>
@@ -19,8 +19,8 @@
     <div id="applicants" *ngIf="ownAd && user && applications">
         <div *ngFor="let application of applications" id="applicant" class="application">
             <div class="application-container">
-    
-    
+
+
                 <div class="application-details">
                     <table>
                         <tr>
@@ -50,17 +50,22 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 </div>
 
 <div id="applicationMessageDiv" class="hidden">
     <button class="button" id="cancelButton" (click)="backToAd()">Back</button>
-    
-    <h4 style="position:relative;left:2em;">Message to advertiser</h4>
-    
+
+    <h2 style="position:relative;left:2em;">Message to advertiser</h2>
+
     <textarea rows="4" cols="50" id="messageTextbox" type="text" [(ngModel)]="applicationMessage" ></textarea>
     <br>
     <br>
     <button class="button" id="sendButton" (click)="sendApplication()">Send</button>
+
+    <div class="info-div">
+        <span class="info" id="info">Create a new advertisement</span>
+        <span class="error hidden" id="error">{{error}}</span>
+    </div>
 </div>

@@ -54,9 +54,6 @@
 
 }
 
-
-
-
 #date-td {
     width: 10%;
     margin-left: 80%;
@@ -83,8 +80,8 @@
 #cancelButton{
     float:right;
     position:relative;
-    left:-5em;
-    z-index:500;
+    left: -2em;
+    top: -2em;
 }
 
 #category-td {
@@ -100,20 +97,23 @@
 }
 
 #messageTextbox{
-    width:50%;
-    height:300px;
+    width: 65%;
+    height: 20em;
+    padding: 2%;
+    border-radius: 15px;
+    resize: none;
+    font-size: 1.2em;
 }
 
 #applicationMessageDiv{
     color:white;
-    z-index:1000;
     position:relative;
-    top:-32em;
-    
+    top: -30em;
     padding-top:3em;
     padding-bottom:3em;
     border-radius:30px;
     background-color:#07222c;
+    border: 2px solid white;
 }
 
 #singleAdDiv{

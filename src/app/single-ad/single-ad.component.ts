@@ -6,8 +6,7 @@ import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
 import {UserService} from '../service/user.service';
 import {ApplicationService} from '../application.service';
-import { Application } from '../model/application.model';
-
+import {Application} from '../model/application.model';
 
 
 @Component({
@@ -19,14 +18,15 @@ import { Application } from '../model/application.model';
 
 export class SingleAdComponent implements OnInit, OnDestroy {
     ad: Ad;
-    applications : Application[];
+    error: string;
+    applications: Application[];
     user: User;
     singleAdSub: Subscription;
     ownAd: boolean;
-    applicationMessage:string;
+    applicationMessage: string;
     application = new Application();
 
-    constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,private appService:ApplicationService) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService, private appService: ApplicationService) {
     }
 
     ngOnInit() {
@@ -35,7 +35,6 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.gem.updateUser(this.user);
         }
 
-       
 
         this.singleAdSub = this.gem.singleAdEmitter.subscribe(ad => {
             if (ad) {
@@ -58,7 +57,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
         this.appService.getApplicationsByAd(this.ad.id).subscribe(applications => {
             console.log(this.ad.id);
-            this.applications=applications;
+            this.applications = applications;
         });
 
     }
@@ -72,31 +71,54 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         });
     }
 
-    applyToAd(){
-        document.getElementById("applicationMessageDiv").classList.remove("hidden");
-        document.getElementById("singleAdDiv").classList.add("faded");
+    applyToAd() {
+        document.getElementById('applicationMessageDiv').classList.remove('hidden');
+        document.getElementById('singleAdDiv').classList.add('faded');
     }
 
-    backToAd(){
-        document.getElementById("applicationMessageDiv").classList.add("hidden");
-        document.getElementById("singleAdDiv").classList.remove("faded");
+    backToAd() {
+        document.getElementById('applicationMessageDiv').classList.add('hidden');
+        document.getElementById('singleAdDiv').classList.remove('faded');
     }
 
-    sendApplication(){
-        this.application.adId=this.ad.id;
-        this.application.adTitle=this.ad.title;
-        this.application.applicantId=this.user.id;
-        this.application.applicantName=this.user.userName;
-        this.application.message=this.applicationMessage;
-        this.application.state="Applied";
+    sendApplication() {
+        if (!this.applicationMessage) {
+            this.error = 'Message field is required!';
+            this.showError();
+            return;
+        }
+        this.application.adId = this.ad.id;
+        this.application.adTitle = this.ad.title;
+        this.application.applicantId = this.user.id;
+        this.application.applicantName = this.user.userName;
+        this.application.message = this.applicationMessage;
+        this.application.state = 'Applied';
         this.appService.sendApplication(this.application).subscribe(resopone => {
-            console.log("inserted");
+            this.gem.updateInfo('Application successfully created');
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+            this.showError();
         });
         this.router.navigate(['categories']);
     }
 
     ngOnDestroy() {
         this.singleAdSub.unsubscribe();
+    }
+
+    clearAlert() {
+        document.getElementById('error').classList.add('hidden');
+        document.getElementById('info').classList.remove('hidden');
+    }
+
+    showError() {
+        document.getElementById('info').classList.add('hidden');
+        document.getElementById('error').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
     }
 
 
