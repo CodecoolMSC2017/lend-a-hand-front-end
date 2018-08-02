@@ -15,7 +15,6 @@ import {ApplicationService} from '../application.service';
 export class ProfileComponent implements OnInit, OnDestroy {
     currentUsersProfile: User;
     user: User;
-    profileSub: Subscription;
     applicationSub: Subscription;
     adSub: Subscription;
     ownProfile: boolean;
