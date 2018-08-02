@@ -74,6 +74,12 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
     applyToAd(){
         document.getElementById("applicationMessageDiv").classList.remove("hidden");
+        document.getElementById("singleAdDiv").classList.add("faded");
+    }
+
+    backToAd(){
+        document.getElementById("applicationMessageDiv").classList.add("hidden");
+        document.getElementById("singleAdDiv").classList.remove("faded");
     }
 
     sendApplication(){
