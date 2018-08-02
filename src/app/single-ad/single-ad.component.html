@@ -7,7 +7,7 @@
         <br>
         <img *ngIf=" ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
             class="ad-img">
-        <img *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img">
+        <img *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img" (error)="standBy(ad.id)">
         <h4 id="timestamp">{{ad.timestamp}}</h4>
         <h4 id="category">{{ad.category}}</h4>
         <h4 *ngIf="ad.payment == null" class="payment"> No payment specified</h4>

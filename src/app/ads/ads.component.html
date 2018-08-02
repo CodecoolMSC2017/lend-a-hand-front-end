@@ -14,9 +14,12 @@
                 <table>
                     <tr>
                         <td id="image-td">
-                            <img id="ads-image" *ngIf="ad.pictureLink!=''" src={{ad.pictureLink}}>
-                            <img id="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Hire'" src='../assets/hire.png'>
-                            <img id="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Offer'" src='../assets/offer.png'>
+                            <img id={{ad.id}} class="ads-image" *ngIf="ad.pictureLink!=''" src={{ad.pictureLink}}
+                                 (error)=standBy(ad.id)>
+                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Hire'"
+                                 src='../assets/hire.png'>
+                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Offer'"
+                                 src='../assets/offer.png'>
                         </td>
                         <td>
                             <table>

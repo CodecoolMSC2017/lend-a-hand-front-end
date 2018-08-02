@@ -121,5 +121,9 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         setTimeout(this.clearAlert, 3000);
     }
 
+    standBy(id) {
+        (<HTMLImageElement>document.getElementById(id)).src = 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
+    }
+
 
 }

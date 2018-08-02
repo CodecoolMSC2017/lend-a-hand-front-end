@@ -65,7 +65,7 @@
     text-align: center;
 }
 
-#ads-image {
+.ads-image {
     width: 10em;
     height: 6em;
     border: #0c5068 solid 0.2em;

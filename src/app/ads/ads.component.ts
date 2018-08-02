@@ -5,7 +5,6 @@ import {Ad} from '../model/ad.model';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Subscription} from 'rxjs';
 import {User} from '../model/user.model';
-import {stringify} from '@angular/compiler/src/util';
 
 @Component({
     selector: 'app-ads',
@@ -24,7 +23,6 @@ export class AdsComponent implements OnInit, OnDestroy {
     }
 
     showAd(ad: Ad) {
-        
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);
     }
@@ -37,7 +35,7 @@ export class AdsComponent implements OnInit, OnDestroy {
                 this.adService.getAdsByFilter(filterSettings.keyword, filterSettings.selectedCategory, filterSettings.selectedType)
                     .subscribe(ads => {
                         this.ads = this.formatAds(ads);
-                        
+
                         sessionStorage.setItem('ads', JSON.stringify(ads));
                     }, error => {
                         console.log(error);
@@ -47,11 +45,11 @@ export class AdsComponent implements OnInit, OnDestroy {
             }
         });
 
-        
+
     }
 
     formatAds(ads: Ad[]): Ad[] {
-        let formattedAds =  [];
+        let formattedAds = [];
         for (let i = 0; i < ads.length; i++) {
             let ad = ads[i];
             if (ad.description.length > 85) {
@@ -86,7 +84,6 @@ export class AdsComponent implements OnInit, OnDestroy {
     formatAdsTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
         let splittedTimestamp = (timestamp + '').split(',');
-        console.log(splittedTimestamp);
         formattedTimestamp = formattedTimestamp + splittedTimestamp[0] + '.';
         if (splittedTimestamp[1].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[1] + '.';
@@ -99,6 +96,10 @@ export class AdsComponent implements OnInit, OnDestroy {
             formattedTimestamp = formattedTimestamp + splittedTimestamp[2] + '.';
         }
         return formattedTimestamp;
+    }
+
+    standBy(id) {
+        (<HTMLImageElement>document.getElementById(id)).src = 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
     }
 
     ngOnDestroy() {
