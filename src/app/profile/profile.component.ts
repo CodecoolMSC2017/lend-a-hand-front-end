@@ -15,8 +15,7 @@ import {ApplicationService} from '../application.service';
 export class ProfileComponent implements OnInit, OnDestroy {
     currentUsersProfile: User;
     user: User;
-    applicationSub: Subscription;
-    adSub: Subscription;
+    profileSub: Subscription;
     ownProfile: boolean;
     error: string;
 
@@ -28,7 +27,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.gem.updateUser(this.user);
 
 
-        this.gem.profileEmitter.subscribe(user => {
+        this.profileSub = this.gem.profileEmitter.subscribe(user => {
             if (user) {
                 this.currentUsersProfile = user;
                 if (this.currentUsersProfile.id === this.user.id) {
@@ -57,13 +56,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     toApplications() {
-        this.applicationSub = this.applicationService.getApplicationsByApplicantId(this.currentUsersProfile.id).subscribe(applications => {
+        this.applicationService.getApplicationsByApplicantId(this.currentUsersProfile.id).subscribe(applications => {
             this.gem.updateApplications(applications);
+            this.router.navigate(['applications']);
         }, error => {
-            this.error = error;
-            console.log(this.error);
+            if (error.error !== null) {
+                this.error = error.error;
+            } else {
+                this.error = error;
+            }
         });
-        this.router.navigate(['applications']);
     }
 
 
@@ -290,7 +292,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
     toManageAdvertisements() {
-        this.adSub = this.adService.getAdsByAdvertiser(this.currentUsersProfile.id).subscribe(ads => {
+        this.adService.getAdsByAdvertiser(this.currentUsersProfile.id).subscribe(ads => {
                 sessionStorage.setItem('ads', JSON.stringify(ads));
                 this.router.navigate(['adsByAdvertiser']);
             }, error => {
@@ -304,8 +306,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-   
-        
+        if (this.profileSub) {
+            this.profileSub.unsubscribe();
+        }
+
     }
 
 }
