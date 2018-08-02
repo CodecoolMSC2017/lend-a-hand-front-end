@@ -15,14 +15,14 @@
                 <table>
                     <tr>
                         <td id="image-td">
-                            <img id={{application.id}} class="applications-image" *ngIf="application.pictureLink!=''"
-                                 src={{application.pictureLink}}
+                            <img id={{application.id}} class="applications-image" *ngIf="application.adPictureLink!=''"
+                                 src={{application.adPictureLink}}
                                  (error)=standBy(application.id)>
                             <img class="applications-image"
-                                 *ngIf="application.pictureLink=='' && application.type=='Hire'"
+                                 *ngIf="application.adPictureLink=='' && application.type=='Hire'"
                                  src='../assets/hire.png'>
                             <img class="applications-image"
-                                 *ngIf="application.pictureLink=='' && application.type=='Offer'"
+                                 *ngIf="application.adPictureLink=='' && application.type=='Offer'"
                                  src='../assets/offer.png'>
                         </td>
                         <td>

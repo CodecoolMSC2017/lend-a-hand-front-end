@@ -10,6 +10,9 @@ export class Application {
     timestamp: string;
     formattedTimestamp: string;
     payment: number;
-    pictureLink: string;
+    adPictureLink: string;
     type: string;
+    applicantPictureLink: string;
+    employeeRatingScore: number;
+    employerRatingScore: number;
 }
