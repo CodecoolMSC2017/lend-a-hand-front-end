@@ -1,31 +1,41 @@
 <div id="bg-div">
 </div>
 <div id="applications">
-    <h1 class="header">My Applications</h1>
     <div *ngFor="let application of applications" class="application">
         <div class="application-container">
-
 
             <div class="application-details">
                 <table>
                     <tr>
-                        <td class="title-td">
-                            <strong class="ad-title">{{application.adTitle}}</strong>
+                        <td id="title-td"><strong class="application-title" (click)="toAd(application.adId)">{{application.adTitle}}</strong>
                         </td>
-                        <td id="date-td">{{application.timestamp}}</td>
+                        <td id="date-td">{{application.formattedTimestamp}}</td>
                     </tr>
                 </table>
                 <table>
                     <tr>
-                        <td id="applicant-name-td"><strong class="applicant-name">{{application.applicantName}}</strong>
+                        <td id="image-td">
+                            <img id={{application.id}} class="applications-image" *ngIf="application.pictureLink!=''"
+                                 src={{application.pictureLink}}
+                                 (error)=standBy(application.id)>
+                            <img class="applications-image"
+                                 *ngIf="application.pictureLink=='' && application.type=='Hire'"
+                                 src='../assets/hire.png'>
+                            <img class="applications-image"
+                                 *ngIf="application.pictureLink=='' && application.type=='Offer'"
+                                 src='../assets/offer.png'>
                         </td>
                         <td>
                             <table>
                                 <tr>
-                                    <td id="message-td">{{application.message}}</td>
+                                    <td id="description-td">{{application.formattedMessage}}</td>
                                 </tr>
                                 <tr>
-                                    <td id="state-td">{{application.state}}</td>
+                                    <td id="state-td"><strong>State: </strong>{{application.state}}</td>
+                                    <td *ngIf="application.payment" class="payment-td"><strong>Payment:</strong>
+                                        {{application.payment}} $ / hour
+                                    </td>
+                                    <td *ngIf="!application.payment" class="payment-td">Payment not specified</td>
                                 </tr>
                             </table>
                         </td>
