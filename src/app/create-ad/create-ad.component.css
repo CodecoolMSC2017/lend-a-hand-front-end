@@ -38,10 +38,6 @@
     padding-left: 2%;
     padding-right: 2%
 }
-
-.select option {
-    border-radius: 15px;
-}
 #typeDiv{
     position:relative;
     color:white;
