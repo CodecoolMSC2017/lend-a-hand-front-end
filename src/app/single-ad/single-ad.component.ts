@@ -107,7 +107,9 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.singleAdSub.unsubscribe();
+        if (this.singleAdSub) {
+            this.singleAdSub.unsubscribe();
+        }
     }
 
     clearAlert() {
