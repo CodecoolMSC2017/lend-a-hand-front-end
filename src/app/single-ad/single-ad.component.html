@@ -2,7 +2,7 @@
     <div id="ad-div" class="content">
         
         <h3 id="ad-title">{{ad.title}}</h3>
-        <button id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply</button>
+        <button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply</button>
         <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">{{ad.advertiserName}}</h4>
         <br>
         <img *ngIf=" ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
@@ -14,7 +14,7 @@
         <h4 *ngIf="ad.payment != null" class="payment">{{ad.payment}} $ / hour</h4>
         <span id="description">{{ad.description}}</span>
     </div>
-    <h2>Applicants</h2>
+    <h2 *ngIf="ownAd">Applicants</h2>
     <br>
     <div id="applicants" *ngIf="ownAd && user && applications">
         <div *ngFor="let application of applications" id="applicant" class="application">
@@ -50,12 +50,17 @@
             </div>
         </div>
     </div>
+    
+    
+</div>
 
-    <div id="applicationMessageDiv" class="hidden">
-        <h4>Message to advertiser</h4>
-        <textarea rows="4" cols="50" id="messageTextbox" type="text" [(ngModel)]="applicationMessage" ></textarea>
-        <br>
-        <br>
-        <button id="sendButton" (click)="sendApplication()">Send</button>
-    </div>
+<div id="applicationMessageDiv" class="hidden">
+    <button class="button" id="cancelButton" (click)="backToAd()">Back</button>
+    
+    <h4 style="position:relative;left:2em;">Message to advertiser</h4>
+    
+    <textarea rows="4" cols="50" id="messageTextbox" type="text" [(ngModel)]="applicationMessage" ></textarea>
+    <br>
+    <br>
+    <button class="button" id="sendButton" (click)="sendApplication()">Send</button>
 </div>

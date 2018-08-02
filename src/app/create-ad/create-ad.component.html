@@ -4,41 +4,39 @@
     
     <div id="categoryDiv">
       <p>Category</p>
-      <select [(ngModel)]="selectedCategory">
+      <select [(ngModel)]="selectedCategory" class="select">
           <option id="category-option" *ngFor="let c of categories" value={{c}}>{{c}}</option>
       </select>
     </div>
 
     <div id="typeDiv">
         <p>Type</p>
-        <select [(ngModel)]="selectedType">
-            <option value="Hire">Hire</option>
+      <select [(ngModel)]="selectedType" class="select">
+        <option value="Hire" selected>Hire</option>
             <option value="Offer">Offer</option>
         </select>
     </div>
-    <br>
     <div id="premiumDiv">
-      <p>Premium  <input type="checkbox" [(ngModel)]="isPremium"></p>
+      <p class="label">Premium <input class="checkbox" type="checkbox" [(ngModel)]="isPremium"></p>
     </div>
-    <br>
-    <br>
     <div id="adTitleDiv">
       <p>Title</p>
       <input type="text" id="titleInput" [(ngModel)]="adTitle" >
     </div>
 
     <br>
-    <br>
 
     <div id="adDescriptionDiv">
       <p>Description of your ad</p>
-      <input type="text" id="descriptionInput" [(ngModel)]="adDescription" >
+      <textarea rows="4" cols="50" type="text" id="descriptionInput" [(ngModel)]="adDescription"></textarea>
     </div>
     <br>
-    <button id="sendAdButton" (click)="sendAd()">Done</button>
+    <button id="sendAdButton" (click)="sendAd()" class="button">Done</button>
 
-
-
+    <div class="info-div">
+      <span class="info" id="info">Create a new advertisement</span>
+      <span class="error hidden" id="error">{{error}}</span>
+    </div>
 
   </div>
 </div>
