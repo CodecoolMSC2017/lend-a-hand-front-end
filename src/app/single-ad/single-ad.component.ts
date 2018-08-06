@@ -94,6 +94,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         this.application.state = 'Applied';
         this.appService.sendApplication(this.application).subscribe(resopone => {
             this.gem.updateInfo('Application successfully created');
+            this.router.navigate(['categories']);
         }, error => {
             if (error.error !== null) {
                 this.error = error.error.message;
@@ -102,7 +103,6 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             }
             this.showError();
         });
-        this.router.navigate(['categories']);
     }
 
     ngOnDestroy() {
