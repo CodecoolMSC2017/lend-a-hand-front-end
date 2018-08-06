@@ -197,6 +197,18 @@ a:link, a:visited, a:active{
     background-color:#0d4053;
 }
 
+#messagesDiv {
+    float: right;
+    height: 100%;
+    width: 10%;
+    cursor: pointer;
+    color: white;
+}
+
+#messagesDiv:hover {
+    background-color: #0d4053;
+}
+
 #filters{
     color:white;
     background-color:#07222c;

@@ -28,6 +28,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
         this.userSub = this.gem.userEmitter.subscribe(user => {
             this.user = user;
         });
+
     }
 
     filterAds() {
@@ -60,6 +61,10 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
 
     onCreateAdClicked() {
         this.router.navigate(['createAd']);
+    }
+
+    onMessagesClicked() {
+        this.router.navigate(['messages']);
     }
 
     hideFilter(event) {
