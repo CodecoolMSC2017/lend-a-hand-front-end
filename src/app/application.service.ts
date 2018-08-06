@@ -24,11 +24,11 @@ export class ApplicationService {
     }
 
     acceptApplication(application: Application): Observable<any> {
-        return this.http.put('/api/applications/accept/' + application.id);
+        return this.http.put('/api/applications/accept/' + application.id, null);
     }
 
     declineApplication(application: Application): Observable<any> {
-        return this.http.put('/api/applications/decline/' + application.id);
+        return this.http.put('/api/applications/decline/' + application.id, null);
     }
 
 
