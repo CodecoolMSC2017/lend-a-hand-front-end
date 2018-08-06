@@ -235,13 +235,17 @@
 
 .state-td {
     text-align: left;
-    width: 60em;
+    width: 30em;
 }
 
 .rating-td {
     text-align: right;
     width: 60em;
     white-space: nowrap;
+}
+
+.app-table {
+    width: 100%;
 }
 
 

@@ -60,12 +60,18 @@
                                              src='../assets/offer.png'>
                                     </td>
                                     <td>
-                                        <table>
+                                        <table class="app-table">
                                             <tr>
                                                 <td id="description-td">{{application.formattedMessage}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="state-td"><strong>State: </strong>{{application.state}}</td>
+                                                <td>
+                                                    <button (click)="accept(application)">Accept</button>
+                                                </td>
+                                                <td>
+                                                    <button (click)="decline(application)">Decline</button>
+                                                </td>
                                                 <td *ngIf="application.type=='Offer'" class="rating-td">
                                                     <strong>Rating:</strong>
                                                     {{application.employerRatingScore}} / 5

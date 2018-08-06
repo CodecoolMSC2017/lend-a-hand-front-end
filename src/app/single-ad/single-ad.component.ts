@@ -57,7 +57,6 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
         this.appService.getApplicationsByAd(this.ad.id).subscribe(applications => {
             this.applications = this.formatApps(applications);
-            console.log(this.applications);
         });
 
     }
@@ -166,7 +165,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         for (let i = 0; i < applications.length; i++) {
             const application = applications[i];
             if (application.message.length > 85) {
-                application.formattedMessage = application.message.substring(0, 85) + '...';
+                application.formattedMessage = application.message.substring(0, 200) + '...';
             } else {
                 application.formattedMessage = application.message;
             }
@@ -175,6 +174,32 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             formattedApps.push(application);
         }
         return formattedApps;
+    }
+
+    accept(application: Application) {
+        this.appService.acceptApplication(application).subscribe(applications => {
+            this.applications = this.formatApps(applications);
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+            this.showError();
+        });
+    }
+
+    decline(application: Application) {
+        this.appService.declineApplication(application).subscribe(applications => {
+            this.applications = this.formatApps(applications);
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+            this.showError();
+        });
     }
 
 

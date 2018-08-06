@@ -86,7 +86,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         for (let i = 0; i < applications.length; i++) {
             const application = applications[i];
             if (application.message.length > 85) {
-                application.formattedMessage = application.message.substring(0, 85) + '...';
+                application.formattedMessage = application.message.substring(0, 200) + '...';
             } else {
                 application.formattedMessage = application.message;
             }

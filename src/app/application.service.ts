@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {Application} from './model/application.model';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,17 @@ export class ApplicationService {
         return this.http.get('api/applications/applicants/' + applicantId);
     }
 
-    getApplicationsByAd(adId) : Observable<any>{
-        return this.http.get('/api/applications/ads/'+adId);
+    getApplicationsByAd(adId): Observable<any> {
+        return this.http.get('/api/applications/ads/' + adId);
     }
+
+    acceptApplication(application: Application): Observable<any> {
+        return this.http.put('/api/applications/accept/' + application.id);
+    }
+
+    declineApplication(application: Application): Observable<any> {
+        return this.http.put('/api/applications/decline/' + application.id);
+    }
+
+
 }
