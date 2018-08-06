@@ -20,6 +20,7 @@ import {RatingsComponent} from './ratings/ratings.component';
 import {CreateAdComponent} from './create-ad/create-ad.component';
 import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 import {ApplicationsComponent} from './applications/applications.component';
+import {MessagesComponent} from './messages/messages.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,6 @@ import {ApplicationsComponent} from './applications/applications.component';
         RegisterComponent,
         ProfileComponent,
         MainPageComponent,
-        
         AdsComponent,
         HeaderBarComponent,
         SingleAdComponent,
@@ -37,7 +37,8 @@ import {ApplicationsComponent} from './applications/applications.component';
         CreateAdComponent,
         RatingsComponent,
         AdsByAdvertiserComponent,
-        ApplicationsComponent
+        ApplicationsComponent,
+        MessagesComponent
     ],
     imports: [
         BrowserModule,

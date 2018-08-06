@@ -13,23 +13,26 @@ import {CreateAdComponent} from './create-ad/create-ad.component';
 import {RatingsComponent} from './ratings/ratings.component';
 import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 import {ApplicationsComponent} from './applications/applications.component';
+import {MessagesComponent} from './messages/messages.component';
 
 const routes: Routes = [
-    {path: '', redirectTo: '/categories', pathMatch: 'full'},
-    {path: 'login', component: LoginComponent},
-    {path: 'ads', component: AdsComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: 'main', component: MainPageComponent},
-    {path: 'ad', component: SingleAdComponent},
-    {path: 'createAd', component: CreateAdComponent},
-    {path: 'categories', component: CategoriesComponent},
-    {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
-    {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
-    {path: 'verification', component: VerificationComponent},
-    {path: 'ratings', component: RatingsComponent},
-    {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]},
-    {path: 'applications', component: ApplicationsComponent}
-];
+        {path: '', redirectTo: '/categories', pathMatch: 'full'},
+        {path: 'login', component: LoginComponent},
+        {path: 'ads', component: AdsComponent},
+        {path: 'register', component: RegisterComponent},
+        {path: 'main', component: MainPageComponent},
+        {path: 'ad', component: SingleAdComponent},
+        {path: 'createAd', component: CreateAdComponent},
+        {path: 'categories', component: CategoriesComponent},
+        {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
+        {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
+        {path: 'verification', component: VerificationComponent},
+        {path: 'ratings', component: RatingsComponent},
+        {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]},
+        {path: 'applications', component: ApplicationsComponent},
+        {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]}
+    ]
+;
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
