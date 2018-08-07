@@ -1,14 +1,18 @@
+import {Message} from './message.model';
+import {Application} from './application.model';
+import {Ad} from './ad.model';
+
 export class User {
     id: number;
-    ads = [];
+    ads: Ad[];
     authorities = [];
     employeeRatings = [];
     employerRatings = [];
     ratedEmployees = [];
     ratedEmployers = [];
-    applications = [];
-    sentMessages = [];
-    receivedMessages = [];
+    applications: Application[];
+    sentMessages: Message[];
+    receivedMessages: Message[];
     employerRatingScore: number;
     employeeRatingScore: number;
     email: string;
@@ -26,4 +30,6 @@ export class User {
     ableToAd: boolean;
     enabled: boolean;
     verificated: boolean;
+    pictureLink: string;
+    contacts: User[];
 }

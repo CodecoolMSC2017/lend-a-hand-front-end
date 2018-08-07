@@ -1,5 +1,5 @@
 #messageDiv {
-    overflow: auto;
+    overflow: hidden;
 }
 
 #message-div {
@@ -129,20 +129,10 @@ body {
     }
 }
 
-#frame #sidepanel #profile .wrap img.online {
-    border: 2px solid #2ecc71;
-}
-
-#frame #sidepanel #profile .wrap img.away {
-    border: 2px solid #f1c40f;
-}
-
-#frame #sidepanel #profile .wrap img.busy {
-    border: 2px solid #e74c3c;
-}
-
-#frame #sidepanel #profile .wrap img.offline {
-    border: 2px solid #95a5a6;
+#frame #sidepanel #profile .wrap img {
+    border: 2px solid white;
+    height: 50px;
+    cursor: default;
 }
 
 #frame #sidepanel #profile .wrap p {
@@ -821,5 +811,9 @@ ol, ul {
 table {
     border-collapse: collapse;
     border-spacing: 0
+}
+
+#user-name {
+    cursor: pointer;
 }
 
