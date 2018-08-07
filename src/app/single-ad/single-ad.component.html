@@ -13,7 +13,7 @@
             </div>
 
             <div id="picture-div">
-                <img *ngIf="ad.pictureLink == null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
+                <img *ngIf="ad.pictureLink == null" src="../assets/noImage.jpg"
                      class="ad-img">
                 <img id={{ad.id}} *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img"
                      (error)="standBy(ad.id)">

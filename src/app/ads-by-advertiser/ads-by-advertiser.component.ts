@@ -77,7 +77,6 @@ export class AdsByAdvertiserComponent implements OnInit {
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);
     }
-
     standBy(id) {
         (<HTMLImageElement>document.getElementById(id)).src = 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
     }
