@@ -1,8 +1,9 @@
 <link rel='stylesheet prefetch'
       href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
 
+<h2 class="error-div" id="error"> {{error}}</h2>
 <div id="messageDiv">
-    <div id="message-div">
+    <div id="message-div" *ngIf="loaded">
         <div id="frame">
             <div id="sidepanel">
                 <div id="profile">
@@ -17,21 +18,26 @@
                 </div>
                 <div id="contacts">
                     <ul *ngFor="let contact of contacts">
-                        <li *ngIf="contact.user.id==activeContact.user.id" class="contact active" >
+                        <li *ngIf="contact.user.id==activeContact.user.id" class="contact active">
                             <div class="wrap">
-                                    <img *ngIf="contact.user.pictureLink!=null" id="{{contact.user.id}}" src={{contact.user.pictureLink}} alt="" (error)=standBy(contact.user.id)/>
-                                    <img *ngIf="contact.user.pictureLink==null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt="" />
-                                    <div class="meta">
-                                        <p class="name">{{contact.user.userName}}</p>
-                                        <p class="preview">{{contact.lastMessage.text}}</p>
-                                    </div>
+                                <img *ngIf="contact.user.pictureLink!=null" id="{{contact.user.id}}"
+                                     src={{contact.user.pictureLink}} alt="" (error)=standBy(contact.user.id)/>
+                                <img *ngIf="contact.user.pictureLink==null"
+                                     src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt=""/>
+                                <div class="meta">
+                                    <p class="name">{{contact.user.userName}}</p>
+                                    <p class="preview">{{contact.lastMessage.text}}</p>
                                 </div>
-                            </li>
-        
-                        <li *ngIf="contact.user.id!=activeContact.user.id" class="contact" (click)=setActiveContact(contact) >
+                            </div>
+                        </li>
+
+                        <li *ngIf="contact.user.id!=activeContact.user.id" class="contact"
+                            (click)=setActiveContact(contact)>
                             <div class="wrap">
-                                <img *ngIf="contact.user.pictureLink!=null" id="{{contact.user.id}}" src={{contact.user.pictureLink}} alt="" (error)=standBy(contact.user.id)/>
-                                <img *ngIf="contact.user.pictureLink==null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt="" />
+                                <img *ngIf="contact.user.pictureLink!=null" id="{{contact.user.id}}"
+                                     src={{contact.user.pictureLink}} alt="" (error)=standBy(contact.user.id)/>
+                                <img *ngIf="contact.user.pictureLink==null"
+                                     src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt=""/>
                                 <div class="meta">
                                     <p class="name">{{contact.user.userName}}</p>
                                     <p class="preview">{{contact.lastMessage.text}}</p>
@@ -49,27 +55,32 @@
             </div>
             <div class="content">
                 <div class="contact-profile">
-                    <img *ngIf="activeContact.user.pictureLink!=null" id="{{activeContact.user.id}}" src={{activeContact.user.pictureLink}} alt="" (error)=standBy(activeContact.user.id)/>
-                    <img *ngIf="activeContact.user.pictureLink==null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt="" />
+                    <img *ngIf="activeContact.user.pictureLink!=null" id="{{activeContact.user.id}}"
+                         src={{activeContact.user.pictureLink}} alt="" (error)=standBy(activeContact.user.id)/>
+                    <img *ngIf="activeContact.user.pictureLink==null"
+                         src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt=""/>
                     <p class="name">{{activeContact.user.userName}}</p>
                 </div>
-                <div class="messages">
+                <div class="messages" id="messageContainer">
                     <ul *ngFor="let message of activeContact.messages">
                         <li *ngIf="message.senderId==user.id" class="sent">
                             <img src="{{user.pictureLink}}" alt=""/>
                             <p>{{message.text}}</p>
                         </li>
                         <li *ngIf="message.senderId!=user.id" class="replies">
-                                <img *ngIf="activeContact.user.pictureLink!=null" id="{{activeContact.user.id}}" src={{activeContact.user.pictureLink}} alt="" (error)=standBy(activeContact.user.id)/>
-                                <img *ngIf="activeContact.user.pictureLink==null" src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt="" />
-                                        <p>{{message.text}}</p>
-                        </li>                    
+                            <img *ngIf="activeContact.user.pictureLink!=null" id="{{activeContact.user.id}}"
+                                 src={{activeContact.user.pictureLink}} alt="" (error)=standBy(activeContact.user.id)/>
+                            <img *ngIf="activeContact.user.pictureLink==null"
+                                 src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg" alt=""/>
+                            <p>{{message.text}}</p>
+                        </li>
                     </ul>
                 </div>
                 <div class="message-input">
                     <div class="wrap">
-                        <input type="text" placeholder="Write your message..."/>
-                        <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        <input type="text" placeholder="Write your message..." id="message-input"/>
+                        <button class="submit" (click)="sendMessage()"><i class="fa fa-paper-plane"
+                                                                          aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>

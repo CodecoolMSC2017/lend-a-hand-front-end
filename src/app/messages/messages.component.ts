@@ -3,6 +3,7 @@ import {GlobalEventManagerService} from '../service/global-event-manager.service
 import {User} from '../model/user.model';
 import {MessageService} from '../service/message.service';
 import {Contact} from '../model/contact.model';
+import {Message} from '../model/message.model';
 
 @Component({
     selector: 'app-messages',
@@ -13,6 +14,8 @@ export class MessagesComponent implements OnInit {
     user: User;
     contacts: Contact[];
     activeContact: Contact;
+    loaded = false;
+    error: string;
 
     constructor(private gem: GlobalEventManagerService, private messageService: MessageService) {
     }
@@ -23,7 +26,7 @@ export class MessagesComponent implements OnInit {
         this.messageService.getContactsByUserId(this.user.id).subscribe(response => {
             this.contacts = response;
             this.activeContact = this.contacts[0];
-            console.log(this.activeContact);
+            this.loaded = true;
 
         });
     }
@@ -34,6 +37,40 @@ export class MessagesComponent implements OnInit {
 
     setActiveContact(contact: Contact) {
         this.activeContact = contact;
+    }
+
+    sendMessage() {
+        const text = (<HTMLInputElement>document.getElementById('message-input')).value;
+        if (text === '' || text === null || text === undefined || text === ' ') {
+            return;
+        }
+        (<HTMLInputElement>document.getElementById('message-input')).value = '';
+        const message = new Message();
+        message.senderId = this.user.id;
+        message.receiverId = this.activeContact.user.id;
+        message.text = text;
+        this.messageService.createMessage(message).subscribe(newMessage => {
+            this.activeContact.messages.push(newMessage);
+            this.activeContact.lastMessage = newMessage;
+            setTimeout(this.scrollDown, 50);
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error;
+            } else {
+                this.error = error;
+            }
+            setTimeout(this.clearAlert, 3000);
+        });
+
+    }
+
+    scrollDown() {
+        const messageContainer = document.getElementById('messageContainer');
+        messageContainer.scrollTop = messageContainer.scrollHeight + 300;
+    }
+
+    clearAlert() {
+        this.error = '';
     }
 
 }
