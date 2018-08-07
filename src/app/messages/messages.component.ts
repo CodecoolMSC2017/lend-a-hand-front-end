@@ -32,7 +32,7 @@ export class MessagesComponent implements OnInit {
     }
 
     standBy(id) {
-        (<HTMLImageElement>document.getElementById(id)).src = 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
+        (<HTMLImageElement>document.getElementById(id)).src = '../assets/noImage.jpg';
     }
 
     setActiveContact(contact: Contact) {

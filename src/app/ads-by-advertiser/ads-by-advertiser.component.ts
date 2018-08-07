@@ -78,7 +78,7 @@ export class AdsByAdvertiserComponent implements OnInit {
         this.router.navigate(['ad']);
     }
     standBy(id) {
-        (<HTMLImageElement>document.getElementById(id)).src = 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
+        (<HTMLImageElement>document.getElementById(id)).src = '../assets/No-image-available.jpg';
     }
 
 }

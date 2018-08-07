@@ -98,7 +98,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     }
 
     standBy(id) {
-        (<HTMLImageElement>document.getElementById(id)).src = 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
+        (<HTMLImageElement>document.getElementById(id)).src = '../assets/noImage.jpg';
     }
 
 }

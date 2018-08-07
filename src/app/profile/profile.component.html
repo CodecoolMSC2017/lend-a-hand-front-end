@@ -4,7 +4,7 @@
             <div class="content">
                 <h2 class="username" id="username">{{currentUsersProfile.userName}}'s profile</h2>
                 <img *ngIf=" currentUsersProfile.pictureLink == null"
-                     src="http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg"
+                     src="../assets/noImage.jpg"
                      class="profile-img">
                 <img *ngIf=" currentUsersProfile.pictureLink != null" src="{{currentUsersProfile.pictureLink}}"
                      class="profile-img">

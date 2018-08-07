@@ -811,3 +811,7 @@ table {
     cursor: pointer;
 }
 
+.error-div {
+    margin-top: 30px;
+    color: #BE1000;
+}
