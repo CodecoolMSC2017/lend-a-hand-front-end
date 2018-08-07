@@ -52,7 +52,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     }
 
     clearAlert() {
-        document.getElementById('info').innerText = '';
+        this.info = '';
     }
 }
 

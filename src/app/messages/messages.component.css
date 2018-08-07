@@ -463,20 +463,9 @@ body {
     background: #95a5a6;
 }
 
-#frame #sidepanel #contacts ul li.contact .wrap span.online {
-    background: #2ecc71;
-}
-
-#frame #sidepanel #contacts ul li.contact .wrap span.away {
-    background: #f1c40f;
-}
-
-#frame #sidepanel #contacts ul li.contact .wrap span.busy {
-    background: #e74c3c;
-}
-
 #frame #sidepanel #contacts ul li.contact .wrap img {
     width: 40px;
+    height: 40px;
     border-radius: 50%;
     float: left;
     margin-right: 10px;
@@ -617,6 +606,7 @@ body {
 
 #frame .content .contact-profile img {
     width: 40px;
+    height: 40px;
     border-radius: 50%;
     float: left;
     margin: 9px 12px 0 9px;
@@ -685,6 +675,8 @@ body {
 
 #frame .content .messages ul li.sent p {
     background: #435f7a;
+    float: left;
+    text-align: left;
     color: #f5f5f5;
 }
 
@@ -696,10 +688,12 @@ body {
 #frame .content .messages ul li.replies p {
     background: #f5f5f5;
     float: right;
+    text-align: right;
 }
 
 #frame .content .messages ul li img {
-    width: 22px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     float: left;
 }

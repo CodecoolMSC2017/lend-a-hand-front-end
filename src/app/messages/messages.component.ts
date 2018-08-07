@@ -12,6 +12,7 @@ import {Contact} from '../model/contact.model';
 export class MessagesComponent implements OnInit {
     user: User;
     contacts: Contact[];
+    activeContact: Contact;
 
     constructor(private gem: GlobalEventManagerService, private messageService: MessageService) {
     }
@@ -21,8 +22,18 @@ export class MessagesComponent implements OnInit {
         this.gem.updateUser(this.user);
         this.messageService.getContactsByUserId(this.user.id).subscribe(response => {
             this.contacts = response;
-            console.log(this.contacts);
+            this.activeContact = this.contacts[0];
+            console.log(this.activeContact);
+
         });
+    }
+
+    standBy(id) {
+        (<HTMLImageElement>document.getElementById(id)).src = 'http://www.bsmc.net.au/wp-content/uploads/No-image-available.jpg';
+    }
+
+    setActiveContact(contact: Contact) {
+        this.activeContact = contact;
     }
 
 }
