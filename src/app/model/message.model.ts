@@ -4,4 +4,6 @@ export class Message {
     receiverId: number;
     text: string;
     timestamp: string;
+    adId: number;
+    adTitle: string;
 }
