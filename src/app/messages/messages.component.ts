@@ -33,8 +33,7 @@ export class MessagesComponent implements OnInit {
             this.activeContacts = this.contacts;
             this.activeContact = this.contacts[0];
             this.loaded = true;
-            this.scrollDown();
-
+            setTimeout(this.scrollDown, 50);
         });
 
     }
@@ -140,7 +139,29 @@ export class MessagesComponent implements OnInit {
     }
 
     onCompleteClicked() {
+        this.applicationService.completeApplication(this.activeContact.application.id).subscribe(application => {
+            this.router.navigate(['rate']);
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+            setTimeout(this.clearAlert, 3000);
+        });
+    }
 
+    onFailClicked() {
+        this.applicationService.failedApplication(this.activeContact.application.id).subscribe(application => {
+            this.router.navigate(['rate']);
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+            setTimeout(this.clearAlert, 3000);
+        });
     }
 
 }

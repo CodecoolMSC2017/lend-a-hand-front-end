@@ -31,12 +31,12 @@ export class ApplicationService {
         return this.http.put('/api/applications/decline/' + application.id, null);
     }
 
-    failedApplication(application: Application): Observable<any> {
-        return this.http.put('/api/applications/fail/' + application.id, null);
+    failedApplication(applicationId: number): Observable<any> {
+        return this.http.put('/api/applications/fail/' + applicationId, null);
     }
 
-    completeApplication(application: Application): Observable<any> {
-        return this.http.put('/api/applications/complete/' + application.id, null);
+    completeApplication(applicationId: number): Observable<any> {
+        return this.http.put('/api/applications/complete/' + applicationId, null);
     }
 
 
