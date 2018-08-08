@@ -13,6 +13,7 @@ import {Message} from '../model/message.model';
 export class MessagesComponent implements OnInit {
     user: User;
     contacts: Contact[];
+    activeContacts: Contact[];
     activeContact: Contact;
     loaded = false;
     error: string;
@@ -25,6 +26,7 @@ export class MessagesComponent implements OnInit {
         this.gem.updateUser(this.user);
         this.messageService.getContactsByUserId(this.user.id).subscribe(response => {
             this.contacts = response;
+            this.activeContacts = this.contacts;
             this.activeContact = this.contacts[0];
             this.loaded = true;
 
@@ -80,6 +82,21 @@ export class MessagesComponent implements OnInit {
 
     clearAlert() {
         this.error = '';
+    }
+
+    searchActiveContacts() {
+        const text = (<HTMLInputElement>document.getElementById('search-input')).value;
+        if (text === '' || text === null) {
+            this.activeContacts = this.contacts;
+        } else {
+            const array = [];
+            for (const e of <any>this.contacts) {
+                if ((<Contact>e).user.userName.search(text) !== -1) {
+                    array.push(e);
+                }
+            }
+            this.activeContacts = array;
+        }
     }
 
 }
