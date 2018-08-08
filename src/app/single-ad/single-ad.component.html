@@ -10,6 +10,7 @@
             <div id="date-advertiser-div">
                 <h4 id="timestamp">{{ad.timestamp}}</h4>
                 <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">Advertiser: {{ad.advertiserName}}</h4>
+                <h4 id="state">State: {{ad.state}}</h4>
             </div>
 
             <div id="picture-div">
@@ -32,7 +33,7 @@
         <br>
         <div id="applicants" *ngIf="ownAd && user && applications">
             <div id="applications">
-                <h2 *ngIf="ownAd">Applicants</h2>
+                <h2 class="applicants" *ngIf="ownAd">Applicants</h2>
                 <div *ngFor="let application of applications" class="application">
                     <div class="application-container">
 
@@ -66,10 +67,10 @@
                                             </tr>
                                             <tr>
                                                 <td class="state-td"><strong>State: </strong>{{application.state}}</td>
-                                                <td>
+                                                <td *ngIf="application.state =='Applied'">
                                                     <button (click)="accept(application)">Accept</button>
                                                 </td>
-                                                <td>
+                                                <td *ngIf="application.state =='Applied'">
                                                     <button (click)="decline(application)">Decline</button>
                                                 </td>
                                                 <td *ngIf="application.type=='Offer'" class="rating-td">
