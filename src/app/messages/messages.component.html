@@ -9,7 +9,7 @@
                 <div id="profile">
                     <div class="wrap">
                         <img id="profile-img" src="{{user.pictureLink}}" alt=""/>
-                        <p id="user-name">{{user.userName}}</p>
+                        <p id="user-name" (click)="toProfile(user.id)">{{user.userName}}</p>
                     </div>
                 </div>
                 <div id="search">
@@ -47,10 +47,10 @@
                         </li>
                     </ul>
                 </div>
-                <div id="bottom-bar">
-                    <button id="complete"><i class="fa fa-check" aria-hidden="true"></i>
+                <div *ngIf="activeContact.ad.advertiserId == user.id" id="bottom-bar">
+                    <button id="complete" (click)="onCompleteClicked()"><i class="fa fa-check" aria-hidden="true"></i>
                         <span>Complete</span></button>
-                    <button id="failed"><i class="fa fa-times" aria-hidden="true"></i>
+                    <button id="failed" (click)="onFailClicked()"><i class="fa fa-times" aria-hidden="true"></i>
                         <span>Failed</span>
                     </button>
                 </div>
@@ -61,8 +61,8 @@
                          src={{activeContact.user.pictureLink}} alt="" (error)="standBy(activeContact.user.id)"/>
                     <img *ngIf="activeContact.user.pictureLink==null"
                          src="../assets/noImage.jpg" alt=""/>
-                    <p class="name">{{activeContact.user.userName}}</p>
-                    <p class="title">{{activeContact.ad.title}}</p>
+                    <p class="name" (click)="toProfile(activeContact.user.id)">{{activeContact.user.userName}}</p>
+                    <p class="title" (click)="toAd(activeContact.ad.id)">{{activeContact.ad.title}}</p>
                     <img *ngIf="activeContact.ad.pictureLink != null" id="activeContact.ad.id"
                          src="{{activeContact.ad.pictureLink}}" alt="" (error)="standByAd(activeContact.ad.id)"/>
                     <img *ngIf="activeContact.ad.pictureLink==null"

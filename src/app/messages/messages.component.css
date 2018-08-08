@@ -630,6 +630,7 @@ body {
 
 #frame .content .contact-profile p {
     float: left;
+    cursor: pointer;
 }
 
 #frame .content .contact-profile .social-media {

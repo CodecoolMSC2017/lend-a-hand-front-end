@@ -4,6 +4,10 @@ import {User} from '../model/user.model';
 import {MessageService} from '../service/message.service';
 import {Contact} from '../model/contact.model';
 import {Message} from '../model/message.model';
+import {UserService} from '../service/user.service';
+import {Router} from '@angular/router';
+import {AdService} from '../service/ad.service';
+import {ApplicationService} from '../application.service';
 
 @Component({
     selector: 'app-messages',
@@ -18,7 +22,7 @@ export class MessagesComponent implements OnInit {
     loaded = false;
     error: string;
 
-    constructor(private gem: GlobalEventManagerService, private messageService: MessageService) {
+    constructor(private gem: GlobalEventManagerService, private messageService: MessageService, private userService: UserService, private adService: AdService, private router: Router, private applicationService: ApplicationService) {
     }
 
     ngOnInit() {
@@ -29,8 +33,11 @@ export class MessagesComponent implements OnInit {
             this.activeContacts = this.contacts;
             this.activeContact = this.contacts[0];
             this.loaded = true;
+            console.log(this.user.id);
+            console.log(this.activeContact.ad);
 
         });
+
     }
 
     standByAd(id) {
@@ -97,6 +104,42 @@ export class MessagesComponent implements OnInit {
             }
             this.activeContacts = array;
         }
+    }
+
+
+    toProfile(userId) {
+        this.userService.getUserById(userId).subscribe(user => {
+            this.gem.updateProfile(user);
+            this.router.navigate(['profile']);
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+            setTimeout(this.clearAlert, 3000);
+        });
+    }
+
+    toAd(adId: number) {
+        this.adService.getAdById(adId).subscribe(ad => {
+            if (ad) {
+                this.gem.updateSingleAd(ad);
+                this.router.navigate(['ad']);
+            }
+
+        }, error => {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+            setTimeout(this.clearAlert, 3000);
+        });
+    }
+
+    onDeclineClicked() {
+        this.applicationService.declineApplication();
     }
 
 }
