@@ -8,7 +8,10 @@
             <div id="sidepanel">
                 <div id="profile">
                     <div class="wrap">
-                        <img id="profile-img" src="{{user.pictureLink}}" alt=""/>
+                        <img *ngIf="user.pictureLink!=null" class="{{user.id}}"
+                             src={{user.pictureLink}} alt="" (error)="standBy(user.id)"/>
+                        <img *ngIf="user.pictureLink==null"
+                             src="../assets/noImage.jpg" alt=""/>
                         <p id="user-name" (click)="toProfile(user.id)">{{user.userName}}</p>
                     </div>
                 </div>
@@ -63,9 +66,9 @@
                          src="../assets/noImage.jpg" alt=""/>
                     <p class="name" (click)="toProfile(activeContact.user.id)">{{activeContact.user.userName}}</p>
                     <p class="title" (click)="toAd(activeContact.ad.id)">{{activeContact.ad.title}}</p>
-                    <img *ngIf="activeContact.ad.pictureLink != null" id="activeContact.ad.id"
+                    <img *ngIf="activeContact.ad.pictureLink != null" id="{{activeContact.ad.id}}"
                          src="{{activeContact.ad.pictureLink}}" alt="" (error)="standByAd(activeContact.ad.id)"/>
-                    <img *ngIf="activeContact.ad.pictureLink==null"
+                    <img *ngIf="activeContact.ad.pictureLink == null"
                          src="../assets/noImage.jpg" alt=""/>
 
                 </div>
@@ -75,7 +78,10 @@
                 <div class="messages" id="messageContainer">
                     <ul *ngFor="let message of activeContact.messages">
                         <li *ngIf="message.senderId==user.id" class="sent">
-                            <img src="{{user.pictureLink}}" alt=""/>
+                            <img *ngIf="user.pictureLink!=null" class="{{user.id}}"
+                                 src={{user.pictureLink}} alt="" (error)="standBy(user.id)"/>
+                            <img *ngIf="user.pictureLink==null"
+                                 src="../assets/noImage.jpg" alt=""/>
                             <p>{{message.text}}</p>
                         </li>
                         <li *ngIf="message.senderId!=user.id" class="replies">
