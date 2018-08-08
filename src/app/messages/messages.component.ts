@@ -33,8 +33,7 @@ export class MessagesComponent implements OnInit {
             this.activeContacts = this.contacts;
             this.activeContact = this.contacts[0];
             this.loaded = true;
-            console.log(this.user.id);
-            console.log(this.activeContact.ad);
+            this.scrollDown();
 
         });
 
@@ -53,6 +52,7 @@ export class MessagesComponent implements OnInit {
 
     setActiveContact(contact: Contact) {
         this.activeContact = contact;
+        setTimeout(this.scrollDown, 5);
     }
 
     sendMessage() {
@@ -138,8 +138,8 @@ export class MessagesComponent implements OnInit {
         });
     }
 
-    onDeclineClicked() {
-        this.applicationService.declineApplication();
+    onCompleteClicked() {
+
     }
 
 }
