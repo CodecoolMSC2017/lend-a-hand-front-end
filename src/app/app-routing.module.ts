@@ -14,6 +14,7 @@ import {RatingsComponent} from './ratings/ratings.component';
 import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 import {ApplicationsComponent} from './applications/applications.component';
 import {MessagesComponent} from './messages/messages.component';
+import {RateComponent} from './rate/rate.component';
 
 const routes: Routes = [
         {path: '', redirectTo: '/categories', pathMatch: 'full'},
@@ -30,7 +31,8 @@ const routes: Routes = [
         {path: 'ratings', component: RatingsComponent},
         {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]},
         {path: 'applications', component: ApplicationsComponent},
-        {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]}
+    {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]},
+    {path: 'rate', component: RateComponent, canActivate: [LoginGuard]}
     ]
 ;
 
