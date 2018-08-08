@@ -67,6 +67,7 @@ export class MessagesComponent implements OnInit {
         message.text = text;
         message.adId = this.activeContact.ad.id;
         message.adTitle = this.activeContact.ad.title;
+        message.applicationId = this.activeContact.application.id;
         this.messageService.createMessage(message).subscribe(newMessage => {
             this.activeContact.messages.push(newMessage);
             this.activeContact.lastMessage = newMessage;
