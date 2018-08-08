@@ -31,8 +31,15 @@ export class MessagesComponent implements OnInit {
         });
     }
 
-    standBy(id) {
+    standByAd(id) {
         (<HTMLImageElement>document.getElementById(id)).src = '../assets/noImage.jpg';
+    }
+
+    standBy(classes) {
+        const images = document.getElementsByClassName(classes);
+        for (const e of <any>images) {
+            (<HTMLImageElement>e).src = '../assets/noImage.jpg';
+        }
     }
 
     setActiveContact(contact: Contact) {
@@ -49,6 +56,8 @@ export class MessagesComponent implements OnInit {
         message.senderId = this.user.id;
         message.receiverId = this.activeContact.user.id;
         message.text = text;
+        message.adId = this.activeContact.ad.id;
+        message.adTitle = this.activeContact.ad.title;
         this.messageService.createMessage(message).subscribe(newMessage => {
             this.activeContact.messages.push(newMessage);
             this.activeContact.lastMessage = newMessage;

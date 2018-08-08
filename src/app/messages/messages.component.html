@@ -13,15 +13,15 @@
                     </div>
                 </div>
                 <div id="search">
-                    <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-                    <input type="text" placeholder="Search contacts..."/>
+                    <label for="search-input"><i class="fa fa-search" aria-hidden="true"></i></label>
+                    <input type="text" placeholder="Search contacts..." id="search-input"/>
                 </div>
                 <div id="contacts">
                     <ul *ngFor="let contact of contacts">
                         <li *ngIf="contact.user.id==activeContact.user.id" class="contact active">
                             <div class="wrap">
-                                <img *ngIf="contact.user.pictureLink!=null" id="{{contact.user.id}}"
-                                     src={{contact.user.pictureLink}} alt="" (error)=standBy(contact.user.id)/>
+                                <img *ngIf="contact.user.pictureLink!=null" class="{{contact.user.id}}"
+                                     src={{contact.user.pictureLink}} alt="" (error)="standBy(contact.user.id)"/>
                                 <img *ngIf="contact.user.pictureLink==null"
                                      src="../assets/noImage.jpg" alt=""/>
                                 <div class="meta">
@@ -34,8 +34,8 @@
                         <li *ngIf="contact.user.id!=activeContact.user.id" class="contact"
                             (click)=setActiveContact(contact)>
                             <div class="wrap">
-                                <img *ngIf="contact.user.pictureLink!=null" id="{{contact.user.id}}"
-                                     src={{contact.user.pictureLink}} alt="" (error)=standBy(contact.user.id)/>
+                                <img *ngIf="contact.user.pictureLink!=null" class="{{contact.user.id}}"
+                                     src={{contact.user.pictureLink}} alt="" (error)="standBy(contact.user.id)"/>
                                 <img *ngIf="contact.user.pictureLink==null"
                                      src="../assets/noImage.jpg" alt=""/>
                                 <div class="meta">
@@ -55,11 +55,20 @@
             </div>
             <div class="content">
                 <div class="contact-profile">
-                    <img *ngIf="activeContact.user.pictureLink!=null" id="{{activeContact.user.id}}"
-                         src={{activeContact.user.pictureLink}} alt="" (error)=standBy(activeContact.user.id)/>
+                    <img *ngIf="activeContact.user.pictureLink!=null" class="{{activeContact.user.id}}"
+                         src={{activeContact.user.pictureLink}} alt="" (error)="standBy(activeContact.user.id)"/>
                     <img *ngIf="activeContact.user.pictureLink==null"
                          src="../assets/noImage.jpg" alt=""/>
                     <p class="name">{{activeContact.user.userName}}</p>
+                    <p class="title">{{activeContact.ad.title}}</p>
+                    <img *ngIf="activeContact.ad.pictureLink != null" id="activeContact.ad.id"
+                         src="{{activeContact.ad.pictureLink}}" alt="" (error)="standByAd(activeContact.ad.id)"/>
+                    <img *ngIf="activeContact.ad.pictureLink==null"
+                         src="../assets/noImage.jpg" alt=""/>
+
+                </div>
+                <div class="ad-content">
+
                 </div>
                 <div class="messages" id="messageContainer">
                     <ul *ngFor="let message of activeContact.messages">
@@ -68,8 +77,9 @@
                             <p>{{message.text}}</p>
                         </li>
                         <li *ngIf="message.senderId!=user.id" class="replies">
-                            <img *ngIf="activeContact.user.pictureLink!=null" id="{{activeContact.user.id}}"
-                                 src={{activeContact.user.pictureLink}} alt="" (error)=standBy(activeContact.user.id)/>
+                            <img *ngIf="activeContact.user.pictureLink!=null" class="{{activeContact.user.id}}"
+                                 src={{activeContact.user.pictureLink}} alt=""
+                                 (error)="standBy(activeContact.user.id)"/>
                             <img *ngIf="activeContact.user.pictureLink==null"
                                  src="../assets/noImage.jpg" alt=""/>
                             <p>{{message.text}}</p>
