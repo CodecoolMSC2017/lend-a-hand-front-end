@@ -12,4 +12,5 @@ export class Ad {
     advertiserId: number;
     advertiserName: string;
     pictureLink: string;
+    state: string;
 }
