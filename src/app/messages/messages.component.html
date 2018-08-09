@@ -105,7 +105,7 @@
                     </ul>
                 </div>
 
-                <div class="message-input" *ngIf="activeContact.ad.state=='Applied'">
+                <div class="message-input" *ngIf="activeContact.application.state=='Applied'">
                     <div class="wrap">
                         <input type="text" placeholder="Write your message..." id="message-input"/>
                         <button class="submit" (click)="sendMessage()"><i class="fa fa-paper-plane"
@@ -113,7 +113,7 @@
                     </div>
                 </div>
 
-                <div class="message-input" *ngIf="activeContact.ad.state!='Applied'">
+                <div class="message-input" *ngIf="activeContact.application.state!='Applied'">
                     <div class="wrap">
                         <input type="text" placeholder="Application is {{activeContact.ad.state}}" id="disabled-input"
                                disabled/>

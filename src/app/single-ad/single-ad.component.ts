@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
 import {UserService} from '../service/user.service';
-import {ApplicationService} from '../application.service';
+import {ApplicationService} from '../service/application.service';
 import {Application} from '../model/application.model';
 
 

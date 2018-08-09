@@ -5,7 +5,7 @@ import {UserService} from '../service/user.service';
 import {Subscription} from 'rxjs';
 import {AdService} from '../service/ad.service';
 import {Router} from '@angular/router';
-import {ApplicationService} from '../application.service';
+import {ApplicationService} from '../service/application.service';
 
 @Component({
     selector: 'app-profile',

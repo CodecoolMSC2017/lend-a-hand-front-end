@@ -856,9 +856,12 @@ table {
 }
 
 .submit {
+    background: #435f7a;
+    transition: background 0.2s;
     cursor: pointer;
 }
 
 .submit:hover {
-    background: #435f7a;
+    background: #6687a6;
+    transition: background 0.2s;
 }

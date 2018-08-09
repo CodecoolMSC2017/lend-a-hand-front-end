@@ -7,7 +7,7 @@ import {Message} from '../model/message.model';
 import {UserService} from '../service/user.service';
 import {Router} from '@angular/router';
 import {AdService} from '../service/ad.service';
-import {ApplicationService} from '../application.service';
+import {ApplicationService} from '../service/application.service';
 
 @Component({
     selector: 'app-messages',
