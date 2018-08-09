@@ -75,11 +75,11 @@
                                                 </td>
                                                 <td *ngIf="application.type=='Offer'" class="rating-td">
                                                     <strong>Rating:</strong>
-                                                    {{application.employerRatingScore}} / 5
+                                                    {{application.employerRatingScore | number:'1.0-1'}} / 5
                                                 </td>
                                                 <td *ngIf="application.type=='Hire'" class="rating-td">
                                                     <strong>Rating:</strong>
-                                                    {{application.employeeRatingScore}} / 5
+                                                    {{application.employeeRatingScore | number:'1.0-1'}} / 5
                                                 </td>
                                             </tr>
                                         </table>
