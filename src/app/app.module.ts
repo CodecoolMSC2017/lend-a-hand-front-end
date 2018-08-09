@@ -21,6 +21,7 @@ import {CreateAdComponent} from './create-ad/create-ad.component';
 import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
 import {ApplicationsComponent} from './applications/applications.component';
 import {MessagesComponent} from './messages/messages.component';
+import {RateComponent} from './rate/rate.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +39,8 @@ import {MessagesComponent} from './messages/messages.component';
         RatingsComponent,
         AdsByAdvertiserComponent,
         ApplicationsComponent,
-        MessagesComponent
+        MessagesComponent,
+        RateComponent
     ],
     imports: [
         BrowserModule,

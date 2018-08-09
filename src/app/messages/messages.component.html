@@ -8,7 +8,10 @@
             <div id="sidepanel">
                 <div id="profile">
                     <div class="wrap">
-                        <img id="profile-img" src="{{user.pictureLink}}" alt=""/>
+                        <img *ngIf="user.pictureLink!=null" class="{{user.id}}"
+                             src={{user.pictureLink}} alt="" (error)="standBy(user.id)"/>
+                        <img *ngIf="user.pictureLink==null"
+                             src="../assets/noImage.jpg" alt=""/>
                         <p id="user-name" (click)="toProfile(user.id)">{{user.userName}}</p>
                     </div>
                 </div>
@@ -48,11 +51,21 @@
                     </ul>
                 </div>
                 <div *ngIf="activeContact.ad.advertiserId == user.id" id="bottom-bar">
-                    <button id="complete" (click)="onCompleteClicked()"><i class="fa fa-check" aria-hidden="true"></i>
+                    <button *ngIf="activeContact.ad.state=='Applied'" class="complete" (click)="onCompleteClicked()"><i
+                            class="fa fa-check" aria-hidden="true"></i>
                         <span>Complete</span></button>
-                    <button id="failed" (click)="onFailClicked()"><i class="fa fa-times" aria-hidden="true"></i>
+                    <button *ngIf="activeContact.ad.state=='Applied'" class="failed" (click)="onFailClicked()"><i
+                            class="fa fa-times" aria-hidden="true"></i>
                         <span>Failed</span>
                     </button>
+                    <button *ngIf="activeContact.ad.state!='Applied'" class="complete inactive"><i
+                            class="fa fa-check" aria-hidden="true"></i>
+                        <span>Complete</span></button>
+                    <button *ngIf="activeContact.ad.state!='Applied'" class="failed inactive"><i
+                            class="fa fa-times" aria-hidden="true"></i>
+                        <span>Failed</span>
+                    </button>
+
                 </div>
             </div>
             <div class="content">
@@ -63,9 +76,9 @@
                          src="../assets/noImage.jpg" alt=""/>
                     <p class="name" (click)="toProfile(activeContact.user.id)">{{activeContact.user.userName}}</p>
                     <p class="title" (click)="toAd(activeContact.ad.id)">{{activeContact.ad.title}}</p>
-                    <img *ngIf="activeContact.ad.pictureLink != null" id="activeContact.ad.id"
+                    <img *ngIf="activeContact.ad.pictureLink != null" id="{{activeContact.ad.id}}"
                          src="{{activeContact.ad.pictureLink}}" alt="" (error)="standByAd(activeContact.ad.id)"/>
-                    <img *ngIf="activeContact.ad.pictureLink==null"
+                    <img *ngIf="activeContact.ad.pictureLink == null"
                          src="../assets/noImage.jpg" alt=""/>
 
                 </div>
@@ -75,7 +88,10 @@
                 <div class="messages" id="messageContainer">
                     <ul *ngFor="let message of activeContact.messages">
                         <li *ngIf="message.senderId==user.id" class="sent">
-                            <img src="{{user.pictureLink}}" alt=""/>
+                            <img *ngIf="user.pictureLink!=null" class="{{user.id}}"
+                                 src={{user.pictureLink}} alt="" (error)="standBy(user.id)"/>
+                            <img *ngIf="user.pictureLink==null"
+                                 src="../assets/noImage.jpg" alt=""/>
                             <p>{{message.text}}</p>
                         </li>
                         <li *ngIf="message.senderId!=user.id" class="replies">
@@ -88,11 +104,21 @@
                         </li>
                     </ul>
                 </div>
-                <div class="message-input">
+
+                <div class="message-input" *ngIf="activeContact.ad.state=='Applied'">
                     <div class="wrap">
                         <input type="text" placeholder="Write your message..." id="message-input"/>
                         <button class="submit" (click)="sendMessage()"><i class="fa fa-paper-plane"
                                                                           aria-hidden="true"></i></button>
+                    </div>
+                </div>
+
+                <div class="message-input" *ngIf="activeContact.ad.state!='Applied'">
+                    <div class="wrap">
+                        <input type="text" placeholder="Application is {{activeContact.ad.state}}" id="disabled-input"
+                               disabled/>
+                        <button class="disabled-submit" disabled><i class="fa fa-paper-plane"
+                                                                    aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>

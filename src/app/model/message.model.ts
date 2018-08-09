@@ -6,4 +6,5 @@ export class Message {
     timestamp: string;
     adId: number;
     adTitle: string;
+    applicationId: number;
 }
