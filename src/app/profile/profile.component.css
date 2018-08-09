@@ -4,7 +4,7 @@
 
 #profile-div {
     background-color: rgba(251, 251, 251, 0.4);
-    margin-top: 5%;
+    margin-top: 3%;
     width: 90%;
     height: 32em;
     border-radius:10px;
@@ -134,6 +134,7 @@
 }
 
 .NotAbletoAd {
-    margin-top: 50px;
+    color: #BE1000;
+    margin-top: 60px;
 }
 

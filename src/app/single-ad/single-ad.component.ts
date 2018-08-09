@@ -71,6 +71,9 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     }
 
     applyToAd() {
+        if (!this.user.ableToAd) {
+            this.router.navigate(['profile']);
+        }
         document.getElementById('applicationMessageDiv').classList.remove('hidden');
         document.getElementById('singleAdDiv').classList.add('faded');
     }
