@@ -39,8 +39,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.currentUsersProfile = this.user;
                 this.ownProfile = true;
             }
-
-
         });
 
     }
@@ -60,11 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.gem.updateApplications(applications);
             this.router.navigate(['applications']);
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error;
-            } else {
-                this.error = error;
-            }
+            this.handleError(error);
         });
     }
 
@@ -283,8 +277,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.gem.updateUser(response);
             this.changeBackProfile();
         }, error => {
-            console.log(error);
-            this.error = error.error.message;
+            this.handleError(error);
         });
 
 
@@ -296,13 +289,33 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 sessionStorage.setItem('ads', JSON.stringify(ads));
                 this.router.navigate(['adsByAdvertiser']);
             }, error => {
-            if (error.error !== null) {
-                this.error = error.error;
-            } else {
-                this.error = error;
-            }
+                this.handleError(error);
             }
         );
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
+    }
+
+    showError() {
+        document.getElementById('errorDiv').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
+    }
+
+    clearAlert() {
+        this.error = '';
+        document.getElementById('errorDiv').innerText = '';
+        document.getElementById('errorDiv').classList.add('hidden');
     }
 
     ngOnDestroy() {

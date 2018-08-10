@@ -43,16 +43,7 @@ export class LoginComponent implements OnInit {
                 this.gem.updateUser(response);
             this.zone.run(() => this.router.navigate(['/categoriesAfterLogin']));
             }, error => {
-            if (error.status === 401) {
-                this.error = 'Wrong User name or password.';
-            } else {
-                if (error.error !== null) {
-                    this.error = error.error.message;
-                } else {
-                    this.error = error.message;
-                }
-            }
-            this.showError();
+            this.handleError(error);
             }
         );
     }
@@ -75,6 +66,19 @@ export class LoginComponent implements OnInit {
                 this.showError();
             }
         }
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            this.error = 'Wrong User name or password.';
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
     }
 
     clearAlert() {

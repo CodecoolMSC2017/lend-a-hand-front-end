@@ -43,12 +43,7 @@ export class RegisterComponent implements OnInit {
                 this.gem.updateInfo('Registration successfull, you can login now!');
                 this.router.navigate(['login']);
             }, error => {
-                if (error.error !== null) {
-                    this.error = error.error.message;
-                } else {
-                    this.error = error.message;
-                }
-                this.showError();
+            this.handleError(error);
             }
         );
     }
@@ -66,7 +61,6 @@ export class RegisterComponent implements OnInit {
             } else if (this.registerForm.get('username').touched && this.registerForm.hasError('maxlength', ['username'])) {
                 this.error = 'Username maximum length is 32';
                 this.showError();
-                return;
             }
         } else if (id === 'passwordInput') {
             if (this.registerForm.get('password').touched && this.registerForm.hasError('required', ['password'])) {
@@ -108,6 +102,19 @@ export class RegisterComponent implements OnInit {
         document.getElementById('info').classList.add('hidden');
         document.getElementById('error').classList.remove('hidden');
         setTimeout(this.clearAlert, 5000);
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
     }
 
 }
