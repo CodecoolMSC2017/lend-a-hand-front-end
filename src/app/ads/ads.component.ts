@@ -16,6 +16,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     ads: Ad[];
     user: User;
     filterSub: Subscription;
+    error: string;
 
     constructor(private router: Router,
                 private adService: AdService,
@@ -49,7 +50,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     }
 
     formatAds(ads: Ad[]): Ad[] {
-        let formattedAds = [];
+        const formattedAds = [];
         for (let i = 0; i < ads.length; i++) {
             let ad = ads[i];
             if (ad.description.length > 85) {
@@ -66,7 +67,7 @@ export class AdsComponent implements OnInit, OnDestroy {
 
     formatAdTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + this.formatAdsTimestamp(timestamp) + ' ';
         if (splittedTimestamp[3].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[3] + ':';
@@ -83,7 +84,7 @@ export class AdsComponent implements OnInit, OnDestroy {
 
     formatAdsTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + splittedTimestamp[0] + '.';
         if (splittedTimestamp[1].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[1] + '.';
@@ -101,6 +102,33 @@ export class AdsComponent implements OnInit, OnDestroy {
     standBy(id) {
         (<HTMLImageElement>document.getElementById(id)).src = '../assets/noImage.jpg';
     }
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
+    }
+
+    showError() {
+        document.getElementById('error').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
+    }
+
+    clearAlert() {
+        this.error = '';
+        document.getElementById('error').innerText = '';
+        document.getElementById('error').classList.add('hidden');
+    }
+
 
     ngOnDestroy() {
         if (this.filterSub) {

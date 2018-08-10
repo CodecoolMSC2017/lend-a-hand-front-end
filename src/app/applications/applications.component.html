@@ -1,5 +1,6 @@
 <div id="applications">
-    <h2 *ngIf="applications.length===0">You haven't got applications yet.</h2> 
+    <h2 *ngIf="applications.length===0">You haven't got applications yet.</h2>
+    <h2 id="error" class="error hidden">{{error}}</h2>
     <div *ngFor="let application of applications" class="application">
         <div class="application-container">
 

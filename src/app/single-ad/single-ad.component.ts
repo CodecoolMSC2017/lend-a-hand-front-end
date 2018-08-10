@@ -144,8 +144,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         const formattedApps = [];
         for (let i = 0; i < applications.length; i++) {
             const application = applications[i];
-            if (application.message.length > 250) {
-                application.formattedMessage = application.message.substring(0, 250) + '...';
+            if (application.message.length > 100) {
+                application.formattedMessage = application.message.substring(0, 100) + '...';
             } else {
                 application.formattedMessage = application.message;
             }
@@ -199,6 +199,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
     handleCreateAdError(error) {
         if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
             this.router.navigate(['login']);
         } else {
             if (error.error !== null) {

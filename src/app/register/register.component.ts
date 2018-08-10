@@ -106,6 +106,8 @@ export class RegisterComponent implements OnInit {
 
     handleError(error) {
         if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
             this.router.navigate(['login']);
         } else {
             if (error.error !== null) {

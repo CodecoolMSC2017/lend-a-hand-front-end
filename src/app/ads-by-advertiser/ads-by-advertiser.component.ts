@@ -23,7 +23,7 @@ export class AdsByAdvertiserComponent implements OnInit {
 
 
     formatAds(ads: Ad[]): Ad[] {
-        let formattedAds = [];
+        const formattedAds = [];
         for (let i = 0; i < ads.length; i++) {
             let ad = ads[i];
             if (ad.description.length > 85) {
@@ -40,7 +40,7 @@ export class AdsByAdvertiserComponent implements OnInit {
 
     formatAdTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + this.formatAdsTimestamp(timestamp) + ' ';
         if (splittedTimestamp[3].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[3] + ':';
@@ -57,7 +57,7 @@ export class AdsByAdvertiserComponent implements OnInit {
 
     formatAdsTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + splittedTimestamp[0] + '.';
         if (splittedTimestamp[1].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[1] + '.';
@@ -77,6 +77,7 @@ export class AdsByAdvertiserComponent implements OnInit {
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);
     }
+
     standBy(id) {
         (<HTMLImageElement>document.getElementById(id)).src = '../assets/No-image-available.jpg';
     }
