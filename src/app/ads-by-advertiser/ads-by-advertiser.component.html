@@ -1,5 +1,5 @@
 <div id="ads">
-    <h2 *ngIf="ads.length===0">You haven't got advertisements yet.</h2> 
+    <h2 *ngIf="ads.length===0" class="empty-category">You haven't got advertisements yet.</h2> 
     <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
         <div class="ad-container">
 

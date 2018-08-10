@@ -88,5 +88,18 @@
     white-space: nowrap;
 }
 
+.empty-category {
 
+    padding-top: 2.5em;
+    height: 1.5em;
+    width: 60%;
+    background-color: rgb(232, 237, 238);
+    height: 4em;
+    border: #0c5068 solid 0.2em;
+    border-radius: 1em;
+    color: #0c5068;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+}
 
