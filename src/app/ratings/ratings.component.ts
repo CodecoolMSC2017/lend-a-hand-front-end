@@ -41,6 +41,8 @@ export class RatingsComponent implements OnInit {
           this.employerRatings = ratingDto.employerRatings;
         })
     }
+    console.log(this.employeeRatings);
+    console.log(this.employerRatings);
     });
   }
 
