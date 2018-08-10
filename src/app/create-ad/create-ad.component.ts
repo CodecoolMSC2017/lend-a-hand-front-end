@@ -64,11 +64,7 @@ export class CreateAdComponent implements OnInit {
                 this.gem.updateInfo('Advertisement successfully created');
                 this.router.navigate(['categories']);
             }, serverError => {
-                if (serverError.error !== null) {
-                    this.error = serverError.error.message;
-                } else {
-                    this.error = serverError.message;
-                }
+            this.handleError(serverError);
             }
         );
 
@@ -84,6 +80,22 @@ export class CreateAdComponent implements OnInit {
         document.getElementById('info').classList.add('hidden');
         document.getElementById('error').classList.remove('hidden');
         setTimeout(this.clearAlert, 3000);
+    }
+
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
     }
 
 

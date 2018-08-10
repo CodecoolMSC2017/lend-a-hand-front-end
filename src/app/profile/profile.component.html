@@ -1,4 +1,6 @@
 <div id="outer-div">
+    <h2 class="NotAbletoAd" *ngIf="!user.ableToAd">You are not able to create and apply for ads. Fill your profile
+        datas!</h2>
     <div id="profile-div">
         <div class="wrapper">
             <div class="content">
@@ -70,7 +72,7 @@
 
                     <tr>
                         <td colspan="2">
-                            <div class="error">{{error}}</div>
+                            <div class="error hidden" id="errorDiv">{{error}}</div>
                         </td>
                     </tr>
 

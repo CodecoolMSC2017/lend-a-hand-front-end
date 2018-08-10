@@ -5,6 +5,7 @@ import {User} from '../model/user.model';
 import {AuthorizationService} from '../service/authorization.service';
 import {Subscription} from 'rxjs';
 import {FilterSettingsModel} from '../model/filter-settings.model';
+import {delay} from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-header-bar',
@@ -25,9 +26,11 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
         this.filterSettings.keyword = '';
         this.filterSettings.selectedCategory = 'All';
         this.filterSettings.selectedType = 'All';
-        this.userSub = this.gem.userEmitter.subscribe(user => {
-            this.user = user;
-        });
+        this.userSub = this.gem.userEmitter
+            .pipe(delay(0))
+            .subscribe(user => {
+                this.user = user;
+            });
 
     }
 
@@ -60,7 +63,11 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
     }
 
     onCreateAdClicked() {
-        this.router.navigate(['createAd']);
+        if (this.user.ableToAd) {
+            this.router.navigate(['createAd']);
+        } else {
+            this.router.navigate(['profile']);
+        }
     }
 
     onMessagesClicked() {
@@ -95,5 +102,4 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
             this.userSub.unsubscribe();
         }
     }
-
 }

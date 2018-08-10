@@ -14,6 +14,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
     applications: Application[];
     applicationSub: Subscription;
+    error: string;
 
     constructor(private gem: GlobalEventManagerService, private adService: AdService, private router: Router) {
     }
@@ -37,19 +38,14 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
                 this.gem.updateSingleAd(ad);
                 this.router.navigate(['ad']);
             }
-
+        }, error => {
+            this.handleError(error);
         });
-    }
-
-    ngOnDestroy(): void {
-        if (this.applicationSub) {
-            this.applicationSub.unsubscribe();
-        }
     }
 
     formatAdTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + this.formatAdsTimestamp(timestamp) + ' ';
         if (splittedTimestamp[3].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[3] + ':';
@@ -66,7 +62,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
 
     formatAdsTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + splittedTimestamp[0] + '.';
         if (splittedTimestamp[1].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[1] + '.';
@@ -85,8 +81,8 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
         const formattedApps = [];
         for (let i = 0; i < applications.length; i++) {
             const application = applications[i];
-            if (application.message.length > 85) {
-                application.formattedMessage = application.message.substring(0, 200) + '...';
+            if (application.message.length > 100) {
+                application.formattedMessage = application.message.substring(0, 100) + '...';
             } else {
                 application.formattedMessage = application.message;
             }
@@ -100,5 +96,39 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     standBy(id) {
         (<HTMLImageElement>document.getElementById(id)).src = '../assets/noImage.jpg';
     }
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
+    }
+
+    showError() {
+        document.getElementById('error').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
+    }
+
+    clearAlert() {
+        this.error = '';
+        document.getElementById('error').innerText = '';
+        document.getElementById('error').classList.add('hidden');
+    }
+
+
+    ngOnDestroy(): void {
+        if (this.applicationSub) {
+            this.applicationSub.unsubscribe();
+        }
+    }
+
 
 }

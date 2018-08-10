@@ -4,7 +4,7 @@
 
 #profile-div {
     background-color: rgba(251, 251, 251, 0.4);
-    margin-top:10%;
+    margin-top: 3%;
     width: 90%;
     height: 32em;
     border-radius:10px;
@@ -131,5 +131,10 @@
 
 #postal-code-input, #city-input, #address-input {
     display: block;
+}
+
+.NotAbletoAd {
+    color: #BE1000;
+    margin-top: 60px;
 }
 

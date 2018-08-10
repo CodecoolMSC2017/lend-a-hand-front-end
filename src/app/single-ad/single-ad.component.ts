@@ -5,7 +5,7 @@ import {Router} from '@angular/router';
 import {User} from '../model/user.model';
 import {Subscription} from 'rxjs';
 import {UserService} from '../service/user.service';
-import {ApplicationService} from '../application.service';
+import {ApplicationService} from '../service/application.service';
 import {Application} from '../model/application.model';
 
 
@@ -19,6 +19,7 @@ import {Application} from '../model/application.model';
 export class SingleAdComponent implements OnInit, OnDestroy {
     ad: Ad;
     error: string;
+    createAdError: string;
     applications: Application[];
     user: User;
     singleAdSub: Subscription;
@@ -57,6 +58,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
         this.appService.getApplicationsByAd(this.ad.id).subscribe(applications => {
             this.applications = this.formatApps(applications);
+        }, error => {
+            this.handleError(error);
         });
 
     }
@@ -66,11 +69,14 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.gem.updateProfile(user);
             this.router.navigate(['profile']);
         }, error => {
-            console.log(error);
+            this.handleError(error);
         });
     }
 
     applyToAd() {
+        if (!this.user.ableToAd) {
+            this.router.navigate(['profile']);
+        }
         document.getElementById('applicationMessageDiv').classList.remove('hidden');
         document.getElementById('singleAdDiv').classList.add('faded');
     }
@@ -96,39 +102,13 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.gem.updateInfo('Application successfully created');
             this.router.navigate(['categories']);
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error.message;
-            } else {
-                this.error = error.message;
-            }
-            this.showError();
+            this.handleCreateAdError(error);
         });
-    }
-
-    ngOnDestroy() {
-        if (this.singleAdSub) {
-            this.singleAdSub.unsubscribe();
-        }
-    }
-
-    clearAlert() {
-        document.getElementById('error').classList.add('hidden');
-        document.getElementById('info').classList.remove('hidden');
-    }
-
-    showError() {
-        document.getElementById('info').classList.add('hidden');
-        document.getElementById('error').classList.remove('hidden');
-        setTimeout(this.clearAlert, 3000);
-    }
-
-    standBy(id) {
-        (<HTMLImageElement>document.getElementById(id)).src = '../assets/noImage.jpg';
     }
 
     formatAdTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + this.formatAdsTimestamp(timestamp) + ' ';
         if (splittedTimestamp[3].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[3] + ':';
@@ -145,7 +125,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
     formatAdsTimestamp(timestamp: string): string {
         let formattedTimestamp = '';
-        let splittedTimestamp = (timestamp + '').split(',');
+        const splittedTimestamp = (timestamp + '').split(',');
         formattedTimestamp = formattedTimestamp + splittedTimestamp[0] + '.';
         if (splittedTimestamp[1].length < 2) {
             formattedTimestamp = formattedTimestamp + '0' + splittedTimestamp[1] + '.';
@@ -164,8 +144,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         const formattedApps = [];
         for (let i = 0; i < applications.length; i++) {
             const application = applications[i];
-            if (application.message.length > 85) {
-                application.formattedMessage = application.message.substring(0, 200) + '...';
+            if (application.message.length > 100) {
+                application.formattedMessage = application.message.substring(0, 100) + '...';
             } else {
                 application.formattedMessage = application.message;
             }
@@ -180,12 +160,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         this.appService.acceptApplication(application).subscribe(applications => {
             this.applications = this.formatApps(applications);
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error.message;
-            } else {
-                this.error = error.message;
-            }
-            this.showError();
+            this.handleError(error);
         });
     }
 
@@ -193,13 +168,72 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         this.appService.declineApplication(application).subscribe(applications => {
             this.applications = this.formatApps(applications);
         }, error => {
+            this.handleError(error);
+        });
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            this.router.navigate(['login']);
+        } else {
             if (error.error !== null) {
                 this.error = error.error.message;
             } else {
                 this.error = error.message;
             }
-            this.showError();
-        });
+        }
+        this.showError();
+    }
+
+    clearAlert() {
+        this.error = '';
+        document.getElementById('errorDiv').innerText = '';
+        document.getElementById('errorDiv').classList.add('hidden');
+    }
+
+    showError() {
+        document.getElementById('errorDiv').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
+    }
+
+
+    handleCreateAdError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.createAdError = error.error.message;
+            } else {
+                this.createAdError = error.message;
+            }
+        }
+        this.showCreateAdError();
+    }
+
+    clearCreateAdAlert() {
+        document.getElementById('errorSpan').innerText = '';
+        document.getElementById('errorSpan').classList.add('hidden');
+        this.createAdError = '';
+        document.getElementById('info').classList.remove('hidden');
+    }
+
+    showCreateAdError() {
+        document.getElementById('info').classList.add('hidden');
+        document.getElementById('errorSpan').classList.remove('hidden');
+        setTimeout(this.clearCreateAdAlert, 3000);
+    }
+
+    standBy(id) {
+        (<HTMLImageElement>document.getElementById(id)).src = '../assets/noImage.jpg';
+    }
+
+
+    ngOnDestroy() {
+        if (this.singleAdSub) {
+            this.singleAdSub.unsubscribe();
+        }
     }
 
 

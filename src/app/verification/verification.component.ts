@@ -47,11 +47,7 @@ export class VerificationComponent implements OnInit {
                 this.gem.updateUser(response);
                 this.zone.run(() => this.router.navigate(['/categories']));
             }, error => {
-            if (error.error !== null) {
-                this.error = error.error.message;
-            } else {
-                this.error = error.message;
-            }
+            this.handleError(error);
             }
         );
     }
@@ -60,11 +56,7 @@ export class VerificationComponent implements OnInit {
         this.authService.resendEmail(this.user).subscribe(response => {
             this.showInfo('Verification email sent successfully');
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error.message;
-            } else {
-                this.error = error.message;
-            }
+            this.handleError(error);
         });
     }
 
@@ -97,5 +89,20 @@ export class VerificationComponent implements OnInit {
 
     hideInfo() {
         document.getElementById('info').innerText = 'Verificate you account via email';
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
     }
 }

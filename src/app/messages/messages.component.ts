@@ -7,7 +7,7 @@ import {Message} from '../model/message.model';
 import {UserService} from '../service/user.service';
 import {Router} from '@angular/router';
 import {AdService} from '../service/ad.service';
-import {ApplicationService} from '../application.service';
+import {ApplicationService} from '../service/application.service';
 
 @Component({
     selector: 'app-messages',
@@ -34,6 +34,8 @@ export class MessagesComponent implements OnInit {
             this.activeContact = this.contacts[0];
             this.loaded = true;
             setTimeout(this.scrollDown, 50);
+        }, error => {
+            this.handleError(error);
         });
 
     }
@@ -72,12 +74,7 @@ export class MessagesComponent implements OnInit {
             this.activeContact.lastMessage = newMessage;
             setTimeout(this.scrollDown, 50);
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error;
-            } else {
-                this.error = error;
-            }
-            setTimeout(this.clearAlert, 3000);
+            this.handleError(error);
         });
 
     }
@@ -87,9 +84,7 @@ export class MessagesComponent implements OnInit {
         messageContainer.scrollTop = messageContainer.scrollHeight + 300;
     }
 
-    clearAlert() {
-        this.error = '';
-    }
+
 
     searchActiveContacts() {
         const text = (<HTMLInputElement>document.getElementById('search-input')).value;
@@ -112,12 +107,7 @@ export class MessagesComponent implements OnInit {
             this.gem.updateProfile(user);
             this.router.navigate(['profile']);
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error.message;
-            } else {
-                this.error = error.message;
-            }
-            setTimeout(this.clearAlert, 3000);
+            this.handleError(error);
         });
     }
 
@@ -127,14 +117,8 @@ export class MessagesComponent implements OnInit {
                 this.gem.updateSingleAd(ad);
                 this.router.navigate(['ad']);
             }
-
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error.message;
-            } else {
-                this.error = error.message;
-            }
-            setTimeout(this.clearAlert, 3000);
+            this.handleError(error);
         });
     }
 
@@ -142,12 +126,7 @@ export class MessagesComponent implements OnInit {
         this.applicationService.completeApplication(this.activeContact.application.id).subscribe(application => {
             this.router.navigate(['rate']);
         }, error => {
-            if (error.error !== null) {
-                this.error = error.error.message;
-            } else {
-                this.error = error.message;
-            }
-            setTimeout(this.clearAlert, 3000);
+            this.handleError(error);
         });
     }
 
@@ -155,13 +134,29 @@ export class MessagesComponent implements OnInit {
         this.applicationService.failedApplication(this.activeContact.application.id).subscribe(application => {
             this.router.navigate(['rate']);
         }, error => {
+            this.handleError(error);
+        });
+    }
+
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
             if (error.error !== null) {
                 this.error = error.error.message;
             } else {
                 this.error = error.message;
             }
-            setTimeout(this.clearAlert, 3000);
-        });
+        }
+        setTimeout(this.clearAlert, 3000);
+    }
+
+    clearAlert() {
+        this.error = '';
+        document.getElementById('error-div').innerText = '';
     }
 
 }
