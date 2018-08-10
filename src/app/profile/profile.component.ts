@@ -17,6 +17,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     user: User;
     profileSub: Subscription;
     ownProfile: boolean;
+    loaded = false;
+    contacted = true;
     error: string;
 
     constructor(private gem: GlobalEventManagerService, private userService: UserService, private adService: AdService, private applicationService: ApplicationService, private router: Router) {
@@ -33,12 +35,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 if (this.currentUsersProfile.id === this.user.id) {
                     this.ownProfile = true;
                 } else {
+                    this.userService.getIsContacted(this.currentUsersProfile.id, this.user.id).subscribe(contacted => {
+                        this.contacted = contacted;
+                    }, error => {
+                        this.handleError(error);
+                    });
                     this.ownProfile = false;
                 }
             } else {
                 this.currentUsersProfile = this.user;
                 this.ownProfile = true;
             }
+            this.loaded = true;
         });
 
     }

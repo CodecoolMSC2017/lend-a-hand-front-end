@@ -1,4 +1,4 @@
-<div id="outer-div">
+<div id="outer-div" *ngIf="loaded">
     <h2 class="NotAbletoAd" *ngIf="!user.ableToAd">You are not able to create and apply for ads. Fill your profile
         datas!</h2>
     <div id="profile-div">
@@ -13,7 +13,7 @@
             </div>
 
             <div class="contacts">
-                <table class="contact-table">
+                <table class="contact-table" *ngIf="contacted">
                     <tr>
                         <td colspan="2">
                             <button *ngIf="ownProfile == true" class="options" (click)="profileChanges()"
