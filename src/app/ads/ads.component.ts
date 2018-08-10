@@ -17,6 +17,7 @@ export class AdsComponent implements OnInit, OnDestroy {
     user: User;
     filterSub: Subscription;
     error: string;
+    loaded = false;
 
     constructor(private router: Router,
                 private adService: AdService,
@@ -36,13 +37,14 @@ export class AdsComponent implements OnInit, OnDestroy {
                 this.adService.getAdsByFilter(filterSettings.keyword, filterSettings.selectedCategory, filterSettings.selectedType)
                     .subscribe(ads => {
                         this.ads = this.formatAds(ads);
-
                         sessionStorage.setItem('ads', JSON.stringify(ads));
                     }, error => {
-                        console.log(error);
+                        this.handleError(error);
                     });
+                this.loaded = true;
             } else {
                 this.ads = JSON.parse(sessionStorage.getItem('ads'));
+                this.loaded = true;
             }
         });
 

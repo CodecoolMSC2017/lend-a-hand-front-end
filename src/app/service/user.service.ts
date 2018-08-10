@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user.model';
 
@@ -17,6 +17,11 @@ export class UserService {
 
     getUserById(id: number): Observable<any> {
         return this.http.get('/api/user/' + id);
+    }
+
+    getIsContacted(profileOwnerId: number, userId: number): Observable<boolean> {
+        const params = new HttpParams().append('userId', userId.toString()).append('profileOwnerId', profileOwnerId.toString());
+        return this.http.get<boolean>('/api/user/contacted', {params: params});
     }
 
 
