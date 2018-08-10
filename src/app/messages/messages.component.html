@@ -75,7 +75,7 @@
                     <img *ngIf="activeContact.user.pictureLink==null"
                          src="../assets/noImage.jpg" alt=""/>
                     <p class="name" (click)="toProfile(activeContact.user.id)">{{activeContact.user.userName}}</p>
-                    <p class="title" (click)="toAd(activeContact.ad.id)">{{activeContact.ad.title}}</p>
+                    <p class="title" (click)="toAd(activeContact.ad.id)">{{activeContact.ad.formattedTitle}}</p>
                     <img *ngIf="activeContact.ad.pictureLink != null" id="{{activeContact.ad.id}}"
                          src="{{activeContact.ad.pictureLink}}" alt="" (error)="standByAd(activeContact.ad.id)"/>
                     <img *ngIf="activeContact.ad.pictureLink == null"

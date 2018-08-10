@@ -22,7 +22,9 @@ export class MessagesComponent implements OnInit {
     loaded = false;
     error: string;
 
-    constructor(private gem: GlobalEventManagerService, private messageService: MessageService, private userService: UserService, private adService: AdService, private router: Router, private applicationService: ApplicationService) {
+    constructor(private gem: GlobalEventManagerService, private messageService: MessageService,
+                private userService: UserService, private adService: AdService, private router: Router,
+                private applicationService: ApplicationService) {
     }
 
     ngOnInit() {
@@ -32,12 +34,22 @@ export class MessagesComponent implements OnInit {
             this.contacts = response;
             this.activeContacts = this.contacts;
             this.activeContact = this.contacts[0];
+            this.activeContact.ad.formattedTitle = this.formatAdTitle(this.activeContact.ad.title);
             this.loaded = true;
             setTimeout(this.scrollDown, 50);
         }, error => {
             this.handleError(error);
         });
+    }
 
+    formatAdTitle(title: string): string {
+        let formattedTitle;
+        if (title.length > 10) {
+            formattedTitle = title.substring(0, 10) + '...';
+        } else {
+            formattedTitle = title;
+        }
+        return formattedTitle;
     }
 
     standByAd(id) {
@@ -52,6 +64,7 @@ export class MessagesComponent implements OnInit {
     }
 
     setActiveContact(contact: Contact) {
+        contact.ad.formattedTitle = this.formatAdTitle(contact.ad.title);
         this.activeContact = contact;
         setTimeout(this.scrollDown, 5);
     }
@@ -83,7 +96,6 @@ export class MessagesComponent implements OnInit {
         const messageContainer = document.getElementById('messageContainer');
         messageContainer.scrollTop = messageContainer.scrollHeight + 300;
     }
-
 
 
     searchActiveContacts() {
