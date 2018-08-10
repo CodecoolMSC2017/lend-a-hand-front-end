@@ -51,17 +51,19 @@
                     </ul>
                 </div>
                 <div *ngIf="activeContact.ad.advertiserId == user.id" id="bottom-bar">
-                    <button *ngIf="activeContact.ad.state=='Applied'" class="complete" (click)="onCompleteClicked()"><i
+                    <button *ngIf="activeContact.application.state=='Accepted'" class="complete"
+                            (click)="onCompleteClicked()"><i
                             class="fa fa-check" aria-hidden="true"></i>
                         <span>Complete</span></button>
-                    <button *ngIf="activeContact.ad.state=='Applied'" class="failed" (click)="onFailClicked()"><i
+                    <button *ngIf="activeContact.application.state=='Accepted'" class="failed"
+                            (click)="onFailClicked()"><i
                             class="fa fa-times" aria-hidden="true"></i>
                         <span>Failed</span>
                     </button>
-                    <button *ngIf="activeContact.ad.state!='Applied'" class="complete inactive"><i
+                    <button *ngIf="activeContact.application.state!='Accepted'" class="complete inactive"><i
                             class="fa fa-check" aria-hidden="true"></i>
                         <span>Complete</span></button>
-                    <button *ngIf="activeContact.ad.state!='Applied'" class="failed inactive"><i
+                    <button *ngIf="activeContact.application.state!='Accepted'" class="failed inactive"><i
                             class="fa fa-times" aria-hidden="true"></i>
                         <span>Failed</span>
                     </button>
@@ -105,7 +107,7 @@
                     </ul>
                 </div>
 
-                <div class="message-input" *ngIf="activeContact.application.state=='Applied'">
+                <div class="message-input" *ngIf="activeContact.application.state=='Accepted'">
                     <div class="wrap">
                         <input type="text" placeholder="Write your message..." id="message-input"/>
                         <button class="submit" (click)="sendMessage()"><i class="fa fa-paper-plane"
@@ -113,7 +115,7 @@
                     </div>
                 </div>
 
-                <div class="message-input" *ngIf="activeContact.application.state!='Applied'">
+                <div class="message-input" *ngIf="activeContact.application.state!='Accepted'">
                     <div class="wrap">
                         <input type="text" placeholder="Application is {{activeContact.ad.state}}" id="disabled-input"
                                disabled/>
