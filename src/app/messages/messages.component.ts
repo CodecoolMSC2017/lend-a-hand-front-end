@@ -136,6 +136,7 @@ export class MessagesComponent implements OnInit {
 
     onCompleteClicked() {
         this.applicationService.completeApplication(this.activeContact.application.id).subscribe(application => {
+            this.gem.updateApplication(this.activeContact.application);
             this.router.navigate(['rate']);
         }, error => {
             this.handleError(error);
@@ -144,6 +145,7 @@ export class MessagesComponent implements OnInit {
 
     onFailClicked() {
         this.applicationService.failedApplication(this.activeContact.application.id).subscribe(application => {
+            this.gem.updateApplication(this.activeContact.application);
             this.router.navigate(['rate']);
         }, error => {
             this.handleError(error);

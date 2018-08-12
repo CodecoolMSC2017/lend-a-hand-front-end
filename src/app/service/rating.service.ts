@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import {HttpClient, HttpParams}from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
 import {Rating} from '../model/rating.model';
 
 
@@ -19,5 +19,9 @@ export class RatingService {
     return this.http.get('/api/ratings/myratings/' + id);
 
   }
+
+    public createRating(rating: Rating): Observable<any> {
+        return this.http.post('/api/ratings/new', rating);
+    }
 
 }

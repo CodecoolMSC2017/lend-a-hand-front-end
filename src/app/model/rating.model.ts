@@ -1,4 +1,3 @@
-import {User} from './user.model';
 import {Application} from './application.model';
 
 export class Rating {
