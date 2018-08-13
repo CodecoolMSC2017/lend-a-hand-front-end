@@ -34,3 +34,19 @@
     border-radius: 15px;
     resize: none;
 }
+img{
+    margin-right:2em;
+    transform:scale(0.7);
+}
+
+img:hover{
+    transform:scale(1);
+}
+
+#rate{
+    margin-left:1em;
+}
+
+.notChosen{
+    opacity:0.5;
+}
