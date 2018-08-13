@@ -95,7 +95,8 @@
                             <strong><p>Rating as a Hand-lender: </p></strong>
                         </td>
                         <td>
-                            <span>{{currentUsersProfile.employeeRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="currentUsersProfile.employeeRatingScore">{{currentUsersProfile.employeeRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="!currentUsersProfile.employeeRatingScore">0</span>
                         </td>
                     </tr>
                     <tr>
@@ -103,7 +104,8 @@
                             <strong><p>Rating as a Hand-seeker: </p></strong>
                         </td>
                         <td>
-                            <span>{{currentUsersProfile.employerRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="currentUsersProfile.employerRatingScore">{{currentUsersProfile.employerRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="!currentUsersProfile.employerRatingScore">0</span>
                         </td>
                     </tr>
                 </table>
