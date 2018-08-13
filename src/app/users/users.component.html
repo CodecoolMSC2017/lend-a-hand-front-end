@@ -1,0 +1,6 @@
+<div id="userList">
+  
+  <div id="user" *ngFor="let user of users" (click)="toUserProfile(user)">
+    <h3>{{user.userName}}</h3>
+  </div>
+</div>

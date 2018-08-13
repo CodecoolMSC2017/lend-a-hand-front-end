@@ -11,6 +11,10 @@ export class UserService {
     constructor(private http: HttpClient) {
     }
 
+    getAllUser():Observable<any>{
+        return this.http.get('/api/user');
+    }
+
     updateUser(user: User): Observable<any> {
         return this.http.put('/api/user', user);
     }

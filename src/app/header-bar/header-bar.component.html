@@ -35,25 +35,36 @@
                     <p ><strong>Login</strong></p>
             </div>
 
-            <div class="menuIcons" id="logoutDiv" *ngIf="user != null" (click)="logout()">
+            <div class="menuIcons" id="logoutDiv" *ngIf="user != null " (click)="logout()">
                     <img src="../assets/logoutIcon.png">
             </div>
 
-            <div class="menuIcons" id="profileDiv" *ngIf="user != null" (click)="toProfile(user)">
+            <div class="menuIcons" id="profileDiv" *ngIf="user != null && user.type != 'ADMIN'" (click)="toProfile(user)">
                     <img src="../assets/profileIcon.png">
             </div>
 
-            <div class="menuIcons" id="messagesDiv" *ngIf="user != null" (click)="onMessagesClicked()">
+            <div class="menuIcons" id="messagesDiv" *ngIf="user != null && user.type != 'ADMIN'" (click)="onMessagesClicked()">
                     <img src="../assets/messagesIcon.png">
             </div>
+
+           
+
 
             <div class="menuIcons" id="notificationsDiv" *ngIf="user != null" (click)="notifications()">
                     <img src="../assets/notificationsIcon.png">
             </div>
 
-            <div class="menuIcons" id="createAdDiv" *ngIf="user != null" (click)="onCreateAdClicked()">
+            <div class="menuIcons" id="createAdDiv" *ngIf="user != null && user.type != 'ADMIN'" (click)="onCreateAdClicked()">
                     <img src="../assets/addIcon.png">
             </div>
+
+            <div id="reportsDiv" *ngIf="user != null && user.type=='ADMIN'">
+                    <p><strong>Reports</strong></p>
+             </div>
+
+             <div id="usersDiv" *ngIf="user != null && user.type=='ADMIN'" (click)="toUsers()">
+                    <p><strong>Users</strong></p>
+             </div>
         </div>
 
 

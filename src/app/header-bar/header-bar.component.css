@@ -216,6 +216,18 @@ a:link, a:visited, a:active{
     color:white;
 }
 
+#reportsDiv{
+    float:right;
+    color:white;
+    margin-right:1em;
+}
+
+#usersDiv{
+    float:right;
+    color:white;
+    margin-right:1em;
+}
+
 
 
 
