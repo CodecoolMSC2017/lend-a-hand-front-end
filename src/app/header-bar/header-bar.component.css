@@ -21,6 +21,12 @@
 
 }
 
+.menuIcons img{
+    width:1.5em;
+    position:relative;
+    top:0.7em;
+}
+
 #header-logo:hover{
     opacity:0.8;
 
@@ -113,9 +119,7 @@ a:link, a:visited, a:active{
     
 }
 
-#back-to-main:hover{
-    background-color:#0d4053;
-}
+
 
 #keyword-input{
     text-align: center;
@@ -171,57 +175,65 @@ a:link, a:visited, a:active{
     color:white;
 }
 
-#registerDiv:hover{
-    background-color:#0d4053;
-}
 
 #profileDiv{
     float:right;
     height:100%;
-    width:10%;
+    width:5%;
     cursor:pointer;
     color:white;
 }
 
-#profileDiv:hover{
-    background-color:#0d4053;
-}
+
 
 #logoutDiv{
     float:right;
     height:100%;
-    width:10%;
+    width:5%;
     cursor:pointer;
     color:white;
 }
 
-#logoutDiv:hover{
-    background-color:#0d4053;
+.menuIcons img:hover{
+    transform:scale(1.2);
 }
+
+
 
 #createAdDiv{
     float:right;
     height:100%;
-    width:10%;
+    width:5%;
     cursor:pointer;
     color:white;
 }
 
-#createAdDiv:hover{
-    background-color:#0d4053;
+#notificationsDiv{
+    float:right;
+    height:100%;
+    width:5%;
+    cursor:pointer;
+    color:white;
 }
+
+
+
+
 
 #messagesDiv {
     float: right;
     height: 100%;
-    width: 10%;
+    width:5%;
     cursor: pointer;
     color: white;
 }
 
-#messagesDiv:hover {
-    background-color: #0d4053;
+#icons{
+    position:relative;
+    left:-7em;
 }
+
+
 
 #filters{
     color:white;

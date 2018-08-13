@@ -27,30 +27,33 @@
 
         </div>
 
-        
-        <div id="registerDiv" *ngIf="user == null" (click)="register()">
-            <p ><strong>Register</strong></p>
-        </div>
-        <div id="loginDiv" *ngIf="user == null" (click)="login()">
-                <p ><strong>Login</strong></p>
-        </div>
+        <div id="icons">
+            <div id="registerDiv" *ngIf="user == null" (click)="register()">
+                <p><strong>Register</strong></p>
+            </div>
+            <div id="loginDiv" *ngIf="user == null" (click)="login()">
+                    <p ><strong>Login</strong></p>
+            </div>
 
-        <div id="logoutDiv" *ngIf="user != null" (click)="logout()">
-                <p ><strong>Logout</strong></p>
-        </div>
+            <div class="menuIcons" id="logoutDiv" *ngIf="user != null" (click)="logout()">
+                    <img src="../assets/logoutIcon.png">
+            </div>
 
-       
+            <div class="menuIcons" id="profileDiv" *ngIf="user != null" (click)="toProfile(user)">
+                    <img src="../assets/profileIcon.png">
+            </div>
 
-        <div id="profileDiv" *ngIf="user != null" (click)="toProfile(user)">
-                <p ><strong>Profile</strong></p>
-        </div>
+            <div class="menuIcons" id="messagesDiv" *ngIf="user != null" (click)="onMessagesClicked()">
+                    <img src="../assets/messagesIcon.png">
+            </div>
 
-        <div id="messagesDiv" *ngIf="user != null" (click)="onMessagesClicked()">
-            <p><strong>Messages</strong></p>
-        </div>
+            <div class="menuIcons" id="notificationsDiv" *ngIf="user != null" (click)="notifications()">
+                    <img src="../assets/notificationsIcon.png">
+            </div>
 
-        <div id="createAdDiv" *ngIf="user != null" (click)="onCreateAdClicked()">
-            <p ><strong>Create Ad</strong></p>
+            <div class="menuIcons" id="createAdDiv" *ngIf="user != null" (click)="onCreateAdClicked()">
+                    <img src="../assets/addIcon.png">
+            </div>
         </div>
 
 
