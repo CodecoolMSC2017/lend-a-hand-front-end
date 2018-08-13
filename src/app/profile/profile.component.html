@@ -86,7 +86,9 @@
             </div>
 
             <div class="values">
-                <p><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}} Golden Hand</p>
+                <p *ngIf="currentUsersProfile.balance"><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}} Golden Hand</p>
+                <p *ngIf="!currentUsersProfile.balance"><strong id="balance">Balance: </strong>0 Golden Hand</p>
+
 
 
                 <table id="rating-table">
