@@ -282,6 +282,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.currentUsersProfile.address = address;
         this.userService.updateUser(this.currentUsersProfile).subscribe(response => {
             sessionStorage.setItem('user', JSON.stringify(response));
+            this.user=response;
             this.gem.updateUser(response);
             this.changeBackProfile();
         }, error => {
