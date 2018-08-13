@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {User} from '../model/user.model';
-import {MessageService} from '../service/message.service';
-import {Contact} from '../model/contact.model';
-import {Message} from '../model/message.model';
-import {UserService} from '../service/user.service';
-import {Router} from '@angular/router';
-import {AdService} from '../service/ad.service';
-import {ApplicationService} from '../service/application.service';
+import {Component, OnInit} from "@angular/core";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {User} from "../model/user.model";
+import {MessageService} from "../service/message.service";
+import {Contact} from "../model/contact.model";
+import {Message} from "../model/message.model";
+import {UserService} from "../service/user.service";
+import {Router} from "@angular/router";
+import {AdService} from "../service/ad.service";
+import {ApplicationService} from "../service/application.service";
 
 @Component({
     selector: 'app-messages',
@@ -44,8 +44,8 @@ export class MessagesComponent implements OnInit {
 
     formatAdTitle(title: string): string {
         let formattedTitle;
-        if (title.length > 10) {
-            formattedTitle = title.substring(0, 10) + '...';
+        if (title.length > 11) {
+            formattedTitle = title.substring(0, 11) + '...';
         } else {
             formattedTitle = title;
         }
