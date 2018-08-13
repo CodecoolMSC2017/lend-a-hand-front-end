@@ -73,13 +73,13 @@ export class RateComponent implements OnInit, OnDestroy {
         setTimeout(this.clearAlert, 3000);
     }
 
-    setRate(rating){
-        this.ratingValue=rating;
-        for(let i=1;i<=5;i++){
-            if(rating!=i){
-                document.getElementById(i.toString()).classList.add("notChosen");
-            }else{
-                document.getElementById(i.toString()).classList.remove("notChosen");
+    setRate(rating) {
+        this.ratingValue = rating;
+        for (let i = 1; i <= 5; i++) {
+            if (rating !== i) {
+                document.getElementById(i.toString()).classList.add('not-chosen');
+            } else {
+                document.getElementById(i.toString()).classList.remove('not-chosen');
             }
         }
     }

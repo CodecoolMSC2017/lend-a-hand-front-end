@@ -18,24 +18,23 @@ import {RateComponent} from './rate/rate.component';
 import {UsersComponent} from './users/users.component';
 
 const routes: Routes = [
-        {path: '', redirectTo: '/categories', pathMatch: 'full'},
-        {path: 'login', component: LoginComponent},
-        {path: 'ads', component: AdsComponent},
-        {path: 'users', component: UsersComponent},
-        {path: 'register', component: RegisterComponent},
-        {path: 'main', component: MainPageComponent},
-        {path: 'ad', component: SingleAdComponent},
-        {path: 'createAd', component: CreateAdComponent},
-        {path: 'categories', component: CategoriesComponent},
-        {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
-        {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
-        {path: 'verification', component: VerificationComponent},
-        {path: 'ratings', component: RatingsComponent},
-        {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]},
-        {path: 'applications', component: ApplicationsComponent},
+    {path: '', redirectTo: '/categories', pathMatch: 'full'},
+    {path: 'login', component: LoginComponent},
+    {path: 'ads', component: AdsComponent},
+    {path: 'users', component: UsersComponent},
+    {path: 'register', component: RegisterComponent},
+    {path: 'main', component: MainPageComponent},
+    {path: 'ad', component: SingleAdComponent},
+    {path: 'createAd', component: CreateAdComponent},
+    {path: 'categories', component: CategoriesComponent},
+    {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
+    {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
+    {path: 'verification', component: VerificationComponent},
+    {path: 'ratings', component: RatingsComponent},
+    {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]},
+    {path: 'applications', component: ApplicationsComponent},
     {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]},
-    {path: 'rate', component: RateComponent, canActivate: [LoginGuard]}
-    ]
+    {path: 'rate', component: RateComponent, canActivate: [LoginGuard]}]
 ;
 
 @NgModule({
