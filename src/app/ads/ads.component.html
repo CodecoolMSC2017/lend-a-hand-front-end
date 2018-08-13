@@ -2,8 +2,10 @@
     <h2 *ngIf="ads.length===0" class="empty-category">This category haven't got any advertisments yet.</h2>
     <h2 id="error" class="error hidden">{{error}}</h2>
     <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
-        <div class="ad-container">
-
+        
+        
+        
+        <div class="ad-container" *ngIf="ad.premium==false" >
             <div class="ad-details">
                 <table>
                     <tr>
@@ -15,11 +17,11 @@
                     <tr>
                         <td id="image-td">
                             <img id={{ad.id}} class="ads-image" *ngIf="ad.pictureLink!=''" src={{ad.pictureLink}}
-                                 (error)=standBy(ad.id)>
+                                    (error)=standBy(ad.id)>
                             <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Hire'"
-                                 src='../assets/hire.png'>
+                                    src='../assets/hire.png'>
                             <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Offer'"
-                                 src='../assets/offer.png'>
+                                    src='../assets/offer.png'>
                         </td>
                         <td>
                             <table>
@@ -36,6 +38,45 @@
                 </table>
             </div>
         </div>
+        
+
+        <div class="ad-container" *ngIf="ad.premium==true" >
+            <div class="premium" >
+                <table>
+                    <tr>
+                        <td id="title-td"><strong class="ad-title">{{ad.title}}</strong></td>
+                        <td id="date-td">{{ad.formattedTimestamp}}</td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td id="image-td">
+                            <img id={{ad.id}} class="ads-image" *ngIf="ad.pictureLink!=''" src={{ad.pictureLink}}
+                                    (error)=standBy(ad.id)>
+                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Hire'"
+                                    src='../assets/hire.png'>
+                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Offer'"
+                                    src='../assets/offer.png'>
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td id="description-td">{{ad.formattedDescription}}</td>
+                                </tr>
+                                <tr>
+                                    <td id="type-td"><strong>Type:</strong> {{ad.type}}</td>
+                                    <td id="category-td"><strong>Category:</strong> {{ad.category}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+
+        
     </div>
 </div>
 

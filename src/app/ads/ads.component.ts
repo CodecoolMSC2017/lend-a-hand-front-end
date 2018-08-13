@@ -37,6 +37,7 @@ export class AdsComponent implements OnInit, OnDestroy {
                 this.adService.getAdsByFilter(filterSettings.keyword, filterSettings.selectedCategory, filterSettings.selectedType)
                     .subscribe(ads => {
                         this.ads = this.formatAds(ads);
+                        console.log(ads);
                         sessionStorage.setItem('ads', JSON.stringify(ads));
                     }, error => {
                         this.handleError(error);
