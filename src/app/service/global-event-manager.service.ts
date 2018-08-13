@@ -24,6 +24,8 @@ export class GlobalEventManagerService {
     private profileTrigger: Subject<User> = new BehaviorSubject<User>(null);
     public profileEmitter: Observable<User> = this.profileTrigger.asObservable();
 
+    private applicationTrigger: Subject<Application> = new BehaviorSubject<Application>(null);
+    public applicationEmitter: Observable<Application> = this.applicationTrigger.asObservable();
 
     private infoTrigger: Subject<string> = new BehaviorSubject<string>(null);
     public infoEmitter: Observable<string> = this.infoTrigger.asObservable();
@@ -52,6 +54,10 @@ export class GlobalEventManagerService {
 
     public updateProfile(user: User): void {
         this.profileTrigger.next(user);
+    }
+
+    public updateApplication(application: Application): void {
+        this.applicationTrigger.next(application);
     }
 
     public updateInfo(info: string): void {

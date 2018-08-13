@@ -27,7 +27,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     applicationMessage: string;
     application = new Application();
 
-    constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService, private appService: ApplicationService) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,
+                private appService: ApplicationService) {
     }
 
     ngOnInit() {

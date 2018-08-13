@@ -1,6 +1,7 @@
 export class Ad {
     id: number;
     title: string;
+    formattedTitle: string;
     description: string;
     formattedDescription: string;
     payment: number;

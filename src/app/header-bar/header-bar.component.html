@@ -4,7 +4,7 @@
         <img id="header-logo" src="../../assets/headerlogo.png" routerLink='/categories'>
         <p id="detailedSearch" (click)="showFilters()">►</p>
         <div id="search-bar">
-            <input id="keyword-input" type="text" class="input" [(ngModel)]="filterSettings.keyword">
+            <input id="keyword-input" type="text" [(ngModel)]="filterSettings.keyword">
             <button id="search-button" (click)="filterAds()"><strong>Search</strong></button>
 
             <div id="filters" class="hidden">
