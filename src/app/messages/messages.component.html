@@ -70,24 +70,41 @@
 
                 </div>
             </div>
+
             <div class="content">
                 <div class="contact-profile">
-                    <img *ngIf="activeContact.user.pictureLink!=null" class="{{activeContact.user.id}}"
-                         src={{activeContact.user.pictureLink}} alt="" (error)="standBy(activeContact.user.id)"/>
-                    <img *ngIf="activeContact.user.pictureLink==null"
-                         src="../assets/noImage.jpg" alt=""/>
-                    <p class="name" (click)="toProfile(activeContact.user.id)">{{activeContact.user.userName}}</p>
-                    <p class="title" (click)="toAd(activeContact.ad.id)">{{activeContact.ad.formattedTitle}}</p>
-                    <img *ngIf="activeContact.ad.pictureLink != null" id="{{activeContact.ad.id}}"
-                         src="{{activeContact.ad.pictureLink}}" alt="" (error)="standByAd(activeContact.ad.id)"/>
-                    <img *ngIf="activeContact.ad.pictureLink == null"
-                         src="../assets/noImage.jpg" alt=""/>
-
+                    <table id="contact-table">
+                        <tr>
+                            <td id="profile-img-td">
+                                <img *ngIf="activeContact.user.pictureLink!=null" class="{{activeContact.user.id}}"
+                                     src={{activeContact.user.pictureLink}} alt=""
+                                     (error)="standBy(activeContact.user.id)"/>
+                                <img *ngIf="activeContact.user.pictureLink==null"
+                                     src="../assets/noImage.jpg" alt=""/>
+                            </td>
+                            <td id="profile-name-td">
+                                <p class="name" (click)="toProfile(activeContact.user.id)">
+                                    {{activeContact.user.userName}}</p>
+                            </td>
+                            <td id="ad-title-td">
+                                <p class="title" (click)="toAd(activeContact.ad.id)">
+                                    {{activeContact.ad.formattedTitle}}</p>
+                            </td>
+                            <td id="ad-img-td">
+                                <img *ngIf="activeContact.ad.pictureLink != null" id="{{activeContact.ad.id}}"
+                                     src="{{activeContact.ad.pictureLink}}" alt=""
+                                     (error)="standByAd(activeContact.ad.id)"/>
+                                <img *ngIf="activeContact.ad.pictureLink == null"
+                                     src="../assets/noImage.jpg" alt=""/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="ad-content">
 
+                <div class="ad-content">
                 </div>
                 <div class="messages" id="messageContainer">
+                        <h3 *ngIf="activeContact.messages.length===0" class="empty-category">You haven't got any messages yet.</h3> 
                     <ul *ngFor="let message of activeContact.messages">
                         <li *ngIf="message.senderId==user.id" class="sent">
                             <img *ngIf="user.pictureLink!=null" class="{{user.id}}"
