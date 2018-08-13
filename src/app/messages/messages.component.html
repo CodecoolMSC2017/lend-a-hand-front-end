@@ -88,6 +88,7 @@
 
                 </div>
                 <div class="messages" id="messageContainer">
+                        <h3 *ngIf="activeContact.messages.length===0" class="empty-category">You haven't got any messages yet.</h3> 
                     <ul *ngFor="let message of activeContact.messages">
                         <li *ngIf="message.senderId==user.id" class="sent">
                             <img *ngIf="user.pictureLink!=null" class="{{user.id}}"
