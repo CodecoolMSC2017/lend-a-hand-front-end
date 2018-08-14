@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {User} from '../model/user.model';
-import {UserService} from '../service/user.service';
-import {Subscription} from 'rxjs';
-import {AdService} from '../service/ad.service';
-import {Router} from '@angular/router';
-import {ApplicationService} from '../service/application.service';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {User} from "../model/user.model";
+import {UserService} from "../service/user.service";
+import {Subscription} from "rxjs";
+import {AdService} from "../service/ad.service";
+import {Router} from "@angular/router";
+import {ApplicationService} from "../service/application.service";
 
 @Component({
     selector: 'app-profile',
@@ -301,6 +301,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.handleError(error);
             }
         );
+    }
+
+    toReport() {
+
     }
 
     handleError(error) {
