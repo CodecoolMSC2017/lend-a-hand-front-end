@@ -108,10 +108,12 @@
 }
 
 #state-td {
-    width: 50%;
+    width: 10%;
     text-align: right;
-    padding-right: 3%;
+    
 }
+
+
 
 .faded {
     opacity: 0;
