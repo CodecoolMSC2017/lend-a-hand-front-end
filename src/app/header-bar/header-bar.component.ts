@@ -39,6 +39,10 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
         this.router.navigate(['ads']);
     }
 
+    toUsers() {
+        this.router.navigate(['users']);
+    }
+
 
     login() {
         this.router.navigate(['login']);

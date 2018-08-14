@@ -1,5 +1,5 @@
 <div id="outer-div" *ngIf="loaded">
-    <h2 class="NotAbletoAd" *ngIf="!user.ableToAd">You are not able to create and apply for ads. Fill your profile
+    <h2 class="NotAbletoAd" *ngIf="!user.ableToAd && user.type!='ADMIN'">You are not able to create and apply for ads. Fill your profile
         datas!</h2>
     <div id="profile-div">
         <div class="wrapper">
@@ -13,7 +13,7 @@
             </div>
 
             <div class="contacts">
-                <table class="contact-table" *ngIf="contacted">
+                <table class="contact-table" *ngIf="contacted || user.type==='ADMIN'">
                     <tr>
                         <td colspan="2">
                             <button *ngIf="ownProfile == true" class="options" (click)="profileChanges()"
@@ -86,7 +86,9 @@
             </div>
 
             <div class="values">
-                <p><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}} Golden Hand</p>
+                <p *ngIf="currentUsersProfile.balance"><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}} Golden Hand</p>
+                <p *ngIf="!currentUsersProfile.balance"><strong id="balance">Balance: </strong>0 Golden Hand</p>
+
 
 
                 <table id="rating-table">
@@ -95,7 +97,8 @@
                             <strong><p>Rating as a Hand-lender: </p></strong>
                         </td>
                         <td>
-                            <span>{{currentUsersProfile.employeeRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="currentUsersProfile.employeeRatingScore">{{currentUsersProfile.employeeRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="!currentUsersProfile.employeeRatingScore">0</span>
                         </td>
                     </tr>
                     <tr>
@@ -103,7 +106,8 @@
                             <strong><p>Rating as a Hand-seeker: </p></strong>
                         </td>
                         <td>
-                            <span>{{currentUsersProfile.employerRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="currentUsersProfile.employerRatingScore">{{currentUsersProfile.employerRatingScore | number:'1.0-1'}}</span>
+                            <span *ngIf="!currentUsersProfile.employerRatingScore">0</span>
                         </td>
                     </tr>
                 </table>

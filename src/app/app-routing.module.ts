@@ -15,11 +15,14 @@ import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.co
 import {ApplicationsComponent} from './applications/applications.component';
 import {MessagesComponent} from './messages/messages.component';
 import {RateComponent} from './rate/rate.component';
+import {UsersComponent} from './users/users.component';
+import {NotificationsComponent} from './notifications/notifications.component';
 
 const routes: Routes = [
         {path: '', redirectTo: '/categories', pathMatch: 'full'},
         {path: 'login', component: LoginComponent},
         {path: 'ads', component: AdsComponent},
+        {path: 'users', component: UsersComponent},
         {path: 'register', component: RegisterComponent},
         {path: 'main', component: MainPageComponent},
         {path: 'ad', component: SingleAdComponent},
@@ -31,8 +34,9 @@ const routes: Routes = [
         {path: 'ratings', component: RatingsComponent},
         {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]},
         {path: 'applications', component: ApplicationsComponent},
-    {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]},
-    {path: 'rate', component: RateComponent, canActivate: [LoginGuard]}
+        {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]},
+        {path: 'rate', component: RateComponent, canActivate: [LoginGuard]},
+        {path: 'notifications', component: NotificationsComponent, canActivate: [LoginGuard]}
     ]
 ;
 

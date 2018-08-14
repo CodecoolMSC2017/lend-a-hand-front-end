@@ -1,0 +1,6 @@
+<div id="userList">
+  
+  <div id="user" *ngFor="let user of users" >
+    <h3 *ngIf="user.type!='ADMIN'" (click)="toUserProfile(user)">{{user.userName}}</h3>
+  </div>
+</div>

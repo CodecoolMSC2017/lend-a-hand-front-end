@@ -22,6 +22,8 @@ import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.co
 import {ApplicationsComponent} from './applications/applications.component';
 import {MessagesComponent} from './messages/messages.component';
 import {RateComponent} from './rate/rate.component';
+import {UsersComponent} from './users/users.component';
+import {NotificationsComponent} from './notifications/notifications.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +42,9 @@ import {RateComponent} from './rate/rate.component';
         AdsByAdvertiserComponent,
         ApplicationsComponent,
         MessagesComponent,
-        RateComponent
+        RateComponent,
+        UsersComponent,
+        NotificationsComponent
     ],
     imports: [
         BrowserModule,
