@@ -1,3 +1,7 @@
-<p>
-    notifications works!
-</p>
+<div id="notifications">
+    <h2 *ngIf="notifications.length===0" class="empty-category">You haven't got applications yet.</h2>
+    <h2 id="error" class="error hidden">{{error}}</h2>
+    <div *ngFor="let notification of notifications" class="notification">
+        <h2>{{notification.text}}</h2>
+    </div>
+</div>

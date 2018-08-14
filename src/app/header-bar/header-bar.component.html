@@ -16,11 +16,11 @@
                 </div>
 
                 <div id="hire-offer-filter">
-                    <p><strong id="strong-hire-offer">Hire/Offer</strong></p>
+                    <p><strong id="strong-hire-offer">Hand-seeking/Hand-lending</strong></p>
                     <select id="type-select" [(ngModel)]="filterSettings.selectedType">
                         <option value="All">All</option>
-                        <option value="Hire">Hire</option>
-                        <option value="Offer">Offer</option>
+                        <option value="Hire">Hand-seeking</option>
+                        <option value="Offer">Hand-lending</option>
                     </select>
                 </div>
             </div>
@@ -47,10 +47,8 @@
                     <img src="../assets/messagesIcon.png">
             </div>
 
-           
 
-
-            <div class="menuIcons" id="notificationsDiv" *ngIf="user != null" (click)="notifications()">
+            <div class="menuIcons" id="notificationsDiv" *ngIf="user != null" (click)="toNotifications()">
                     <img src="../assets/notificationsIcon.png">
             </div>
 
