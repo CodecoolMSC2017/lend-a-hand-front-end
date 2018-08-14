@@ -7,7 +7,7 @@
         <div class="ratingDiv">
             <h3 *ngIf="employeeRatings.length===0">You haven't got any ratings yet.</h3>
         <span *ngFor="let rating of employeeRatings" class="rating"><strong>{{rating.raterName}}</strong> 
-          <span class="ratingValue">{{rating.ratingText}}</span>  
+          <span class="ratingValue" title="{{rating.ratingText}}"><img src="../assets/textBubble.png"></span>  
           <span class="ratingValue">{{rating.rating | number:'1.0-1'}}/5</span> <br><hr> <br> </span>   
         </div>
       </span>
@@ -16,7 +16,7 @@
           <div class="ratingDiv">
               <h3 *ngIf="employeeRatings.length===0">You haven't got any ratings yet.</h3>
         <span *ngFor="let rating of employeeRatings" class="rating"><strong>{{rating.ratedName}}</strong>  
-          <span class="ratingValue">{{rating.ratingText}}</span>   
+          <span class="ratingValue" title="{{rating.ratingText}}"><img src="../assets/textBubble.png"></span>   
           <span class="ratingValue">{{rating.rating | number:'1.0-1'}}/5</span><br><hr> <br></span>
       </div>
       </span>      
@@ -29,7 +29,7 @@
           <div class="ratingDiv">
               <h3 *ngIf="employeeRatings.length===0">You haven't got any ratings here.</h3> 
         <span *ngFor="let rating of employerRatings" class="rating"><strong>{{rating.raterName}}</strong>
-          <span class="ratingValue">{{rating.ratingText}}</span>     
+          <span class="ratingValue" title="{{rating.ratingText}}"><img src="../assets/textBubble.png"></span>     
           <span class="ratingValue">{{rating.rating | number:'1.0-1'}}/5</span><br><hr><br></span>
             </div>
       </span>
@@ -38,7 +38,7 @@
           <div class="ratingDiv">   
               <h3 *ngIf="employeeRatings.length===0">You haven't got any ratings here.</h3> 
         <span *ngFor="let rating of employerRatings" class="rating"><strong>{{rating.ratedName}}</strong>  
-          <span class="ratingValue">{{rating.ratingText}}</span>   
+          <span class="ratingValue" title="{{rating.ratingText}}"><img src="../assets/textBubble"></span>   
           <span class="ratingValue">{{rating.rating | number:'1.0-1'}}/5</span><br><hr><br></span>
             </div>
       </span>          
