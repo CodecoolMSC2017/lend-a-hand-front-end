@@ -56,10 +56,10 @@
                                              src={{application.applicantPictureLink}}
                                              (error)=standBy(application.id)>
                                         <img class="applications-image"
-                                             *ngIf="application.applicantPictureLink=='' && application.type=='Hire'"
+                                             *ngIf="application.applicantPictureLink=='' && application.type=='Hand-seeking'"
                                              src='../assets/hire.png'>
                                         <img class="applications-image"
-                                             *ngIf="application.applicantPictureLink=='' && application.type=='Offer'"
+                                             *ngIf="application.applicantPictureLink=='' && application.type=='Hand-lending'"
                                              src='../assets/offer.png'>
                                     </td>
                                     <td>
@@ -79,11 +79,11 @@
                                                 <tr>
                                                     <td></td>
                                                     <td></td>
-                                                <td *ngIf="application.type=='Offer'" class="rating-td">
+                                                <td *ngIf="application.type=='Hand-lending'" class="rating-td">
                                                     <strong>Rating:</strong>
                                                     {{application.employerRatingScore | number:'1.0-1'}} / 5
                                                 </td>
-                                                <td *ngIf="application.type=='Hire'" class="rating-td">
+                                                <td *ngIf="application.type=='Hand-seeking'" class="rating-td">
                                                     <strong>Rating:</strong>
                                                     {{application.employeeRatingScore | number:'1.0-1'}} / 5
                                                 </td>
