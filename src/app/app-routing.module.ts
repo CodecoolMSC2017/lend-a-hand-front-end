@@ -4,6 +4,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ProfileComponent} from './profile/profile.component';
 import {LoginGuard} from './login.guard';
+import {AdminGuard} from './admin.guard';
 import {MainPageComponent} from './main-page/main-page.component';
 import {SingleAdComponent} from './single-ad/single-ad.component';
 import {CategoriesComponent} from './categories/categories.component';
@@ -22,7 +23,7 @@ const routes: Routes = [
         {path: '', redirectTo: '/categories', pathMatch: 'full'},
         {path: 'login', component: LoginComponent},
         {path: 'ads', component: AdsComponent},
-        {path: 'users', component: UsersComponent},
+        {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
         {path: 'register', component: RegisterComponent},
         {path: 'main', component: MainPageComponent},
         {path: 'ad', component: SingleAdComponent},

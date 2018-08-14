@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Ad} from '../model/ad.model';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Router} from '@angular/router';
+import {AdService} from '../service/ad.service';
 
 @Component({
     selector: 'app-ads-by-advertiser',
@@ -12,13 +13,25 @@ export class AdsByAdvertiserComponent implements OnInit {
 
     private ads: Ad[];
 
-    constructor(private gem: GlobalEventManagerService, private router: Router) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private adService:AdService) {
     }
 
     ngOnInit() {
         const user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(user);
         this.ads = this.formatAds(JSON.parse(sessionStorage.getItem('ads')));
+    }
+
+    archiveAd(ad, adId){
+        console.log(adId);
+        this.adService.deleteAdById(adId).subscribe(response =>{
+            if(response){
+            this.adService.getAdsByAdvertiser(ad.advertiserId).subscribe(ads =>{
+                this.ads=this.formatAds(ads);
+            });
+        }
+        });
+        
     }
 
 
