@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Ad} from '../model/ad.model';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {Router} from '@angular/router';
-import {User} from '../model/user.model';
-import {Subscription} from 'rxjs';
-import {UserService} from '../service/user.service';
-import {ApplicationService} from '../service/application.service';
-import {Application} from '../model/application.model';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Ad} from "../model/ad.model";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {Router} from "@angular/router";
+import {User} from "../model/user.model";
+import {Subscription} from "rxjs";
+import {UserService} from "../service/user.service";
+import {ApplicationService} from "../service/application.service";
+import {Application} from "../model/application.model";
 
 
 @Component({
@@ -172,6 +172,12 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.handleError(error);
         });
     }
+
+    toReport() {
+        this.gem.updateReportedAd(this.ad);
+        this.router.navigate(['report']);
+    }
+
 
     handleError(error) {
         if (error.status === 401) {

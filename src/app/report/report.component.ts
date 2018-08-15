@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
 import {ReportService} from "../service/report.service";
 import {GlobalEventManagerService} from "../service/global-event-manager.service";
 import {Router} from "@angular/router";
@@ -12,7 +12,7 @@ import {Subscription} from "rxjs/index";
     templateUrl: './report.component.html',
     styleUrls: ['./report.component.css']
 })
-export class ReportComponent implements OnInit {
+export class ReportComponent implements OnInit, OnDestroy {
 
     error: string;
     message: string;
@@ -99,4 +99,8 @@ export class ReportComponent implements OnInit {
         this.showError();
     }
 
+    ngOnDestroy() {
+        this.reportedUserSub.unsubscribe();
+        this.reportedAdSub.unsubscribe();
+    }
 }
