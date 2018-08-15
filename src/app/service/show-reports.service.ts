@@ -9,7 +9,11 @@ export class ShowReportsService {
 
   constructor(private http:HttpClient) { }
 
-  public getAllReports():Observable<any>{
-    return this.http.get('/api/reports');
+  public getUserReports():Observable<any>{
+    return this.http.get('/api/reports/user');
+  }
+
+  public getAdReports():Observable<any>{
+    return this.http.get('/api/reports/ad');
   }
 }

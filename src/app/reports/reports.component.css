@@ -3,6 +3,16 @@
     top:10em;
 }
 
+#adReportsButton{
+    position:relative;
+    left:1em,
+}
+
+#userReportsButton{
+    position:relative;
+    left:-1em;
+}
+
 .report{
     background-color: rgb(232, 237, 238);
     width:25em;

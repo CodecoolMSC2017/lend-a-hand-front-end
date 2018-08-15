@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 export class UsersComponent implements OnInit {
 
   users:User[];
-  
+  user:User;
 
 
   constructor(private userService:UserService,private gem:GlobalEventManagerService,private router:Router) { }
@@ -20,8 +20,10 @@ export class UsersComponent implements OnInit {
 
 
   ngOnInit() {
+    this.user = JSON.parse(sessionStorage.getItem('user'));
+    this.gem.updateUser(this.user);
     this.userService.getAllUser().subscribe(users =>{
-      console.log(users)
+     
       this.users=users;
     })
   }

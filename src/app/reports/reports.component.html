@@ -1,16 +1,38 @@
 <div id="reports">
-  <div class="report" *ngFor="let report of reports">
-    
-    
-    <span class="names">
-      <span class="reporter"><strong >Reporter:</strong>{{report.reporterUsername}}</span>
-      <span class="reported"><strong >Reported:</strong>{{report.reportedUsername}}</span>
-    </span>
+  
+    <button class="button-inverse" id="userReportsButton" (click)="showUserReports()" >User reports</button>
+    <button class="button-inverse" id="adReportsButton" (click)="showAdReports()">Ad Reports</button>
+  
+  <div id="userReportsDiv" class="hidden">
+    <div  class="report" *ngFor="let report of userReports">
+      
+      
+      <span class="names">
+        <span class="reporter"><strong >Reporter:</strong>{{report.reporterUsername}}</span>
+        <span class="reported"><strong >Reported:</strong>{{report.reportedUsername}}</span>
+      </span>
 
-    <div class="reportText">
-      <p>{{report.reportText}}</p>
-    </div>
-   
+      <div class="reportText">
+        <p>{{report.reportText}}</p>
+      </div>
     
+      
+    </div>
+  </div>
+  <div id="adReportsDiv" class="hidden">
+    <div  class="report" *ngFor="let report of adReports">
+      
+      
+        <span class="names">
+          <span class="reporter"><strong >Reporter:</strong>{{report.reporterUsername}}</span>
+          <span class="reported"><strong >Reported:</strong>{{report.reportedAdTitle}}</span>
+        </span>
+    
+        <div class="reportText">
+          <p>{{report.reportText}}</p>
+        </div>
+      
+        
+      </div>
   </div>
 </div>
