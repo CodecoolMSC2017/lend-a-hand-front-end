@@ -1,0 +1,33 @@
+#reports{
+    position:relative;
+    top:10em;
+}
+
+#adReportsButton{
+    position:relative;
+    left:1em,
+}
+
+#userReportsButton{
+    position:relative;
+    left:-1em;
+}
+
+.report{
+    background-color: rgb(232, 237, 238);
+    width:25em;
+    margin-top:2em;
+    padding:1em;
+    border-radius:2em;
+    border: solid 0.5em #07222c;
+}
+
+.reported{
+    position:relative;
+    left:2em;
+}
+
+.reportText{
+    font-size: 10pt;
+}
+

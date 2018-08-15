@@ -1,0 +1,19 @@
+<div id="report-container">
+    <div id="report-div">
+
+        <p>Report</p>
+
+        <div id="report-message-div">
+            <p>Description of your problem</p>
+            <textarea rows="4" cols="50" type="text" id="message-input" [(ngModel)]="message"></textarea>
+        </div>
+
+        <button id="send-report-button" (click)="sendReport()" class="button">Done</button>
+
+        <div class="info-div">
+            <span class="info" id="info">Report a problem</span>
+            <span class="error hidden" id="error">{{error}}</span>
+        </div>
+
+    </div>
+</div>

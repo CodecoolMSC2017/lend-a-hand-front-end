@@ -18,9 +18,12 @@ import {MessagesComponent} from './messages/messages.component';
 import {RateComponent} from './rate/rate.component';
 import {UsersComponent} from './users/users.component';
 import {NotificationsComponent} from './notifications/notifications.component';
+import { ReportsComponent } from './reports/reports.component';
+
 
 const routes: Routes = [
         {path: '', redirectTo: '/categories', pathMatch: 'full'},
+        {path: 'reports', component: ReportsComponent},
         {path: 'login', component: LoginComponent},
         {path: 'ads', component: AdsComponent},
         {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},

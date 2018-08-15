@@ -123,6 +123,11 @@
                 <br>
                 <button class="button-inverse option-button" (click)="toApplications()">My Applications</button>
             </div>
+
+            <div id="report-button-div" *ngIf="!ownProfile">
+                <button class="button-inverse option-button" (click)="toReport()">Report</button>
+            </div>
+
         </div>
     </div>
 </div>
