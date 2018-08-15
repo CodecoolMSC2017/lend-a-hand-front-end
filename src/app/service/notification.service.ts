@@ -19,6 +19,14 @@ export class NotificationService {
     }
 
     public readNotification(id): Observable<any> {
-        return this.http.put('/api/notifications/' + id, null);
+        return this.http.put('/api/notifications/read/' + id, null);
+    }
+
+    public unreadNotification(id): Observable<any> {
+        return this.http.put('/api/notifications/unread/' + id, null);
+    }
+
+    public deleteNotification(id): Observable<any> {
+        return this.http.delete('/api/notifications/delete/' + id);
     }
 }
