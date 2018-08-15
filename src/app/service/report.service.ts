@@ -24,4 +24,12 @@ export class ReportService {
         return this.http.get<Report[]>('/api/reports/ads/' + id);
 
     }
+
+    public createReport(report: Report): Observable<any> {
+        return this.http.post('/api/reports/new', report);
+    }
+
+    public handleReport(id: number): Observable<any> {
+        return this.http.put('/api/reports/update/' + id, null);
+    }
 }
