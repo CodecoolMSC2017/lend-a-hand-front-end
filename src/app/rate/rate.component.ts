@@ -20,6 +20,7 @@ export class RateComponent implements OnInit, OnDestroy {
     appSub: Subscription;
     message: string;
     ratingValue: number;
+    isAdvertiserRate: boolean;
 
     constructor(private router: Router, private gem: GlobalEventManagerService, private ratingService: RatingService) {
     }
@@ -30,6 +31,11 @@ export class RateComponent implements OnInit, OnDestroy {
 
         this.appSub = this.gem.applicationEmitter.subscribe(application => {
             this.application = application;
+            if (this.user.id === this.application.applicantId) {
+                this.isAdvertiserRate = false;
+            } else {
+                this.isAdvertiserRate = true;
+            }
         });
     }
 
@@ -47,10 +53,15 @@ export class RateComponent implements OnInit, OnDestroy {
 
         const rating = new Rating();
         rating.application = this.application;
-        rating.ratedName = this.application.applicantName;
         rating.raterName = this.user.userName;
         rating.rating = this.ratingValue;
         rating.ratingText = this.message;
+        if (this.isAdvertiserRate) {
+            rating.ratedName = this.application.applicantName;
+        } else {
+            //   We need the advertiser name!!!!
+            rating.ratedName = this.application.applicantName;
+        }
         this.ratingService.createRating(rating).subscribe(user => {
             sessionStorage.setItem('user', JSON.stringify(user));
             this.gem.updateUser(user);

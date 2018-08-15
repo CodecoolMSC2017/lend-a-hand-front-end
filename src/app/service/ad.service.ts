@@ -28,8 +28,9 @@ export class AdService {
         return this.http.get<Ad>('/api/ads/' + id);
     }
 
-    public deleteAdById(id: number): void {
-        this.http.delete('/api/ads/delete/' + id);
+    public deleteAdById(id: number): Observable<any> {
+        return this.http.delete('/api/ads/delete/' + id);
+        
     }
 
     public createAd(ad: Ad): Observable<any> {

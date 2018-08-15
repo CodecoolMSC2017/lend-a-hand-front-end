@@ -1,7 +1,7 @@
 <div id="ads">
     <h2 *ngIf="ads.length===0" class="empty-category">You haven't got advertisements yet.</h2> 
-    <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
-        <div class="ad-container">
+    <div *ngFor="let ad of ads" class="ad" >
+        <div class="ad-container" (click)="showAd(ad)">
 
             <div class="ad-details">
                 <table>
@@ -15,9 +15,9 @@
                         <td id="image-td">
                             <img id={{ad.id}} class="ads-image" *ngIf="ad.pictureLink!=''" src={{ad.pictureLink}}
                                  (error)=standBy(ad.id)>
-                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Hire'"
+                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Hand-seeking'"
                                  src='../assets/hire.png'>
-                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Offer'"
+                            <img class="ads-image" *ngIf="ad.pictureLink=='' && ad.type=='Hand-lending'"
                                  src='../assets/offer.png'>
                         </td>
                         <td>
@@ -29,13 +29,16 @@
                                     <td id="type-td"><strong>Type:</strong> {{ad.type}}</td>
                                     <td id="category-td"><strong>Category:</strong> {{ad.category}}</td>
                                 </tr>
+                                
                             </table>
                         </td>
                     </tr>
                 </table>
             </div>
         </div>
+        <button (click)="archiveAd(ad,ad.id)" class="button-inverse" style="position:relative;left:25em;z-index:1000;">Delete</button>
     </div>
+    
 </div>
 
 

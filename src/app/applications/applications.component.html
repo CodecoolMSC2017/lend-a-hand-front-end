@@ -19,10 +19,10 @@
                                  src={{application.adPictureLink}}
                                  (error)=standBy(application.id)>
                             <img class="applications-image"
-                                 *ngIf="application.adPictureLink=='' && application.type=='Hire'"
+                                 *ngIf="application.adPictureLink=='' && application.type=='Hand-seeking'"
                                  src='../assets/hire.png'>
                             <img class="applications-image"
-                                 *ngIf="application.adPictureLink=='' && application.type=='Offer'"
+                                 *ngIf="application.adPictureLink=='' && application.type=='Hand-lending'"
                                  src='../assets/offer.png'>
                         </td>
                         <td>
