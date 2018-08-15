@@ -70,7 +70,7 @@ export class ReportComponent implements OnInit {
     sendReport() {
         if (!this.message) {
             this.error = 'Message field is required';
-            this.showError();
+            // this.showError();
             return;
         }
 
@@ -84,7 +84,7 @@ export class ReportComponent implements OnInit {
         report.reportText = this.message;
 
         this.reportService.createReport(report).subscribe(us => {
-            sessionStorage.setItem('user', JSON.stringify(user))
+            // sessionStorage.setItem('user', JSON.stringify(user))
         });
 
     }
