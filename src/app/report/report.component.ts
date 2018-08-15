@@ -39,54 +39,64 @@ export class ReportComponent implements OnInit {
         });
     }
 
-    /*    sendRate() {
-     if (!this.ratingValue) {
-     this.error = 'A rating value must be selected';
-     this.showError();
-     return;
-     }
-     if (!this.message) {
-     this.error = 'Message field is required';
-     this.showError();
-     return;
-     }
-
-     const rating = new Rating();
-     rating.application = this.application;
-     rating.ratedName = this.application.applicantName;
-     rating.raterName = this.user.userName;
-     rating.rating = this.ratingValue;
-     rating.ratingText = this.message;
-     this.ratingService.createRating(rating).subscribe(user => {
-     sessionStorage.setItem('user', JSON.stringify(user));
-     this.gem.updateUser(user);
-     this.gem.updateRatingType('myRatings');
-     this.router.navigate(['ratings']);
-     }, error => {
-     this.handleError(error);
-     });
-     }*/
-
     sendReport() {
         if (!this.message) {
             this.error = 'Message field is required';
-            // this.showError();
+            this.showError();
             return;
         }
 
         const report = new Report();
         report.reporterId = this.user.id;
         report.reporterUsername = this.user.userName;
-        report.reportedUserId = this.reportedUser.id;
-        report.reportedUsername = this.reportedUser.userName;
-        report.reportedAdId = this.reportedAd.id;
-        report.reportedAdTitle = this.reportedAd.title;
+
+        if (this.reportedUser) {
+            report.reportedUserId = this.reportedUser.id;
+            report.reportedUsername = this.reportedUser.userName;
+        }
+
+        if (this.reportedAd) {
+            report.reportedAdId = this.reportedAd.id;
+            report.reportedAdTitle = this.reportedAd.title;
+        }
+
         report.reportText = this.message;
 
-        this.reportService.createReport(report).subscribe(us => {
-            // sessionStorage.setItem('user', JSON.stringify(user))
-        });
+        this.reportService.createReport(report).subscribe(newReport => {
+                this.gem.updateReportedUser(null);
+                this.gem.updateReportedAd(null);
+                this.gem.updateInfo('Report successfully sent');
+                this.router.navigate(['categories']);
+            }, serverError => {
+                this.handleError(serverError);
+            }
+        );
+    }
 
+    clearAlert() {
+        document.getElementById('error').classList.add('hidden');
+        document.getElementById('info').classList.remove('hidden');
+    }
+
+    showError() {
+        document.getElementById('info').classList.add('hidden');
+        document.getElementById('error').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
     }
 
 }
