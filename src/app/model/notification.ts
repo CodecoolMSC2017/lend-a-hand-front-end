@@ -18,5 +18,5 @@ export class Notification {
     read: boolean;
     timestamp: string;
     formattedTimestamp: string;
-
+    deleted: boolean;
 }
