@@ -42,7 +42,7 @@ export class NotificationsComponent implements OnInit {
         noteTd.removeEventListener('click', read);
         noteTd.addEventListener('click', close);
         this.notificationService.readNotification(id).subscribe(notification => {
-            noteTd.classList.remove('false');
+            noteTd.parentElement.classList.remove('false');
         }, error => {
             this.handleError(error);
         });
@@ -84,6 +84,46 @@ export class NotificationsComponent implements OnInit {
     toMyRaters() {
         this.gem.updateRatingType('myRatings');
         this.router.navigate(['ratings']);
+    }
+
+    unread() {
+        const idArr = this.getCheckedValues();
+        for (const id of <any>idArr) {
+            this.notificationService.unreadNotification(id).subscribe(notification => {
+                const noteTd = document.getElementById(notification.id);
+                noteTd.parentElement.classList.add('false');
+            }, error => {
+                this.handleError(error);
+            });
+        }
+    }
+
+    delete() {
+        const idArr = this.getCheckedValues();
+        for (const id of <any>idArr) {
+            this.notificationService.deleteNotification(id).subscribe(notification => {
+                const noteTd = document.getElementById(notification.id);
+                noteTd.parentElement.remove();
+                const notificationTable = document.getElementById('notification-table');
+                if (notificationTable.getElementsByTagName('tr').length === 0) {
+                    this.notifications = [];
+                }
+            }, error => {
+                this.handleError(error);
+            });
+        }
+
+    }
+
+    getCheckedValues() {
+        const checkboxes = document.getElementsByClassName('checkbox');
+        const idArr = [];
+        for (const e of <any>checkboxes) {
+            if ((< HTMLInputElement >e).checked) {
+                idArr.push((< HTMLInputElement >e).value);
+            }
+        }
+        return idArr;
     }
 
     formatNotificationShortTimestamp(timestamp: string): string {
