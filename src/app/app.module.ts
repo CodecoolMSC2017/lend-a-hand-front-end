@@ -11,22 +11,6 @@ import {ProfileComponent} from "./profile/profile.component";
 import {MainPageComponent} from "./main-page/main-page.component";
 import {httpInterceptorProviders} from "../http-interceptors";
 
-<<<<<<< HEAD
-import {AdsComponent} from './ads/ads.component';
-import {HeaderBarComponent} from './header-bar/header-bar.component';
-import {SingleAdComponent} from './single-ad/single-ad.component';
-import {CategoriesComponent} from './categories/categories.component';
-import {VerificationComponent} from './verification/verification.component';
-import {RatingsComponent} from './ratings/ratings.component';
-import {CreateAdComponent} from './create-ad/create-ad.component';
-import {AdsByAdvertiserComponent} from './ads-by-advertiser/ads-by-advertiser.component';
-import {ApplicationsComponent} from './applications/applications.component';
-import {MessagesComponent} from './messages/messages.component';
-import {RateComponent} from './rate/rate.component';
-import {UsersComponent} from './users/users.component';
-import {NotificationsComponent} from './notifications/notifications.component';
-import { ReportsComponent } from './reports/reports.component';
-=======
 import {AdsComponent} from "./ads/ads.component";
 import {HeaderBarComponent} from "./header-bar/header-bar.component";
 import {SingleAdComponent} from "./single-ad/single-ad.component";
@@ -40,8 +24,8 @@ import {MessagesComponent} from "./messages/messages.component";
 import {RateComponent} from "./rate/rate.component";
 import {UsersComponent} from "./users/users.component";
 import {NotificationsComponent} from "./notifications/notifications.component";
+import {ReportsComponent} from "./reports/reports.component";
 import {ReportComponent} from "./report/report.component";
->>>>>>> e6a373f9eb5327f05c0d80baeec4b48d9ab645e7
 
 @NgModule({
     declarations: [
@@ -63,11 +47,8 @@ import {ReportComponent} from "./report/report.component";
         RateComponent,
         UsersComponent,
         NotificationsComponent,
-<<<<<<< HEAD
-        ReportsComponent
-=======
+        ReportsComponent,
         ReportComponent
->>>>>>> e6a373f9eb5327f05c0d80baeec4b48d9ab645e7
     ],
     imports: [
         BrowserModule,
