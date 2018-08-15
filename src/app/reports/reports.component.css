@@ -1,11 +1,15 @@
 #reports{
     position:relative;
-    top:10em;
+    top:5em;
 }
 
 #adReportsButton{
     position:relative;
     left:1em,
+}
+
+.reporter, .reported{
+    cursor:pointer;
 }
 
 #userReportsButton{

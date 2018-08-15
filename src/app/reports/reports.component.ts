@@ -3,6 +3,10 @@ import {Report} from '../model/report.model';
 import {ShowReportsService} from '../service/show-reports.service';
 import {User} from '../model/user.model';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Router} from '@angular/router';
+import {UserService} from '../service/user.service';
+import {AdService} from '../service/ad.service';
+
 
 @Component({
   selector: 'app-reports',
@@ -14,7 +18,7 @@ export class ReportsComponent implements OnInit {
   userReports:Report[];
   adReports:Report[];
   user:User;
-  constructor(private reportsService:ShowReportsService, private gem:GlobalEventManagerService) { }
+  constructor(private reportsService:ShowReportsService, private gem:GlobalEventManagerService,private router:Router, private userService:UserService,private adService:AdService) { }
 
   ngOnInit() {
     this.user = JSON.parse(sessionStorage.getItem('user'));
@@ -29,6 +33,23 @@ export class ReportsComponent implements OnInit {
       this.adReports = reports;
     });
 
+  }
+
+  toReportedAd(adId){
+    this.adService.getAdById(adId).subscribe(ad=>{
+      this.gem.updateSingleAd(ad);
+      this.router.navigate(["ad"]);
+    })
+  }
+
+  toProfile(userId){
+    
+    this.userService.getUserById(userId).subscribe(user=>{
+      this.gem.updateProfile(user);
+    this.router.navigate(['profile']);
+    });
+    
+    
   }
 
   showUserReports(){
