@@ -1,7 +1,65 @@
 <div id="notifications">
     <h2 *ngIf="notifications.length===0" class="empty-category">You haven't got applications yet.</h2>
     <h2 id="error" class="error hidden">{{error}}</h2>
-    <div *ngFor="let notification of notifications" class="notification">
-        <h2>{{notification.text}}</h2>
+    <div class="miniature" id="read" (click)="read(1)"></div>
+    <div class="miniature" id="close" (click)="close(1)"></div>
+    <div class="notification-div">
+        <button>Mark as Unread</button>
+        <button>Delete</button>
+        <table class="notifications-table">
+            <tr *ngFor="let notification of notifications" class="notification {{notification.read}}">
+                <td>
+                    <input type="checkbox" name="checked" value="{{notification.id}}">
+                </td>
+                <td class="note-td" (click)="read(notification.id)" id="{{notification.id}}">
+                    <span class="note"
+                          *ngIf="notification.type === 'Apply'">Somebody applied to you advertisement</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'Accepted'">Somebody accepted your application</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'Declined'">Somebody declined your application</span>
+                    <span class="note" *ngIf="notification.type === 'Completed'">Somebody marked your application as completed</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'Failed'">Somebody marked your application as failed</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'EmployeeRated'">Somebody rated you as Hand seeker</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'EmployerRated'">Somebody rated you as Hand lender</span>
+                    <p class="text-div hidden">{{notification.text}}</p>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'Apply'" (click)="toAd(notification.ad)">To my Advertisement
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'Accepted'" (click)="toMessages()">To the Messages
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'Declined'" (click)="toMyApplications()">To my
+                        Applications
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'Completed'" (click)="toRate(notification.application)">To the
+                        rates
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'Failed'" (click)="toRate(notification.application)">To the
+                        rates
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'EmployeeRated'" (click)="toMyRaters()">To my
+                        Raters
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'EmployerRated'" (click)="toMyRaters()">To my
+                        Raters
+                    </button>
+                </td>
+                <td class="date-td">
+                    <span class="date-span">{{notification.formattedTimestamp}}</span>
+                </td>
+
+                <td>
+                </td>
+            </tr>
+        </table>
     </div>
 </div>
