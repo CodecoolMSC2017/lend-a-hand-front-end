@@ -22,9 +22,9 @@ export class AdsByAdvertiserComponent implements OnInit {
         this.ads = this.formatAds(JSON.parse(sessionStorage.getItem('ads')));
     }
 
-    archiveAd(ad, adId){
-        console.log(adId);
-        this.adService.deleteAdById(adId).subscribe(response =>{
+    archiveAd(ad){
+        
+        this.adService.deleteAdById(ad.id).subscribe(response =>{
             if(response){
             this.adService.getAdsByAdvertiser(ad.advertiserId).subscribe(ads =>{
                 this.ads=this.formatAds(ads);

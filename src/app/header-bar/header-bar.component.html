@@ -56,7 +56,7 @@
                     <img src="../assets/addIcon.png">
             </div>
 
-            <div id="reportsDiv" *ngIf="user != null && user.type=='ADMIN'">
+            <div id="reportsDiv" *ngIf="user != null && user.type=='ADMIN'" (click)="toReports()">
                     <p><strong>Reports</strong></p>
              </div>
 

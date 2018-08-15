@@ -11,6 +11,12 @@
     padding-bottom: 1%;
 }
 
+#archiveButton{
+    position:relative;
+    left:25em;
+    z-index:1000;
+}
+
 .ad-container {
     display: block;
     background-color: #07222c;

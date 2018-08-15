@@ -24,6 +24,7 @@ import {MessagesComponent} from './messages/messages.component';
 import {RateComponent} from './rate/rate.component';
 import {UsersComponent} from './users/users.component';
 import {NotificationsComponent} from './notifications/notifications.component';
+import { ReportsComponent } from './reports/reports.component';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import {NotificationsComponent} from './notifications/notifications.component';
         MessagesComponent,
         RateComponent,
         UsersComponent,
-        NotificationsComponent
+        NotificationsComponent,
+        ReportsComponent
     ],
     imports: [
         BrowserModule,
