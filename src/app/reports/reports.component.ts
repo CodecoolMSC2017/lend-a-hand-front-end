@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Report} from '../model/report.model';
+import {Reports} from '../model/reports.model';
 import {ShowReportsService} from '../service/show-reports.service';
 
 @Component({
@@ -9,7 +9,7 @@ import {ShowReportsService} from '../service/show-reports.service';
 })
 export class ReportsComponent implements OnInit {
 
-  reports:Report[];
+  reports:Reports[];
 
   constructor(private reportsService:ShowReportsService) { }
 

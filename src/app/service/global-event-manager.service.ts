@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {Ad} from '../model/ad.model';
-import {User} from '../model/user.model';
-import {Router} from '@angular/router';
-import {FilterSettingsModel} from '../model/filter-settings.model';
-import {Application} from '../model/application.model';
+import {Injectable} from "@angular/core";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {Ad} from "../model/ad.model";
+import {User} from "../model/user.model";
+import {Router} from "@angular/router";
+import {FilterSettingsModel} from "../model/filter-settings.model";
+import {Application} from "../model/application.model";
 
 
 @Injectable({
@@ -35,6 +35,12 @@ export class GlobalEventManagerService {
 
     private applicationsTrigger: Subject<Application[]> = new BehaviorSubject<Application[]>(null);
     public applicationsEmitter: Observable<Application[]> = this.applicationsTrigger.asObservable();
+
+    private reportedUserTrigger: Subject<User> = new BehaviorSubject<User>(null);
+    public reportedUserEmitter: Observable<User> = this.reportedUserTrigger.asObservable();
+
+    private reportedAdTrigger: Subject<Ad> = new BehaviorSubject<Ad>(null);
+    public reportedAdEmitter: Observable<Ad> = this.reportedAdTrigger.asObservable();
 
 
     constructor(private router: Router) {
@@ -72,4 +78,11 @@ export class GlobalEventManagerService {
         this.applicationsTrigger.next(applications);
     }
 
+    public updateReportedUser(reportedUser: User): void {
+        this.reportedUserTrigger.next(reportedUser);
+    }
+
+    public updateReportedAd(reportedAd: Ad): void {
+        this.reportedAdTrigger.next(reportedAd);
+    }
 }
