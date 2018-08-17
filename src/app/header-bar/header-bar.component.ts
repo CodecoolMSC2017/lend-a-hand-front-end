@@ -6,6 +6,7 @@ import {AuthorizationService} from '../service/authorization.service';
 import {Subscription} from 'rxjs';
 import {FilterSettingsModel} from '../model/filter-settings.model';
 import {delay} from 'rxjs/internal/operators';
+import {NotificationService} from '../service/notification.service';
 
 @Component({
     selector: 'app-header-bar',
@@ -18,8 +19,9 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
         'Health care', 'Housework', 'IT', 'Office', 'Pets', 'Repair', 'Sports', 'Vehicle'];
     userSub: Subscription;
     user: User;
+    newNotification: boolean;
 
-    constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService, private notificationService: NotificationService) {
     }
 
     ngOnInit() {
@@ -31,7 +33,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
             .subscribe(user => {
                 this.user = user;
             });
-
+        setInterval(this.getNotifications.bind(this), 10000);
     }
 
     filterAds() {
@@ -39,12 +41,23 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
         this.router.navigate(['ads']);
     }
 
+    getNotifications() {
+        if (this.user) {
+            this.notificationService.haveNewNotifications(this.user.id).subscribe(newNotification => {
+                this.newNotification = newNotification;
+            }, error => {
+                console.log(error);
+            });
+        }
+
+    }
+
     toUsers() {
         this.router.navigate(['users']);
     }
 
-    toReports(){
-        this.router.navigate(["reports"]);
+    toReports() {
+        this.router.navigate(['reports']);
     }
 
 

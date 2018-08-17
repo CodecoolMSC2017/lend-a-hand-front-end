@@ -8,15 +8,15 @@
       
       
       <span class="names">
-        <span class="reporter"><strong >Reporter:</strong>{{report.reporterUsername}}</span>
-        <span class="reported"><strong >Reported:</strong>{{report.reportedUsername}}</span>
+        <span class="reporter"><strong >Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
+        <span class="reported"><strong >Reported: </strong><span (click)="toProfile(report.reportedUserId)">{{report.reportedUsername}}</span></span>
       </span>
 
       <div class="reportText">
         <p>{{report.reportText}}</p>
       </div>
     
-      
+      <button (click)="handle(report.id)" class="button-inverse">Handle</button>
     </div>
   </div>
   <div id="adReportsDiv" class="hidden">
@@ -24,8 +24,8 @@
       
       
         <span class="names">
-          <span class="reporter"><strong >Reporter:</strong>{{report.reporterUsername}}</span>
-          <span class="reported"><strong >Reported:</strong>{{report.reportedAdTitle}}</span>
+          <span class="reporter"><strong >Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
+          <span class="reported"><strong >Reported: </strong><span (click)="toReportedAd(report.reportedAdId)">{{report.reportedAdTitle}}</span></span>
         </span>
     
         <div class="reportText">
@@ -34,5 +34,6 @@
       
         
       </div>
+      <button (click)="handle(report.id)" class="button-inverse">Handle</button>
   </div>
 </div>

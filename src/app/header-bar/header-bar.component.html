@@ -48,8 +48,13 @@
             </div>
 
 
-            <div class="menuIcons" id="notificationsDiv" *ngIf="user != null" (click)="toNotifications()">
+            <div class="menuIcons notificationsDiv" *ngIf="user != null && !newNotification"
+                 (click)="toNotifications()">
                     <img src="../assets/notificationsIcon.png">
+            </div>
+
+            <div class="menuIcons notificationsDiv" *ngIf="user != null && newNotification" (click)="toNotifications()">
+                <img src="../assets/notificationsIconNew.png">
             </div>
 
             <div class="menuIcons" id="createAdDiv" *ngIf="user != null && user.type != 'ADMIN'" (click)="onCreateAdClicked()">

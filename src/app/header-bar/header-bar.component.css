@@ -218,7 +218,7 @@ a:link, a:visited, a:active{
     color:white;
 }
 
-#notificationsDiv{
+.notificationsDiv {
     float:right;
     height:100%;
     width:5%;
