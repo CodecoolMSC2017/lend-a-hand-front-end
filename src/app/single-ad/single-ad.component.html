@@ -23,22 +23,34 @@
 
             <div id="description-div">
                 <p *ngIf="ad.payment == 0 || ad.payment == null" class="payment"> No payment specified</p>
-                <p *ngIf="ad.payment != 0 || ad.payment != null" class="payment"><strong>Payment: </strong>{{ad.payment}}$ / hour</p>
+                <p *ngIf="ad.payment != 0 || ad.payment != null" class="payment"><strong>Payment: </strong>{{ad.payment}}$
+                    / hour</p>
                 <span id="description">{{ad.description}}</span>
-                <div id="report-button-div" *ngIf="!ownAd">
-                    <button class="button-inverse option-button" (click)="toReport()">Report</button>
-                </div>
+
+                <table id="report-button-table" *ngIf="!ownAd">
+                    <tr>
+                        <td id="report-button-td">
+                            <button class="button-inverse option-button" (click)="toReport()">Report</button>
+                        </td>
+                    </tr>
+                </table>
+
             </div>
         </div>
 
         <table id="apply-button-table" *ngIf="user.type!='ADMIN'">
-        <tr><td><button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply</button></td></tr>
+            <tr>
+                <td>
+                    <button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply
+                    </button>
+                </td>
+            </tr>
         </table>
         <br>
         <div id="applicants" *ngIf="ownAd && user && applications">
             <div id="applications">
                 <h2 class="applicants" *ngIf="ownAd">Applicants</h2>
-                <h3 *ngIf="applications.length===0">You haven't got any applicants yet.</h3> 
+                <h3 *ngIf="applications.length===0">You haven't got any applicants yet.</h3>
                 <div *ngFor="let application of applications" class="application">
                     <div class="application-container">
 
@@ -73,15 +85,19 @@
                                             <tr>
                                                 <td class="state-td"><strong>State: </strong>{{application.state}}</td>
                                                 <td *ngIf="application.state =='Applied'">
-                                                    <button class="button-inverse" (click)="accept(application)">Accept</button>
+                                                    <button class="button-inverse" (click)="accept(application)">
+                                                        Accept
+                                                    </button>
                                                 </td>
                                                 <td *ngIf="application.state =='Applied'">
-                                                    <button class="button-inverse" (click)="decline(application)">Decline</button>
+                                                    <button class="button-inverse" (click)="decline(application)">
+                                                        Decline
+                                                    </button>
                                                 </td>
-                                                </tr>
-                                                <tr>
-                                                    <td></td>
-                                                    <td></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
                                                 <td *ngIf="application.type=='Hand-lending'" class="rating-td">
                                                     <strong>Rating:</strong>
                                                     {{application.employerRatingScore | number:'1.0-1'}} / 5
