@@ -13,7 +13,7 @@
 
 #archiveButton{
     position:relative;
-    left:25em;
+    left: -1em;
     z-index:1000;
 }
 
@@ -82,12 +82,12 @@
 
 #type-td {
     text-align: left;
-    width: 60em;
+    width: 40em;
 }
 
 #category-td {
     text-align: right;
-    width: 60em;
+    width: 40em;
     white-space: nowrap;
 }
 
