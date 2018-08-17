@@ -3,6 +3,8 @@
 
 <h2 class="error-div" id="error"> {{error}}</h2>
 <div id="messageDiv">
+    <h2 *ngIf="activeContacts.length===0" class="empty-category">You haven't got messages yet.</h2>
+
     <div id="message-div" *ngIf="loaded">
         <div id="frame">
             <div id="sidepanel">

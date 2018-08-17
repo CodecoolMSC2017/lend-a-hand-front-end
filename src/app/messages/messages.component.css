@@ -882,10 +882,9 @@ table {
 }
 
 .empty-category {
-
+    margin-top: 2.7em;
     padding-top: 2.5em;
-    height: 1.5em;
-    width: 60%;
+    width: 85%;
     background-color: rgb(232, 237, 238);
     height: 4em;
     border: #0c5068 solid 0.2em;
