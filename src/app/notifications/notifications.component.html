@@ -4,8 +4,10 @@
     <div class="miniature" id="read" (click)="read(1)"></div>
     <div class="miniature" id="close" (click)="close(1)"></div>
     <div class="notification-div" *ngIf="notifications.length!==0">
-        <button (click)="unread()">Mark as Unread</button>
-        <button (click)="delete()">Delete</button>
+        <div class="button-div">
+            <button class="button-inverse" (click)="unread()">Mark as Unread</button>
+            <button class="button-inverse delete-button" (click)="delete()">Delete</button>
+        </div>
         <table class="notifications-table" id="notification-table">
             <tr *ngFor="let notification of notifications" class="notification {{notification.read}}">
                 <td>

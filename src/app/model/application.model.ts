@@ -4,6 +4,8 @@ export class Application {
     adTitle: string;
     applicantId: number;
     applicantName: string;
+    advertiserId: number;
+    advertiserName: string;
     message: string;
     formattedMessage: string;
     state: string;

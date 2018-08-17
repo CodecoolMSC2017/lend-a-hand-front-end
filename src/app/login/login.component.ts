@@ -104,6 +104,7 @@ export class LoginComponent implements OnInit {
 
     hideInfo() {
         document.getElementById('info').innerText = 'Log in to your existing account';
+        this.gem.updateInfo(null);
     }
 }
 
