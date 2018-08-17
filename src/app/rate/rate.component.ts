@@ -59,8 +59,7 @@ export class RateComponent implements OnInit, OnDestroy {
         if (this.isAdvertiserRate) {
             rating.ratedName = this.application.applicantName;
         } else {
-            //   We need the advertiser name!!!!
-            rating.ratedName = this.application.applicantName;
+            rating.ratedName = this.application.advertiserName;
         }
         this.ratingService.createRating(rating).subscribe(user => {
             sessionStorage.setItem('user', JSON.stringify(user));
