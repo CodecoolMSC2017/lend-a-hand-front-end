@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {Subscription} from 'rxjs';
@@ -12,11 +12,12 @@ import {RatingService} from '../service/rating.service';
     templateUrl: './ratings.component.html',
     styleUrls: ['./ratings.component.css']
 })
-export class RatingsComponent implements OnInit {
+export class RatingsComponent implements OnInit, OnDestroy {
 
     employeeRatings: Rating[];
     employerRatings: Rating[];
     ratingtype: string;
+    user: User;
     ratingSub: Subscription;
 
 
@@ -26,23 +27,23 @@ export class RatingsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.user = JSON.parse(sessionStorage.getItem('user'));
+        this.gem.updateUser(this.user);
         this.gem.ratingTypeEmitter.subscribe(ratingType => {
             this.ratingtype = ratingType;
-            if (ratingType == 'rated') {
-                this.ratingSub = this.ratingService.getRatingsAboutMe((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto => {
+            if (ratingType === 'rated') {
+                this.ratingSub = this.ratingService.getRatingsAboutMe(this.user.id).subscribe(ratingDto => {
 
                     this.employeeRatings = ratingDto.employeeRatings as Rating[];
                     this.employerRatings = ratingDto.employerRatings as Rating[];
                 });
-            } else if (ratingType == 'myRatings') {
-                this.ratingSub = this.ratingService.getRatings((JSON.parse(sessionStorage.getItem('user')) as User).id).subscribe(ratingDto => {
+            } else if (ratingType === 'myRatings') {
+                this.ratingSub = this.ratingService.getRatings(this.user.id).subscribe(ratingDto => {
 
                     this.employeeRatings = ratingDto.employeeRatings;
                     this.employerRatings = ratingDto.employerRatings;
                 });
             }
-            console.log(this.employeeRatings);
-            console.log(this.employerRatings);
         });
     }
 
