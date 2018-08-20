@@ -19,6 +19,7 @@ export class ReportsComponent implements OnInit {
     userReports: Report[];
     adReports: Report[];
     user: User;
+    error: string;
 
     constructor(private reportsService: ShowReportsService, private gem: GlobalEventManagerService, private router: Router, private userService: UserService, private adService: AdService) {
     }
@@ -29,11 +30,15 @@ export class ReportsComponent implements OnInit {
         this.reportsService.getUserReports().subscribe(reports => {
 
             this.userReports = reports;
+        }, error => {
+            this.handleError(error);
         });
 
         this.reportsService.getAdReports().subscribe(reports => {
 
             this.adReports = reports;
+        }, error => {
+            this.handleError(error);
         });
 
     }
@@ -59,19 +64,7 @@ export class ReportsComponent implements OnInit {
         if (document.getElementById('userReportsDiv').classList.contains('hidden')) {
             document.getElementById('userReportsDiv').classList.remove('hidden');
             document.getElementById('adReportsDiv').classList.add('hidden');
-            this.userReports = [];
-            this.adReports = [];
-            this.user = new User();
         }
-    }
-
-
-    showUserReports() {
-        if (document.getElementById('userReportsDiv').classList.contains('hidden')) {
-            document.getElementById('userReportsDiv').classList.remove('hidden');
-            document.getElementById('adReportsDiv').classList.add('hidden');
-        }
-
     }
 
     showAdReports() {
@@ -80,6 +73,32 @@ export class ReportsComponent implements OnInit {
             document.getElementById('userReportsDiv').classList.add('hidden');
         }
 
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        } else {
+            if (error.error !== null) {
+                this.error = error.error.message;
+            } else {
+                this.error = error.message;
+            }
+        }
+        this.showError();
+    }
+
+    showError() {
+        document.getElementById('error').classList.remove('hidden');
+        setTimeout(this.clearAlert, 3000);
+    }
+
+    clearAlert() {
+        this.error = '';
+        document.getElementById('error').innerText = '';
+        document.getElementById('error').classList.add('hidden');
     }
 
 }

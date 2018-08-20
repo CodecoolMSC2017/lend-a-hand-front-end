@@ -1,39 +1,41 @@
 <div id="reports">
-  
-    <button class="button-inverse" id="userReportsButton" (click)="showUserReports()" >User reports</button>
+
+    <h2 id="error" class="error hidden">{{error}}</h2>
+
+    <button class="button-inverse" id="userReportsButton" (click)="showUserReports()">User reports</button>
     <button class="button-inverse" id="adReportsButton" (click)="showAdReports()">Ad Reports</button>
-  
-  <div id="userReportsDiv" class="hidden">
-    <div  class="report" *ngFor="let report of userReports">
+
+    <div id="userReportsDiv" class="hidden">
+        <div class="report" *ngFor="let report of userReports">
       
       
       <span class="names">
-        <span class="reporter"><strong >Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
-        <span class="reported"><strong >Reported: </strong><span (click)="toProfile(report.reportedUserId)">{{report.reportedUsername}}</span></span>
+        <span class="reporter"><strong>Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
+        <span class="reported"><strong>Reported: </strong><span (click)="toProfile(report.reportedUserId)">{{report.reportedUsername}}</span></span>
       </span>
 
-      <div class="reportText">
-        <p>{{report.reportText}}</p>
-      </div>
-    
-      <button (click)="handle(report.id)" class="button-inverse">Handle</button>
+            <div class="reportText">
+                <p>{{report.reportText}}</p>
+            </div>
+
+            <button (click)="handle(report.id)" class="button-inverse">Handle</button>
+        </div>
     </div>
-  </div>
-  <div id="adReportsDiv" class="hidden">
-    <div  class="report" *ngFor="let report of adReports">
+    <div id="adReportsDiv" class="hidden">
+        <div class="report" *ngFor="let report of adReports">
       
       
         <span class="names">
-          <span class="reporter"><strong >Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
-          <span class="reported"><strong >Reported: </strong><span (click)="toReportedAd(report.reportedAdId)">{{report.reportedAdTitle}}</span></span>
+          <span class="reporter"><strong>Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
+          <span class="reported"><strong>Reported: </strong><span (click)="toReportedAd(report.reportedAdId)">{{report.reportedAdTitle}}</span></span>
         </span>
-    
-        <div class="reportText">
-          <p>{{report.reportText}}</p>
+
+            <div class="reportText">
+                <p>{{report.reportText}}</p>
+            </div>
+
+            <button (click)="handle(report.id)" class="button-inverse">Handle</button>
         </div>
-      
-        
-      </div>
-      <button (click)="handle(report.id)" class="button-inverse">Handle</button>
-  </div>
+
+    </div>
 </div>
