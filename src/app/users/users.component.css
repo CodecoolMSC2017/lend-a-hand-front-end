@@ -1,4 +1,8 @@
-#userList{
-    position:relative;
-    top:10em;
+#userList {
+    position: relative;
+    top: 10em;
+}
+
+.name {
+    cursor: pointer;
 }

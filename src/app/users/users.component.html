@@ -1,6 +1,6 @@
 <div id="userList">
-  
+    <h2 id="error" class="error hidden">{{error}}</h2>
   <div id="user" *ngFor="let user of users" >
-    <h3 *ngIf="user.type!='ADMIN'" (click)="toUserProfile(user)">{{user.userName}}</h3>
+      <h3 class="name" *ngIf="user.type!='ADMIN'" (click)="toUserProfile(user)">{{user.userName}}</h3>
   </div>
 </div>
