@@ -7,4 +7,5 @@ export class Message {
     adId: number;
     adTitle: string;
     applicationId: number;
+    read: boolean;
 }
