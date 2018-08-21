@@ -43,10 +43,15 @@
                     <img src="../assets/profileIcon.png">
             </div>
 
-            <div class="menuIcons" id="messagesDiv" *ngIf="user != null && user.type != 'ADMIN'" (click)="onMessagesClicked()">
+            <div class="menuIcons messagesDiv" *ngIf="user != null && user.type != 'ADMIN' && !newMessages "
+                 (click)="onMessagesClicked()">
                     <img src="../assets/messagesIcon.png">
             </div>
 
+            <div class="menuIcons messagesDiv" *ngIf="user != null && user.type != 'ADMIN' && newMessages "
+                 (click)="onMessagesClicked()">
+                <img src="../assets/messagesIconNew.png">
+            </div>
 
             <div class="menuIcons notificationsDiv" *ngIf="user != null && !newNotification"
                  (click)="toNotifications()">

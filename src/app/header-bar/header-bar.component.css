@@ -242,11 +242,7 @@ a:link, a:visited, a:active{
     margin-right:1em;
 }
 
-
-
-
-
-#messagesDiv {
+.messagesDiv {
     float: right;
     height: 100%;
     width:5%;

@@ -7,6 +7,7 @@ import {Subscription} from 'rxjs';
 import {FilterSettingsModel} from '../model/filter-settings.model';
 import {delay} from 'rxjs/internal/operators';
 import {NotificationService} from '../service/notification.service';
+import {MessageService} from '../service/message.service';
 
 @Component({
     selector: 'app-header-bar',
@@ -20,8 +21,9 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
     userSub: Subscription;
     user: User;
     newNotification: boolean;
+    newMessages: boolean;
 
-    constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService, private notificationService: NotificationService) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private authService: AuthorizationService, private notificationService: NotificationService, private  messageService: MessageService) {
     }
 
     ngOnInit() {
@@ -34,6 +36,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
                 this.user = user;
             });
         setInterval(this.getNotifications.bind(this), 3000);
+        setInterval(this.getMessages.bind(this), 3000);
     }
 
     filterAds() {
@@ -50,6 +53,16 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
             });
         }
 
+    }
+
+    getMessages() {
+        if (this.user && this.user.type !== 'ADMIN') {
+            this.messageService.haveNewMessages(this.user.id).subscribe(newMessage => {
+                this.newMessages = newMessage;
+            }, error => {
+                console.log(error);
+            });
+        }
     }
 
     toUsers() {
