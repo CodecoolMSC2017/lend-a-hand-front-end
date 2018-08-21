@@ -1,13 +1,14 @@
-import {Component, OnInit} from "@angular/core";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
-import {User} from "../model/user.model";
-import {MessageService} from "../service/message.service";
-import {Contact} from "../model/contact.model";
-import {Message} from "../model/message.model";
-import {UserService} from "../service/user.service";
-import {Router} from "@angular/router";
-import {AdService} from "../service/ad.service";
-import {ApplicationService} from "../service/application.service";
+import {Component, OnInit} from '@angular/core';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {User} from '../model/user.model';
+import {MessageService} from '../service/message.service';
+import {Contact} from '../model/contact.model';
+import {Message} from '../model/message.model';
+import {UserService} from '../service/user.service';
+import {Router} from '@angular/router';
+import {AdService} from '../service/ad.service';
+import {ApplicationService} from '../service/application.service';
+import {UserContact} from '../model/user-contact.model';
 
 @Component({
     selector: 'app-messages',
@@ -32,8 +33,20 @@ export class MessagesComponent implements OnInit {
         this.gem.updateUser(this.user);
         this.messageService.getContactsByUserId(this.user.id).subscribe(response => {
             this.contacts = response;
-            this.activeContacts = this.contacts;
             this.activeContact = this.contacts[0];
+            this.readMessages();
+        }, error => {
+            this.handleError(error);
+        });
+    }
+
+    readMessages() {
+        const dto = new UserContact();
+        dto.user = this.user;
+        dto.contact = this.activeContact;
+        this.messageService.readMessages(dto).subscribe(contacts => {
+            this.contacts = contacts;
+            this.activeContacts = this.contacts;
             this.activeContact.ad.formattedTitle = this.formatAdTitle(this.activeContact.ad.title);
             this.loaded = true;
             setTimeout(this.scrollDown, 50);
@@ -66,6 +79,7 @@ export class MessagesComponent implements OnInit {
     setActiveContact(contact: Contact) {
         contact.ad.formattedTitle = this.formatAdTitle(contact.ad.title);
         this.activeContact = contact;
+        this.readMessages();
         setTimeout(this.scrollDown, 5);
     }
 
