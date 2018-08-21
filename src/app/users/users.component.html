@@ -1,6 +1,22 @@
 <div id="userList">
     <h2 id="error" class="error hidden">{{error}}</h2>
-  <div id="user" *ngFor="let user of users" >
-      <h3 class="name" *ngIf="user.type!='ADMIN'" (click)="toUserProfile(user)">{{user.userName}}</h3>
+  <div id="user" *ngFor="let user of users" (click)="toUserProfile(user)">
+        
+    <div *ngIf="user.type!='ADMIN'" class="listedUser grid-container">
+
+        
+        <img class="profilePicture grid-item" src={{user.pictureLink}}/>
+        
+        <div class="grid-item user-datas">
+            <p><strong>Name:</strong> {{user.userName}}</p>
+           
+            <p><strong>Account type:</strong> {{user.type}}</p>
+           
+            <p><strong>Report count:</strong>  {{user.reported}}</p>
+        </div>
+        
+    </div>
+    <hr *ngIf="user.type!='ADMIN'">
+    <br *ngIf="user.type!='ADMIN'">
   </div>
 </div>
