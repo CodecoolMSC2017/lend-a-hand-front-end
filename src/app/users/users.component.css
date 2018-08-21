@@ -1,4 +1,32 @@
-#userList{
-    position:relative;
-    top:10em;
+#userList {
+    position: relative;
+    top: 10em;
+    background-color: rgb(232, 237, 238);
+    padding:2em;
+    border:solid 0.5em #07222c;
+    border-radius:2em;
 }
+
+.name {
+    cursor: pointer;
+}
+
+.user-datas{
+    text-align: left;
+    margin-left:2em;
+}
+
+.profilePicture{
+    width:15em;
+    border-radius:0.5em;
+    border:solid 0.2em #07222c;
+    
+    
+    
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 20em 20em;
+}
+

@@ -54,6 +54,13 @@
 
 .delete-button {
     margin-left: 2%;
+    color: #e3e3e3;
+    transition: color 0.5s;
+}
+
+.delete-button:hover {
+    color: white;
+    transition: color 0.5s;
 }
 
 .notifications-table {
@@ -65,8 +72,10 @@
 
 .note-td {
     text-align: center;
-    height: 50px;
+    height: 10%;
     cursor: pointer;
+    padding-top: 3%;
+    padding-bottom: 3%;
 }
 
 .date-td {

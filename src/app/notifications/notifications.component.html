@@ -1,11 +1,9 @@
 <div id="notifications">
     <h2 *ngIf="notifications.length===0" class="empty-category">You haven't got any notification.</h2>
     <h2 id="error" class="error hidden">{{error}}</h2>
-    <div class="miniature" id="read" (click)="read(1)"></div>
-    <div class="miniature" id="close" (click)="close(1)"></div>
     <div class="notification-div" *ngIf="notifications.length!==0">
         <div class="button-div">
-            <button class="button-inverse" (click)="unread()">Mark as Unread</button>
+            <button class="button-inverse delete-button" (click)="unread()">Mark as Unread</button>
             <button class="button-inverse delete-button" (click)="delete()">Delete</button>
         </div>
         <table class="notifications-table" id="notification-table">

@@ -185,6 +185,10 @@ a:link, a:visited, a:active{
     color:white;
 }
 
+#registerDiv:hover {
+    background-color: #0d4053;
+}
+
 
 #profileDiv{
     float:right;
