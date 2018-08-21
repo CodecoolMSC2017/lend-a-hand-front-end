@@ -25,6 +25,8 @@
                           *ngIf="notification.type === 'EmployeeRated'">Somebody rated you as Hand seeker</span>
                     <span class="note"
                           *ngIf="notification.type === 'EmployerRated'">Somebody rated you as Hand lender</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'Report'">Somebody reported something</span>
                     <p class="text-div hidden">{{notification.text}}</p>
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'Apply'" (click)="toAd(notification.ad)">To my Advertisement
@@ -51,6 +53,9 @@
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'EmployerRated'" (click)="toMyRaters()">To my
                         Raters
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'Report'" (click)="toReports()">To reports
                     </button>
                 </td>
                 <td class="date-td">
