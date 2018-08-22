@@ -3,7 +3,7 @@
     top: 5em;
 }
 
-#userReportsDiv, adReportsDiv {
+#userReportsDiv, #adReportsDiv {
     padding-bottom: 2em;
 }
 
@@ -48,6 +48,16 @@
 .report {
     text-align: left;
     background-color: rgb(232, 237, 238);
+    width: 25em;
+    margin-top: 2em;
+    padding: 1em;
+    border-radius: 2em;
+    border: solid 0.2em #07222c;
+}
+
+.handled-report {
+    text-align: left;
+    background-color: rgb(174, 179, 180);
     width: 25em;
     margin-top: 2em;
     padding: 1em;
