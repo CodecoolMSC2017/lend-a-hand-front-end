@@ -8,4 +8,5 @@ export class Report {
     reportedAdTitle: string;
     reportText: string;
     timestamp: string;
+    handled: boolean;
 }

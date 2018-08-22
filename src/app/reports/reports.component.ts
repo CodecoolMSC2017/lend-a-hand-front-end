@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Report} from '../model/report.model';
-import {ShowReportsService} from '../service/show-reports.service';
-import {User} from '../model/user.model';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {Router} from '@angular/router';
-import {UserService} from '../service/user.service';
-import {AdService} from '../service/ad.service';
+import {Component, OnInit} from "@angular/core";
+import {Report} from "../model/report.model";
+import {ShowReportsService} from "../service/show-reports.service";
+import {User} from "../model/user.model";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {Router} from "@angular/router";
+import {UserService} from "../service/user.service";
+import {AdService} from "../service/ad.service";
+import {ReportService} from "../service/report.service";
 
 
 @Component({
@@ -21,7 +22,9 @@ export class ReportsComponent implements OnInit {
     user: User;
     error: string;
 
-    constructor(private reportsService: ShowReportsService, private gem: GlobalEventManagerService, private router: Router, private userService: UserService, private adService: AdService) {
+    constructor(private reportsService: ShowReportsService, private gem: GlobalEventManagerService,
+                private router: Router, private userService: UserService, private adService: AdService,
+                private reportService: ReportService) {
     }
 
     ngOnInit() {
@@ -47,6 +50,8 @@ export class ReportsComponent implements OnInit {
         this.adService.getAdById(adId).subscribe(ad => {
             this.gem.updateSingleAd(ad);
             this.router.navigate(['ad']);
+        }, error => {
+            this.handleError(error);
         });
     }
 
@@ -55,9 +60,24 @@ export class ReportsComponent implements OnInit {
         this.userService.getUserById(userId).subscribe(user => {
             this.gem.updateProfile(user);
             this.router.navigate(['profile']);
+        }, error => {
+            this.handleError(error);
         });
+    }
 
-
+    handleReport(reportId) {
+        this.reportService.handleReport(reportId).subscribe(reports => {
+            if (this.isAdReportList(reports)) {
+                console.log(this.isAdReportList(reports));
+                console.log(reports);
+                this.adReports = reports;
+            } else {
+                console.log(this.isAdReportList(reports));
+                this.userReports = reports;
+            }
+        }, error => {
+            this.handleError(error);
+        });
     }
 
     showUserReports() {
@@ -73,6 +93,13 @@ export class ReportsComponent implements OnInit {
             document.getElementById('userReportsDiv').classList.add('hidden');
         }
 
+    }
+
+    isAdReportList(reports): boolean {
+        if (reports[0].reportedAdTitle == null) {
+            return false;
+        }
+        return true;
     }
 
     handleError(error) {

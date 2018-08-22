@@ -13,7 +13,7 @@ export class AdsByAdvertiserComponent implements OnInit {
 
     private ads: Ad[];
 
-    constructor(private gem: GlobalEventManagerService, private router: Router, private adService:AdService) {
+    constructor(private gem: GlobalEventManagerService, private router: Router, private adService: AdService) {
     }
 
     ngOnInit() {
@@ -22,16 +22,16 @@ export class AdsByAdvertiserComponent implements OnInit {
         this.ads = this.formatAds(JSON.parse(sessionStorage.getItem('ads')));
     }
 
-    archiveAd(ad){
-        
-        this.adService.deleteAdById(ad.id).subscribe(response =>{
-            if(response){
-            this.adService.getAdsByAdvertiser(ad.advertiserId).subscribe(ads =>{
-                this.ads=this.formatAds(ads);
-            });
-        }
+    archiveAd(ad) {
+
+        this.adService.deleteAdById(ad.id).subscribe(response => {
+            if (response) {
+                this.adService.getAdsByAdvertiser(ad.advertiserId).subscribe(ads => {
+                    this.ads = this.formatAds(ads);
+                });
+            }
         });
-        
+
     }
 
 
@@ -45,7 +45,6 @@ export class AdsByAdvertiserComponent implements OnInit {
                 ad.formattedDescription = ad.description;
             }
             ad.formattedTimestamp = this.formatAdsTimestamp(ad.timestamp);
-            ad.timestamp = this.formatAdTimestamp(ad.timestamp);
             formattedAds.push(ad);
         }
         return formattedAds;
@@ -85,7 +84,10 @@ export class AdsByAdvertiserComponent implements OnInit {
         return formattedTimestamp;
     }
 
-    showAd(ad: Ad) {
+    showAd(ad: Ad, event: Event) {
+        if ((<HTMLElement>event.target).id === 'archiveButton') {
+            return;
+        }
         sessionStorage.removeItem('ads');
         this.gem.updateSingleAd(ad);
         this.router.navigate(['ad']);

@@ -7,20 +7,25 @@
 
     <div id="userReportsDiv" class="hidden">
         <div class="report" *ngFor="let report of userReports">
-      
-      
-      <span class="names">
-        <span class="reporter"><strong>Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
-        <span class="reported"><strong>Reported: </strong><span (click)="toProfile(report.reportedUserId)">{{report.reportedUsername}}</span></span>
-      </span>
+
+          <span class="names">
+            <span class="reporter"><strong>Reporter: </strong><span (click)="toProfile(report.reporterId)"
+                                                                    class="reporter-name">{{report.reporterUsername}}</span></span>
+            <span class="reported"><strong>Reported: </strong><span (click)="toProfile(report.reportedUserId)"
+                                                                    class="reported-name">{{report.reportedUsername}}</span></span>
+          </span>
 
             <div class="reportText">
                 <p>{{report.reportText}}</p>
             </div>
 
-            <button (click)="handle(report.id)" class="button-inverse">Handle</button>
+            <button *ngIf="!report.handled" (click)="handleReport(report.id)" class="button-inverse">Handle</button>
+            <button *ngIf="report.handled" disabled (click)="handleReport(report.id)" class="button-inverse">Handled
+            </button>
+
         </div>
     </div>
+
     <div id="adReportsDiv" class="hidden">
         <div class="report" *ngFor="let report of adReports">
       
@@ -34,7 +39,10 @@
                 <p>{{report.reportText}}</p>
             </div>
 
-            <button (click)="handle(report.id)" class="button-inverse">Handle</button>
+            <button *ngIf="!report.handled" (click)="handleReport(report.id)" class="button-inverse">Handle</button>
+            <button *ngIf="report.handled" disabled (click)="handleReport(report.id)" class="button-inverse">Handled
+            </button>
+
         </div>
 
     </div>

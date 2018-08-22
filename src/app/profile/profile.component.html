@@ -124,7 +124,7 @@
                 <button class="button-inverse option-button" (click)="toApplications()">My Applications</button>
             </div>
 
-            <div id="report-button-div" *ngIf="!ownProfile">
+            <div id="report-button-div" *ngIf="!ownProfile && user.type!='ADMIN'">
                 <button class="button-inverse option-button" (click)="toReport()">Report</button>
             </div>
 

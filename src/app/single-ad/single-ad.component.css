@@ -236,6 +236,15 @@
     white-space: normal;
 }
 
+#report-button-table {
+    width: 100%;
+}
+
+#report-button-td {
+    width: 100%;
+    text-align: right;
+}
+
 .state-td {
     text-align: left;
     width: 30em;
