@@ -35,8 +35,8 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
             .subscribe(user => {
                 this.user = user;
             });
-        setInterval(this.getNotifications.bind(this), 3000);
-        setInterval(this.getMessages.bind(this), 3000);
+        setInterval(this.getNotifications.bind(this), 5000);
+        setInterval(this.getMessages.bind(this), 5000);
     }
 
     filterAds() {
