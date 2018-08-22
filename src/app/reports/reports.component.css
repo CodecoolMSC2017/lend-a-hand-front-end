@@ -1,37 +1,61 @@
-#reports{
-    position:relative;
-    top:5em;
+#reports {
+    position: relative;
+    top: 5em;
 }
 
-#adReportsButton{
-    position:relative;
-    left:1em,
+#userReportsDiv, adReportsDiv {
+    padding-bottom: 2em;
+}
+
+.date {
+    margin-top: 2em;
+}
+
+.report-table {
+    width: 100%;
+}
+
+.first-column {
+    width: 30%;
+}
+
+.report-text {
+    margin-left: 2em;
+}
+
+.description-td {
+    padding-top: 2em;
+}
+
+.middle {
+    text-align: center;
+}
+
+#adReportsButton {
+    position: relative;
+    left: 1em;
 }
 
 .reporter-name, .reported-name {
-    cursor:pointer;
+    cursor: pointer;
 }
 
-#userReportsButton{
-    position:relative;
-    left:-1em;
+#userReportsButton {
+    position: relative;
+    left: -1em;
 }
 
-.report{
+.report {
+    text-align: left;
     background-color: rgb(232, 237, 238);
-    width:25em;
-    margin-top:2em;
-    padding:1em;
-    border-radius:2em;
-    border: solid 0.5em #07222c;
+    width: 25em;
+    margin-top: 2em;
+    padding: 1em;
+    border-radius: 2em;
+    border: solid 0.2em #07222c;
 }
 
-.reported{
-    position:relative;
-    left:2em;
-}
-
-.reportText{
+.reportText {
     font-size: 10pt;
 }
 

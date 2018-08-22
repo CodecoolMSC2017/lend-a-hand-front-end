@@ -2,46 +2,114 @@
 
     <h2 id="error" class="error hidden">{{error}}</h2>
 
-    <button class="button-inverse" id="userReportsButton" (click)="showUserReports()">User reports</button>
+    <button class="button-inverse" id="userReportsButton" (click)="showUserReports()">User Reports</button>
     <button class="button-inverse" id="adReportsButton" (click)="showAdReports()">Ad Reports</button>
 
     <div id="userReportsDiv" class="hidden">
         <div class="report" *ngFor="let report of userReports">
 
-          <span class="names">
-            <span class="reporter"><strong>Reporter: </strong><span (click)="toProfile(report.reporterId)"
-                                                                    class="reporter-name">{{report.reporterUsername}}</span></span>
-            <span class="reported"><strong>Reported: </strong><span (click)="toProfile(report.reportedUserId)"
-                                                                    class="reported-name">{{report.reportedUsername}}</span></span>
-          </span>
+            <table class="report-table">
+                <tr>
+                    <td class="first-column">
+                        <strong>Date: </strong>
+                    </td>
+                    <td>
+                        <span>{{report.formattedTimestamp}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Reporter: </strong>
+                    </td>
+                    <td>
+                        <span (click)="toProfile(report.reporterId)"
+                              class="reporter-name">{{report.reporterUsername}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Reported: </strong>
+                    </td>
+                    <td>
+                        <span (click)="toProfile(report.reportedUserId)"
+                              class="reported-name">{{report.reportedUsername}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="description-td">
+                        <strong>Description:</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="report-text">{{report.reportText}}</p></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="middle">
+                        <button *ngIf="!report.handled" (click)="handleReport(report.id)" class="button-inverse">
+                            Handle
+                        </button>
 
-            <div class="reportText">
-                <p>{{report.reportText}}</p>
-            </div>
+                        <button *ngIf="report.handled" disabled (click)="handleReport(report.id)"
+                                class="button-inverse">Handled
+                        </button>
+                    </td>
+                </tr>
+            </table>
 
-            <button *ngIf="!report.handled" (click)="handleReport(report.id)" class="button-inverse">Handle</button>
-            <button *ngIf="report.handled" disabled (click)="handleReport(report.id)" class="button-inverse">Handled
-            </button>
 
         </div>
     </div>
 
     <div id="adReportsDiv" class="hidden">
         <div class="report" *ngFor="let report of adReports">
-      
-      
-        <span class="names">
-          <span class="reporter"><strong>Reporter: </strong><span (click)="toProfile(report.reporterId)">{{report.reporterUsername}}</span></span>
-          <span class="reported"><strong>Reported: </strong><span (click)="toReportedAd(report.reportedAdId)">{{report.reportedAdTitle}}</span></span>
-        </span>
 
-            <div class="reportText">
-                <p>{{report.reportText}}</p>
-            </div>
+            <table class="report-table">
+                <tr>
+                    <td class="first-column">
+                        <strong>Date: </strong>
+                    </td>
+                    <td>
+                        <span>{{report.formattedTimestamp}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Reporter: </strong>
+                    </td>
+                    <td>
+                        <span (click)="toProfile(report.reporterId)"
+                              class="reporter-name">{{report.reporterUsername}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Reported: </strong>
+                    </td>
+                    <td>
+                        <span (click)="toReportedAd(report.reportedAdId)"
+                              class="reported-name">{{report.reportedAdTitle}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="description-td">
+                        <strong>Description:</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><p class="report-text">{{report.reportText}}</p></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="middle">
+                        <button *ngIf="!report.handled" (click)="handleReport(report.id)" class="button-inverse">
+                            Handle
+                        </button>
 
-            <button *ngIf="!report.handled" (click)="handleReport(report.id)" class="button-inverse">Handle</button>
-            <button *ngIf="report.handled" disabled (click)="handleReport(report.id)" class="button-inverse">Handled
-            </button>
+                        <button *ngIf="report.handled" disabled (click)="handleReport(report.id)"
+                                class="button-inverse">Handled
+                        </button>
+                    </td>
+                </tr>
+            </table>
 
         </div>
 

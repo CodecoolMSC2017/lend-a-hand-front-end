@@ -9,4 +9,5 @@ export class Report {
     reportText: string;
     timestamp: string;
     handled: boolean;
+    formattedTimestamp: string;
 }
