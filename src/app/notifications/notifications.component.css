@@ -7,9 +7,7 @@
 }
 
 .empty-category {
-
     padding-top: 2.5em;
-    height: 1.5em;
     width: 60%;
     background-color: rgb(232, 237, 238);
     height: 4em;
@@ -22,7 +20,7 @@
 }
 
 .notification {
-    height: 20%;
+    height: 2em;
     width: 60%;
     padding-bottom: 1%;
     border: 2px solid grey;
@@ -65,14 +63,14 @@
 
 .notifications-table {
     width: 100%;
-    min-height: 80vh;
+    min-height: 2em;
     background-color: whitesmoke;
     border-collapse: collapse;
 }
 
 .note-td {
-    text-align: center;
-    height: 10%;
+    text-align: left;
+    height: 2em;
     cursor: pointer;
     padding-top: 3%;
     padding-bottom: 3%;
@@ -89,4 +87,8 @@
 .unread {
     background-color: rgba(251, 251, 251, 0.9);
 
+}
+
+#handle-button {
+    display: none;
 }

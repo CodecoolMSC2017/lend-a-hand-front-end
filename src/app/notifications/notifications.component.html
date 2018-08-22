@@ -13,20 +13,23 @@
                 </td>
                 <td class="note-td" (click)="read(notification.id)" id="{{notification.id}}">
                     <span class="note"
-                          *ngIf="notification.type === 'Apply'">Somebody applied to you advertisement</span>
+                          *ngIf="notification.type === 'Apply'">New application for your advertisement</span>
                     <span class="note"
-                          *ngIf="notification.type === 'Accepted'">Somebody accepted your application</span>
+                          *ngIf="notification.type === 'Accepted'">Your application is accepted</span>
                     <span class="note"
-                          *ngIf="notification.type === 'Declined'">Somebody declined your application</span>
-                    <span class="note" *ngIf="notification.type === 'Completed'">Somebody marked your application as completed</span>
+                          *ngIf="notification.type === 'Declined'">Your application is declined</span>
                     <span class="note"
-                          *ngIf="notification.type === 'Failed'">Somebody marked your application as failed</span>
+                          *ngIf="notification.type === 'Completed'">Your application is marked as completed</span>
                     <span class="note"
-                          *ngIf="notification.type === 'EmployeeRated'">Somebody rated you as Hand seeker</span>
+                          *ngIf="notification.type === 'Failed'">Your application is marked as failed</span>
                     <span class="note"
-                          *ngIf="notification.type === 'EmployerRated'">Somebody rated you as Hand lender</span>
+                          *ngIf="notification.type === 'EmployeeRated'">New rating about you as Hand-seeker</span>
                     <span class="note"
-                          *ngIf="notification.type === 'Report'">Somebody reported something</span>
+                          *ngIf="notification.type === 'EmployerRated'">New rating about you as Hand-lender</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'Report'">New report</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'Handle'">Your report is under consideration</span>
                     <p class="text-div hidden">{{notification.text}}</p>
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'Apply'" (click)="toAd(notification.ad)">To my Advertisement
@@ -56,6 +59,9 @@
                     </button>
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'Report'" (click)="toReports()">To reports
+                    </button>
+                    <button id="handle-button" class="button-inverse hidden"
+                            *ngIf="notification.type === 'Handle'">
                     </button>
                 </td>
                 <td class="date-td">
