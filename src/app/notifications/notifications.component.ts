@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from '../model/user.model';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {NotificationService} from '../service/notification.service';
-import {Router} from '@angular/router';
-import {Notification} from '../model/notification';
-import {Ad} from '../model/ad.model';
-import {ApplicationService} from '../service/application.service';
-import {Application} from '../model/application.model';
+import {Component, OnInit} from "@angular/core";
+import {User} from "../model/user.model";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {NotificationService} from "../service/notification.service";
+import {Router} from "@angular/router";
+import {Notification} from "../model/notification";
+import {Ad} from "../model/ad.model";
+import {ApplicationService} from "../service/application.service";
+import {Application} from "../model/application.model";
 
 @Component({
     selector: 'app-notifications',
@@ -19,7 +19,8 @@ export class NotificationsComponent implements OnInit {
     notifications: Notification[];
     error: string;
 
-    constructor(private gem: GlobalEventManagerService, private notificationService: NotificationService, private applicationService: ApplicationService, private router: Router) {
+    constructor(private gem: GlobalEventManagerService, private notificationService: NotificationService,
+                private applicationService: ApplicationService, private router: Router) {
     }
 
     ngOnInit() {
