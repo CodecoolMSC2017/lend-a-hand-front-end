@@ -41,8 +41,9 @@
         <table id="apply-button-table" *ngIf="user.type!='ADMIN'">
             <tr>
                 <td>
-                    <button class="button-inverse" id="applyButton" *ngIf="!ownAd && user" (click)="applyToAd()">Apply
+                    <button class="button-inverse" id="applyButton" *ngIf="!isUserApplied && !ownAd && user" (click)="applyToAd()">Apply
                     </button>
+                    <h3 *ngIf="isUserApplied">You have already applied for this advertisement.</h3>
                 </td>
             </tr>
         </table>

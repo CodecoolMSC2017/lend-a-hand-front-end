@@ -27,6 +27,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     applicationMessage: string;
     application = new Application();
     loaded: boolean;
+    isUserApplied: boolean;
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,
                 private appService: ApplicationService) {
@@ -38,7 +39,6 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.gem.updateUser(this.user);
         }
 
-
         this.singleAdSub = this.gem.singleAdEmitter.subscribe(ad => {
             if (ad) {
                 sessionStorage.setItem('ad', JSON.stringify(ad));
@@ -48,6 +48,12 @@ export class SingleAdComponent implements OnInit, OnDestroy {
                 this.ad = this.formatAd(JSON.parse(sessionStorage.getItem('ad')));
                 this.loaded = true;
             }
+            this.appService.getIsUserApplied(this.user.id, this.ad.id).subscribe(isUserApplied => {
+                this.isUserApplied = isUserApplied;
+            }, error => {
+                this.handleError(error);
+            });        
+        
         });
 
         if (sessionStorage.getItem('user') !== null) {

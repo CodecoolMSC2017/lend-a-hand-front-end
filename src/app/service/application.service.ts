@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Application} from '../model/application.model';
 
 @Injectable({
@@ -37,6 +37,11 @@ export class ApplicationService {
 
     completeApplication(applicationId: number): Observable<any> {
         return this.http.put('/api/applications/complete/' + applicationId, null);
+    }
+
+    getIsUserApplied(userId: number, adId: number): Observable<any> {
+        const params = new HttpParams().append('userId', userId.toString()).append('adId', adId.toString());
+        return this.http.get('/api/applications/applied', {params: params});
     }
 
 
