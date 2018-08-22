@@ -52,8 +52,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
                 this.isUserApplied = isUserApplied;
             }, error => {
                 this.handleError(error);
-            });        
-        
+            });
+
         });
 
         if (sessionStorage.getItem('user') !== null) {

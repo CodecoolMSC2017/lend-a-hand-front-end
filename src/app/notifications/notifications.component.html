@@ -30,6 +30,8 @@
                           *ngIf="notification.type === 'Report'">New report</span>
                     <span class="note"
                           *ngIf="notification.type === 'Handle'">Your report is under consideration</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'Rate'">Complete rating if haven't already</span>
                     <p class="text-div hidden">{{notification.text}}</p>
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'Apply'" (click)="toAd(notification.ad)">To my Advertisement
@@ -59,6 +61,10 @@
                     </button>
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'Report'" (click)="toReports()">To reports
+                    </button>
+                    <button class="button-inverse hidden"
+                            *ngIf="notification.type === 'Rate'" (click)="toRate(notification.application)">To the
+                        rates
                     </button>
                     <button id="handle-button" class="button-inverse hidden"
                             *ngIf="notification.type === 'Handle'">
