@@ -68,11 +68,8 @@ export class ReportsComponent implements OnInit {
     handleReport(reportId) {
         this.reportService.handleReport(reportId).subscribe(reports => {
             if (this.isAdReportList(reports)) {
-                console.log(this.isAdReportList(reports));
-                console.log(reports);
                 this.adReports = reports;
             } else {
-                console.log(this.isAdReportList(reports));
                 this.userReports = reports;
             }
         }, error => {
