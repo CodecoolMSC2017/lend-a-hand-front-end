@@ -124,6 +124,12 @@ html{
     transition: background-color, color 0.5s;
     cursor: pointer;
 }
+
+.button-inverse:disabled:active,
+.button-inverse:disabled:hover {
+    cursor: not-allowed;
+}
+
 .hidden {
     display: none;
 }
