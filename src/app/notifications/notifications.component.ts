@@ -86,6 +86,10 @@ export class NotificationsComponent implements OnInit {
         this.router.navigate(['ratings']);
     }
 
+    toReports() {
+        this.router.navigate(['reports']);
+    }
+
     unread() {
         const idArr = this.getCheckedValues();
         for (const id of <any>idArr) {

@@ -24,4 +24,8 @@ export class MessageService {
         return this.http.put('/api/messages/read', userContactModel);
     }
 
+    public haveNewMessages(id): Observable<any> {
+        return this.http.get('/api/messages/new/' + id);
+    }
+
 }

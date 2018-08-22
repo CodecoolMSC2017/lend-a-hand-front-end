@@ -1,21 +1,23 @@
-import {Component, NgZone, OnInit} from '@angular/core';
+import {Component, NgZone, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../model/user.model';
 import {Router} from '@angular/router';
 import {AuthorizationService} from '../service/authorization.service';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
 
     loginForm: FormGroup;
     user = new User();
     error: string;
+    infoSub: Subscription;
 
     constructor(private gem: GlobalEventManagerService,
                 private zone: NgZone,
@@ -105,6 +107,13 @@ export class LoginComponent implements OnInit {
     hideInfo() {
         document.getElementById('info').innerText = 'Log in to your existing account';
         this.gem.updateInfo(null);
+    }
+
+    ngOnDestroy(): void {
+        this.gem.updateInfo(null);
+        if (this.infoSub) {
+            this.infoSub.unsubscribe();
+        }
     }
 }
 
