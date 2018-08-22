@@ -38,6 +38,28 @@ export class MessagesComponent implements OnInit {
         }, error => {
             this.handleError(error);
         });
+        setInterval(this.getNewMessages.bind(this), 3000);
+    }
+
+
+    getNewMessages() {
+        if (this.user) {
+            this.messageService.haveNewMessages(this.user.id).subscribe(boolean => {
+                if (boolean) {
+                    this.messageService.getNewMessages(this.user.id, this.activeContact.user.id, this.activeContact.lastMessage.id).subscribe(newMessages => {
+                        for (const e of <any>newMessages) {
+                            this.activeContact.messages.push(<Message>e);
+                            this.activeContact.lastMessage = this.activeContact.messages[this.activeContact.messages.length - 1];
+                        }
+                        setTimeout(this.scrollDown, 50);
+                    }, error => {
+                        this.handleError(error);
+                    });
+                }
+            }, error => {
+                this.handleError(error);
+            });
+        }
     }
 
     readMessages() {

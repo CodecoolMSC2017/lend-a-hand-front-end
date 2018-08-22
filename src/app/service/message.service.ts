@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Message} from '../model/message.model';
 import {UserContact} from '../model/user-contact.model';
@@ -28,4 +28,8 @@ export class MessageService {
         return this.http.get('/api/messages/new/' + id);
     }
 
+    public getNewMessages(userId: number, contactedId: number, messageId: number): Observable<any> {
+        const params = new HttpParams().append('userId', userId.toString()).append('contactedId', contactedId.toString()).append('messageId', messageId.toString());
+        return this.http.get('/api/messages/', {params: params});
+    }
 }
