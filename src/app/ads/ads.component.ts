@@ -37,7 +37,6 @@ export class AdsComponent implements OnInit, OnDestroy {
                 this.adService.getAdsByFilter(filterSettings.keyword, filterSettings.selectedCategory, filterSettings.selectedType)
                     .subscribe(ads => {
                         this.ads = this.formatAds(ads);
-                        console.log(ads);
                         sessionStorage.setItem('ads', JSON.stringify(ads));
                     }, error => {
                         this.handleError(error);
@@ -62,7 +61,6 @@ export class AdsComponent implements OnInit, OnDestroy {
                 ad.formattedDescription = ad.description;
             }
             ad.formattedTimestamp = this.formatAdsTimestamp(ad.timestamp);
-            ad.timestamp = this.formatAdTimestamp(ad.timestamp);
             formattedAds.push(ad);
         }
         return formattedAds;

@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Ad} from "../model/ad.model";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
-import {Router} from "@angular/router";
-import {User} from "../model/user.model";
-import {Subscription} from "rxjs";
-import {UserService} from "../service/user.service";
-import {ApplicationService} from "../service/application.service";
-import {Application} from "../model/application.model";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Ad} from '../model/ad.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Router} from '@angular/router';
+import {User} from '../model/user.model';
+import {Subscription} from 'rxjs';
+import {UserService} from '../service/user.service';
+import {ApplicationService} from '../service/application.service';
+import {Application} from '../model/application.model';
 
 
 @Component({
@@ -26,6 +26,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     ownAd: boolean;
     applicationMessage: string;
     application = new Application();
+    loaded: boolean;
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,
                 private appService: ApplicationService) {
@@ -41,9 +42,11 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         this.singleAdSub = this.gem.singleAdEmitter.subscribe(ad => {
             if (ad) {
                 sessionStorage.setItem('ad', JSON.stringify(ad));
-                this.ad = ad;
+                this.ad = this.formatAd(ad);
+                this.loaded = true;
             } else {
-                this.ad = JSON.parse(sessionStorage.getItem('ad'));
+                this.ad = this.formatAd(JSON.parse(sessionStorage.getItem('ad')));
+                this.loaded = true;
             }
         });
 
@@ -139,6 +142,11 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             formattedTimestamp = formattedTimestamp + splittedTimestamp[2] + '.';
         }
         return formattedTimestamp;
+    }
+
+    formatAd(ad: Ad) {
+        ad.formattedTimestamp = this.formatAdTimestamp(ad.timestamp);
+        return ad;
     }
 
     formatApps(applications: Application[]): Application[] {

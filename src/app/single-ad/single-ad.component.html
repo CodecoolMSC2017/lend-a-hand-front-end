@@ -1,4 +1,4 @@
-<div id="singleAdDiv">
+<div id="singleAdDiv" *ngIf="loaded">
     <h2 class="error hidden" id="errorDiv">{{error}}</h2>
     <div id="ad-div" class="content">
         <div class="wrapper">
@@ -9,7 +9,7 @@
             </div>
 
             <div id="date-advertiser-div">
-                <h4 id="timestamp">{{ad.timestamp}}</h4>
+                <h4 id="timestamp">{{ad.formattedTimestamp}}</h4>
                 <h4 id="advertiserName" (click)="toProfile(ad.advertiserId)">Advertiser: {{ad.advertiserName}}</h4>
                 <h4 id="state">State: {{ad.state}}</h4>
             </div>
