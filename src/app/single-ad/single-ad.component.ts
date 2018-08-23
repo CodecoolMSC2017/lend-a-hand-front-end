@@ -53,11 +53,13 @@ export class SingleAdComponent implements OnInit, OnDestroy {
                 this.ad = this.formatAd(JSON.parse(sessionStorage.getItem('ad')));
                 this.loaded = true;
             }
-            this.appService.getIsUserApplied(this.user.id, this.ad.id).subscribe(isUserApplied => {
+            if (this.user.type != 'GUEST') {
+                this.appService.getIsUserApplied(this.user.id, this.ad.id).subscribe(isUserApplied => {
                 this.isUserApplied = isUserApplied;
             }, error => {
                 this.handleError(error);
             });
+        }
 
         });
 
