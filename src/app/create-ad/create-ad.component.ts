@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {AdService} from '../service/ad.service';
-import {Ad} from '../model/ad.model';
-import {User} from '../model/user.model';
-import {Router} from '@angular/router';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Component, OnInit} from "@angular/core";
+import {AdService} from "../service/ad.service";
+import {Ad} from "../model/ad.model";
+import {User} from "../model/user.model";
+import {Router} from "@angular/router";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
 
 @Component({
     selector: 'app-create-ad',
@@ -12,11 +12,13 @@ import {GlobalEventManagerService} from '../service/global-event-manager.service
 })
 export class CreateAdComponent implements OnInit {
 
-    categories = ['Beauty', 'Child care', 'Construction', 'Education', 'Garden', 'Health care', 'Housework', 'IT', 'Office', 'Pets', 'Repair', 'Sports', 'Vehicle'];
+    categories = ['Beauty', 'Child care', 'Construction', 'Education', 'Garden', 'Health care', 'Housework', 'IT',
+        'Office', 'Pets', 'Repair', 'Sports', 'Vehicle'];
     selectedCategory: string;
     selectedType: string;
     isPremium: boolean;
     adTitle: string;
+    adPayment: number;
     adDescription: string;
     ad: Ad = new Ad();
     error: string;
@@ -57,6 +59,7 @@ export class CreateAdComponent implements OnInit {
         this.ad.category = this.selectedCategory;
         this.ad.description = this.adDescription;
         this.ad.title = this.adTitle;
+        this.ad.payment = this.adPayment;
         this.ad.type = this.selectedType;
         this.ad.pictureLink = '';
 

@@ -47,9 +47,10 @@
     font-size: 1.2em;
 }
 
-.checkbox {
+checkbox {
     height: 4%;
     width: 4%;
+    -webkit-appearance: checkbox;
 }
 
 #premiumDiv{
@@ -62,6 +63,10 @@
 
 #adTitleDiv{
     color:white;
+}
+
+#ad-payment-div {
+    color: white;
 }
 
 #descriptionInput {
@@ -77,8 +82,18 @@
     border-radius:30px;
     padding-left: 2%;
     padding-right: 2%;
+    text-align: center;
+}
+
+#payment-input {
+    width: 40%;
+    border-radius: 30px;
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: center;
 }
 
 select{
     width:80px;
+    text-align: center;
 }
