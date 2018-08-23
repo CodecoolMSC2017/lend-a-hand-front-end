@@ -27,7 +27,7 @@ html{
 }
 
 .input:focus {
-    border: 2px solid #000000;
+    border: 2px solid #0a2d3a;
     box-shadow: none;
 }
 
@@ -101,7 +101,6 @@ html{
     background-color: white;
     transition: background-color, color 0.5s;
     cursor: not-allowed;
-    border: none;
 }
 
 .button-inverse {
@@ -130,6 +129,10 @@ html{
 .button-inverse:disabled:hover {
     cursor: not-allowed;
 }
+
+button:focus {outline:0;}
+input:focus {outline:0;}
+select:focus {outline:0;}
 
 .hidden {
     display: none;
