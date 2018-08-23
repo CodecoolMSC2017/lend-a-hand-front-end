@@ -40,10 +40,18 @@
             </div>
         </div>
 
-        <table id="apply-button-table" *ngIf="user.type!='ADMIN'  && user.type!='GUEST'">
+        <table class="operate-button-table" *ngIf="user.type == 'ADMIN'">
             <tr>
                 <td>
-                    <button class="button-inverse" id="applyButton" *ngIf="!isUserApplied && !ownAd && user"
+                    <button class="button-inverse option-button operate-button" (click)="toBlock()">Block</button>
+                </td>
+            </tr>
+        </table>
+
+        <table class="operate-button-table" *ngIf="user.type!='ADMIN'  && user.type!='GUEST'">
+            <tr>
+                <td>
+                    <button class="button-inverse operate-button" *ngIf="!isUserApplied && !ownAd && user"
                             (click)="applyToAd()">Apply
                     </button>
                     <h3 *ngIf="isUserApplied">You have already applied for this advertisement.</h3>
@@ -54,7 +62,7 @@
         <div id="applicants" *ngIf="ownAd && user && applications  && user.type != 'GUEST'">
             <div id="applications">
                 <h2 class="applicants" *ngIf="ownAd">Applicants</h2>
-                <h3 *ngIf="applications.length===0">You haven't got any applicants yet.</h3>
+                <h3 *ngIf="!applications?.length">You haven't got any applicants yet.</h3>
                 <div *ngFor="let application of applications" class="application">
                     <div class="application-container">
 
