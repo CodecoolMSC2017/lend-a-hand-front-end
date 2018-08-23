@@ -73,6 +73,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     handleError(error) {
         if (error.status === 401) {
             this.error = 'Wrong User name or password.';
+        } else if (error.status === 504) {
+            this.error = 'Sorry, the server doesn\'t answer.';
         } else {
             if (error.error !== null) {
                 this.error = error.error.message;
