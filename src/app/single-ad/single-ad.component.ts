@@ -39,6 +39,11 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.gem.updateUser(this.user);
         }
 
+        if (sessionStorage.getItem('user') === null) {
+            this.user = new User();
+            this.user.type = 'GUEST';
+        }
+
         this.singleAdSub = this.gem.singleAdEmitter.subscribe(ad => {
             if (ad) {
                 sessionStorage.setItem('ad', JSON.stringify(ad));
@@ -113,7 +118,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.router.navigate(['categories']);
         }, error => {
             this.handleCreateAdError(error);
-        });
+        });        console.log(this.user.type);
     }
 
     formatAdTimestamp(timestamp: string): string {

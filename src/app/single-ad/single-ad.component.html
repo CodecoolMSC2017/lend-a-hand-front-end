@@ -27,8 +27,9 @@
                 <p *ngIf="ad.payment != 0 && ad.payment != null" class="payment"><strong>Payment: </strong>{{ad.payment}}$
                     / hour</p>
                 <span id="description">{{ad.description}}</span>
+                <h3 *ngIf="this.user.type == 'GUEST'">You have to login to apply for this advertisement and to see the profile of the advertiser.</h3>
 
-                <table id="report-button-table" *ngIf="!ownAd && user.type != 'ADMIN'">
+                <table id="report-button-table" *ngIf="!ownAd && user.type != 'ADMIN' && user.type != 'GUEST'">
                     <tr>
                         <td id="report-button-td">
                             <button class="button-inverse option-button" (click)="toReport()">Report</button>
@@ -39,7 +40,7 @@
             </div>
         </div>
 
-        <table id="apply-button-table" *ngIf="user.type!='ADMIN'">
+        <table id="apply-button-table" *ngIf="user.type!='ADMIN'  && user.type!='GUEST'">
             <tr>
                 <td>
                     <button class="button-inverse" id="applyButton" *ngIf="!isUserApplied && !ownAd && user" (click)="applyToAd()">Apply
@@ -49,7 +50,7 @@
             </tr>
         </table>
         <br>
-        <div id="applicants" *ngIf="ownAd && user && applications">
+        <div id="applicants" *ngIf="ownAd && user && applications  && user.type != 'GUEST'">
             <div id="applications">
                 <h2 class="applicants" *ngIf="ownAd">Applicants</h2>
                 <h3 *ngIf="applications.length===0">You haven't got any applicants yet.</h3>
