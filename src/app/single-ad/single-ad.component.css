@@ -107,13 +107,16 @@
     font-size: 1.5em;
 }
 
+.rating-span {
+    color: black;
+    font-weight: normal;
+    font-size: 0.8em;
+}
+
 #state-td {
     width: 10%;
     text-align: right;
-    
 }
-
-
 
 .faded {
     opacity: 0;
@@ -247,13 +250,14 @@
 
 .state-td {
     text-align: left;
-    width: 30em;
+    width: 25.2em;
+    display: inline-block;
+    white-space: nowrap;
 }
 
-.rating-td {
-    text-align: right;
-    width: 60em;
-    white-space: nowrap;
+.accept-decline-td {
+    width: 5em;
+    display: inline-block;
 }
 
 .app-table {
