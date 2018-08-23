@@ -136,7 +136,8 @@
 
                 <div class="message-input" *ngIf="activeContact.application.state!='Accepted'">
                     <div class="wrap">
-                        <input type="text" placeholder="Application is {{activeContact.ad.state}}" id="disabled-input"
+                        <input type="text" placeholder="Application is {{activeContact.application.state}}"
+                               id="disabled-input"
                                disabled/>
                         <button class="disabled-submit" disabled><i class="fa fa-paper-plane"
                                                                     aria-hidden="true"></i></button>
