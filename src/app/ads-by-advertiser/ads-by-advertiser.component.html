@@ -27,9 +27,12 @@
                                 </tr>
                                 <tr>
                                     <td id="type-td"><strong>Type:</strong> {{ad.type}}</td>
-                                    <button id="archiveButton" (click)="archiveAd(ad)" class="button-inverse">Archive
-                                    </button>
                                     <td id="category-td"><strong>Category:</strong> {{ad.category}}</td>
+                                    <td id="archive-td">
+                                        <button id="archiveButton" (click)="archiveAd(ad)" class="button-inverse">
+                                            Archive
+                                        </button>
+                                    </td>
                                 </tr>
 
                             </table>

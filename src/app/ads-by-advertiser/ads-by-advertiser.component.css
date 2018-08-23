@@ -82,19 +82,32 @@
 
 #type-td {
     text-align: left;
-    width: 40em;
+    min-width: 11.8em;
+    max-width: 11.8em;
+    white-space: nowrap;
+    display: inline-block;
 }
 
 #category-td {
     text-align: right;
-    width: 40em;
+    min-width: 11.8em;
+    max-width: 11.8em;
     white-space: nowrap;
+    display: inline-block;
+
+}
+
+#archive-td {
+    text-align: right;
+    min-width: 11.8em;
+    max-width: 11.8em;
+    display: inline-block;
+
 }
 
 .empty-category {
 
     padding-top: 2.5em;
-    height: 1.5em;
     width: 60%;
     background-color: rgb(232, 237, 238);
     height: 4em;
