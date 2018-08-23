@@ -22,8 +22,9 @@
             </div>
 
             <div id="description-div">
-                <p *ngIf="ad.payment == 0 || ad.payment == null" class="payment"> No payment specified</p>
-                <p *ngIf="ad.payment != 0 || ad.payment != null" class="payment"><strong>Payment: </strong>{{ad.payment}}$
+                <p *ngIf="ad.payment == 0 || ad.payment == null" class="payment"><strong>Payment: </strong>not specified
+                </p>
+                <p *ngIf="ad.payment != 0 && ad.payment != null" class="payment"><strong>Payment: </strong>{{ad.payment}}$
                     / hour</p>
                 <span id="description">{{ad.description}}</span>
 
