@@ -83,7 +83,7 @@ export class NotificationsComponent implements OnInit {
     }
 
     toMyRaters() {
-        this.gem.updateRatingType('myRatings');
+        this.gem.updateRatingType('rated');
         this.router.navigate(['ratings']);
     }
 
