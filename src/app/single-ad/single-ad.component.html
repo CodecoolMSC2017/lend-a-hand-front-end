@@ -42,7 +42,8 @@
         <table id="apply-button-table" *ngIf="user.type!='ADMIN'">
             <tr>
                 <td>
-                    <button class="button-inverse" id="applyButton" *ngIf="!isUserApplied && !ownAd && user" (click)="applyToAd()">Apply
+                    <button class="button-inverse" id="applyButton" *ngIf="!isUserApplied && !ownAd && user"
+                            (click)="applyToAd()">Apply
                     </button>
                     <h3 *ngIf="isUserApplied">You have already applied for this advertisement.</h3>
                 </td>
@@ -59,9 +60,19 @@
                         <div class="application-details">
                             <table>
                                 <tr>
-                                    <td id="title-td"><strong class="application-title"
-                                                              (click)="toProfile(application.applicantId)">{{application.applicantName}}</strong>
+                                    <td id="title-td">
+                                        <strong class="application-title"
+                                                (click)="toProfile(application.applicantId)">{{application.applicantName}} </strong>
+                                        <span *ngIf="application.type=='Hand-lending'" class="rating-span">
+                                            (<strong>Rating:</strong>
+                                            {{application.employerRatingScore | number:'1.0-1'}} / 5)
+                                        </span>
+                                        <span *ngIf="application.type=='Hand-seeking'" class="rating-span">
+                                            (<strong>Rating:</strong>
+                                            {{application.employeeRatingScore | number:'1.0-1'}} / 5)
+                                        </span>
                                     </td>
+
                                     <td id="date-td">{{application.formattedTimestamp}}</td>
                                 </tr>
                             </table>
@@ -86,27 +97,16 @@
                                             </tr>
                                             <tr>
                                                 <td class="state-td"><strong>State: </strong>{{application.state}}</td>
-                                                <td *ngIf="application.state =='Applied'">
+
+                                                <td *ngIf="application.state =='Applied'" class="accept-decline-td">
                                                     <button class="button-inverse" (click)="accept(application)">
                                                         Accept
                                                     </button>
                                                 </td>
-                                                <td *ngIf="application.state =='Applied'">
+                                                <td *ngIf="application.state =='Applied'" class="accept-decline-td">
                                                     <button class="button-inverse" (click)="decline(application)">
                                                         Decline
                                                     </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td *ngIf="application.type=='Hand-lending'" class="rating-td">
-                                                    <strong>Rating:</strong>
-                                                    {{application.employerRatingScore | number:'1.0-1'}} / 5
-                                                </td>
-                                                <td *ngIf="application.type=='Hand-seeking'" class="rating-td">
-                                                    <strong>Rating:</strong>
-                                                    {{application.employeeRatingScore | number:'1.0-1'}} / 5
                                                 </td>
                                             </tr>
                                         </table>
