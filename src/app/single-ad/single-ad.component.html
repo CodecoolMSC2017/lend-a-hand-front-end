@@ -54,7 +54,7 @@
         <div id="applicants" *ngIf="ownAd && user && applications  && user.type != 'GUEST'">
             <div id="applications">
                 <h2 class="applicants" *ngIf="ownAd">Applicants</h2>
-                <h3 *ngIf="applications.length===0">You haven't got any applicants yet.</h3>
+                <h3 *ngIf="!applications?.length">You haven't got any applicants yet.</h3>
                 <div *ngFor="let application of applications" class="application">
                     <div class="application-container">
 
