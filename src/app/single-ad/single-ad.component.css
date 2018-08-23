@@ -51,16 +51,16 @@
     margin-top: 2em;
 }
 
-#apply-button-table {
+.operate-button-table {
     margin-top: 3em;
 }
 
-#apply-button-table td {
+.operate-button-table td {
     width: 30em;
     text-align: center;
 }
 
-#applyButton {
+.operate-button {
     float: right;
     text-align: center;
     width: 10em;

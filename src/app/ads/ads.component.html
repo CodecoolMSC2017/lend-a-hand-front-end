@@ -1,6 +1,7 @@
 <div id="ads" *ngIf="loaded">
     <h2 *ngIf="ads.length===0" class="empty-category">This category haven't got any advertisments yet.</h2>
     <h2 id="error" class="error hidden">{{error}}</h2>
+
     <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
         
         
