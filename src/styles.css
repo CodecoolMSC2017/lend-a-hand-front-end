@@ -101,6 +101,7 @@ html{
     background-color: white;
     transition: background-color, color 0.5s;
     cursor: not-allowed;
+    border: none;
 }
 
 .button-inverse {
