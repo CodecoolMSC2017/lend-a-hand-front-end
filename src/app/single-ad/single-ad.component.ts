@@ -7,6 +7,7 @@ import {Subscription} from "rxjs";
 import {UserService} from "../service/user.service";
 import {ApplicationService} from "../service/application.service";
 import {Application} from "../model/application.model";
+import {AdService} from "../service/ad.service";
 
 
 @Component({
@@ -30,7 +31,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     isUserApplied: boolean;
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,
-                private appService: ApplicationService) {
+                private appService: ApplicationService, private adService: AdService) {
     }
 
     ngOnInit() {
@@ -46,8 +47,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
 
         this.singleAdSub = this.gem.singleAdEmitter.subscribe(ad => {
             if (ad) {
-                sessionStorage.setItem('ad', JSON.stringify(ad));
                 this.ad = this.formatAd(ad);
+                sessionStorage.setItem('ad', JSON.stringify(this.ad));
                 this.loaded = true;
             } else {
                 this.ad = this.formatAd(JSON.parse(sessionStorage.getItem('ad')));
@@ -200,7 +201,12 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     }
 
     toBlock() {
-
+        this.adService.blockAd(this.ad.id).subscribe(ad => {
+            this.ad = this.formatAd(ad);
+            sessionStorage.setItem('ad', JSON.stringify(this.ad));
+        }, error => {
+            this.handleError(error);
+        });
     }
 
 

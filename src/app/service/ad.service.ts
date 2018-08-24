@@ -30,14 +30,13 @@ export class AdService {
 
     public deleteAdById(id: number): Observable<any> {
         return this.http.delete('/api/ads/delete/' + id);
-        
     }
 
     public createAd(ad: Ad): Observable<any> {
         return this.http.post('/api/ads/new', ad);
     }
 
-    public updateAdById(ad: Ad): Observable<any> {
-        return this.http.put('/api/ads/update', ad);
+    public blockAd(id: number): Observable<any> {
+        return this.http.put('/api/ads/block/' + id, null);
     }
 }

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user.model';
+import {UserBalance} from '../model/user-balance.model';
 
 @Injectable({
     providedIn: 'root'
@@ -27,6 +28,11 @@ export class UserService {
         const params = new HttpParams().append('userId', userId.toString()).append('profileOwnerId', profileOwnerId.toString());
         return this.http.get<boolean>('/api/user/contacted', {params: params});
     }
+
+    updateUserBalance(userBalance: UserBalance): Observable<any> {
+        return this.http.put('/api/user/balance', userBalance);
+    }
+
 
 
 }

@@ -43,7 +43,12 @@
         <table class="operate-button-table" *ngIf="user.type == 'ADMIN'">
             <tr>
                 <td>
-                    <button class="button-inverse option-button operate-button" (click)="toBlock()">Block</button>
+                    <button *ngIf="ad.state == 'Pending'" class="button-inverse option-button operate-button"
+                            (click)="toBlock()">Block
+                    </button>
+                    <button *ngIf="ad.state != 'Pending'" class="button-inverse option-button operate-button" disabled>
+                        Blocked
+                    </button>
                 </td>
             </tr>
         </table>

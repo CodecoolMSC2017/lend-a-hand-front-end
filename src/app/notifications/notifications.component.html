@@ -32,6 +32,8 @@
                           *ngIf="notification.type === 'Handle'">Your report is under consideration</span>
                     <span class="note"
                           *ngIf="notification.type === 'Rate'">Complete rating if haven't already</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'BlockAd'">Your ad is blocked</span>
                     <p class="text-div hidden">{{notification.text}}</p>
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'Apply'" (click)="toAd(notification.ad)">To my Advertisement
@@ -66,8 +68,11 @@
                             *ngIf="notification.type === 'Rate'" (click)="toRate(notification.application)">To the
                         rates
                     </button>
-                    <button id="handle-button" class="button-inverse hidden"
+                    <button class="button-inverse hidden hidden-button"
                             *ngIf="notification.type === 'Handle'">
+                    </button>
+                    <button class="button-inverse hidden hidden-button"
+                            *ngIf="notification.type === 'BlockAd'">
                     </button>
                 </td>
                 <td class="date-td">
