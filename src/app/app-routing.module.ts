@@ -21,6 +21,7 @@ import {NotificationsComponent} from './notifications/notifications.component';
 import {ReportsComponent} from './reports/reports.component';
 import {ReportComponent} from './report/report.component';
 import {PaypalComponent} from './paypal/paypal.component';
+import {RatingGuard} from './rating.guard';
 
 
 const routes: Routes = [
@@ -42,7 +43,7 @@ const routes: Routes = [
         {path: 'adsByAdvertiser', component: AdsByAdvertiserComponent, canActivate: [LoginGuard]},
         {path: 'applications', component: ApplicationsComponent},
         {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]},
-        {path: 'rate', component: RateComponent, canActivate: [LoginGuard]},
+    {path: 'rate', component: RateComponent, canActivate: [RatingGuard]},
     {path: 'notifications', component: NotificationsComponent, canActivate: [LoginGuard]},
     {path: 'payment', component: PaypalComponent, canActivate: [LoginGuard]}
     ]
