@@ -1,12 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Ad} from '../model/ad.model';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {Router} from '@angular/router';
-import {User} from '../model/user.model';
-import {Subscription} from 'rxjs';
-import {UserService} from '../service/user.service';
-import {ApplicationService} from '../service/application.service';
-import {Application} from '../model/application.model';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Ad} from "../model/ad.model";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {Router} from "@angular/router";
+import {User} from "../model/user.model";
+import {Subscription} from "rxjs";
+import {UserService} from "../service/user.service";
+import {ApplicationService} from "../service/application.service";
+import {Application} from "../model/application.model";
 
 
 @Component({
@@ -120,7 +120,7 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             this.router.navigate(['categories']);
         }, error => {
             this.handleCreateAdError(error);
-        });        console.log(this.user.type);
+        });
     }
 
     formatAdTimestamp(timestamp: string): string {
@@ -197,6 +197,10 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     toReport() {
         this.gem.updateReportedAd(this.ad);
         this.router.navigate(['report']);
+    }
+
+    toBlock() {
+
     }
 
 

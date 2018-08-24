@@ -1,0 +1,41 @@
+<div id="overflow-div">
+    <h2 class="error hidden" id="error-div">{{error}}</h2>
+    <div id="paypal-div" class="content">
+
+        <div id="input-div">
+
+            <input
+                    type="radio" name="amount"
+                    id="1" class="hidden" value="1" [(ngModel)]="amount"/>
+            <label for="1">
+                <img
+                        src="../assets/1.jpg"
+                        alt="1 Golden Hand"/>
+            </label>
+
+            <input
+                    type="radio" name="amount"
+                    id="5" class="hidden" value="5" [(ngModel)]="amount"/>
+            <label for="5">
+                <img
+                        src="../assets/5.jpg"
+                        alt="5 Golden Hand"/>
+            </label>
+
+            <input
+                    type="radio" name="amount"
+                    id="10" class="hidden" value="10" [(ngModel)]="amount"/>
+            <label for="10">
+                <img
+                        src="../assets/10.jpg"
+                        alt="10 Golden Hand"/>
+            </label>
+
+        </div>
+
+
+        <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+        <div id="paypal-checkout-btn"></div>
+
+    </div>
+</div>

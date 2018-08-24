@@ -7,13 +7,13 @@
     margin-top: 10%;
     width: 90%;
     height: 32em;
-    border-radius:10px;
-    padding:2%;
+    border-radius: 10px;
+    padding: 2%;
     text-align: left;
-    -webkit-box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 32px 0px rgba(0,0,0,0.75);
-    margin-bottom:20px;
+    -webkit-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.75);
+    margin-bottom: 20px;
 }
 
 .wrapper {
@@ -31,6 +31,7 @@
 }
 
 #balance {
+    padding-left: 2%;
 }
 
 .profile-img {
@@ -138,3 +139,9 @@
     margin-top: 60px;
 }
 
+.payment-icon {
+    height: 10%;
+    width: 5%;
+    cursor: pointer;
+    padding-left: 2%;
+}
