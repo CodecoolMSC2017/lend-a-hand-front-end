@@ -89,6 +89,6 @@
 
 }
 
-#handle-button {
+.hidden-button {
     display: none;
 }

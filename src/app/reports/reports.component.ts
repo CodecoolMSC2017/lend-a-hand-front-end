@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {Report} from '../model/report.model';
-import {ShowReportsService} from '../service/show-reports.service';
-import {User} from '../model/user.model';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {Router} from '@angular/router';
-import {UserService} from '../service/user.service';
-import {AdService} from '../service/ad.service';
-import {ReportService} from '../service/report.service';
+import {Component, OnInit} from "@angular/core";
+import {Report} from "../model/report.model";
+import {ShowReportsService} from "../service/show-reports.service";
+import {User} from "../model/user.model";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {Router} from "@angular/router";
+import {UserService} from "../service/user.service";
+import {AdService} from "../service/ad.service";
+import {ReportService} from "../service/report.service";
 
 @Component({
     selector: 'app-reports',
@@ -29,15 +29,14 @@ export class ReportsComponent implements OnInit {
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
-        this.reportsService.getUserReports().subscribe(reports => {
 
+        this.reportsService.getUserReports().subscribe(reports => {
             this.userReports = this.formatReports(reports);
         }, error => {
             this.handleError(error);
         });
 
         this.reportsService.getAdReports().subscribe(reports => {
-
             this.adReports = this.formatReports(reports);
         }, error => {
             this.handleError(error);

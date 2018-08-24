@@ -79,6 +79,7 @@ export class NotificationsComponent implements OnInit {
 
     toRate(application: Application) {
         this.gem.updateApplication(application);
+        sessionStorage.setItem('application', JSON.stringify(application));
         this.router.navigate(['rate']);
     }
 
