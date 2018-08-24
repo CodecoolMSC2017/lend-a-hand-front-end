@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {User} from '../model/user.model';
@@ -10,13 +10,13 @@ declare let paypal: any;
     templateUrl: './paypal.component.html',
     styleUrls: ['./paypal.component.css']
 })
-export class PaypalComponent implements OnInit, AfterViewChecked {
+export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     user: User;
     error: string;
     addScript = false;
     paypalLoad = true;
-    amount = 1;
+    amount = 8.99;
     paypalConfig = {
         env: 'sandbox',
 
@@ -33,9 +33,12 @@ export class PaypalComponent implements OnInit, AfterViewChecked {
         payment: (data, actions) => {
             return actions.payment.create({
                 payment: {
-                    transactions: [
-                        {amount: {total: this.amount * 1000, currency: 'HUF'}}
-                    ]
+                    transactions: [{
+                        amount: {
+                            total: this.amount,
+                            currency: 'USD'
+                        }
+                    }]
                 }
             });
         },
@@ -69,6 +72,7 @@ export class PaypalComponent implements OnInit, AfterViewChecked {
         return new Promise((resolve, reject) => {
             const scripttagElement = document.createElement('script');
             scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+            scripttagElement.id = 'script';
             scripttagElement.onload = resolve;
             document.body.appendChild(scripttagElement);
         });
@@ -97,5 +101,10 @@ export class PaypalComponent implements OnInit, AfterViewChecked {
         document.getElementById('error-div').classList.remove('hidden');
         setTimeout(this.clearAlert, 3000);
     }
+
+    ngOnDestroy(): void {
+        document.getElementById('script').remove();
+    }
+
 
 }
