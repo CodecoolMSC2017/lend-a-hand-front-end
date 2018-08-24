@@ -85,6 +85,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
     logout() {
         const clearAuth = () => {
             sessionStorage.clear();
+            this.user = null;
             this.gem.updateUser(null);
             this.router.navigate(['login']);
         };

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {User} from '../model/user.model';
 import {MessageService} from '../service/message.service';
@@ -15,7 +15,7 @@ import {UserContact} from '../model/user-contact.model';
     templateUrl: './messages.component.html',
     styleUrls: ['./messages.component.css']
 })
-export class MessagesComponent implements OnInit {
+export class MessagesComponent implements OnInit, OnDestroy {
     user: User;
     contacts: Contact[];
     activeContacts: Contact[];
@@ -40,7 +40,6 @@ export class MessagesComponent implements OnInit {
         });
         setInterval(this.getNewMessages.bind(this), 3000);
     }
-
 
 
     getNewMessages() {
@@ -210,6 +209,10 @@ export class MessagesComponent implements OnInit {
     clearAlert() {
         this.error = '';
         document.getElementById('error-div').innerText = '';
+    }
+
+    ngOnDestroy(): void {
+        this.user = null;
     }
 
 }
