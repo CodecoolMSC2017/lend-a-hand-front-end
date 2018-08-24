@@ -42,6 +42,7 @@ export class MessagesComponent implements OnInit {
     }
 
 
+
     getNewMessages() {
         if (this.user) {
             this.messageService.haveNewMessages(this.user.id).subscribe(boolean => {
@@ -173,6 +174,7 @@ export class MessagesComponent implements OnInit {
     onCompleteClicked() {
         this.applicationService.completeApplication(this.activeContact.application.id).subscribe(application => {
             this.gem.updateApplication(this.activeContact.application);
+            sessionStorage.setItem('application', JSON.stringify(this.activeContact.application));
             this.router.navigate(['rate']);
         }, error => {
             this.handleError(error);
@@ -182,6 +184,7 @@ export class MessagesComponent implements OnInit {
     onFailClicked() {
         this.applicationService.failedApplication(this.activeContact.application.id).subscribe(application => {
             this.gem.updateApplication(this.activeContact.application);
+            sessionStorage.setItem('application', JSON.stringify(this.activeContact.application));
             this.router.navigate(['rate']);
         }, error => {
             this.handleError(error);
