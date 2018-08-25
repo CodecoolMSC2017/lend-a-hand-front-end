@@ -53,7 +53,7 @@ export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
                         alert('Successfully bought ' + userBalance.value + ' Golden Hand');
                         sessionStorage.setItem('user', JSON.stringify(user));
                         this.gem.updateUser(user);
-                        this.router.navigate(['profile']);
+                    setTimeout(this.router.navigate(['profile']), 3000);
                     }, error => this.handleError(error)
                 );
             });
