@@ -2,6 +2,8 @@ import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {User} from '../model/user.model';
+import {UserService} from '../service/user.service';
+import {UserBalance} from '../model/user-balance.model';
 
 declare let paypal: any;
 
@@ -44,17 +46,37 @@ export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
         },
         onAuthorize: (data, actions) => {
             return actions.payment.execute().then((payment) => {
-                alert('Successfully bought ' + this.amount + ' Golden Hand');
+                const userBalance = new UserBalance();
+                userBalance.userId = this.user.id;
+                userBalance.value = this.evaluateNumberOfGoldenHands(this.amount);
+                this.userService.updateUserBalance(userBalance).subscribe(user => {
+                        alert('Successfully bought ' + userBalance.value + ' Golden Hand');
+                        sessionStorage.setItem('user', JSON.stringify(user));
+                        this.gem.updateUser(user);
+                        this.router.navigate(['profile']);
+                    }, error => this.handleError(error)
+                );
             });
         }
     };
 
-    constructor(private router: Router, private gem: GlobalEventManagerService) {
+    constructor(private router: Router, private gem: GlobalEventManagerService, private userService: UserService) {
     }
 
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
+    }
+
+
+    evaluateNumberOfGoldenHands(amount: number): number {
+        if (amount == 8.99) {
+            return 3;
+        } else if (amount == 14.99) {
+            return 6;
+        } else if (amount == 26.99) {
+            return 12;
+        }
     }
 
 
