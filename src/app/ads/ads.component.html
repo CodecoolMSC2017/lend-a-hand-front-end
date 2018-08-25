@@ -3,10 +3,9 @@
     <h2 id="error" class="error hidden">{{error}}</h2>
 
     <div *ngFor="let ad of ads" class="ad" (click)="showAd(ad)">
-        
-        
-        
-        <div class="ad-container" *ngIf="ad.premium==false" >
+
+
+        <div class="ad-container" *ngIf="ad.isPremium==false">
             <div class="ad-details">
                 <table>
                     <tr>
@@ -39,9 +38,9 @@
                 </table>
             </div>
         </div>
-        
 
-        <div class="ad-container" *ngIf="ad.premium==true" >
+
+        <div class="ad-container" *ngIf="ad.isPremium==true">
             <div class="premium" >
                 <table>
                     <tr>

@@ -49,7 +49,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
             this.notificationService.haveNewNotifications(this.user.id).subscribe(newNotification => {
                 this.newNotification = newNotification;
             }, error => {
-                console.log(error);
+                this.handleError(error);
             });
         }
 
@@ -60,7 +60,7 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
             this.messageService.haveNewMessages(this.user.id).subscribe(newMessage => {
                 this.newMessages = newMessage;
             }, error => {
-                console.log(error);
+                this.handleError(error);
             });
         }
     }
@@ -134,6 +134,15 @@ export class HeaderBarComponent implements OnInit, OnDestroy {
             document.getElementsByTagName('body').item(0).removeEventListener('click', this.hideFilter);
 
         }
+    }
+
+    handleError(error) {
+        if (error.status === 401) {
+            sessionStorage.clear();
+            this.gem.updateUser(null);
+            this.router.navigate(['login']);
+        }
+        console.log(error);
     }
 
     ngOnDestroy() {
