@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
         this.registerDatas.password = password;
         this.registerDatas.type = type;
         this.authService.registerUser(this.registerDatas).subscribe(response => {
-                this.gem.updateInfo('Registration successfull, you can login now!');
+            this.gem.updateInfo('Registration successful, you can login now!');
                 this.router.navigate(['login']);
             }, error => {
             this.handleError(error);
