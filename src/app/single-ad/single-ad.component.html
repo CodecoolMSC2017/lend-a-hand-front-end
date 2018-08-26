@@ -1,7 +1,8 @@
 <div id="singleAdDiv" *ngIf="loaded">
     <h2 class="error hidden" id="errorDiv">{{error}}</h2>
-    <div id="ad-div" class="content">
-        <div class="wrapper">
+    <div id="ad-div" class="content" [ngClass]="{'ad-div': !ad.isPremium,'premium-ad-div': ad.isPremium}">
+        <div class=" wrapper
+    ">
 
             <div id="title-category-div">
                 <p id="ad-title"><strong>{{ad.title}}</strong></p>
@@ -27,7 +28,9 @@
                 <p *ngIf="ad.payment != 0 && ad.payment != null" class="payment"><strong>Payment: </strong>{{ad.payment}}$
                     / hour</p>
                 <span id="description">{{ad.description}}</span>
-                <h3 *ngIf="this.user.type == 'GUEST'">You have to login to apply for this advertisement and to see the profile of the advertiser.</h3>
+                <h3 *ngIf="this.user.type == 'GUEST'">You have to login to apply for this advertisement and to see the
+                    profile
+                    of the advertiser.</h3>
 
                 <table id="report-button-table" *ngIf="!ownAd && user.type != 'ADMIN' && user.type != 'GUEST'">
                     <tr>
@@ -58,6 +61,9 @@
                 <td>
                     <button class="button-inverse operate-button" *ngIf="!isUserApplied && !ownAd && user"
                             (click)="applyToAd()">Apply
+                    </button>
+                    <button class="button-inverse operate-button" *ngIf="!ad.isPremium && ownAd && user"
+                            (click)="makeAdPremium(ad)">Make premium
                     </button>
                     <h3 *ngIf="isUserApplied">You have already applied for this advertisement.</h3>
                 </td>
