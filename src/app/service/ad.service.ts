@@ -1,7 +1,8 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Ad} from "../model/ad.model";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Ad} from '../model/ad.model';
+import {UserAd} from '../model/user-ad.model';
 
 @Injectable({
     providedIn: 'root'
@@ -38,5 +39,9 @@ export class AdService {
 
     public blockAd(id: number): Observable<any> {
         return this.http.put('/api/ads/block/' + id, null);
+    }
+
+    public makePremium(ad: Ad): Observable<UserAd> {
+        return this.http.put<UserAd>('/api/ads/premium/', ad);
     }
 }
