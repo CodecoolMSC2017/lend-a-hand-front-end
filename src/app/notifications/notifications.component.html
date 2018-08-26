@@ -1,4 +1,4 @@
-<div id="notifications">
+<div id="notifications" *ngIf="loaded">
     <h2 *ngIf="!notifications?.length" class="empty-category">You haven't got any notification.</h2>
     <h2 id="error" class="error hidden">{{error}}</h2>
     <div class="notification-div" *ngIf="notifications?.length">

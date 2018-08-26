@@ -1,12 +1,12 @@
-import {Component, OnInit} from "@angular/core";
-import {User} from "../model/user.model";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
-import {NotificationService} from "../service/notification.service";
-import {Router} from "@angular/router";
-import {Notification} from "../model/notification";
-import {Ad} from "../model/ad.model";
-import {ApplicationService} from "../service/application.service";
-import {Application} from "../model/application.model";
+import {Component, OnInit} from '@angular/core';
+import {User} from '../model/user.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {NotificationService} from '../service/notification.service';
+import {Router} from '@angular/router';
+import {Notification} from '../model/notification';
+import {Ad} from '../model/ad.model';
+import {ApplicationService} from '../service/application.service';
+import {Application} from '../model/application.model';
 
 @Component({
     selector: 'app-notifications',
@@ -18,6 +18,7 @@ export class NotificationsComponent implements OnInit {
     user: User;
     notifications: Notification[];
     error: string;
+    loaded = false;
 
     constructor(private gem: GlobalEventManagerService, private notificationService: NotificationService,
                 private applicationService: ApplicationService, private router: Router) {
@@ -29,8 +30,10 @@ export class NotificationsComponent implements OnInit {
 
         this.notificationService.getAllNotificationsByUser(this.user.id).subscribe(notifications => {
             this.notifications = this.formatNotifications(notifications);
+            this.loaded = true;
         }, error => {
             this.handleError(error);
+            this.loaded = true;
         });
     }
 

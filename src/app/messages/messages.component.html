@@ -2,10 +2,10 @@
       href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css'>
 
 <h2 class="error-div" id="error"> {{error}}</h2>
-<div id="messageDiv">
+<div id="messageDiv" *ngIf="loaded">
     <h2 *ngIf="!contacts?.length" class="empty-category">You haven't got messages yet.</h2>
 
-    <div id="message-div" *ngIf="loaded">
+    <div id="message-div">
         <div id="frame">
             <div id="sidepanel">
                 <div id="profile">

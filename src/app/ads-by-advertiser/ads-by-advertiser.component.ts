@@ -12,6 +12,7 @@ import {AdService} from '../service/ad.service';
 export class AdsByAdvertiserComponent implements OnInit {
 
     ads: Ad[];
+    loaded = false;
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private adService: AdService) {
     }
@@ -20,6 +21,7 @@ export class AdsByAdvertiserComponent implements OnInit {
         const user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(user);
         this.ads = this.formatAds(JSON.parse(sessionStorage.getItem('ads')));
+        this.loaded = true;
     }
 
     archiveAd(ad) {

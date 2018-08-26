@@ -18,6 +18,7 @@ export class RatingsComponent implements OnInit, OnDestroy {
     employerRatings: Rating[];
     ratingtype: string;
     user: User;
+    loaded = false;
     ratingSub: Subscription;
 
 
@@ -36,12 +37,14 @@ export class RatingsComponent implements OnInit, OnDestroy {
 
                     this.employeeRatings = ratingDto.employeeRatings as Rating[];
                     this.employerRatings = ratingDto.employerRatings as Rating[];
+                    this.loaded = true;
                 });
             } else if (ratingType === 'myRatings') {
                 this.ratingSub = this.ratingService.getRatings(this.user.id).subscribe(ratingDto => {
 
                     this.employeeRatings = ratingDto.employeeRatings;
                     this.employerRatings = ratingDto.employerRatings;
+                    this.loaded = true;
                 });
             }
         });
