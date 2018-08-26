@@ -11,7 +11,7 @@ import {AdService} from '../service/ad.service';
 })
 export class AdsByAdvertiserComponent implements OnInit {
 
-    private ads: Ad[];
+    ads: Ad[];
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private adService: AdService) {
     }

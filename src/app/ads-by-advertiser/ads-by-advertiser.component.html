@@ -3,7 +3,7 @@
     <div *ngFor="let ad of ads" class="ad">
         <div class="ad-container" (click)="showAd(ad,$event)">
 
-            <div class="ad-details">
+            <div [ngClass]="{'ad-details': !ad.isPremium,'premium': ad.isPremium}">
                 <table>
                     <tr>
                         <td id="title-td"><strong class="ad-title">{{ad.title}}</strong></td>
