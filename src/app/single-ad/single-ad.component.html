@@ -1,8 +1,7 @@
 <div id="singleAdDiv" *ngIf="loaded">
     <h2 class="error hidden" id="errorDiv">{{error}}</h2>
     <div id="ad-div" class="content" [ngClass]="{'ad-div': !ad.isPremium,'premium-ad-div': ad.isPremium}">
-        <div class=" wrapper
-    ">
+        <div class=" wrapper">
 
             <div id="title-category-div">
                 <p id="ad-title"><strong>{{ad.title}}</strong></p>

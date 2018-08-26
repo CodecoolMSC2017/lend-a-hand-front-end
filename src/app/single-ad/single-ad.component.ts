@@ -1,13 +1,13 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Ad} from "../model/ad.model";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
-import {Router} from "@angular/router";
-import {User} from "../model/user.model";
-import {Subscription} from "rxjs";
-import {UserService} from "../service/user.service";
-import {ApplicationService} from "../service/application.service";
-import {Application} from "../model/application.model";
-import {AdService} from "../service/ad.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Ad} from '../model/ad.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Router} from '@angular/router';
+import {User} from '../model/user.model';
+import {Subscription} from 'rxjs';
+import {UserService} from '../service/user.service';
+import {ApplicationService} from '../service/application.service';
+import {Application} from '../model/application.model';
+import {AdService} from '../service/ad.service';
 
 
 @Component({
@@ -56,11 +56,11 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             }
             if (this.user.type != 'GUEST') {
                 this.appService.getIsUserApplied(this.user.id, this.ad.id).subscribe(isUserApplied => {
-                this.isUserApplied = isUserApplied;
-            }, error => {
-                this.handleError(error);
-            });
-        }
+                    this.isUserApplied = isUserApplied;
+                }, error => {
+                    this.handleError(error);
+                });
+            }
 
         });
 
@@ -177,6 +177,19 @@ export class SingleAdComponent implements OnInit, OnDestroy {
             formattedApps.push(application);
         }
         return formattedApps;
+    }
+
+    makeAdPremium(ad: Ad) {
+        if (this.user.balance < 1) {
+            this.router.navigate(['payment']);
+        }
+        this.adService.makePremium(ad).subscribe(userAd => {
+            this.ad = this.formatAd(userAd.ad);
+            sessionStorage.setItem('user', JSON.stringify(userAd.user));
+            this.gem.updateUser(userAd.user);
+        }, error => {
+            this.handleError(error);
+        });
     }
 
     accept(application: Application) {
