@@ -53,7 +53,7 @@ export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
                         alert('Successfully bought ' + userBalance.value + ' Golden Hand');
                         sessionStorage.setItem('user', JSON.stringify(user));
                         this.gem.updateUser(user);
-                    setTimeout(this.router.navigate(['profile']), 3000);
+                    setTimeout(this.navigateToProfile.bind(this), 1000);
                     }, error => this.handleError(error)
                 );
             });
@@ -77,6 +77,10 @@ export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
         } else if (amount == 26.99) {
             return 12;
         }
+    }
+
+    navigateToProfile() {
+        this.router.navigate(['profile']);
     }
 
 
