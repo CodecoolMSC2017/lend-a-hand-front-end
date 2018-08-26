@@ -62,7 +62,8 @@
                 <img src="../assets/notificationsIconNew.png">
             </div>
 
-            <div class="menuIcons" id="createAdDiv" *ngIf="user != null && user.type != 'ADMIN'" (click)="onCreateAdClicked()">
+            <div class="menuIcons" id="createAdDiv" *ngIf="user != null && user.type != 'ADMIN' && !user.blocked"
+                 (click)="onCreateAdClicked()">
                     <img src="../assets/addIcon.png">
             </div>
 
