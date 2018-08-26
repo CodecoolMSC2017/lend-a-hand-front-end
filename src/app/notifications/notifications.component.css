@@ -51,14 +51,7 @@
 }
 
 .delete-button {
-    margin-left: 2%;
-    color: #e3e3e3;
-    transition: color 0.5s;
-}
-
-.delete-button:hover {
-    color: white;
-    transition: color 0.5s;
+    margin-left: 0.3em;
 }
 
 .notifications-table {
@@ -86,7 +79,6 @@
 
 .unread {
     background-color: rgba(251, 251, 251, 0.9);
-
 }
 
 .hidden-button {

@@ -3,8 +3,8 @@
     <h2 id="error" class="error hidden">{{error}}</h2>
     <div class="notification-div" *ngIf="notifications?.length">
         <div class="button-div">
-            <button class="button-inverse delete-button" (click)="unread()">Mark as Unread</button>
-            <button class="button-inverse delete-button" (click)="delete()">Delete</button>
+            <button class="button delete-button" (click)="unread()">Mark as Unread</button>
+            <button class="button" (click)="delete()">Delete</button>
         </div>
         <table class="notifications-table" id="notification-table">
             <tr *ngFor="let notification of notifications" class="notification {{notification.read}}">
@@ -34,6 +34,12 @@
                           *ngIf="notification.type === 'Rate'">Complete rating if haven't already</span>
                     <span class="note"
                           *ngIf="notification.type === 'BlockAd'">Your ad is blocked</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'BlockedAdDeclinedApplications'">Your application is automatically declined</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'BlockUser'">Your account has been blocked</span>
+                    <span class="note"
+                          *ngIf="notification.type === 'UnblockUser'">Your account has been unblocked</span>
                     <p class="text-div hidden">{{notification.text}}</p>
                     <button class="button-inverse hidden"
                             *ngIf="notification.type === 'Apply'" (click)="toAd(notification.ad)">To my Advertisement
@@ -68,11 +74,20 @@
                             *ngIf="notification.type === 'Rate'" (click)="toRate(notification.application)">To the
                         rates
                     </button>
-                    <button class="button-inverse hidden hidden-button"
+                    <button class="button-inverse hidden-button"
                             *ngIf="notification.type === 'Handle'">
                     </button>
-                    <button class="button-inverse hidden hidden-button"
+                    <button class="button-inverse hidden-button"
                             *ngIf="notification.type === 'BlockAd'">
+                    </button>
+                    <button class="button-inverse hidden-button"
+                            *ngIf="notification.type === 'BlockedAdDeclinedApplications'">
+                    </button>
+                    <button class="button-inverse hidden-button"
+                            *ngIf="notification.type === 'BlockUser'">
+                    </button>
+                    <button class="button-inverse hidden-button"
+                            *ngIf="notification.type === 'UnblockUser'">
                     </button>
                 </td>
                 <td class="date-td">
