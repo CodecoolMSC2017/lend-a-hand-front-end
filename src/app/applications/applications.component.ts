@@ -15,6 +15,7 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
     applications: Application[];
     applicationSub: Subscription;
     error: string;
+    loaded = false;
 
     constructor(private gem: GlobalEventManagerService, private adService: AdService, private router: Router) {
     }
@@ -26,8 +27,10 @@ export class ApplicationsComponent implements OnInit, OnDestroy {
             if (applications) {
                 this.applications = this.formatApps(applications);
                 sessionStorage.setItem('applications', JSON.stringify(applications));
+                this.loaded = true;
             } else {
                 this.applications = this.formatApps(JSON.parse(sessionStorage.getItem('applications')));
+                this.loaded = true;
             }
         });
     }

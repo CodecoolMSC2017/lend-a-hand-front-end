@@ -1,7 +1,9 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {GlobalEventManagerService} from '../service/global-event-manager.service';
 import {User} from '../model/user.model';
+import {UserService} from '../service/user.service';
+import {UserBalance} from '../model/user-balance.model';
 
 declare let paypal: any;
 
@@ -10,13 +12,13 @@ declare let paypal: any;
     templateUrl: './paypal.component.html',
     styleUrls: ['./paypal.component.css']
 })
-export class PaypalComponent implements OnInit, AfterViewChecked {
+export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     user: User;
     error: string;
     addScript = false;
     paypalLoad = true;
-    amount = 1;
+    amount = 8.99;
     paypalConfig = {
         env: 'sandbox',
 
@@ -33,25 +35,52 @@ export class PaypalComponent implements OnInit, AfterViewChecked {
         payment: (data, actions) => {
             return actions.payment.create({
                 payment: {
-                    transactions: [
-                        {amount: {total: this.amount * 1000, currency: 'HUF'}}
-                    ]
+                    transactions: [{
+                        amount: {
+                            total: this.amount,
+                            currency: 'USD'
+                        }
+                    }]
                 }
             });
         },
         onAuthorize: (data, actions) => {
             return actions.payment.execute().then((payment) => {
-                alert('Successfully bought ' + this.amount + ' Golden Hand');
+                const userBalance = new UserBalance();
+                userBalance.userId = this.user.id;
+                userBalance.value = this.evaluateNumberOfGoldenHands(this.amount);
+                this.userService.updateUserBalance(userBalance).subscribe(user => {
+                        alert('Successfully bought ' + userBalance.value + ' Golden Hand');
+                        sessionStorage.setItem('user', JSON.stringify(user));
+                        this.gem.updateUser(user);
+                    setTimeout(this.navigateToProfile.bind(this), 1000);
+                    }, error => this.handleError(error)
+                );
             });
         }
     };
 
-    constructor(private router: Router, private gem: GlobalEventManagerService) {
+    constructor(private router: Router, private gem: GlobalEventManagerService, private userService: UserService) {
     }
 
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
+    }
+
+
+    evaluateNumberOfGoldenHands(amount: number): number {
+        if (amount == 8.99) {
+            return 3;
+        } else if (amount == 14.99) {
+            return 6;
+        } else if (amount == 26.99) {
+            return 12;
+        }
+    }
+
+    navigateToProfile() {
+        this.router.navigate(['profile']);
     }
 
 
@@ -69,6 +98,7 @@ export class PaypalComponent implements OnInit, AfterViewChecked {
         return new Promise((resolve, reject) => {
             const scripttagElement = document.createElement('script');
             scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+            scripttagElement.id = 'script';
             scripttagElement.onload = resolve;
             document.body.appendChild(scripttagElement);
         });
@@ -97,5 +127,10 @@ export class PaypalComponent implements OnInit, AfterViewChecked {
         document.getElementById('error-div').classList.remove('hidden');
         setTimeout(this.clearAlert, 3000);
     }
+
+    ngOnDestroy(): void {
+        document.getElementById('script').remove();
+    }
+
 
 }

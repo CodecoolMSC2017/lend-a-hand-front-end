@@ -99,7 +99,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     showInfo() {
         this.gem.infoEmitter.subscribe(info => {
             if (info) {
-                document.getElementById('info').innerText = info;
+                document.getElementById('info-span').innerText = info;
                 setTimeout(this.hideInfo, 3000);
 
             }
@@ -107,8 +107,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
 
     hideInfo() {
-        document.getElementById('info').innerText = 'Log in to your existing account';
-        this.gem.updateInfo(null);
+        if (document.getElementById('info-span')) {
+            document.getElementById('info-span').innerText = 'Log in to your existing account';
+            this.gem.updateInfo(null);
+        }
+
     }
 
     ngOnDestroy(): void {

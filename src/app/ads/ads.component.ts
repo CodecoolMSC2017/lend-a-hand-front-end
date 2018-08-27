@@ -1,10 +1,10 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {AdService} from "../service/ad.service";
-import {Router} from "@angular/router";
-import {Ad} from "../model/ad.model";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
-import {Subscription} from "rxjs";
-import {User} from "../model/user.model";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AdService} from '../service/ad.service';
+import {Router} from '@angular/router';
+import {Ad} from '../model/ad.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Subscription} from 'rxjs';
+import {User} from '../model/user.model';
 
 @Component({
     selector: 'app-ads',
@@ -38,10 +38,11 @@ export class AdsComponent implements OnInit, OnDestroy {
                     .subscribe(ads => {
                         this.ads = this.formatAds(ads);
                         sessionStorage.setItem('ads', JSON.stringify(ads));
+                        this.loaded = true;
                     }, error => {
                         this.handleError(error);
+                        this.loaded = true;
                     });
-                this.loaded = true;
             } else {
                 this.ads = JSON.parse(sessionStorage.getItem('ads'));
                 this.loaded = true;

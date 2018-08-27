@@ -1,9 +1,9 @@
-<div id="ads">
-    <h2 *ngIf="ads.length===0" class="empty-category">You haven't got advertisements yet.</h2>
+<div id="ads" *ngIf="loaded">
+    <h2 *ngIf="!ads?.length" class="empty-category">You haven't got advertisements yet.</h2>
     <div *ngFor="let ad of ads" class="ad">
         <div class="ad-container" (click)="showAd(ad,$event)">
 
-            <div class="ad-details">
+            <div [ngClass]="{'ad-details': !ad.isPremium,'premium': ad.isPremium}">
                 <table>
                     <tr>
                         <td id="title-td"><strong class="ad-title">{{ad.title}}</strong></td>

@@ -17,11 +17,15 @@
 }
 
 #error-div {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 #input-div {
-    margin-top: 10%;
+    margin-top: 7%;
+}
+
+#input-table {
+    width: 100%;
 }
 
 label {
@@ -31,13 +35,13 @@ label {
 
 input[type=radio]:checked + label > img {
     border: 1px solid #fff;
-    box-shadow: 0 0 3px 3px #090;
+    box-shadow: 0 0 3px 3px #000500;
 }
 
 input[type=radio] + label > img {
     border: 1px dashed #444;
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: 200px;
     transition: 500ms all;
 }
 
@@ -46,5 +50,5 @@ input[type=radio]:checked + label > img {
 }
 
 #paypal-checkout-btn {
-    margin-top: 10%;
+    margin-top: 4%;
 }

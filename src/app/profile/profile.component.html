@@ -14,7 +14,7 @@
             </div>
 
             <div class="contacts">
-                <table class="contact-table" *ngIf="contacted || user.type==='ADMIN'">
+                <table class="contact-table" *ngIf="contacted || user.type==='ADMIN'|| ownProfile">
                     <tr>
                         <td colspan="2">
                             <button *ngIf="ownProfile == true" class="options" (click)="profileChanges()"

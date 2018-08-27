@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {AdService} from "../service/ad.service";
-import {Ad} from "../model/ad.model";
-import {User} from "../model/user.model";
-import {Router} from "@angular/router";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {Component, OnInit} from '@angular/core';
+import {AdService} from '../service/ad.service';
+import {Ad} from '../model/ad.model';
+import {User} from '../model/user.model';
+import {Router} from '@angular/router';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
 
 @Component({
     selector: 'app-create-ad',
@@ -53,6 +53,12 @@ export class CreateAdComponent implements OnInit {
             this.showError();
             return;
         }
+
+        if (this.isPremium) {
+            if (this.user.balance < 1) {
+                this.router.navigate(['payment']);
+            }
+        }
         this.ad.advertiserName = this.user.userName;
         this.ad.advertiserId = this.user.id;
         this.ad.isPremium = this.isPremium;
@@ -63,7 +69,9 @@ export class CreateAdComponent implements OnInit {
         this.ad.type = this.selectedType;
         this.ad.pictureLink = '';
 
-        this.adservice.createAd(this.ad).subscribe(ad => {
+        this.adservice.createAd(this.ad).subscribe(user => {
+            sessionStorage.setItem('user', JSON.stringify(user));
+            this.gem.updateUser(user);
                 this.gem.updateInfo('Advertisement successfully created');
                 this.router.navigate(['categories']);
             }, serverError => {
