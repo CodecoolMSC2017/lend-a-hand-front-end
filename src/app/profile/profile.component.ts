@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
                 this.currentUsersProfile = user;
                 if (this.currentUsersProfile.id === this.user.id) {
                     this.ownProfile = true;
+                    this.loaded = true;
                 } else {
                     this.userService.getIsContacted(this.currentUsersProfile.id, this.user.id).subscribe(contacted => {
                         this.contacted = contacted;
