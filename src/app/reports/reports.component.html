@@ -6,6 +6,7 @@
     <button class="button-inverse" id="adReportsButton" (click)="showAdReports()">Ad Reports</button>
 
     <div id="userReportsDiv" class="hidden">
+        <h2>User reports</h2>
         <div *ngFor="let report of userReports">
             <div *ngIf="!report.handled" class="report">
 
@@ -113,6 +114,7 @@
     </div>
 
     <div id="adReportsDiv" class="hidden">
+        <h2>Ad reports</h2>
         <div *ngFor="let report of adReports">
             <div class="report" *ngIf="!report.handled">
 
