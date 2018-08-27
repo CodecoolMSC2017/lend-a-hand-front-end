@@ -1,8 +1,8 @@
 <div id="userList">
     <h2 id="error" class="error hidden">{{error}}</h2>
   <div id="user" *ngFor="let user of users" (click)="toUserProfile(user)">
-        
-    <div *ngIf="user.type!='ADMIN'" class="listedUser grid-container">
+
+      <div *ngIf="user.type!='ADMIN'" class="listed-user grid-container">
 
         
         <img class="profilePicture grid-item" src={{user.pictureLink}}/>

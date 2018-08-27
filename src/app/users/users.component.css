@@ -17,12 +17,14 @@
 }
 
 .profilePicture{
-    width:15em;
+    height: 7em;
+    width: 11em;
     border-radius:0.5em;
     border:solid 0.2em #07222c;
-    
-    
-    
+}
+
+.listed-user {
+    cursor: pointer;
 }
 
 .grid-container{
