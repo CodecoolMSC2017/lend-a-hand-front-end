@@ -24,6 +24,10 @@ export class UserService {
         return this.http.get('/api/user/' + id);
     }
 
+    updateCompanyPayment(userId : number){
+        return this.http.put('/api/user/companyPayment', userId);
+    }
+
     getIsContacted(profileOwnerId: number, userId: number): Observable<boolean> {
         const params = new HttpParams().append('userId', userId.toString()).append('profileOwnerId', profileOwnerId.toString());
         return this.http.get<boolean>('/api/user/contacted', {params: params});

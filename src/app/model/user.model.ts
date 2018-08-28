@@ -5,6 +5,7 @@ import {Ad} from './ad.model';
 export class User {
     id: number;
     ads: Ad[];
+    hasPaid : boolean;
     authorities = [];
     employeeRatings = [];
     employerRatings = [];

@@ -6,25 +6,22 @@ import {User} from './model/user.model';
 @Injectable({
     providedIn: 'root'
 })
-export class LoginGuard implements CanActivate {
+export class CompanyGuard implements CanActivate {
 
     constructor(private router: Router) {
     }
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (sessionStorage.getItem('user')) {
-            if ((JSON.parse(sessionStorage.getItem('user')) as User).verificated === true) {
-                
-                if((JSON.parse(sessionStorage.getItem('user')) as User).type=="company" && (JSON.parse(sessionStorage.getItem('user')) as User).hasPaid==false){
-                    this.router.navigate(["payment"]);
-                    return false;
-                }
-                return true;
+            if (!(JSON.parse(sessionStorage.getItem('user')) as User).hasPaid && (JSON.parse(sessionStorage.getItem('user')) as User).type === "company") {
+              this.router.navigate(['payment']);
+              return false;
             }
-            this.router.navigate(['verification']);
-            return false;
+            this.router.navigate(["categories"]);
+            return true;
         }
         this.router.navigate(['login']);
         return false;
     }
+        
 }

@@ -4,7 +4,7 @@
 
         <div id="input-div">
 
-            <table id="input-table">
+            <table id="input-table" *ngIf="user.type=='person'">
                 <tr>
                     <td>
                         <input
@@ -42,6 +42,7 @@
                     </td>
                 </tr>
             </table>
+            <h3>Click to pay the subscription fee (54.99$)</h3>
         </div>
 
 
