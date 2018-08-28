@@ -87,11 +87,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     clearAlert() {
         document.getElementById('error').classList.add('hidden');
-        document.getElementById('info').classList.remove('hidden');
+        document.getElementById('info-span').classList.remove('hidden');
     }
 
     showError() {
-        document.getElementById('info').classList.add('hidden');
+        document.getElementById('info-span').classList.add('hidden');
         document.getElementById('error').classList.remove('hidden');
         setTimeout(this.clearAlert, 3000);
     }
