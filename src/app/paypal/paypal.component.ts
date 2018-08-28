@@ -46,28 +46,26 @@ export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
         },
         onAuthorize: (data, actions) => {
             return actions.payment.execute().then((payment) => {
-                if(this.user.type=="person"){
-                const userBalance = new UserBalance();
-                userBalance.userId = this.user.id;
-                userBalance.value = this.evaluateNumberOfGoldenHands(this.amount);
-                this.userService.updateUserBalance(userBalance).subscribe(user => {
-                        if(this.user.type=="person"){
+                if (this.user.type === 'person') {
+                    const userBalance = new UserBalance();
+                    userBalance.userId = this.user.id;
+                    userBalance.value = this.evaluateNumberOfGoldenHands(this.amount);
+                    this.userService.updateUserBalance(userBalance).subscribe(user => {
                             alert('Successfully bought ' + userBalance.value + ' Golden Hand');
-                        }else{
-                            alert('Successful payment');
+                            sessionStorage.setItem('user', JSON.stringify(user));
+                            this.gem.updateUser(user);
+                            setTimeout(this.navigateToProfile.bind(this), 1000);
+                        }, error => this.handleError(error)
+                    );
+                } else {
+                    this.userService.updateCompanyPayment(this.user.id).subscribe(user => {
+                            sessionStorage.setItem('user', JSON.stringify(user));
+                            this.gem.updateUser(user);
+                            setTimeout(this.navigateToCategories.bind(this), 1000);
                         }
-                        this.user.hasPaid=true;
-                        sessionStorage.setItem('user', JSON.stringify(user));
-                        this.gem.updateUser(user);
-                    setTimeout(this.navigateToProfile.bind(this), 1000);
-                    }, error => this.handleError(error)
-                );
-            }else{
-                this.companyPayment(this.user.id);
-            }
+                    );
+                }
             });
-        
-        
         }
     };
 
@@ -77,14 +75,14 @@ export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gem.updateUser(this.user);
-        if(this.user.type=="company"){
-            this.amount=54.99;
+        if (this.user.type == 'company') {
+            this.amount = 54.99;
         }
     }
 
-    companyPayment(userId){
+    companyPayment(userId) {
         this.userService.updateCompanyPayment(userId).subscribe(response => {
-            this.router.navigate(["categories"]);
+            this.router.navigate(['categories']);
         });
     }
 
@@ -101,6 +99,10 @@ export class PaypalComponent implements OnInit, OnDestroy, AfterViewChecked {
 
     navigateToProfile() {
         this.router.navigate(['profile']);
+    }
+
+    navigateToCategories() {
+        this.router.navigate(['categories']);
     }
 
 
