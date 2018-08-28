@@ -20,24 +20,6 @@
                 <img id={{ad.id}} *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img"
                      (error)="standBy(ad.id)">
 
-                <div id="button-div" *ngIf="ownAd">
-                    <label>
-                        <input type="file" (change)="selectFile($event)" accept="image/*" class="btn btn-default">
-                    </label>
-
-                    <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
-
-                    <div *ngIf="currentFileUpload && ownAd" class="progress">
-                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-                             attr.aria-valuenow="{{progress.percentage}}"
-                             aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
-                            {{progress.percentage}}%
-                        </div>
-                    </div>
-
-                </div>
-
-
             </div>
 
             <div id="description-div">

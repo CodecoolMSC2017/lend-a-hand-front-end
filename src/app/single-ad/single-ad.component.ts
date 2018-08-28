@@ -1,15 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Ad} from '../model/ad.model';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {Router} from '@angular/router';
-import {User} from '../model/user.model';
-import {Subscription} from 'rxjs';
-import {UserService} from '../service/user.service';
-import {ApplicationService} from '../service/application.service';
-import {Application} from '../model/application.model';
-import {AdService} from '../service/ad.service';
-import {UploadFileService} from '../service/upload-file.service';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {Ad} from "../model/ad.model";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {Router} from "@angular/router";
+import {User} from "../model/user.model";
+import {Subscription} from "rxjs";
+import {UserService} from "../service/user.service";
+import {ApplicationService} from "../service/application.service";
+import {Application} from "../model/application.model";
+import {AdService} from "../service/ad.service";
 
 
 @Component({
@@ -32,13 +30,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     loaded: boolean;
     isUserApplied: boolean;
 
-
-    selectedFiles: FileList;
-    currentFileUpload: File;
-    progress: { percentage: number } = {percentage: 0};
-
     constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,
-                private appService: ApplicationService, private adService: AdService, private uploadService: UploadFileService) {
+                private appService: ApplicationService, private adService: AdService) {
     }
 
     ngOnInit() {
@@ -213,26 +206,6 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         }, error => {
             this.handleError(error);
         });
-    }
-
-
-    selectFile(event) {
-        this.selectedFiles = event.target.files;
-    }
-
-    upload() {
-        this.progress.percentage = 0;
-
-        this.currentFileUpload = this.selectedFiles.item(0);
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
-            if (event.type === HttpEventType.UploadProgress) {
-                this.progress.percentage = Math.round(100 * event.loaded / event.total);
-            } else if (event instanceof HttpResponse) {
-                console.log('File is completely uploaded!');
-            }
-        });
-
-        this.selectedFiles = undefined;
     }
 
     toReport() {
