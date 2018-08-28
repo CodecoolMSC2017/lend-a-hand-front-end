@@ -20,9 +20,11 @@ export class LoginGuard implements CanActivate {
                     return false;
                 }
                 return true;
+            } else {
+                this.router.navigate(['verification']);
+                return false;
             }
-            this.router.navigate(['verification']);
-            return false;
+
         }
         this.router.navigate(['login']);
         return false;

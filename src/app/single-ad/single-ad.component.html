@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div id="singleAdDiv" *ngIf="loaded">
     <h2 class="error hidden" id="errorDiv">{{error}}</h2>
     <div id="ad-div" class="content" [ngClass]="{'ad-div': !ad.isPremium,'premium-ad-div': ad.isPremium}">
@@ -19,6 +20,34 @@
                      class="ad-img">
                 <img id={{ad.id}} *ngIf=" ad.pictureLink != null" src="{{ad.pictureLink}}" class="ad-img"
                      (error)="standBy(ad.id)">
+
+                <div *ngIf="currentFileUpload" class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                         attr.aria-valuenow="{{progress.percentage}}"
+                         aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                        {{progress.percentage}}%
+                    </div>
+                </div>
+
+                <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)">
+                </label>
+
+                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+
+                <div *ngIf="currentFileUpload" class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
+                         attr.aria-valuenow="{{progress.percentage}}"
+                         aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                        {{progress.percentage}}%
+                    </div>
+                </div>
+
+                <label class="btn btn-default">
+                    <input type="file" (change)="selectFile($event)" accept="image/*">
+                </label>
+
+                <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
             </div>
 
             <div id="description-div">
@@ -62,9 +91,10 @@
                             *ngIf="!isUserApplied && !ownAd && user && !user.blocked"
                             (click)="applyToAd()">Apply
                     </button>
-                    <button class="button-inverse operate-button" *ngIf="!ad.isPremium && ownAd && user"
-                            (click)="makeAdPremium(ad)">Make premium
-                    </button>
+                    <p *ngIf="!ad.isPremium && ownAd && user">Highlight your advertisement for 1 Golden Hand! <button class="button-inverse operate-button-center" *ngIf="!ad.isPremium && ownAd && user"
+                        (click)="makeAdPremium(ad)">Make premium
+                </button></p>
+                    
                     <h3 *ngIf="isUserApplied">You have already applied for this advertisement.</h3>
                 </td>
             </tr>
