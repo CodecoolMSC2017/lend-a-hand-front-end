@@ -87,10 +87,10 @@
             </div>
 
             <div class="values">
-                <p *ngIf="currentUsersProfile.balance"><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}}
-                    Golden Hand <img src="../assets/addIcon.png" class="payment-icon" (click)="toPayment()"></p>
-                <p *ngIf="!currentUsersProfile.balance"><strong id="balance">Balance: </strong>0 Golden Hand <img
-                        src="../assets/addIcon.png" class="payment-icon" (click)="toPayment()"></p>
+                <p *ngIf="currentUsersProfile.balance"><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}} Golden Hand(s) </p>
+                <p *ngIf="currentUsersProfile.balance">You can buy more here: <img src="../assets/goldenhand.png" class="payment-icon" (click)="toPayment()"></p>
+                <p *ngIf="!currentUsersProfile.balance"><strong id="balance">Balance: </strong>0 Golden Hand </p>
+                <p *ngIf="!currentUsersProfile.balance"> You can buy some here: <img src="../assets/goldenhand.png" (click)="toPayment()"></p>
 
 
                 <table id="rating-table">
