@@ -91,9 +91,10 @@
                             *ngIf="!isUserApplied && !ownAd && user && !user.blocked"
                             (click)="applyToAd()">Apply
                     </button>
-                    <button class="button-inverse operate-button" *ngIf="!ad.isPremium && ownAd && user"
-                            (click)="makeAdPremium(ad)">Make premium
-                    </button>
+                    <p *ngIf="!ad.isPremium && ownAd && user">Highlight your advertisement for 1 Golden Hand! <button class="button-inverse operate-button-center" *ngIf="!ad.isPremium && ownAd && user"
+                        (click)="makeAdPremium(ad)">Make premium
+                </button></p>
+                    
                     <h3 *ngIf="isUserApplied">You have already applied for this advertisement.</h3>
                 </td>
             </tr>
