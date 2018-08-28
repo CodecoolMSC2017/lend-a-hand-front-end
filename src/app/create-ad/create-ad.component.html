@@ -30,7 +30,7 @@
 
         <div id="ad-payment-div">
             <p>Payment (optional)</p>
-            <input type="number" id="payment-input" [(ngModel)]="adPayment"><span id="price-span">USD / hour</span>
+            <input type="number" id="payment-input" [(ngModel)]="adPayment" min="1" max="1000"><span id="price-span">USD / hour</span>
         </div>
 
 

@@ -53,7 +53,13 @@ export class CreateAdComponent implements OnInit {
             this.showError();
             return;
         }
-
+        if (this.adPayment) {
+            if (!Number.isInteger(this.adPayment) || this.adPayment < 1 || this.adPayment > 100) {
+                this.error = 'Invalid payment format';
+                this.showError();
+                return;
+            }
+        }
         if (this.isPremium) {
             if (this.user.balance < 1) {
                 this.router.navigate(['payment']);
