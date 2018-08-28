@@ -3,8 +3,8 @@
     <div id="paypal-div" class="content">
 
         <div id="input-div">
-
-            <table id="input-table">
+            <h2 *ngIf="user.type=='person'">How many Golden Hands would you like to buy?</h2>
+            <table id="input-table" *ngIf="user.type=='person'">
                 <tr>
                     <td>
                         <input
@@ -12,7 +12,7 @@
                                 id="3" class="hidden" value="8.99" [(ngModel)]="amount"/>
                         <label for="3">
                             <img
-                                    src="../assets/3.jpg"
+                                    src="../assets/goldenhand3.png"
                                     alt="3 Golden Hands"/>
                             <p>3 Golden Hands for 8.99$</p>
                         </label>
@@ -23,7 +23,7 @@
                                 id="6" class="hidden" value="14.99" [(ngModel)]="amount"/>
                         <label for="6">
                             <img
-                                    src="../assets/6.jpg"
+                                    src="../assets/goldenhand6.png"
                                     alt="6 Golden Hands"/>
                             <p>6 Golden Hands for 14.99$</p>
 
@@ -35,13 +35,14 @@
                                 id="12" class="hidden" value="26.99" [(ngModel)]="amount"/>
                         <label for="12">
                             <img
-                                    src="../assets/12.jpg"
+                                    src="../assets/goldenhand12.png"
                                     alt="12 Golden Hands"/>
                             <p>12 Golden Hands for 26.99$</p>
                         </label>
                     </td>
                 </tr>
             </table>
+            <h3 *ngIf="user.type=='company'">Click to pay the subscription fee (54.99$)</h3>
         </div>
 
 
