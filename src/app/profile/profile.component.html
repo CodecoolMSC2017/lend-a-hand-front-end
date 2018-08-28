@@ -2,7 +2,8 @@
     <h2 class="NotAbletoAd" *ngIf="!user.ableToAd && user.type!='ADMIN'">You are not able to create and apply for ads.
         Fill your profile
         datas!</h2>
-    <div id="profile-div" [ngClass]="{'company-div': user.type == 'company','profile-div':  user.type == 'person'}">
+    <div id="profile-div"
+         [ngClass]="{'company-div': currentUsersProfile.type == 'company','profile-div':  currentUsersProfile.type == 'person'}">
         <div class="wrapper">
             <div class="content">
                 <h2 class="username" id="username">{{currentUsersProfile.userName}}'s profile</h2>
