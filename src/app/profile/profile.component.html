@@ -2,7 +2,7 @@
     <h2 class="NotAbletoAd" *ngIf="!user.ableToAd && user.type!='ADMIN'">You are not able to create and apply for ads.
         Fill your profile
         datas!</h2>
-    <div id="profile-div">
+    <div id="profile-div" [ngClass]="{'company-div': user.type == 'company','profile-div':  user.type == 'person'}">
         <div class="wrapper">
             <div class="content">
                 <h2 class="username" id="username">{{currentUsersProfile.userName}}'s profile</h2>
@@ -87,10 +87,11 @@
             </div>
 
             <div class="values">
-                <p *ngIf="currentUsersProfile.balance"><strong id="balance">Balance: </strong>{{currentUsersProfile.balance}} Golden Hand(s) </p>
-                <p *ngIf="currentUsersProfile.balance">You can buy more here: <img src="../assets/goldenhand.png" class="payment-icon" (click)="toPayment()"></p>
-                <p *ngIf="!currentUsersProfile.balance"><strong id="balance">Balance: </strong>0 Golden Hand </p>
-                <p *ngIf="!currentUsersProfile.balance"> You can buy some here: <img src="../assets/goldenhand.png" (click)="toPayment()"></p>
+                <p *ngIf="currentUsersProfile.balance"><strong class="balance">Balance: </strong>{{currentUsersProfile.balance}}
+                    Golden Hand(s) </p>
+                <p *ngIf="!currentUsersProfile.balance"><strong class="balance">Balance: </strong>0 Golden Hand </p>
+                <p *ngIf="ownProfile && currentUsersProfile.type == 'person'">You can buy more here: <img
+                        src="../assets/goldenhand.png" class="payment-icon" (click)="toPayment()"></p>
 
 
                 <table id="rating-table">

@@ -2,8 +2,26 @@
     overflow: hidden;
 }
 
-#profile-div {
+.profile-div {
     background-color: rgba(251, 251, 251, 0.4);
+    margin-top: 10%;
+    width: 90%;
+    height: 32em;
+    border-radius: 10px;
+    padding: 2%;
+    text-align: left;
+    -webkit-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 32px 0px rgba(0, 0, 0, 0.75);
+    margin-bottom: 20px;
+}
+
+.company-div {
+    background: #fefcea; /* Old browsers */
+    background: -moz-linear-gradient(top, #fefcea 0%, #f1da36 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #fefcea 0%, #f1da36 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #fefcea 0%, #f1da36 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefcea', endColorstr='#f1da36', GradientType=0); /* IE6-9 */
     margin-top: 10%;
     width: 90%;
     height: 32em;
@@ -30,7 +48,7 @@
     font-size: 2em;
 }
 
-#balance {
+.balance {
     padding-left: 2%;
 }
 
