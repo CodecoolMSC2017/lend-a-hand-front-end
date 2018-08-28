@@ -74,12 +74,17 @@
 }
 
 .operate-button-table td {
-    width: 30em;
+    width: 60em;
     text-align: center;
 }
 
 .operate-button {
     float: right;
+    text-align: center;
+    width: 10em;
+}
+
+.operate-button-center {
     text-align: center;
     width: 10em;
 }
@@ -284,6 +289,11 @@
 
 .error {
     color: #BE1000;
+}
+
+.p-premium {
+    text-align: center;
+    margin-top: 0em;
 }
 
 
