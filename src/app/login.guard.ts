@@ -15,9 +15,11 @@ export class LoginGuard implements CanActivate {
         if (sessionStorage.getItem('user')) {
             if ((JSON.parse(sessionStorage.getItem('user')) as User).verificated === true) {
                 return true;
+            } else {
+                this.router.navigate(['verification']);
+                return false;
             }
-            this.router.navigate(['verification']);
-            return false;
+
         }
         this.router.navigate(['login']);
         return false;
