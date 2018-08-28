@@ -141,7 +141,8 @@
 
 .payment-icon {
     height: 10%;
-    width: 5%;
+    width: 10%;
     cursor: pointer;
     padding-left: 2%;
+    vertical-align: middle;
 }
