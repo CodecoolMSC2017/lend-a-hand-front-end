@@ -45,10 +45,10 @@ export class VerificationComponent implements OnInit {
         this.authService.verificateUser(verificationModel).subscribe(response => {
                 sessionStorage.setItem('user', JSON.stringify(response));
                 this.gem.updateUser(response);
-               
-                
-                this.zone.run(() => this.router.navigate(['/categories']));
-             
+
+
+            this.zone.run(() => this.router.navigate(['categories-for-user']));
+
             }, error => {
             this.handleError(error);
             }

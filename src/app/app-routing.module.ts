@@ -22,7 +22,6 @@ import {ReportsComponent} from './reports/reports.component';
 import {ReportComponent} from './report/report.component';
 import {PaypalComponent} from './paypal/paypal.component';
 import {RatingGuard} from './rating.guard';
-import {CompanyGuard} from './company.guard';
 
 
 const routes: Routes = [
@@ -37,9 +36,7 @@ const routes: Routes = [
         {path: 'ad', component: SingleAdComponent},
         {path: 'createAd', component: CreateAdComponent},
         {path: 'categories', component: CategoriesComponent},
-        {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [CompanyGuard]},
-        {path: 'categoriesAfterLogin', component: CategoriesComponent, canActivate: [LoginGuard]},
-        
+    {path: 'categories-for-user', component: CategoriesComponent, canActivate: [LoginGuard]},
         {path: 'profile', component: ProfileComponent, canActivate: [LoginGuard]},
         {path: 'verification', component: VerificationComponent},
         {path: 'ratings', component: RatingsComponent},
@@ -48,7 +45,7 @@ const routes: Routes = [
         {path: 'messages', component: MessagesComponent, canActivate: [LoginGuard]},
     {path: 'rate', component: RateComponent, canActivate: [RatingGuard]},
     {path: 'notifications', component: NotificationsComponent, canActivate: [LoginGuard]},
-    {path: 'payment', component: PaypalComponent, canActivate: [LoginGuard]}
+    {path: 'payment', component: PaypalComponent}
     ]
 ;
 
