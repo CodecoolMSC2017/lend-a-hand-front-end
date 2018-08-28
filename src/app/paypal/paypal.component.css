@@ -48,6 +48,7 @@ input[type=radio]:checked + label > img {
 
 input[type=radio]:hover + label > img {
     position:relative;
+    cursor: pointer;
     opacity:1;
     transform: scale(1.3);
  }
