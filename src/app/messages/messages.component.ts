@@ -33,8 +33,12 @@ export class MessagesComponent implements OnInit, OnDestroy {
         this.gem.updateUser(this.user);
         this.messageService.getContactsByUserId(this.user.id).subscribe(response => {
             this.contacts = response;
-            this.activeContact = this.contacts[0];
-            this.readMessages();
+            if (this.contacts.length !== 0) {
+                this.activeContact = this.contacts[0];
+                this.readMessages();
+            } else {
+                this.loaded = true;
+            }
         }, error => {
             this.handleError(error);
         });

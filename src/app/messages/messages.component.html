@@ -5,7 +5,7 @@
 <div id="messageDiv" *ngIf="loaded">
     <h2 *ngIf="!contacts?.length" class="empty-category">You haven't got messages yet.</h2>
 
-    <div id="message-div">
+    <div id="message-div" *ngIf="contacts?.length">
         <div id="frame">
             <div id="sidepanel">
                 <div id="profile">
