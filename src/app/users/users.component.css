@@ -18,9 +18,9 @@
 
 .profilePicture{
     height: 7em;
-    width: 11em;
-    border-radius:0.5em;
-    border:solid 0.2em #07222c;
+    width: 7em;
+    border: #0c5068 solid 0.2em;
+    border-radius: 50%;
 }
 
 .listed-user {
