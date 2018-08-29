@@ -108,7 +108,7 @@ export class CreateAdComponent implements OnInit {
             return;
         }
         this.progress.percentage = 0;
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+        this.uploadService.pushFileToStorage(this.currentFileUpload, this.user.userName).subscribe(event => {
             if (event.type === HttpEventType.UploadProgress) {
                 this.progress.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
