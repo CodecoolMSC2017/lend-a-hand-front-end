@@ -1,13 +1,13 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {GlobalEventManagerService} from '../service/global-event-manager.service';
-import {User} from '../model/user.model';
-import {UserService} from '../service/user.service';
-import {Subscription} from 'rxjs';
-import {AdService} from '../service/ad.service';
-import {Router} from '@angular/router';
-import {ApplicationService} from '../service/application.service';
-import {HttpEventType, HttpResponse} from '@angular/common/http';
-import {UploadFileService} from '../service/upload-file.service';
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {GlobalEventManagerService} from "../service/global-event-manager.service";
+import {User} from "../model/user.model";
+import {UserService} from "../service/user.service";
+import {Subscription} from "rxjs";
+import {AdService} from "../service/ad.service";
+import {Router} from "@angular/router";
+import {ApplicationService} from "../service/application.service";
+import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {UploadFileService} from "../service/upload-file.service";
 
 @Component({
     selector: 'app-profile',
@@ -326,7 +326,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.progress.percentage = 0;
 
         this.currentFileUpload = this.selectedFiles.item(0);
-        this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+        this.uploadService.pushFileToStorage(this.currentFileUpload, this.user.userName).subscribe(event => {
             if (event.type === HttpEventType.UploadProgress) {
                 this.progress.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
