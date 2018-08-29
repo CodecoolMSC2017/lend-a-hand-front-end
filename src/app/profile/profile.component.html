@@ -85,6 +85,9 @@
                         </td>
                     </tr>
                 </table>
+                <p *ngIf="!contacted && user.type !== 'ADMIN' && !ownProfile" class="not-available-information">
+                    This information is unavailable<br> until you are in connection
+                </p>
             </div>
 
             <div class="values">
@@ -118,14 +121,14 @@
             </div>
 
             <div id="manage-buttons" *ngIf="ownProfile">
-                <button class="button-inverse option-button" (click)="toManageAdvertisements()">My Advertisements
+                <button class="button-inverse option-button" (click)="toManageAdvertisements()">Advertisements
                 </button>
                 <br>
-                <button class="button-inverse option-button" (click)="toRatedUsers()">Rated Users</button>
+                <button class="button-inverse option-button" (click)="toRatedUsers()">Ratings from me</button>
                 <br>
-                <button class="button-inverse option-button" (click)="toMyRatings()">My Raters</button>
+                <button class="button-inverse option-button" (click)="toMyRatings()">Ratings about me</button>
                 <br>
-                <button class="button-inverse option-button" (click)="toApplications()">My Applications</button>
+                <button class="button-inverse option-button" (click)="toApplications()">Applications</button>
             </div>
 
             <div id="report-button-div" *ngIf="!ownProfile && user.type!='ADMIN'">
