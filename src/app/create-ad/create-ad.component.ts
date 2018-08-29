@@ -1,11 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {AdService} from "../service/ad.service";
-import {Ad} from "../model/ad.model";
-import {User} from "../model/user.model";
-import {Router} from "@angular/router";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
-import {UploadFileService} from "../service/upload-file.service";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
+import {AdService} from '../service/ad.service';
+import {Ad} from '../model/ad.model';
+import {User} from '../model/user.model';
+import {Router} from '@angular/router';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {UploadFileService} from '../service/upload-file.service';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-create-ad',
@@ -73,6 +73,9 @@ export class CreateAdComponent implements OnInit {
                 this.router.navigate(['payment']);
             }
         }
+        if (this.user.type === 'company') {
+            this.isPremium = true;
+        }
         this.ad.advertiserName = this.user.userName;
         this.ad.advertiserId = this.user.id;
         this.ad.isPremium = this.isPremium;
@@ -100,9 +103,11 @@ export class CreateAdComponent implements OnInit {
     }
 
     upload() {
-        this.progress.percentage = 0;
-
         this.currentFileUpload = this.selectedFiles.item(0);
+        if (!this.validateFile(this.currentFileUpload)) {
+            return;
+        }
+        this.progress.percentage = 0;
         this.uploadService.pushFileToStorage(this.currentFileUpload).subscribe(event => {
             if (event.type === HttpEventType.UploadProgress) {
                 this.progress.percentage = Math.round(100 * event.loaded / event.total);
@@ -113,6 +118,22 @@ export class CreateAdComponent implements OnInit {
         });
 
         this.selectedFiles = undefined;
+    }
+
+    validateFile(file: File): boolean {
+        const extension = file.name.split('.').pop();
+        const acceptableExtensions = ['jpe', 'jpg', 'png', 'gif', 'jpeg', 'ico'];
+        if (acceptableExtensions.indexOf(extension) === -1) {
+            this.error = 'Invalid file format';
+            this.showError();
+            return false;
+        }
+        if (file.size > 99000000) {
+            this.error = 'File size too large';
+            this.showError();
+            return false;
+        }
+        return true;
     }
 
 

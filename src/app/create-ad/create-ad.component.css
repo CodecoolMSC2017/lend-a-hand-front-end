@@ -113,3 +113,8 @@ select{
     width:80px;
     text-align: center;
 }
+
+#button-div {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}

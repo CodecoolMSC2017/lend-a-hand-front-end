@@ -41,7 +41,7 @@
             <textarea rows="4" cols="50" type="text" id="descriptionInput" [(ngModel)]="adDescription"></textarea>
         </div>
 
-        <div id="premiumDiv">
+        <div id="premiumDiv" *ngIf="user.type == 'person'">
             <br>
             <p>Highlight your advertisement for just 1 Golden Hand!</p>
             <p class="label">Premium <input class="checkbox" type="checkbox" [(ngModel)]="isPremium"></p>
