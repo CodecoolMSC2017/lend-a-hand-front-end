@@ -1,13 +1,13 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Ad} from "../model/ad.model";
-import {GlobalEventManagerService} from "../service/global-event-manager.service";
-import {Router} from "@angular/router";
-import {User} from "../model/user.model";
-import {Subscription} from "rxjs";
-import {UserService} from "../service/user.service";
-import {ApplicationService} from "../service/application.service";
-import {Application} from "../model/application.model";
-import {AdService} from "../service/ad.service";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Ad} from '../model/ad.model';
+import {GlobalEventManagerService} from '../service/global-event-manager.service';
+import {Router} from '@angular/router';
+import {User} from '../model/user.model';
+import {Subscription} from 'rxjs';
+import {UserService} from '../service/user.service';
+import {ApplicationService} from '../service/application.service';
+import {Application} from '../model/application.model';
+import {AdService} from '../service/ad.service';
 
 
 @Component({
@@ -25,10 +25,11 @@ export class SingleAdComponent implements OnInit, OnDestroy {
     user: User;
     singleAdSub: Subscription;
     ownAd: boolean;
-    applicationMessage: string;
+    applicationMessage = '';
     application = new Application();
     loaded: boolean;
     isUserApplied: boolean;
+
 
     constructor(private gem: GlobalEventManagerService, private router: Router, private userService: UserService,
                 private appService: ApplicationService, private adService: AdService) {
@@ -167,8 +168,8 @@ export class SingleAdComponent implements OnInit, OnDestroy {
         const formattedApps = [];
         for (let i = 0; i < applications.length; i++) {
             const application = applications[i];
-            if (application.message.length > 100) {
-                application.formattedMessage = application.message.substring(0, 100) + '...';
+            if (application.message.length > 240) {
+                application.formattedMessage = application.message.substring(0, 240) + '...';
             } else {
                 application.formattedMessage = application.message;
             }

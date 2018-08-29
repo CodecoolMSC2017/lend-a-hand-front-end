@@ -78,7 +78,6 @@
 }
 
 .operate-button {
-    float: right;
     text-align: center;
     width: 10em;
 }
@@ -144,11 +143,20 @@
     opacity: 0;
 }
 
+#send-button {
+    margin-top: -1em;
+}
+
 #cancelButton {
     float: right;
     position: relative;
     left: -2em;
     top: -2em;
+}
+
+.message-to-advertiser {
+    position: relative;
+    left: 2em;
 }
 
 #category-td {
@@ -159,24 +167,30 @@
     width: 80em;
 }
 
-#messageTextbox {
-    width: 65%;
-    height: 20em;
+.messageTextbox {
+    width: 60%;
+    height: 15em;
     padding: 2%;
     border-radius: 15px;
     resize: none;
     font-size: 1.2em;
 }
 
+#sendButton {
+    margin-top: -1em;
+}
+
 #applicationMessageDiv {
     color: white;
     position: relative;
-    top: -30em;
+    top: -37em;
     padding-top: 3em;
     padding-bottom: 3em;
     border-radius: 30px;
     background-color: #07222c;
     border: 2px solid white;
+    width: 100%;
+    height: 50%;
 }
 
 #singleAdDiv {
@@ -246,22 +260,21 @@
 
 #image-td {
     height: 7em;
-    width: 11em;
+    width: 7em;
     margin-top: 5em;
     text-align: center;
 }
 
 .applications-image {
-    width: 10em;
+    width: 6em;
     height: 6em;
     border: #0c5068 solid 0.2em;
-    border-radius: 0.5em;
-
+    border-radius: 50%;
 }
 
 #description-td {
     height: 3em;
-    width: 26em;
+    width: 100%;
     vertical-align: top;
     overflow: hidden;
     display: inline-block;

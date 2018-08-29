@@ -146,12 +146,14 @@
 <div id="applicationMessageDiv" class="hidden">
     <button class="button" id="cancelButton" (click)="backToAd()">Back</button>
 
-    <h2 style="position:relative;left:2em;">Message to advertiser</h2>
+    <h2 class="message-to-advertiser">Message to advertiser</h2>
 
-    <textarea rows="4" cols="50" id="messageTextbox" type="text" [(ngModel)]="applicationMessage"></textarea>
+    <textarea rows="4" cols="30" class="messageTextbox" type="text" [(ngModel)]="applicationMessage"
+              maxlength="250"></textarea>
+    <p class="text-right">{{ 250 - applicationMessage.length + ' / ' + 250 + ' character(s)'}}</p>
     <br>
     <br>
-    <button class="button" id="sendButton" (click)="sendApplication()">Send</button>
+    <button class="button" id="send-button" (click)="sendApplication()">Send</button>
 
     <div class="info-div">
         <span class="info" id="info">Create a new advertisement</span>
