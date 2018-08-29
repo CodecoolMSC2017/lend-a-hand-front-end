@@ -271,7 +271,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
         if (address === '' && this.currentUsersProfile.address != null) {
             address = this.currentUsersProfile.address;
         }
-        if (this.uploadedPictureLink === null || this.uploadedPictureLink === '') {
+
+        if (this.uploadedPictureLink === undefined || this.uploadedPictureLink === null || this.uploadedPictureLink === '') {
             this.uploadedPictureLink = this.currentUsersProfile.pictureLink;
         }
 
@@ -302,6 +303,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.currentUsersProfile.city = city;
         this.currentUsersProfile.address = address;
         this.currentUsersProfile.pictureLink = this.uploadedPictureLink;
+
         this.userService.updateUser(this.currentUsersProfile).subscribe(response => {
             sessionStorage.setItem('user', JSON.stringify(response));
             this.user = response;
