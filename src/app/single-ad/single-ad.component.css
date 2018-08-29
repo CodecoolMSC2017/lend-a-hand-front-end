@@ -246,17 +246,16 @@
 
 #image-td {
     height: 7em;
-    width: 11em;
+    width: 7em;
     margin-top: 5em;
     text-align: center;
 }
 
 .applications-image {
-    width: 10em;
+    width: 6em;
     height: 6em;
     border: #0c5068 solid 0.2em;
-    border-radius: 0.5em;
-
+    border-radius: 50%;
 }
 
 #description-td {
