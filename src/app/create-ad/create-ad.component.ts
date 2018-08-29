@@ -68,7 +68,7 @@ export class CreateAdComponent implements OnInit {
                 return;
             }
         }
-        if (this.isPremium) {
+        if (this.isPremium && this.user.type == 'person') {
             if (this.user.balance < 1) {
                 this.router.navigate(['payment']);
             }
@@ -87,12 +87,12 @@ export class CreateAdComponent implements OnInit {
         this.ad.pictureLink = this.uploadedPictureLink;
 
         this.adservice.createAd(this.ad).subscribe(user => {
-            sessionStorage.setItem('user', JSON.stringify(user));
-            this.gem.updateUser(user);
+                sessionStorage.setItem('user', JSON.stringify(user));
+                this.gem.updateUser(user);
                 this.gem.updateInfo('Advertisement successfully created');
                 this.router.navigate(['categories']);
             }, serverError => {
-            this.handleError(serverError);
+                this.handleError(serverError);
             }
         );
 
