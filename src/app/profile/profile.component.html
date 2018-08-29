@@ -91,33 +91,55 @@
             </div>
 
             <div class="values">
-                <p *ngIf="currentUsersProfile.balance"><strong class="balance">Balance: </strong>{{currentUsersProfile.balance}}
-                    Golden Hand(s) </p>
-                <p *ngIf="!currentUsersProfile.balance"><strong class="balance">Balance: </strong>0 Golden Hand </p>
-                <p *ngIf="ownProfile && currentUsersProfile.type == 'person'">You can buy more here: <img
-                        src="../assets/goldenhand.png" class="payment-icon" (click)="toPayment()"></p>
+
+                <div *ngIf="!isChanging">
+                    <p *ngIf="currentUsersProfile.balance" class="balance"><strong>Balance: </strong>{{currentUsersProfile.balance}}
+                        <img src="../assets/goldenhand.png" class="payment-icon" (click)="toPayment()"></p>
+                    <p *ngIf="!currentUsersProfile.balance" class="balance"><strong>Balance: </strong>0<img
+                            src="../assets/goldenhand.png" class="payment-icon" (click)="toPayment()"></p>
 
 
-                <table id="rating-table">
-                    <tr>
-                        <td id="employeeRating-td">
-                            <strong><p>Rating as a Hand-lender: </p></strong>
-                        </td>
-                        <td>
-                            <span *ngIf="currentUsersProfile.employeeRatingScore">{{currentUsersProfile.employeeRatingScore | number:'1.0-1'}}</span>
-                            <span *ngIf="!currentUsersProfile.employeeRatingScore">0</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td id="employerRating-td">
-                            <strong><p>Rating as a Hand-seeker: </p></strong>
-                        </td>
-                        <td>
-                            <span *ngIf="currentUsersProfile.employerRatingScore">{{currentUsersProfile.employerRatingScore | number:'1.0-1'}}</span>
-                            <span *ngIf="!currentUsersProfile.employerRatingScore">0</span>
-                        </td>
-                    </tr>
-                </table>
+                    <table id="rating-table">
+                        <tr>
+                            <td id="employeeRating-td">
+                                <strong><p class="rating-title">Rating as a Hand-lender: </p></strong>
+                            </td>
+                            <td>
+                                <p *ngIf="currentUsersProfile.employeeRatingScore" class="rating-number">
+                                    {{currentUsersProfile.employeeRatingScore | number:'1.0-1'}}</p>
+                                <p *ngIf="!currentUsersProfile.employeeRatingScore" class="rating-number">0</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="employerRating-td">
+                                <strong><p class="rating-title">Rating as a Hand-seeker: </p></strong>
+                            </td>
+                            <td>
+                                <p *ngIf="currentUsersProfile.employerRatingScore" class="rating-number">
+                                    {{currentUsersProfile.employerRatingScore | number:'1.0-1'}}</p>
+                                <p *ngIf="!currentUsersProfile.employerRatingScore" class="rating-number">0</p>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div *ngIf="isChanging" id="button-div">
+                    <label>
+                        <input type="file" (change)="selectFile($event)" accept="image/*" class="btn btn-default">
+                    </label>
+
+                    <button class="btn btn-primary" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+
+                    <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+                             attr.aria-valuenow="{{progress.percentage}}"
+                             aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                            {{progress.percentage}}%
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
 
             <div id="manage-buttons" *ngIf="ownProfile">

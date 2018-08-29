@@ -22,13 +22,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     loaded = false;
     contacted = false;
     error: string;
+    isChanging = false;
+    uploadedPictureLink: string;
 
     selectedFiles: FileList;
     currentFileUpload: File;
     progress: { percentage: number } = {percentage: 0};
 
     constructor(private gem: GlobalEventManagerService, private userService: UserService, private adService: AdService,
-                private applicationService: ApplicationService, private router: Router, private uploadService: UploadFileService) {
+                private applicationService: ApplicationService, private router: Router,
+                private uploadService: UploadFileService) {
     }
 
     ngOnInit() {
@@ -83,6 +86,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
 
     profileChanges(): void {
+        this.isChanging = true;
         this.showFullNameInput();
         this.showPhoneInput();
         this.showLocationInput();
@@ -242,6 +246,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     update(): void {
+        this.isChanging = false;
+        this.progress.percentage = 0;
+
         let fullName = (<HTMLInputElement>document.getElementById('full-name-input')).value;
         let phone = (<HTMLInputElement>document.getElementById('phone-input')).value;
         let postalCode = (<HTMLInputElement>document.getElementById('postal-code-input')).value;
@@ -263,6 +270,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
         }
         if (address === '' && this.currentUsersProfile.address != null) {
             address = this.currentUsersProfile.address;
+        }
+        if (this.uploadedPictureLink === null || this.uploadedPictureLink === '') {
+            this.uploadedPictureLink = this.currentUsersProfile.pictureLink;
         }
 
         if (fullName === '') {
@@ -291,6 +301,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.currentUsersProfile.postalCode = postalCode;
         this.currentUsersProfile.city = city;
         this.currentUsersProfile.address = address;
+        this.currentUsersProfile.pictureLink = this.uploadedPictureLink;
         this.userService.updateUser(this.currentUsersProfile).subscribe(response => {
             sessionStorage.setItem('user', JSON.stringify(response));
             this.user = response;
@@ -323,18 +334,36 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
 
     upload() {
-        this.progress.percentage = 0;
-
         this.currentFileUpload = this.selectedFiles.item(0);
+        if (!this.validateFile(this.currentFileUpload)) {
+            return;
+        }
+        this.progress.percentage = 0;
         this.uploadService.pushFileToStorage(this.currentFileUpload, this.user.userName).subscribe(event => {
             if (event.type === HttpEventType.UploadProgress) {
                 this.progress.percentage = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
+                this.uploadedPictureLink = event.body as string;
                 console.log('File is completely uploaded!');
             }
         });
-
         this.selectedFiles = undefined;
+    }
+
+    validateFile(file: File): boolean {
+        const extension = file.name.split('.').pop();
+        const acceptableExtensions = ['jpe', 'jpg', 'png', 'gif', 'jpeg', 'ico'];
+        if (acceptableExtensions.indexOf(extension) === -1) {
+            this.error = 'Invalid file format';
+            this.showError();
+            return false;
+        }
+        if (file.size > 99000000) {
+            this.error = 'File size too large';
+            this.showError();
+            return false;
+        }
+        return true;
     }
 
     toReport() {
